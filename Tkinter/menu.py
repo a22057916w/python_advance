@@ -20,4 +20,6 @@ menuFile.add_command(label="Exit", command=window.quit)
 
 menuHelp.add_command(label="about")
 
+# Notice that: menuBar is hooked to window, menuFile and menuHelp are hooked to menuBar
+
 window.mainloop()
