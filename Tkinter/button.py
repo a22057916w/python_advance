@@ -5,10 +5,10 @@ window.title("countdown")
 window.geometry("600x800")
 
 # pack() 先宣告先顯示, 由上而下, 由左自右
-btStop = tk.Button(window, text="stop", width=25, command=window.destroy)
-btStop.pack()
+btnStop = tk.Button(window, text="stop", width=25, command=window.destroy)
+btnStop.pack()
 
-btDoNothing = tk.Button(window, text="Do Nothing", width=25, command=None)
-btDoNothing.pack()
+btnDoNothing = tk.Button(window, text="Do Nothing", width=25, command=None)
+btnDoNothing.pack()
 
 window.mainloop()
