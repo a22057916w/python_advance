@@ -9,8 +9,8 @@ window.title("whisky")
 # 設定像素大小
 window.geometry("600x800")
 
-# 設定背景顏色
-window.configure(bg = "white")
+# 設定背景顏色, window.config() return as a dictionaty
+window.config(bg = "white")
 
 # 宣告一個標籤
 label_1 = tk.Label(window, text="Hello world", bg="yellow", fg="#263238", font=("Arial", 12))
