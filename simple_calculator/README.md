@@ -5,7 +5,7 @@ btnFirst = tk.Button(window, width=20, text=str(nFirstOperand), command=operatio
 ```
 It happens because you're calling the function. Pass it a function object instead, such as one created with `lambda`.
 ```
-..., command=(lambda: exp(Output)))
+..., command=(lambda: operation("+", nFirstOperand)))
 ```
 2. 更改initValue(顯示數字)的值
 
