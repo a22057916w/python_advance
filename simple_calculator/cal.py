@@ -78,17 +78,16 @@ def read_ini_section(section):
 
 
 def operation(strOperator, nOperand):
+
+    # python int type has no range limit
     nTmp = eval(strResult.get())
-    print(nTmp)
+
     if strOperator == "+":
         nTmp += nOperand
     elif strOperator == "-":
         nTmp -= nOperand
     elif strOperator == "*":
         nTmp *= nOperand
-
-    # need to deal overflow
-
     strResult.set(str(nTmp))
 
 # create calculator GUI
@@ -100,11 +99,9 @@ def cal_UI(nInitValue, nFirstOperand, nSecondOperand, nThirdOperand, nFourthOper
     window.geometry("600x400")          # set window size
     window.resizable(0, 0)              # set window fixed
 
+    # 讓grid column and row可隨視窗放大
     window.columnconfigure(0, weight=1)
     window.columnconfigure(1, weight=1)
-
-
-    # need to be modified
     for i in range(3):
         window.rowconfigure(i, weight=1)
 
