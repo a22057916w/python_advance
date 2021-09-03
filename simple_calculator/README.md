@@ -33,6 +33,7 @@ It happens because you're calling the function. Pass it a function object instea
 ## Reference
 * [Why my python tkinter button is executed automatically - Stack Overflow](https://stackoverflow.com/questions/19285907/why-my-python-tkinter-button-is-executed-automatically)
 * [[Python教學]Python Lambda Function應用技巧分享](https://www.learncodewithmike.com/2019/12/python-lambda-functions.html)
+* [ 如何更改 Tkinter 標籤文字 | D棧 - Delft Stack](https://www.delftstack.com/zh-tw/howto/python-tkinter/how-to-change-the-tkinter-label-text/)
 * [configparser — Configuration file parser — Python 3.9.7 documentation](https://docs.python.org/3/library/configparser.html)
 * [python - What does 'weight' do in tkinter? - Stack Overflow](https://stackoverflow.com/questions/45847313/what-does-weight-do-in-tkinter)
 * [Tkinter Grid Geometry Manager](https://www.pythontutorial.net/tkinter/tkinter-grid/)
