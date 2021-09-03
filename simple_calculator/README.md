@@ -10,6 +10,8 @@ It happens because you're calling the function. Pass it a function object instea
 2. 更改initValue(顯示數字)的值
 
 
+3. 讓widget隨視窗放大
+
 ## Reference
 * [Why my python tkinter button is executed automatically - Stack Overflow](https://stackoverflow.com/questions/19285907/why-my-python-tkinter-button-is-executed-automatically)
 * [[Python教學]Python Lambda Function應用技巧分享](https://www.learncodewithmike.com/2019/12/python-lambda-functions.html)
