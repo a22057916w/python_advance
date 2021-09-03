@@ -12,7 +12,7 @@ It happens because you're calling the function. Pass it a function object instea
 
 3. 讓widget隨視窗放大 <br>
   Using `columnconfigure(index, weight)` and `rowcofigure(index, weight)`: <br>
-  Every column and row has a "weight" grid option associated with it, which tells it how much it should grow if there is extra room in the master to fill. By         default, the weight of each column or row is 0, meaning don't expand to fill space. For example:
+    Every column and row has a "weight" grid option associated with it, which tells it how much it should grow if there is extra room in the master to fill. By         default, the weight of each column or row is 0, meaning don't expand to fill space. For example:
   ```
   window.columnconfigure(0, weight=1)
   window.rowconfigure(0, weight=1)
