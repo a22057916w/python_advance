@@ -7,9 +7,15 @@ It happens because you're calling the function. Pass it a function object instea
 ```
 ..., command=(lambda: operation("+", nFirstOperand)))
 ```
-2. 更改initValue(顯示數字)的值
-
-
+2. 更改initValue(顯示數字)的值 <br>
+  Using `StringVar` with `textvariable`: <br>
+  將 StringVar 變數與 Tkinter 控制元件關聯後，修改 StringVar 變數後，Tkinter 將自動更新此控制元件。
+  ```
+  strResult = tk.StringVar()
+  strResult.set(str(nInitValue))
+  
+  lbResult = tk.Label(window, textvariable=strResult)
+  ```
 3. 讓widget隨視窗放大 <br>
   Using `columnconfigure(index, weight)` and `rowcofigure(index, weight)`: <br>
     Every column and row has a "weight" grid option associated with it, which tells it how much it should grow if there is extra room in the master to fill. By         default, the weight of each column or row is 0, meaning don't expand to fill space. For example:
