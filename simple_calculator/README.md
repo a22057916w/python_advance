@@ -29,7 +29,20 @@ It happens because you're calling the function. Pass it a function object instea
   btnFirst = tk.Button(window, width=20, text=strFirstOp + str(nFirstOperand), command=lambda: operation(strFirstOp, nFirstOperand))
   btnFirst.grid(row=1, column=0, sticky=tk.NW+tk.SE)
   ```
-  
+  4. Integer Overflow <br>
+    In Python, value of an integer is not restricted by the number of bits and can expand to the limit of the available memory
+  ```
+  x = 10
+  print(type(x))
+
+  x = 10000000000000000000000000000000000000000000
+  print(type(x))
+  ```
+   output:
+   ```
+    <type 'int'>
+    <type 'int'>
+   ```
 ## Reference
 * [Why my python tkinter button is executed automatically - Stack Overflow](https://stackoverflow.com/questions/19285907/why-my-python-tkinter-button-is-executed-automatically)
 * [[Python教學]Python Lambda Function應用技巧分享](https://www.learncodewithmike.com/2019/12/python-lambda-functions.html)
