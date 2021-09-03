@@ -3,4 +3,12 @@
 ```
 btnFirst = tk.Button(window, width=20, text=str(nFirstOperand), command=operation("+", nFirstOperand))
 ```
+It happens because you're calling the function. Pass it a function object instead, such as one created with `lambda`.
+```
+..., command=(lambda: exp(Output)))
+```
 2. 更改initValue(顯示數字)的值
+
+
+## Reference
+* [Why my python tkinter button is executed automatically - Stack Overflow](https://stackoverflow.com/questions/19285907/why-my-python-tkinter-button-is-executed-automatically)
