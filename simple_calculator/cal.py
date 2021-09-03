@@ -97,6 +97,8 @@ def cal_UI(nInitValue, nFirstOperand, nSecondOperand, nThirdOperand, nFourthOper
 
     window = tk.Tk()
     window.title("Simple Calculator")
+    window.geometry("600x400")          # set window size
+    window.resizable(0, 0)              # set window fixed
 
     window.columnconfigure(0, weight=1)
     window.columnconfigure(1, weight=1)
