@@ -143,6 +143,7 @@ if __name__ == '__main__':
         config.read_file(iniFile)
         read_ini_section(config["Setting"])
 
+    # cheking if read .ini velue properly
     print(nInitValue, nFirstOperand, nSecondOperand, nThirdOperand, nFourthOperand)
     print(strFirstOp, strSecondOp, strThirdOp, strFourthOp)
 
