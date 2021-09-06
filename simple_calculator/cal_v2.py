@@ -31,26 +31,31 @@ def read_ini_section(section):
             print("get initValue %d success" % nInitValue)
         else:
             print("get initValue fail")
+            return False
         if "firstOperand" in section:
             nFirstOperand = section.getint("firstOperand")
             print("get firstOperand %d success" % nFirstOperand)
         else:
             print("get firstOperand fail")
+            return False
         if "secondOperand" in section:
             nSecondOperand = section.getint("secondOperand")
             print("get secondOperand %d success" % nSecondOperand)
         else:
             print("get secondOperand fail")
+            return False
         if "thirdOperand" in section:
             nThirdOperand = section.getint("thirdOperand")
             print("get thirdOperand %d success" % nThirdOperand)
         else:
             print("get thirdOperand fail")
+            return False
         if "fourthOperand" in section:
             nFourthOperand = section.getint("fourthOperand")
             print("get fourthOperand %d success" % nFourthOperand)
         else:
             print("get fourthOperand fail")
+            return False
 
         # ---------- read oprators -----------
         if "firstOperator" in section:
@@ -58,21 +63,25 @@ def read_ini_section(section):
             print("successfully get firstOperator %s" % strFirstOp)
         else:
             print("get firstOperator fail")
+            return False
         if "secondOperator" in section:
             strSecondOp = section.get("secondOperator")
             print("successfully get secondOperator %s" % strSecondOp)
         else:
             print("get secondOperator fail")
+            return False
         if "thirdOperator" in section:
             strThirdOp = section.get("thirdOperator")
             print("successfully get thirdOperator %s" % strThirdOp)
         else:
             print("get thirdOperator fail")
+            return False
         if "fourthOperator" in section:
             strFourthOp = section.get("fourthOperator")
             print("successfully get fourthOperator %s" % strFourthOp)
         else:
             print("get fourthOperator fail")
+            return False
         return True
     except Exception as e:
         print(e)
