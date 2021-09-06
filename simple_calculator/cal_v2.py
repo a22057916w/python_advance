@@ -10,7 +10,7 @@ nSecondOperand = 0
 nThirdOperand = 0
 nFourthOperand = 0
 
-# read strOperator
+# read Operators
 strFirstOp = ""
 strSecondOp = ""
 strThirdOp = ""
@@ -76,7 +76,7 @@ def read_ini_section(section):
     except Exception as e:
         print(e)
 
-
+# simple Calculator GUI
 class Calculator():
     def __init__(self, nInitValue, nFirstOperand, nSecondOperand, nThirdOperand, nFourthOperand, strFirstOp, strSecondOp, strThirdOp, strFourthOp):
 
@@ -113,7 +113,7 @@ class Calculator():
         self.btnFourth = tk.Button(self.window, width=20, text=strFourthOp + str(nFourthOperand), command=lambda: self.operation(strFourthOp, nFourthOperand))
         self.btnFourth.grid(row=2, column=1, sticky=tk.NW+tk.SE)
 
-    # method for button call, which does +, -, and *   
+    # method for button call, which does +, -, and *
     def operation(self, strOperator, nOperand):
 
         # python int type has no range limit
@@ -146,5 +146,6 @@ if __name__ == '__main__':
     print(nInitValue, nFirstOperand, nSecondOperand, nThirdOperand, nFourthOperand)
     print(strFirstOp, strSecondOp, strThirdOp, strFourthOp)
 
+    # new an instance of a Calculator then start it
     cal = Calculator(nInitValue, nFirstOperand, nSecondOperand, nThirdOperand, nFourthOperand, strFirstOp, strSecondOp, strThirdOp, strFourthOp)
     cal.mainloop()
