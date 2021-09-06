@@ -1,6 +1,7 @@
 from configparser import ConfigParser
 import tkinter as tk
 import os
+import sys
 
 # --------- global var for .ini file info ----------
 # read operands
@@ -72,7 +73,7 @@ def read_ini_section(section):
             print("successfully get fourthOperator %s" % strFourthOp)
         else:
             print("get fourthOperator fail")
-
+        return True
     except Exception as e:
         print(e)
 
@@ -141,7 +142,9 @@ if __name__ == '__main__':
     with open(strSettingPath) as iniFile:
         config = ConfigParser()
         config.read_file(iniFile)
-        read_ini_section(config["Setting"])
+        if read_ini_section(config["Setting"]) != True:
+            sys.exit("read ini secion fail")
+
 
     # cheking if read .ini velue properly
     print(nInitValue, nFirstOperand, nSecondOperand, nThirdOperand, nFourthOperand)
