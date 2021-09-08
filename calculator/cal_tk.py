@@ -136,7 +136,10 @@ class Calculator():
     def pressDec(self):
         # checking if the last char is oprator
         if self.isOperator(self.strExpression[-1]):
-            self.strExpression = self.strExpression[:-1] + "."
+            if "." in self.strExpression:
+                self.strExpression = self.strExpression[:-1]
+            else:
+                self.strExpression = self.strExpression[:-1] + "."
 
         elif "." in re.split(r'\+|-|\*|\/|%', self.strExpression)[-1]:
             pass
