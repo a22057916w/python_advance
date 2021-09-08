@@ -134,15 +134,19 @@ class Calculator():
 
     # handling the decimal points buttons
     def pressDec(self):
-        # checking if the last char is oprator
+        # if the last char is operator
         if self.isOperator(self.strExpression[-1]):
+            # if there is already "." in expression, replace op with nothing
             if "." in self.strExpression:
                 self.strExpression = self.strExpression[:-1]
+            # otherwise, replace op wiht "."
             else:
                 self.strExpression = self.strExpression[:-1] + "."
-
+        # make sure there can be two floating numbers in the expression. e.g. 3.2 + 6.4
+        # if three is "." in the expression after spliting by ops, do noting
         elif "." in re.split(r'\+|-|\*|\/|%', self.strExpression)[-1]:
             pass
+        # otherewise, add decimal point to the expression
         else:
             self.strExpression = self.strExpression + "."
         self.strEquation.set(self.strExpression)
