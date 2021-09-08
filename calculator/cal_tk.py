@@ -123,8 +123,9 @@ class Calculator():
     # handling the equal button and calculate the equation
     def pressEqu(self):
         try:
-            if len(self.strExpression) > 2 and self.strExpression[-3:] == "0/0":
-                messagebox.showinfo("Error", "Don't be silly.")
+            # checking zeor division
+            if re.match(r'\d\/0', self.strExpression):      # "\d" for [0-9]
+                messagebox.showinfo("Error", "Don't be silly.")     # tkinter.messagebox
                 self.strExpression = "0"
             else:
                 self.strExpression = str(eval(self.strExpression))
