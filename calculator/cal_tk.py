@@ -16,8 +16,6 @@ class Calculator():
         for i in range(6):
             self.window.rowconfigure(i, weight=1)
 
-        self.strOperators = "\+|-|\*|\/|%"
-
         # 將 StringVar 變數與 Tkinter 控制元件關聯後，修改 StringVar 變數後，Tkinter 將自動更新此控制元件
         self.strEquation = tk.StringVar()
 
