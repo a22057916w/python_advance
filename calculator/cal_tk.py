@@ -112,7 +112,7 @@ class Calculator():
         # checking if the expression contains decimal point
         if strOp == "." and "." in self.strExpression:
             pass
-        # checking if the last char of string is one of the char listed above
+        # checking if the last char of string is op or "."
         elif self.isOperator(self.strExpression[-1]) or self.strExpression[-1] == ".":
             self.strExpression = self.strExpression[:-1] + strOp
         else:
@@ -128,6 +128,7 @@ class Calculator():
                 messagebox.showinfo("Error", "Don't be silly.")     # tkinter.messagebox
                 self.strExpression = "0"
             else:
+                # evaluate the expression
                 self.strExpression = str(eval(self.strExpression))
             self.strEquation.set(self.strExpression)
         except Exception as e:
