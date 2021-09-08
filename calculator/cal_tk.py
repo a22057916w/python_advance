@@ -16,6 +16,8 @@ class Calculator():
         for i in range(6):
             self.window.rowconfigure(i, weight=1)
 
+        self.strOperators = "\+|-|\*|\/|%"
+
         # 將 StringVar 變數與 Tkinter 控制元件關聯後，修改 StringVar 變數後，Tkinter 將自動更新此控制元件
         self.strEquation = tk.StringVar()
 
@@ -92,18 +94,21 @@ class Calculator():
 
     # handling the button events of numbers
     def pressNum(self, strNum):
-        if len(self.strExpression) > 1:
+        # if the expression is single digit
+        if len(self.strExpression) < 2:
+            # if the expression is 0, simply change it to strNum
+            if self.strExpression == "0":
+                self.strExpression = strNum
+            # else, concatenation the expression and strNum
+            else:
+                self.strExpression = self.strExpression + strNum
+        # if the length of expression >= 2
+        else:
             # make sure there can be equation like 3+02, should be 3+2
             if self.isOperator(self.strExpression[-2]) and self.strExpression[-1] == "0":
                 self.strExpression = self.strExpression[:-1] + strNum
             else:
                 # concatenation the expression and pressed button var
-                self.strExpression = self.strExpression + strNum
-        # cheking if the expression is 0
-        else:
-            if self.strExpression == "0":
-                self.strExpression = strNum
-            else:
                 self.strExpression = self.strExpression + strNum
         self.strEquation.set(self.strExpression)
 
@@ -124,7 +129,7 @@ class Calculator():
     def pressEqu(self):
         try:
             # checking zeor division
-            if re.match(r'\d\/0', self.strExpression):      # "\d" for [0-9]
+            if self.strExpression[-2:] == "/0":
                 messagebox.showinfo("Error", "Don't be silly.")     # tkinter.messagebox
                 self.strExpression = "0"
             else:
