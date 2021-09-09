@@ -20,6 +20,7 @@ class Calculator():
 
         # 儲存算式然後 set 到 strEquation
         self.strExpression = "0"
+        self.strDispaly = "0"
         self.strEquation.set(self.strExpression)
 
         # 使用Entry顯示計算值
@@ -60,29 +61,29 @@ class Calculator():
 
         # -------- setup buttons of alrithmatic  ---------
         self.btnAdd = tk.Button(self.window, width=20, text="+", font=12, command=lambda:self.pressArithm("+"))
-        self.btnAdd.grid(row=4, column=3, sticky=tk.NW+tk.SE)
+        self.btnAdd.grid(row=5, column=3, sticky=tk.NW+tk.SE)
 
         self.btnSub = tk.Button(self.window, width=20, text="-", font=12, command=lambda:self.pressArithm("-"))
-        self.btnSub.grid(row=3, column=3, sticky=tk.NW+tk.SE)
+        self.btnSub.grid(row=4, column=3, sticky=tk.NW+tk.SE)
 
         self.btnMult = tk.Button(self.window, width=20, text="*", font=12, command=lambda:self.pressArithm("*"))
-        self.btnMult.grid(row=2, column=3, sticky=tk.NW+tk.SE)
+        self.btnMult.grid(row=3, column=3, sticky=tk.NW+tk.SE)
 
         self.btnDiv = tk.Button(self.window, width=20, text="/", font=12, command=lambda:self.pressArithm("/"))
-        self.btnDiv.grid(row=1, column=3, sticky=tk.NW+tk.SE)
-
-        self.btnMod = tk.Button(self.window, width=20, text="%", font=12, command=lambda:self.pressArithm("%"))
-        self.btnMod.grid(row=5, column=3, sticky=tk.NW+tk.SE)
+        self.btnDiv.grid(row=2, column=3, sticky=tk.NW+tk.SE)
 
         # ------- setup special alrithmatic buttons ---------
+        self.btnLeftParen = tk.Button(self.window, width=20, text="(", font=12)
+        self.btnLeftParen.grid(row=1, column=3, sticky=tk.NW+tk.SE)
+
+        self.btnRightParen = tk.Button(self.window, width=20, text=")", font=12)
+        self.btnRightParen.grid(row=1, column=4, sticky=tk.NW+tk.SE)
+
         self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12)
-        self.btnRoot.grid(row=1, column=4, sticky=tk.NW+tk.SE)
+        self.btnRoot.grid(row=2, column=4, sticky=tk.NW+tk.SE)
 
         self.btnSquare = tk.Button(self.window, width=20, text="x\u00B2", font=12)
-        self.btnSquare.grid(row=2, column=4, sticky=tk.NW+tk.SE)
-
-        self.btnCube = tk.Button(self.window, width=20, text="x\u00B3", font=12)
-        self.btnCube.grid(row=3, column=4, sticky=tk.NW+tk.SE)
+        self.btnSquare.grid(row=3, column=4, sticky=tk.NW+tk.SE)
 
         self.btnFact = tk.Button(self.window, width=20, text="n!", font=12)
         self.btnFact.grid(row=4, column=4, sticky=tk.NW+tk.SE)
@@ -137,6 +138,9 @@ class Calculator():
             # concatenation the expression and alrithmatic button
             self.strExpression = self.strExpression + strOp
         self.strEquation.set(self.strExpression)
+
+    def pressLeftParen(self):
+        pass
 
     # handling the equal button and calculate the equation
     def pressEqu(self):
