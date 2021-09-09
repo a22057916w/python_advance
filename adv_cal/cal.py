@@ -191,7 +191,7 @@ class Calculator():
 # ------------------ end of method of button events -----------------------
 
     def isOperator(self, strOp):
-        listOps = ["+", "-", "*", "/", "%"]
+        listOps = ["+", "-", "*", "/"]
         return 1 in [op in strOp for op in listOps]
 
     def mainloop(self):
