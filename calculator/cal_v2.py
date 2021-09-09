@@ -10,7 +10,7 @@ class Calculator():
         self.window.resizable(0, 0)              # set window fixed
 
         # 讓grid column and row可隨視窗放大, grid size: 4x6
-        for i in range(5):
+        for i in range(4):
             self.window.columnconfigure(i, weight=1)
         for i in range(6):
             self.window.rowconfigure(i, weight=1)
@@ -26,7 +26,7 @@ class Calculator():
         # 使用Entry顯示計算值
         self.entResult = tk.Entry(self.window, textvariable=self.strEqua, state=tk.DISABLED, justify="right")     # "state=tk.DISABLED" will not allow user to input, "justify="right"" aligns the text to the right
         self.entResult.config(disabledbackground=self.window["bg"], font=12)     # set disabledbackground colour
-        self.entResult.grid(row = 0, column = 0, columnspan=5, ipadx=70, sticky=tk.NW+tk.SE)
+        self.entResult.grid(row = 0, column = 0, columnspan=4, ipadx=70, sticky=tk.NW+tk.SE)
 
         # -------- setup buttons of number  ---------
         self.btnZero = tk.Button(self.window, width=20, text="0", font=12, command=lambda:self.pressNum("0"))
@@ -61,36 +61,28 @@ class Calculator():
 
         # -------- setup buttons of alrithmatic  ---------
         self.btnAdd = tk.Button(self.window, width=20, text="+", font=12, command=lambda:self.pressArithm("+"))
-        self.btnAdd.grid(row=5, column=3, sticky=tk.NW+tk.SE)
+        self.btnAdd.grid(row=4, column=3, sticky=tk.NW+tk.SE)
 
         self.btnSub = tk.Button(self.window, width=20, text="-", font=12, command=lambda:self.pressArithm("-"))
-        self.btnSub.grid(row=4, column=3, sticky=tk.NW+tk.SE)
+        self.btnSub.grid(row=3, column=3, sticky=tk.NW+tk.SE)
 
         self.btnMult = tk.Button(self.window, width=20, text="*", font=12, command=lambda:self.pressArithm("*"))
-        self.btnMult.grid(row=3, column=3, sticky=tk.NW+tk.SE)
+        self.btnMult.grid(row=2, column=3, sticky=tk.NW+tk.SE)
 
         self.btnDiv = tk.Button(self.window, width=20, text="/", font=12, command=lambda:self.pressArithm("/"))
-        self.btnDiv.grid(row=2, column=3, sticky=tk.NW+tk.SE)
+        self.btnDiv.grid(row=1, column=3, sticky=tk.NW+tk.SE)
 
         # ------- setup special alrithmatic buttons ---------
         self.btnLeftParen = tk.Button(self.window, width=20, text="(", font=12, command=lambda:self.pressLeftParen())
-        self.btnLeftParen.grid(row=1, column=3, sticky=tk.NW+tk.SE)
+        self.btnLeftParen.grid(row=1, column=1, sticky=tk.NW+tk.SE)
 
         self.btnRightParen = tk.Button(self.window, width=20, text=")", font=12, command=lambda:self.pressRightParen())
-        self.btnRightParen.grid(row=1, column=4, sticky=tk.NW+tk.SE)
+        self.btnRightParen.grid(row=1, column=2, sticky=tk.NW+tk.SE)
 
-        self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12)
-        self.btnRoot.grid(row=2, column=4, sticky=tk.NW+tk.SE)
-
-        self.btnSquare = tk.Button(self.window, width=20, text="x\u00B2", font=12)
-        self.btnSquare.grid(row=3, column=4, sticky=tk.NW+tk.SE)
-
-        self.btnFact = tk.Button(self.window, width=20, text="n!", font=12)
-        self.btnFact.grid(row=4, column=4, sticky=tk.NW+tk.SE)
 
         # -------- setup buttons of other operations  ---------
         self.btnEqu = tk.Button(self.window, width=20, text="=", font=12, command=lambda:self.pressEqu())
-        self.btnEqu.grid(row=5, column=4, sticky=tk.NW+tk.SE)
+        self.btnEqu.grid(row=5, column=3, sticky=tk.NW+tk.SE)
 
         self.btnDec = tk.Button(self.window, width=20, text=".", font=12, command=lambda:self.pressDec())
         self.btnDec.grid(row=5, column=2, sticky=tk.NW+tk.SE)
@@ -98,11 +90,6 @@ class Calculator():
         self.btnClear = tk.Button(self.window, width=20, text="AC", font=12, command=lambda:self.pressClear())
         self.btnClear.grid(row=1, column=0, sticky=tk.NW+tk.SE)
 
-        self.btnMinus = tk.Button(self.window, width=20, text="+/-", font=12, command=lambda:self.pressMinus())
-        self.btnMinus.grid(row=1, column=2, sticky=tk.NW+tk.SE)
-
-        self.btnErase = tk.Button(self.window, width=20, text="\u232B", font=12, command=lambda:self.pressErase())
-        self.btnErase.grid(row=1, column=1, sticky=tk.NW+tk.SE)
 
 # ------------------ method of button events -------------------------
 
@@ -139,6 +126,7 @@ class Calculator():
             self.strExpr = self.strExpr + strOp
         self.strEqua.set(self.strExpr)
 
+
     def pressLeftParen(self):
         # if the expression is at dafault state, replace 0 with (
         if self.strExpr == "0":
@@ -152,6 +140,7 @@ class Calculator():
             return
         self.strEqua.set(self.strExpr)
 
+
     def pressRightParen(self):
         # if the expression is at dafault state, do nothing
         if self.strExpr == "0":
@@ -164,25 +153,14 @@ class Calculator():
         self.strEqua.set(self.strExpr)
 
 
-    def pressRoot(self):
-
-        pass
-
-    def pressSquare(self):
-        pass
-
-    def pressFact(self):
-        pass
-
     def pressEqu(self):
         try:
-            # checking zeor division
-            if self.strExpr[-2:] == "/0":
-                messagebox.showinfo("Error", "Don't be silly.")     # tkinter.messagebox
-                self.strExpr = "0"
-            else:
-                # evaluate the expression
-                self.strExpr = str(eval(self.strExpr))
+            # evaluate the expression
+            self.strExpr = str(eval(self.strExpr))
+            self.strEqua.set(self.strExpr)
+        except ZeroDivisionError:
+            messagebox.showinfo("Error", "Can not divide by zero")     # tkinter.messagebox
+            self.strExpr = "0"
             self.strEqua.set(self.strExpr)
         except Exception as e:
             print("Unexpected Error: " + e)
@@ -210,24 +188,6 @@ class Calculator():
     def pressClear(self):
         self.strExpr = "0"
         self.strEqua.set(self.strExpr)
-
-
-    def pressMinus(self):
-        if self.strExpr[0] == "-":
-            self.strExpr = self.strExpr[1:]
-        else:
-            self.strExpr = "-" + self.strExpr[0:]
-        self.strEqua.set(self.strExpr)
-
-
-    def pressErase(self):
-        # if the expression is single digit or something else, set to 0(default)
-        if len(self.strExpr) < 2:
-            self.strExpr = "0"
-        else:
-            self.strExpr = self.strExpr[:-1]
-        self.strEqua.set(self.strExpr)
-
 
 
 # ------------------ end of method of button events -----------------------
