@@ -168,7 +168,7 @@ class Calculator():
                 self.strExpression = self.strExpression[:-1] + "."
         # make sure there can be two floating numbers in the expression. e.g. 3.2 + 6.4
         # if three is "." in the expression after spliting by ops, do noting
-        elif "." in re.split(r'\+|-|\*|\/|%', self.strExpression)[-1]:
+        elif "." in re.split(r'\+|-|\*|\/', self.strExpression)[-1]:
             pass
         # otherewise, add decimal point to the expression
         else:
