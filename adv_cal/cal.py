@@ -16,15 +16,15 @@ class Calculator():
             self.window.rowconfigure(i, weight=1)
 
         # 將 StringVar 變數與 Tkinter 控制元件關聯後，修改 StringVar 變數後，Tkinter 將自動更新此控制元件
-        self.strEquation = tk.StringVar()
+        self.strEqua = tk.StringVar()
 
-        # 儲存算式然後 set 到 strEquation
-        self.strExpression = "0"
+        # 儲存算式然後 set 到 strEqua
+        self.strExpr = "0"
         self.strDispaly = "0"
-        self.strEquation.set(self.strExpression)
+        self.strEqua.set(self.strExpr)
 
         # 使用Entry顯示計算值
-        self.entResult = tk.Entry(self.window, textvariable=self.strEquation, state=tk.DISABLED, justify="right")     # "state=tk.DISABLED" will not allow user to input, "justify="right"" aligns the text to the right
+        self.entResult = tk.Entry(self.window, textvariable=self.strEqua, state=tk.DISABLED, justify="right")     # "state=tk.DISABLED" will not allow user to input, "justify="right"" aligns the text to the right
         self.entResult.config(disabledbackground=self.window["bg"], font=12)     # set disabledbackground colour
         self.entResult.grid(row = 0, column = 0, columnspan=5, ipadx=70, sticky=tk.NW+tk.SE)
 
@@ -73,10 +73,10 @@ class Calculator():
         self.btnDiv.grid(row=2, column=3, sticky=tk.NW+tk.SE)
 
         # ------- setup special alrithmatic buttons ---------
-        self.btnLeftParen = tk.Button(self.window, width=20, text="(", font=12)
+        self.btnLeftParen = tk.Button(self.window, width=20, text="(", font=12, command=lambda:self.pressLeftParen())
         self.btnLeftParen.grid(row=1, column=3, sticky=tk.NW+tk.SE)
 
-        self.btnRightParen = tk.Button(self.window, width=20, text=")", font=12)
+        self.btnRightParen = tk.Button(self.window, width=20, text=")", font=12, command=lambda:self.pressRightParen())
         self.btnRightParen.grid(row=1, column=4, sticky=tk.NW+tk.SE)
 
         self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12)
@@ -109,84 +109,100 @@ class Calculator():
     # handling the button events of numbers
     def pressNum(self, strNum):
         # if the expression is single digit
-        if len(self.strExpression) < 2:
+        if len(self.strExpr) < 2:
             # if the expression is 0, simply change it to strNum
-            if self.strExpression == "0":
-                self.strExpression = strNum
+            if self.strExpr == "0":
+                self.strExpr = strNum
             # else, concatenation the expression and strNum
             else:
-                self.strExpression = self.strExpression + strNum
+                self.strExpr = self.strExpr + strNum
         # if the length of expression >= 2
         else:
             # make sure there can be equation like 3+02, should be 3+2
-            if self.isOperator(self.strExpression[-2]) and self.strExpression[-1] == "0":
-                self.strExpression = self.strExpression[:-1] + strNum
+            if self.isOperator(self.strExpr[-2]) and self.strExpr[-1] == "0":
+                self.strExpr = self.strExpr[:-1] + strNum
             else:
                 # concatenation the expression and pressed button var
-                self.strExpression = self.strExpression + strNum
-        self.strEquation.set(self.strExpression)
+                self.strExpr = self.strExpr + strNum
+        self.strEqua.set(self.strExpr)
 
     # handling the alrithmatic buttons
     def pressArithm(self, strOp):
         # checking if the expression contains decimal point
-        if strOp == "." and "." in self.strExpression:
+        if strOp == "." and "." in self.strExpr:
             pass
         # checking if the last char of string is op or "."
-        elif self.isOperator(self.strExpression[-1]) or self.strExpression[-1] == ".":
-            self.strExpression = self.strExpression[:-1] + strOp
+        elif self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
+            self.strExpr = self.strExpr[:-1] + strOp
         else:
             # concatenation the expression and alrithmatic button
-            self.strExpression = self.strExpression + strOp
-        self.strEquation.set(self.strExpression)
+            self.strExpr = self.strExpr + strOp
+        self.strEqua.set(self.strExpr)
 
     def pressLeftParen(self):
+        self.strExpr = self.strExpr + "("
+        self.strEqua.set(self.strExpr)
+        pass
+
+    def pressRightParen(self):
+        self.strExpr = self.strExpr + ")"
+        self.strEqua.set(self.strExpr)
+        pass
+
+    def pressRoot(self):
+        pass
+
+    def pressSquare(self):
+        pass
+
+    def pressFact(self):
         pass
 
     # handling the equal button and calculate the equation
     def pressEqu(self):
         try:
             # checking zeor division
-            if self.strExpression[-2:] == "/0":
+            if self.strExpr[-2:] == "/0":
                 messagebox.showinfo("Error", "Don't be silly.")     # tkinter.messagebox
-                self.strExpression = "0"
+                self.strExpr = "0"
             else:
                 # evaluate the expression
-                self.strExpression = str(eval(self.strExpression))
-            self.strEquation.set(self.strExpression)
+                self.strExpr = str(eval(self.strExpr))
+            self.strEqua.set(self.strExpr)
         except Exception as e:
             print("Unexpected Error: " + e)
 
     # handling the decimal points buttons
     def pressDec(self):
         # if the last char is operator
-        if self.isOperator(self.strExpression[-1]):
+        if self.isOperator(self.strExpr[-1]):
             # if there is already "." in expression, replace op with nothing
-            if "." in self.strExpression:
-                self.strExpression = self.strExpression[:-1]
+            if "." in self.strExpr:
+                self.strExpr = self.strExpr[:-1]
             # otherwise, replace op wiht "."
             else:
-                self.strExpression = self.strExpression[:-1] + "."
+                self.strExpr = self.strExpr[:-1] + "."
         # make sure there can be two floating numbers in the expression. e.g. 3.2 + 6.4
         # if three is "." in the expression after spliting by ops, do noting
-        elif "." in re.split(r'\+|-|\*|\/', self.strExpression)[-1]:
+        elif "." in re.split(r'\+|-|\*|\/', self.strExpr)[-1]:
             pass
         # otherewise, add decimal point to the expression
         else:
-            self.strExpression = self.strExpression + "."
-        self.strEquation.set(self.strExpression)
+            self.strExpr = self.strExpr + "."
+        self.strEqua.set(self.strExpr)
 
     # handling the clear button then set the equation to 0
     def pressClear(self):
-        self.strExpression = "0"
-        self.strEquation.set(self.strExpression)
+        self.strExpr = "0"
+        self.strEqua.set(self.strExpr)
 
     # handling the Minus buttons
     def pressMinus(self):
-        if self.strExpression[0] == "-":
-            self.strExpression = self.strExpression[1:]
+        if self.strExpr[0] == "-":
+            self.strExpr = self.strExpr[1:]
         else:
-            self.strExpression = "-" + self.strExpression[0:]
-        self.strEquation.set(self.strExpression)
+            self.strExpr = "-" + self.strExpr[0:]
+        self.strEqua.set(self.strExpr)
 
 # ------------------ end of method of button events -----------------------
 
