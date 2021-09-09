@@ -140,12 +140,28 @@ class Calculator():
         self.strEqua.set(self.strExpr)
 
     def pressLeftParen(self):
-        self.strExpr = self.strExpr + "("
+        # if the expression is at dafault state, replace 0 with (
+        if self.strExpr == "0":
+            self.strExpr = "("
+            self.strEqua.set(self.strExpr)
+            return
+
+        if self.strExpr[-1] == ".":
+            self.strExpr = self.strExpr[:-1]
+        else:
+            self.strExpr = self.strExpr + "("
         self.strEqua.set(self.strExpr)
         pass
 
     def pressRightParen(self):
-        self.strExpr = self.strExpr + ")"
+        # if the expression is at dafault state, do nothing
+        if self.strExpr == "0":
+            return
+
+        if self.strExpr[-1] == ".":
+            self.strExpr = self.strExpr[:-1]
+        else:
+            self.strExpr = self.strExpr + ")"
         self.strEqua.set(self.strExpr)
         pass
 
