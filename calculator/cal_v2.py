@@ -20,7 +20,6 @@ class Calculator():
 
         # 儲存算式然後 set 到 strEqua
         self.strExpr = "0"
-        self.strDispaly = "0"
         self.strEqua.set(self.strExpr)
 
         # 使用Entry顯示計算值
@@ -72,7 +71,7 @@ class Calculator():
         self.btnDiv = tk.Button(self.window, width=20, text="/", font=12, command=lambda:self.pressArithm("/"))
         self.btnDiv.grid(row=1, column=3, sticky=tk.NW+tk.SE)
 
-        # ------- setup special alrithmatic buttons ---------
+        # ------- setup parenthsis buttons ---------
         self.btnLeftParen = tk.Button(self.window, width=20, text="(", font=12, command=lambda:self.pressLeftParen())
         self.btnLeftParen.grid(row=1, column=1, sticky=tk.NW+tk.SE)
 
@@ -115,11 +114,8 @@ class Calculator():
 
     # handling the alrithmatic buttons
     def pressArithm(self, strOp):
-        # checking if the expression contains decimal point
-        if strOp == "." and "." in self.strExpr:
-            pass
         # checking if the last char of string is op or "."
-        elif self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
+        if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
             self.strExpr = self.strExpr[:-1] + strOp
         else:
             # concatenation the expression and alrithmatic button
@@ -134,6 +130,7 @@ class Calculator():
             self.strEqua.set(self.strExpr)
             return
 
+        # if the last char is op, add "(", else do nothing
         if self.isOperator(self.strExpr[-1]):
             self.strExpr = self.strExpr + "("
         else:
@@ -146,6 +143,10 @@ class Calculator():
         if self.strExpr == "0":
             return
 
+        # if ")" 數量(大)等於 "("" 數量, do noting
+        if self.strExpr.count(")") >= self.strExpr.count("("):
+            return
+
         if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
             return
         else:
@@ -155,18 +156,37 @@ class Calculator():
 
     def pressEqu(self):
         try:
+            # count the difference of numbers of "(" and ")", then rewrite the expression
+            nParen = self.strExpr.count("(") - self.strExpr.count(")")
+            if nParen > 0:
+                self.strExpr += ")"*nParen
+
+            # 特例: () 取代為 0
+            self.strExpr = self.strExpr.replace("()", "0")
+
             # evaluate the expression
             self.strExpr = str(eval(self.strExpr))
             self.strEqua.set(self.strExpr)
+
         except ZeroDivisionError:
             messagebox.showinfo("Error", "Can not divide by zero")     # tkinter.messagebox
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
+
+        # deal with invalid expression such as 8*(*(*(, then return default value
+        except SyntaxError:
+            self.strExpr = "0"
+            self.strEqua.set(self.strExpr)
+
         except Exception as e:
             print("Unexpected Error: " + e)
 
 
     def pressDec(self):
+        # if the last char is ( or ), do nothing
+        if self.strExpr[-1] == "(" or self.strExpr[-1] == ")":
+            return
+
         # if the last char is operator
         if self.isOperator(self.strExpr[-1]):
             # if there is already "." in expression, replace op with nothing
@@ -178,7 +198,7 @@ class Calculator():
         # make sure there can be two floating numbers in the expression. e.g. 3.2 + 6.4
         # if three is "." in the expression after spliting by ops, do noting
         elif "." in re.split(r'\+|-|\*|\/', self.strExpr)[-1]:
-            pass
+            return
         # otherewise, add decimal point to the expression
         else:
             self.strExpr = self.strExpr + "."
