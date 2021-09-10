@@ -22,6 +22,8 @@ class Calculator():
         self.strExpr = "0"
         self.strEqua.set(self.strExpr)
 
+        self.listStack = [self.strExpr]
+
         # 使用Entry顯示計算值
         self.entResult = tk.Entry(self.window, textvariable=self.strEqua, state=tk.DISABLED, justify="right")     # "state=tk.DISABLED" will not allow user to input, "justify="right"" aligns the text to the right
         self.entResult.config(disabledbackground=self.window["bg"], font=12)     # set disabledbackground colour
@@ -72,15 +74,15 @@ class Calculator():
         self.btnDiv.grid(row=2, column=3, sticky=tk.NW+tk.SE)
 
         self.btnMod = tk.Button(self.window, width=20, text="%", command=lambda:self.pressArithm("%"))
-        self.btnMod.grid(row=1, column=2, sticky=tk.NW+tk.SE)
+        self.btnMod.grid(row=1, column=3, sticky=tk.NW+tk.SE)
 
         # ------- setup special operation buttons ---------
 
         self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12)
-        self.btnRoot.grid(row=2, column=4, sticky=tk.NW+tk.SE)
+        self.btnRoot.grid(row=1, column=4, sticky=tk.NW+tk.SE)
 
         self.btnSquare = tk.Button(self.window, width=20, text="x\u00B2", font=12)
-        self.btnSquare.grid(row=3, column=4, sticky=tk.NW+tk.SE)
+        self.btnSquare.grid(row=2, column=4, sticky=tk.NW+tk.SE)
 
         self.btnCube = tk.Button(self.window, width=20, text="x\u00B3", font=12)
         self.btnCube.grid(row=3, column=4, sticky=tk.NW+tk.SE)
@@ -141,7 +143,6 @@ class Calculator():
 
 
     def pressRoot(self):
-
         pass
 
     def pressSquare(self):
@@ -175,7 +176,7 @@ class Calculator():
                 self.strExpr = self.strExpr[:-1] + "."
         # make sure there can be two floating numbers in the expression. e.g. 3.2 + 6.4
         # if three is "." in the expression after spliting by ops, do noting
-    elif "." in re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]:
+        elif "." in re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]:
             pass
         # otherewise, add decimal point to the expression
         else:
