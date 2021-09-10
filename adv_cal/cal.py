@@ -20,7 +20,6 @@ class Calculator():
 
         # 儲存算式然後 set 到 strEqua
         self.strExpr = "0"
-        self.strDispaly = "0"
         self.strEqua.set(self.strExpr)
 
         # 使用Entry顯示計算值
@@ -71,6 +70,9 @@ class Calculator():
 
         self.btnDiv = tk.Button(self.window, width=20, text="/", font=12, command=lambda:self.pressArithm("/"))
         self.btnDiv.grid(row=2, column=3, sticky=tk.NW+tk.SE)
+
+        self.btnMod = tk.Button(self.window, width=20, text="%", command=lambda:self.pressArithm("%"))
+        self.btnMod.grid(row=1, column=2, sticky=tk.NW+tk.SE)
 
         # ------- setup special operation buttons ---------
 
@@ -137,6 +139,7 @@ class Calculator():
             self.strExpr = self.strExpr + strOp
         self.strEqua.set(self.strExpr)
 
+
     def pressLeftParen(self):
         # if the expression is at dafault state, replace 0 with (
         if self.strExpr == "0":
@@ -149,6 +152,7 @@ class Calculator():
         else:
             return
         self.strEqua.set(self.strExpr)
+
 
     def pressRightParen(self):
         # if the expression is at dafault state, do nothing
@@ -197,7 +201,7 @@ class Calculator():
                 self.strExpr = self.strExpr[:-1] + "."
         # make sure there can be two floating numbers in the expression. e.g. 3.2 + 6.4
         # if three is "." in the expression after spliting by ops, do noting
-        elif "." in re.split(r'\+|-|\*|\/', self.strExpr)[-1]:
+    elif "." in re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]:
             pass
         # otherewise, add decimal point to the expression
         else:
@@ -231,7 +235,7 @@ class Calculator():
 # ------------------ end of method of button events -----------------------
 
     def isOperator(self, strOp):
-        listOps = ["+", "-", "*", "/"]
+        listOps = ["+", "-", "*", "/", "%"]
         return 1 in [op in strOp for op in listOps]
 
     def mainloop(self):
