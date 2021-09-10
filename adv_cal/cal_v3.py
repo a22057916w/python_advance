@@ -81,10 +81,10 @@ class Calculator():
         self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12, command=lambda:self.pressRoot())
         self.btnRoot.grid(row=1, column=4, sticky=tk.NW+tk.SE)
 
-        self.btnSquare = tk.Button(self.window, width=20, text="x\u00B2", font=12)
+        self.btnSquare = tk.Button(self.window, width=20, text="x\u00B2", font=12, command=lambda:self.pressSquare())
         self.btnSquare.grid(row=2, column=4, sticky=tk.NW+tk.SE)
 
-        self.btnCube = tk.Button(self.window, width=20, text="x\u00B3", font=12)
+        self.btnCube = tk.Button(self.window, width=20, text="x\u00B3", font=12, command=lambda:self.pressCube())
         self.btnCube.grid(row=3, column=4, sticky=tk.NW+tk.SE)
 
         self.btnFact = tk.Button(self.window, width=20, text="n!", font=12)
@@ -158,10 +158,29 @@ class Calculator():
 
 
     def pressSquare(self):
-        pass
 
-    def pressFact(self):
-        pass
+        # if the last char is op, remove it
+        if self.hasOp(self.strExpr[-1]):
+            self.strExpr = self.strExpr[:-1]
+
+        strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
+        strVal = str(eval(strLast)**2)
+
+        self.strExpr = self.strExpr[:-len(strLast)] + strVal
+        self.strEqua.set(self.strExpr)
+
+    def pressCube(self):
+
+        # if the last char is op, remove it
+        if self.hasOp(self.strExpr[-1]):
+            self.strExpr = self.strExpr[:-1]
+
+        strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
+        strVal = str(eval(strLast)**3)
+
+        self.strExpr = self.strExpr[:-len(strLast)] + strVal
+        self.strEqua.set(self.strExpr)
+
 
     def pressEqu(self):
         try:
