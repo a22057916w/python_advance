@@ -332,3 +332,5 @@ if __name__ == '__main__':
     # new an instance of a Calculator then start it
     cal = Calculator()
     cal.mainloop()
+
+    printLog("[I][__main__] End of process")
