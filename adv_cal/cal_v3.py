@@ -194,7 +194,7 @@ class Calculator():
         # make sure there can be two floating numbers in the expression. e.g. 3.2 + 6.4
         # if three is "." in the expression after spliting by ops, do noting
         elif "." in re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]:
-            pass
+            return
         # otherewise, add decimal point to the expression
         else:
             self.strExpr = self.strExpr + "."
