@@ -2,9 +2,24 @@ import tkinter as tk
 from tkinter import messagebox
 import re
 import math
+import os
+from time import strftime, localtime
+
+# ------------------ log function ---------------------
+def printLog(strLogMsg):
+    print(strLogMsg)
+    fileLog = open("./cal_v3.log", 'a')
+    fileLog.write("[%s]%s\n" % (getDateTimeFormat(), strLogMsg))
+    fileLog.close()
+
+def getDateTimeFormat():
+    strDateTime = "%s" % (strftime("%Y/%m/%d %H:%M:%S", localtime()))
+    return strDateTime
 
 class Calculator():
     def __init__(self):
+        printLog("[I][__init__] Iniiating the Calculator")
+
         self.window = tk.Tk()
         self.window.title("Calculator")
         self.window.geometry("800x400")          # set window size
@@ -110,6 +125,7 @@ class Calculator():
 
     # handling the button events of numbers
     def pressNum(self, strNum):
+        printLog("[I][pressNum] The button %s has been pressed" % strNum)
         # if the expression is single digit
         if len(self.strExpr) < 2:
             # if the expression is 0, simply change it to strNum
@@ -130,6 +146,7 @@ class Calculator():
 
     # handling the alrithmatic buttons
     def pressArithm(self, strOp):
+        printLog("[I][pressArithm] The button %s has been pressed" % strOp)
 
         # if the last char is op or ".", repalace with strOp
         if self.hasOp(self.strExpr[-1]) or self.strExpr[-1] == ".":
@@ -145,6 +162,8 @@ class Calculator():
 
 
     def pressRoot(self):
+        printLog("[I][pressRoot] The button \u221A has been pressed")
+
         try:
             # if the last char is op, remove it
             if self.hasOp(self.strExpr[-1]):
@@ -168,6 +187,7 @@ class Calculator():
             pass
 
     def pressSquare(self):
+        printLog("[I][pressSquare] The button x\u00B2 has been pressed")
 
         # if the last char is op, remove it
         if self.hasOp(self.strExpr[-1]):
@@ -180,6 +200,7 @@ class Calculator():
         self.strEqua.set(self.strExpr)
 
     def pressCube(self):
+        printLog("[I][pressCube] The button x\u00B3 has been pressed")
 
         # if the last char is op, remove it
         if self.hasOp(self.strExpr[-1]):
@@ -192,6 +213,8 @@ class Calculator():
         self.strEqua.set(self.strExpr)
 
     def pressFact(self):
+        printLog("[I][pressFact] The button n! has been pressed")
+
         try:
             # if the last char is op, remove it
             if self.hasOp(self.strExpr[-1]):
@@ -220,6 +243,8 @@ class Calculator():
             pass
 
     def pressEqu(self):
+        printLog("[I][pressEqu] The button = has been pressed")
+
         try:
             # evaluate the expression
             self.strExpr = str(eval(self.strExpr))
@@ -239,6 +264,8 @@ class Calculator():
             print("Unexpected Error: " + e)
 
     def pressDec(self):
+        printLog("[I][pressDec] The button . has been pressed")
+
         # if the last char is operator
         if self.hasOp(self.strExpr[-1]):
             # if there is already "." in expression, replace op with nothing
@@ -258,11 +285,15 @@ class Calculator():
 
 
     def pressClear(self):
+        printLog("[I][pressClaer] The button AC has been pressed")
+
         self.strExpr = "0"
         self.strEqua.set(self.strExpr)
 
 
     def pressMinus(self):
+        printLog("[I][pressMinus] The button +/- has been pressed")
+
         if self.strExpr[0] == "-":
             self.strExpr = self.strExpr[1:]
         else:
@@ -271,6 +302,8 @@ class Calculator():
 
 
     def pressErase(self):
+        printLog("[I][pressErase] The button \u232B has been pressed")
+
         # if the expression is single digit or something else, set to 0(default)
         if len(self.strExpr) < 2:
             self.strExpr = "0"
@@ -285,6 +318,7 @@ class Calculator():
         return 1 in [op in strOp for op in listOps]
 
     def mainloop(self):
+        printLog("[I][mainloop] Start the Calculator")
         self.window.mainloop()
 
 if __name__ == '__main__':
