@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import re
+import math
 
 class Calculator():
     def __init__(self):
@@ -77,7 +78,7 @@ class Calculator():
 
         # ------- setup special operation buttons ---------
 
-        self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12)
+        self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12, command=lambda:self.pressRoot())
         self.btnRoot.grid(row=1, column=4, sticky=tk.NW+tk.SE)
 
         self.btnSquare = tk.Button(self.window, width=20, text="x\u00B2", font=12)
@@ -144,7 +145,17 @@ class Calculator():
 
 
     def pressRoot(self):
-        pass
+
+        # if the last char is op, remove it
+        if self.hasOp(self.strExpr[-1]):
+            self.strExpr = self.strExpr[:-1]
+
+        strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
+        strVal = str(math.sqrt(eval(strLast)))
+
+        self.strExpr = self.strExpr[:-len(strLast)] + strVal
+        self.strEqua.set(self.strExpr)
+
 
     def pressSquare(self):
         pass
