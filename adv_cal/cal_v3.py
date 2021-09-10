@@ -165,17 +165,22 @@ class Calculator():
 
     def pressEqu(self):
         try:
-            # checking zeor division
-            if self.strExpr[-2:] == "/0":
-                messagebox.showinfo("Error", "Don't be silly.")     # tkinter.messagebox
-                self.strExpr = "0"
-            else:
-                # evaluate the expression
-                self.strExpr = str(eval(self.strExpr))
+            # evaluate the expression
+            self.strExpr = str(eval(self.strExpr))
             self.strEqua.set(self.strExpr)
+
+        except ZeroDivisionError:
+            messagebox.showinfo("Error", "Can not divide by zero")     # tkinter.messagebox
+            self.strExpr = "0"
+            self.strEqua.set(self.strExpr)
+
+        # deal with invalid expression such as 8*(*(*(, then return default value
+        except SyntaxError:
+            self.strExpr = "0"
+            self.strEqua.set(self.strExpr)
+
         except Exception as e:
             print("Unexpected Error: " + e)
-
 
     def pressDec(self):
         # if the last char is operator
