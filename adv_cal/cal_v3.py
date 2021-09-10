@@ -87,7 +87,7 @@ class Calculator():
         self.btnCube = tk.Button(self.window, width=20, text="x\u00B3", font=12, command=lambda:self.pressCube())
         self.btnCube.grid(row=3, column=4, sticky=tk.NW+tk.SE)
 
-        self.btnFact = tk.Button(self.window, width=20, text="n!", font=12)
+        self.btnFact = tk.Button(self.window, width=20, text="n!", font=12, command=lambda:self.pressFact())
         self.btnFact.grid(row=4, column=4, sticky=tk.NW+tk.SE)
 
         # -------- setup buttons of other operations  ---------
@@ -145,17 +145,25 @@ class Calculator():
 
 
     def pressRoot(self):
+        try:
+            # if the last char is op, remove it
+            if self.hasOp(self.strExpr[-1]):
+                self.strExpr = self.strExpr[:-1]
 
-        # if the last char is op, remove it
-        if self.hasOp(self.strExpr[-1]):
-            self.strExpr = self.strExpr[:-1]
+            strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
+            strVal = str(math.sqrt(eval(strLast)))
 
-        strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
-        strVal = str(math.sqrt(eval(strLast)))
+            self.strExpr = self.strExpr[:-len(strLast)] + strVal
+            self.strEqua.set(self.strExpr)
 
-        self.strExpr = self.strExpr[:-len(strLast)] + strVal
-        self.strEqua.set(self.strExpr)
+        except OverflowError as e:
+            messagebox.showinfo("Error", e)
+            self.strExpr = "0"
+            self.strEqua.set(self.strExpr)
 
+        except Exception as e:
+            print(e)
+            pass
 
     def pressSquare(self):
 
@@ -181,6 +189,33 @@ class Calculator():
         self.strExpr = self.strExpr[:-len(strLast)] + strVal
         self.strEqua.set(self.strExpr)
 
+    def pressFact(self):
+        try:
+            # if the last char is op, remove it
+            if self.hasOp(self.strExpr[-1]):
+                self.strExpr = self.strExpr[:-1]
+
+            strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
+
+            # if the value > 100,000, return to default value
+            if eval(strLast) > 1E5:
+                messagebox.showinfo("Error", "The factorial number is out of limit")
+                self.strExpr = "0"
+                self.strEqua.set(self.strExpr)
+            else:
+                strVal = str(math.factorial(eval(strLast)))
+
+                self.strExpr = self.strExpr[:-len(strLast)] + strVal
+                self.strEqua.set(self.strExpr)
+
+        except ValueError as e:
+            messagebox.showinfo("Error", e)
+            self.strExpr = "0"
+            self.strEqua.set(self.strExpr)
+
+        except Exception as e:
+            print(e)
+            pass
 
     def pressEqu(self):
         try:
