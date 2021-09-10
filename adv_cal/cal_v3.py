@@ -150,6 +150,8 @@ class Calculator():
             if self.hasOp(self.strExpr[-1]):
                 self.strExpr = self.strExpr[:-1]
 
+            # split expression by ops for examle, 123+4 goes to [123, 4].  Then
+            # get the number last number(4) and calculate
             strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
             strVal = str(math.sqrt(eval(strLast)))
 
