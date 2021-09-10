@@ -178,13 +178,14 @@ class Calculator():
             self.strEqua.set(self.strExpr)
 
         except OverflowError as e:
+            printLog("[W][pressRoot] The \u221A operation will go overflow")
             messagebox.showinfo("Error", e)
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
 
         except Exception as e:
-            print(e)
-            pass
+            printLog("[E][pressRoot] Unexpected Error: " + e)
+
 
     def pressSquare(self):
         printLog("[I][pressSquare] The button x\u00B2 has been pressed")
@@ -224,6 +225,7 @@ class Calculator():
 
             # if the value > 100,000, return to default value
             if eval(strLast) > 1E5:
+                printLog("[W][pressFact] The factorial number is out of limit")
                 messagebox.showinfo("Error", "The factorial number is out of limit")
                 self.strExpr = "0"
                 self.strEqua.set(self.strExpr)
@@ -234,13 +236,14 @@ class Calculator():
                 self.strEqua.set(self.strExpr)
 
         except ValueError as e:
+            printLog("[W][pressFact] The factorial number is out of limit")
             messagebox.showinfo("Error", e)
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
 
         except Exception as e:
-            print(e)
-            pass
+            printLog("[E][pressFact] Unexpected Error: " + e)
+            #print(e)
 
     def pressEqu(self):
         printLog("[I][pressEqu] The button = has been pressed")
@@ -251,17 +254,20 @@ class Calculator():
             self.strEqua.set(self.strExpr)
 
         except ZeroDivisionError:
+            printLog("[W][pressEqu] Action involves zero division")
             messagebox.showinfo("Error", "Can not divide by zero")     # tkinter.messagebox
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
 
         # deal with invalid expression such as 8*(*(*(, then return default value
         except SyntaxError:
+            printLog("[W][pressEqu] The expression is incomplete")
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
 
         except Exception as e:
-            print("Unexpected Error: " + e)
+            printLog("[E][pressEqu] Unexpected Error: " + e)
+            #print("Unexpected Error: " + e)
 
     def pressDec(self):
         printLog("[I][pressDec] The button . has been pressed")
