@@ -140,32 +140,6 @@ class Calculator():
         self.strEqua.set(self.strExpr)
 
 
-    def pressLeftParen(self):
-        # if the expression is at dafault state, replace 0 with (
-        if self.strExpr == "0":
-            self.strExpr = "("
-            self.strEqua.set(self.strExpr)
-            return
-
-        if self.isOperator(self.strExpr[-1]):
-            self.strExpr = self.strExpr + "("
-        else:
-            return
-        self.strEqua.set(self.strExpr)
-
-
-    def pressRightParen(self):
-        # if the expression is at dafault state, do nothing
-        if self.strExpr == "0":
-            return
-
-        if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
-            return
-        else:
-            self.strExpr = self.strExpr + ")"
-        self.strEqua.set(self.strExpr)
-
-
     def pressRoot(self):
 
         pass
