@@ -72,18 +72,16 @@ class Calculator():
         self.btnDiv = tk.Button(self.window, width=20, text="/", font=12, command=lambda:self.pressArithm("/"))
         self.btnDiv.grid(row=2, column=3, sticky=tk.NW+tk.SE)
 
-        # ------- setup special alrithmatic buttons ---------
-        self.btnLeftParen = tk.Button(self.window, width=20, text="(", font=12, command=lambda:self.pressLeftParen())
-        self.btnLeftParen.grid(row=1, column=3, sticky=tk.NW+tk.SE)
-
-        self.btnRightParen = tk.Button(self.window, width=20, text=")", font=12, command=lambda:self.pressRightParen())
-        self.btnRightParen.grid(row=1, column=4, sticky=tk.NW+tk.SE)
+        # ------- setup special operation buttons ---------
 
         self.btnRoot = tk.Button(self.window, width=20, text="\u221A", font=12)
         self.btnRoot.grid(row=2, column=4, sticky=tk.NW+tk.SE)
 
         self.btnSquare = tk.Button(self.window, width=20, text="x\u00B2", font=12)
         self.btnSquare.grid(row=3, column=4, sticky=tk.NW+tk.SE)
+
+        self.btnCube = tk.Button(self.window, width=20, text="x\u00B3", font=12)
+        self.btnCube.grid(row=3, column=4, sticky=tk.NW+tk.SE)
 
         self.btnFact = tk.Button(self.window, width=20, text="n!", font=12)
         self.btnFact.grid(row=4, column=4, sticky=tk.NW+tk.SE)
