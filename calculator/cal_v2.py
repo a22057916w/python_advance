@@ -114,7 +114,7 @@ class Calculator():
         # if the length of expression >= 2
         else:
             # make sure there can be equation like 3+02, should be 3+2
-            if self.isOperator(self.strExpr[-2]) and self.strExpr[-1] == "0":
+            if self.isOp(self.strExpr[-2]) and self.strExpr[-1] == "0":
                 self.strExpr = self.strExpr[:-1] + strNum
             else:
                 # concatenation the expression and pressed button var
@@ -130,8 +130,18 @@ class Calculator():
             self.bEvaluated = False
             return
 
+        # 額外判斷 +, - 外的運算元和（的互動
+        if strOp != "+" and strOp != "-":
+            if self.isOp(self.strExpr[-1]) and self.strExpr[-2] == "(":
+                return
+            elif self.strExpr[-1] == "(":
+                return
+            else:
+                pass
+
+
         # checking if the last char of string is op or "."
-        if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
+        if self.isOp(self.strExpr[-1]) or self.strExpr[-1] == ".":
             self.strExpr = self.strExpr[:-1] + strOp
         else:
             # concatenation the expression and alrithmatic button
@@ -147,7 +157,7 @@ class Calculator():
             return
 
         # if the last char is op, add "(", else do nothing
-        if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == "(":
+        if self.isOp(self.strExpr[-1]) or self.strExpr[-1] == "(":
             self.strExpr = self.strExpr + "("
         else:
             return
@@ -163,7 +173,7 @@ class Calculator():
         if self.strExpr.count(")") >= self.strExpr.count("("):
             return
 
-        if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
+        if self.isOp(self.strExpr[-1]) or self.strExpr[-1] == ".":
             return
         else:
             self.strExpr = self.strExpr + ")"
@@ -207,7 +217,7 @@ class Calculator():
             return
 
         # if the last char is operator
-        if self.isOperator(self.strExpr[-1]):
+        if self.isOp(self.strExpr[-1]):
             # if there is already "." in expression, replace op with nothing
             if "." in self.strExpr:
                 self.strExpr = self.strExpr[:-1]
@@ -232,7 +242,7 @@ class Calculator():
 
 # ------------------ end of method of button events -----------------------
 
-    def isOperator(self, strOp):
+    def isOp(self, strOp):
         listOps = ["+", "-", "*", "/"]
         return 1 in [op in strOp for op in listOps]
 
