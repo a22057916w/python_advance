@@ -147,7 +147,7 @@ class Calculator():
             return
 
         # if the last char is op, add "(", else do nothing
-        if self.isOperator(self.strExpr[-1]):
+        if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == "(":
             self.strExpr = self.strExpr + "("
         else:
             return
