@@ -39,6 +39,8 @@ class Calculator():
         self.strExpr = "0"
         self.strEqua.set(self.strExpr)
 
+        self.bEvaluated = False
+
         # 使用Entry顯示計算值
         self.entResult = tk.Entry(self.window, textvariable=self.strEqua, state=tk.DISABLED, justify="right")     # "state=tk.DISABLED" will not allow user to input, "justify="right"" aligns the text to the right
         self.entResult.config(disabledbackground=self.window["bg"], font=12)     # set disabledbackground colour
@@ -107,7 +109,7 @@ class Calculator():
         self.btnFact.grid(row=4, column=4, sticky=tk.NW+tk.SE)
 
         # -------- setup buttons of other operations  ---------
-        self.btnEqu = tk.Button(self.window, width=20, text="=", font=12, command=lambda:self.pressEqu())
+        self.btnEqu = tk.Button(self.window, width=20, text="=", font=12, command=lambda:self.pressEqu(""))
         self.btnEqu.grid(row=5, column=4, sticky=tk.NW+tk.SE)
 
         self.btnDec = tk.Button(self.window, width=20, text=".", font=12, command=lambda:self.pressDec())
@@ -127,6 +129,13 @@ class Calculator():
     # handling the button events of numbers
     def pressNum(self, strNum):
         printLog("[I][pressNum] The button %s has been pressed" % strNum)
+
+        if self.bEvaluated:
+            self.strExpr = strNum
+            self.strEqua.set(self.strExpr)
+            self.bEvaluated = False
+            return
+
         # if the expression is single digit
         if len(self.strExpr) < 2:
             # if the expression is 0, simply change it to strNum
@@ -154,12 +163,14 @@ class Calculator():
             self.strExpr = self.strExpr[:-1] + strOp
         # if the op is in the expression and not in the last pos, do calculation
         elif self.hasOp(self.strExpr):
-            self.pressEqu()
+            self.pressEqu("pressArithm")
             self.strExpr += strOp
         # concatenation the expression and alrithmatic button
         else:
             self.strExpr += strOp
+
         self.strEqua.set(self.strExpr)
+        self.bEvaluated = False
 
 
     def pressRoot(self):
@@ -177,12 +188,14 @@ class Calculator():
 
             self.strExpr = self.strExpr[:-len(strLast)] + strVal
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except OverflowError as e:
             printLog("[W][pressRoot] The \u221A operation will go overflow")
             messagebox.showinfo("Error", e)
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except Exception as e:
             printLog("[E][pressRoot] Unexpected Error: " + e)
@@ -200,6 +213,7 @@ class Calculator():
 
         self.strExpr = self.strExpr[:-len(strLast)] + strVal
         self.strEqua.set(self.strExpr)
+        self.bEvaluated = True
 
     def pressCube(self):
         printLog("[I][pressCube] The button x\u00B3 has been pressed")
@@ -213,6 +227,7 @@ class Calculator():
 
         self.strExpr = self.strExpr[:-len(strLast)] + strVal
         self.strEqua.set(self.strExpr)
+        self.bEvaluated = True
 
     def pressFact(self):
         printLog("[I][pressFact] The button n! has been pressed")
@@ -229,42 +244,50 @@ class Calculator():
                 printLog("[W][pressFact] The factorial number is out of limit")
                 messagebox.showinfo("Error", "The factorial number is out of limit")
                 self.strExpr = "0"
-                self.strEqua.set(self.strExpr)
             else:
                 strVal = str(math.factorial(eval(strLast)))
-
                 self.strExpr = self.strExpr[:-len(strLast)] + strVal
-                self.strEqua.set(self.strExpr)
+
+            self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except ValueError as e:
             printLog("[W][pressFact] The factorial number is out of limit")
             messagebox.showinfo("Error", e)
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except Exception as e:
             printLog("[E][pressFact] Unexpected Error: " + e)
             #print(e)
 
-    def pressEqu(self):
-        printLog("[I][pressEqu] The button = has been pressed")
+    def pressEqu(self, strCaller):
+        # check caller, "" for user press; ohterwise for called by function
+        if strCaller == "":
+            printLog("[I][pressEqu] The button = has been pressed")
+        else:
+            printLog("[I][pressEqu] PressEqu has been called by %s" % strCaller)
 
         try:
             # evaluate the expression
             self.strExpr = str(eval(self.strExpr))
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except ZeroDivisionError:
             printLog("[W][pressEqu] Action involves zero division")
             messagebox.showinfo("Error", "Can not divide by zero")     # tkinter.messagebox
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         # deal with invalid expression such as 8*(*(*(, then return default value
         except SyntaxError:
             printLog("[W][pressEqu] The expression is incomplete")
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except Exception as e:
             printLog("[E][pressEqu] Unexpected Error: " + e)
@@ -296,6 +319,7 @@ class Calculator():
 
         self.strExpr = "0"
         self.strEqua.set(self.strExpr)
+        self.bEvaluated = False
 
 
     def pressMinus(self):
