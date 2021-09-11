@@ -22,6 +22,8 @@ class Calculator():
         self.strExpr = "0"
         self.strEqua.set(self.strExpr)
 
+        self.bEvaluated = False
+
         # 使用Entry顯示計算值
         self.entResult = tk.Entry(self.window, textvariable=self.strEqua, state=tk.DISABLED, justify="right")     # "state=tk.DISABLED" will not allow user to input, "justify="right"" aligns the text to the right
         self.entResult.config(disabledbackground=self.window["bg"], font=12)     # set disabledbackground colour
@@ -94,6 +96,13 @@ class Calculator():
 
     # handling the button events of numbers
     def pressNum(self, strNum):
+        # if the expression has been evaluated, reset the experssion to strNum
+        if self.bEvaluated:
+            self.strExpr = strNum
+            self.strEqua.set(self.strExpr)
+            self.bEvaluated = False
+            return
+
         # if the expression is single digit
         if len(self.strExpr) < 2:
             # if the expression is 0, simply change it to strNum
@@ -112,8 +121,15 @@ class Calculator():
                 self.strExpr = self.strExpr + strNum
         self.strEqua.set(self.strExpr)
 
+
     # handling the alrithmatic buttons
     def pressArithm(self, strOp):
+        if self.bEvaluated:
+            self.strExpr = "0"
+            self.strEqua.set(self.strExpr)
+            self.bEvaluated = False
+            return
+
         # checking if the last char of string is op or "."
         if self.isOperator(self.strExpr[-1]) or self.strExpr[-1] == ".":
             self.strExpr = self.strExpr[:-1] + strOp
@@ -167,16 +183,19 @@ class Calculator():
             # evaluate the expression
             self.strExpr = str(eval(self.strExpr))
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except ZeroDivisionError:
             messagebox.showinfo("Error", "Can not divide by zero")     # tkinter.messagebox
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         # deal with invalid expression such as 8*(*(*(, then return default value
         except SyntaxError:
             self.strExpr = "0"
             self.strEqua.set(self.strExpr)
+            self.bEvaluated = True
 
         except Exception as e:
             print("Unexpected Error: " + e)
@@ -208,6 +227,7 @@ class Calculator():
     def pressClear(self):
         self.strExpr = "0"
         self.strEqua.set(self.strExpr)
+        self.bEvaluated = True
 
 
 # ------------------ end of method of button events -----------------------
