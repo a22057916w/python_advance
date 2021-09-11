@@ -4,11 +4,12 @@ import re
 import math
 import os
 from time import strftime, localtime
+import codecs    # log output for windows `
 
 # ------------------ log function ---------------------
 def printLog(strLogMsg):
     print(strLogMsg)
-    fileLog = open("./cal_v3.log", 'a')
+    fileLog = codecs.open("./cal_v3.log", 'a', "utf-8")
     fileLog.write("[%s]%s\n" % (getDateTimeFormat(), strLogMsg))
     fileLog.close()
 
