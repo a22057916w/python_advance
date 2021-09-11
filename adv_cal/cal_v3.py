@@ -130,6 +130,7 @@ class Calculator():
     def pressNum(self, strNum):
         printLog("[I][pressNum] The button %s has been pressed" % strNum)
 
+        # if the expression has been evaluated, reset the experssion to strNum
         if self.bEvaluated:
             self.strExpr = strNum
             self.strEqua.set(self.strExpr)
@@ -170,6 +171,9 @@ class Calculator():
             self.strExpr += strOp
 
         self.strEqua.set(self.strExpr)
+
+        # There must be an operator in the expression after the action
+        # Therefore, there must be an evaluation after
         self.bEvaluated = False
 
 
