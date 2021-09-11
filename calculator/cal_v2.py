@@ -116,6 +116,8 @@ class Calculator():
             # make sure there can be equation like 3+02, should be 3+2
             if self.isOp(self.strExpr[-2]) and self.strExpr[-1] == "0":
                 self.strExpr = self.strExpr[:-1] + strNum
+            elif self.strExpr[-1] == ")":
+                return
             else:
                 # concatenation the expression and pressed button var
                 self.strExpr = self.strExpr + strNum
