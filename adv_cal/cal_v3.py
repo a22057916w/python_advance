@@ -300,6 +300,13 @@ class Calculator():
     def pressDec(self):
         printLog("[I][pressDec] The button . has been pressed")
 
+        # if the expression has been evaluated, reset the experssion to 0
+        if self.bEvaluated:
+            self.strExpr = "0"
+            self.strEqua.set(self.strExpr)
+            self.bEvaluated = False
+            return
+
         # if the last char is operator
         if self.hasOp(self.strExpr[-1]):
             # if there is already "." in expression, replace op with nothing
