@@ -212,7 +212,6 @@ class Calculator():
             printLog("[W][pressSquare] The number is out of limit")
             messagebox.showinfo("Warning", "Inf")
             self.strExpr = "0"
-            return
         else:
             # if the last char is op, remove it
             if self.hasOp(self.strExpr[-1]):
@@ -233,7 +232,6 @@ class Calculator():
             printLog("[W][pressCube] The number is out of limit")
             messagebox.showinfo("Warning", "Inf")
             self.strExpr = "0"
-            return
         else:
             # if the last char is op, remove it
             if self.hasOp(self.strExpr[-1]):
