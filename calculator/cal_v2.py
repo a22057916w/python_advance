@@ -220,6 +220,11 @@ class Calculator():
 
         # if the last char is operator
         if self.isOp(self.strExpr[-1]):
+
+            # if the expression is like (+, ( with an op, do noting
+            if self.strExpr[-2] == "(" or self.strExpr[-2] == ")":
+                return
+
             # if there is already "." in expression, replace op with nothing
             if "." in self.strExpr:
                 self.strExpr = self.strExpr[:-1]
