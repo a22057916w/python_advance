@@ -209,6 +209,7 @@ class Calculator():
         printLog("[I][pressSquare] The button x\u00B2 has been pressed")
 
         if self.isTooLarge():
+            printLog("[W][pressSquare] The number is out of limit")
             messagebox.showinfo("Warning", "Inf")
             self.strExpr = "0"
             return
@@ -229,6 +230,7 @@ class Calculator():
         printLog("[I][pressCube] The button x\u00B3 has been pressed")
 
         if self.isTooLarge():
+            printLog("[W][pressCube] The number is out of limit")
             messagebox.showinfo("Warning", "Inf")
             self.strExpr = "0"
             return
