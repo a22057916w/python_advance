@@ -208,30 +208,42 @@ class Calculator():
     def pressSquare(self):
         printLog("[I][pressSquare] The button x\u00B2 has been pressed")
 
-        # if the last char is op, remove it
-        if self.hasOp(self.strExpr[-1]):
-            self.strExpr = self.strExpr[:-1]
+        if self.isTooLarge():
+            messagebox.showinfo("Warning", "Inf")
+            self.strExpr = "0"
+            return
+        else:
+            # if the last char is op, remove it
+            if self.hasOp(self.strExpr[-1]):
+                self.strExpr = self.strExpr[:-1]
 
-        strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
-        strVal = str(eval(strLast)**2)
+            strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
+            strVal = str(eval(strLast)**2)
 
-        self.strExpr = self.strExpr[:-len(strLast)] + strVal
+            self.strExpr = self.strExpr[:-len(strLast)] + strVal
         self.strEqua.set(self.strExpr)
         self.bEvaluated = True
+
 
     def pressCube(self):
         printLog("[I][pressCube] The button x\u00B3 has been pressed")
 
-        # if the last char is op, remove it
-        if self.hasOp(self.strExpr[-1]):
-            self.strExpr = self.strExpr[:-1]
+        if self.isTooLarge():
+            messagebox.showinfo("Warning", "Inf")
+            self.strExpr = "0"
+            return
+        else:
+            # if the last char is op, remove it
+            if self.hasOp(self.strExpr[-1]):
+                self.strExpr = self.strExpr[:-1]
 
-        strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
-        strVal = str(eval(strLast)**3)
+            strLast = re.split(r'\+|-|\*|\/|%', self.strExpr)[-1]
+            strVal = str(eval(strLast)**3)
 
-        self.strExpr = self.strExpr[:-len(strLast)] + strVal
+            self.strExpr = self.strExpr[:-len(strLast)] + strVal
         self.strEqua.set(self.strExpr)
         self.bEvaluated = True
+
 
     def pressFact(self):
         printLog("[I][pressFact] The button n! has been pressed")
@@ -354,6 +366,8 @@ class Calculator():
         self.strEqua.set(self.strExpr)
 
 # ------------------ end of method of button events -----------------------
+    def isTooLarge(self):
+        return True if len(self.strExpr) > 200 else False
 
     def hasOp(self, strOp):
         listOps = ["+", "-", "*", "/", "%"]
