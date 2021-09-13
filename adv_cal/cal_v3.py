@@ -357,6 +357,7 @@ class Calculator():
         self.window.mainloop()
 
 if __name__ == '__main__':
+    printLog("[I][__main__] Process Start")
 
     # new an instance of a Calculator then start it
     cal = Calculator()
