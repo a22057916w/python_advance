@@ -1,0 +1,542 @@
+[2020/07/29 14:12:48.178105] ========== Start ==========
+[2020/07/29 14:12:48.182080] [I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/07/29 14:12:48.185760] [I][main] GFI20_RF_Zigbee.py 3.0.0.3
+[2020/07/29 14:12:48.187808] [I][readINI] ---------- INI ----------
+[2020/07/29 14:12:48.190792] [I][readINI] SKU = 1
+[2020/07/29 14:12:48.192781] [I][readINI] InstrumentINI = GFI20_Zigbee_Instrument_Setting
+[2020/07/29 14:12:48.194786] [I][readINI] ---------- Test Plan 1 ----------
+[2020/07/29 14:12:48.196792] [I][readINI] TestPlan1 = ZIGBEE_2450;15/2425,21/2455,24/2470;TX_Power
+[2020/07/29 14:12:48.204817] [I][readINI] CableLoss = ['8.2', '8.9', '8.8'] dBm
+[2020/07/29 14:12:48.210489] [I][readINI] TX_Power = ['0', '0', '0'] dBm
+[2020/07/29 14:12:48.212535] [I][readINI] Calibration_ON = 1
+[2020/07/29 14:12:48.217510] [I][readINI] Ca_Tx_Power_Target = ['9.2', '9.2', '9.2']
+[2020/07/29 14:12:48.219515] [I][readINI] Ca_Tx_Power_Gap = ['0.5', '0.5', '0.5']
+[2020/07/29 14:12:48.222856] [I][readINI] Ca_Tx_Power_Offset = ['0.86', '0.86', '0.86']
+[2020/07/29 14:12:48.224881] [I][readINI] Current_ON = 1
+[2020/07/29 14:12:48.228918] [I][readINI] TX_Current_SpecMax = ['0.18', '0.18', '0.18'] A
+[2020/07/29 14:12:48.231887] [I][readINI] TX_Current_SpecMin = ['0.045', '0.045', '0.045'] A
+[2020/07/29 14:12:48.234895] [I][readINI] TX_Power_SpecMax = ['12', '12', '12'] dBm
+[2020/07/29 14:12:48.238908] [I][readINI] TX_Power_SpecMin = ['6', '6', '6'] dBm
+[2020/07/29 14:12:48.242937] [I][readINI] ---------- Test Plan 1 ----------
+[2020/07/29 14:12:48.244921] [I][readINI] ---------- Test Plan 2 ----------
+[2020/07/29 14:12:48.249934] [I][readINI] TestPlan2 = ZIGBEE_2450;19/2445;RX_RSSI
+[2020/07/29 14:12:48.253919] [I][readINI] CableLoss = ['8.9'] dBm
+[2020/07/29 14:12:48.255964] [I][readINI] RX_Cell_Power = ['-25'] dBm
+[2020/07/29 14:12:48.257971] [I][readINI] RX_LNAON_RSSI_SpecMax = ['-9'] %
+[2020/07/29 14:12:48.261012] [I][readINI] RX_LNAON_RSSI_SpecMin = ['-18'] %
+[2020/07/29 14:12:48.263987] [I][readINI] RX_LNAOFF_RSSI_SpecMax = ['-24'] %
+[2020/07/29 14:12:48.266949] [I][readINI] RX_LNAOFF_RSSI_SpecMin = ['-30'] %
+[2020/07/29 14:12:48.271996] [I][readINI] ---------- Test Plan 2 ----------
+[2020/07/29 14:12:48.277981] [I][readINI] StartButton_ON = 0
+[2020/07/29 14:12:48.281992] [I][readINI] FailAutoExit = True
+[2020/07/29 14:12:48.285152] [I][readINI] FailRetryAll = True
+[2020/07/29 14:12:48.287196] [I][readINI] RFDatabase = True
+[2020/07/29 14:12:48.289204] [I][readINI] EC = 010000S01
+[2020/07/29 14:12:48.293175] [I][readINI] ---------- INI ----------
+[2020/07/29 14:12:48.298193] [I][readInstrumentINI] ---------- Common ----------
+[2020/07/29 14:12:48.302210] [I][readInstrumentINI] Instrument_Name = E6640A
+[2020/07/29 14:12:48.305151] [I][readInstrumentINI] Instrument_IP_Addr = TCPIP0::192.168.1.2::hislip0::INSTR
+[2020/07/29 14:12:48.307164] [I][readInstrumentINI] PowerSupplier_Name = 66321B
+[2020/07/29 14:12:48.312174] [I][readInstrumentINI] PowerSupplier_Addr = GPIB0::5::INSTR
+[2020/07/29 14:12:48.315180] [I][readInstrumentINI] Current_Delay = 0.5
+[2020/07/29 14:12:48.318300] [I][readInstrumentINI] ---------- Common ----------
+[2020/07/29 14:12:48.322212] [I][readInstrumentINI] ---------- ZIGBEE_2450 ----------
+[2020/07/29 14:12:48.325222] [I][readInstrumentINI] RFIO_Input = 1
+[2020/07/29 14:12:48.328231] [I][readInstrumentINI] Tx_Span = 10000.0 kHz
+[2020/07/29 14:12:48.332371] [I][readInstrumentINI] Tx_PowRange = 20.0 dBm
+[2020/07/29 14:12:48.335590] [I][readInstrumentINI] Tx_SymbolRate = 1000.0 kHz
+[2020/07/29 14:12:48.337598] [I][readInstrumentINI] Tx_MeasInterval = 500
+[2020/07/29 14:12:48.341638] [I][readInstrumentINI] Tx_TrigLevel = 30.0 mV
+[2020/07/29 14:12:48.345623] [I][readInstrumentINI] Tx_TrigDelay = 0.3 ms
+[2020/07/29 14:12:48.348630] [I][readInstrumentINI] RFIO_Output = 1
+[2020/07/29 14:12:48.351947] [I][readInstrumentINI] ---------- ZIGBEE_2450 ----------
+[2020/07/29 14:12:48.354825] ---------- StartTest ----------
+[2020/07/29 14:12:48.361874] [I][chkDUTConnect] Connect to DUT
+[2020/07/29 14:12:48.371020] [I][chkDUTConnect] Check DUT status
+[2020/07/29 14:12:49.206862] [I][chkDUTConnect] Success
+[2020/07/29 14:12:49.214897] [I][chkE6640AConnect] Connect to E6640A
+[2020/07/29 14:12:50.571358] [I][chkE6640AConnect] Preset E6640A status
+[2020/07/29 14:12:51.665817] [I][chkE6640AConnect] success
+[2020/07/29 14:12:51.978884] ---------- Test Plan 1 ----------
+[2020/07/29 14:12:51.982926] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2425 ----------
+[2020/07/29 14:12:51.985904] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 14:12:51.988912] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:12:53.083635] [I][startTestPlan] Success
+[2020/07/29 14:12:53.087645] [I][startTestPlan] Set Tx Start
+[2020/07/29 14:12:55.541264] [I][startTestPlan] Success
+[2020/07/29 14:12:55.546300] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:13:01.524437] [I][startTestPlan] Success
+[2020/07/29 14:13:01.528141] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:13:04.046212] [I][startTestPlan] Success
+[2020/07/29 14:13:05.668730] [I][startTestPlan] 9.706, 14.748, 14.536
+[2020/07/29 14:13:06.225432] [I][startTestPlan] 0.082
+[2020/07/29 14:13:06.229409] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:13:07.074011] [I][startTestPlan] Success
+[2020/07/29 14:13:07.080079] [I][startTestPlan] Calibration
+[2020/07/29 14:13:07.084093] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 14:13:07.088410] [I][startTestPlan] DUT Tx Power: -1
+[2020/07/29 14:13:07.091421] [I][startTestPlan] Measure again
+[2020/07/29 14:13:07.094429] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:13:13.136051] [I][startTestPlan] Success
+[2020/07/29 14:13:13.139059] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:13:15.680935] [I][startTestPlan] Success
+[2020/07/29 14:13:17.252180] [I][startTestPlan] 8.517, 14.747, 14.405
+[2020/07/29 14:13:17.813576] [I][startTestPlan] 0.087
+[2020/07/29 14:13:17.818632] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:13:18.667571] [I][startTestPlan] Success
+[2020/07/29 14:13:18.671585] [I][startTestPlan] Power: 8.517 dBm
+[2020/07/29 14:13:18.675850] [I][startTestPlan] Freq Err: 14.747 ppm
+[2020/07/29 14:13:18.678891] [I][startTestPlan] EVM: 14.405 %
+[2020/07/29 14:13:18.681870] [I][startTestPlan] Current: 0.087 A
+[2020/07/29 14:13:18.686892] [I][startTestPlan] Check Tx Result
+[2020/07/29 14:13:18.689929] [I][startBTTest] Tx Test Time: 26.709
+[2020/07/29 14:13:18.695925] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2455 ----------
+[2020/07/29 14:13:18.698936] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 14:13:18.702983] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:13:20.021269] [I][startTestPlan] Success
+[2020/07/29 14:13:20.033314] [I][startTestPlan] Set Tx Start
+[2020/07/29 14:13:22.465048] [I][startTestPlan] Success
+[2020/07/29 14:13:22.469073] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:13:28.397617] [I][startTestPlan] Success
+[2020/07/29 14:13:28.401653] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:13:30.936665] [I][startTestPlan] Success
+[2020/07/29 14:13:32.611931] [I][startTestPlan] 9.912, 14.749, 14.556
+[2020/07/29 14:13:33.170069] [I][startTestPlan] 0.083
+[2020/07/29 14:13:33.174079] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:13:34.015137] [I][startTestPlan] Success
+[2020/07/29 14:13:34.021187] [I][startTestPlan] Calibration
+[2020/07/29 14:13:34.024200] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 14:13:34.028210] [I][startTestPlan] DUT Tx Power: -1
+[2020/07/29 14:13:34.032368] [I][startTestPlan] Measure again
+[2020/07/29 14:13:34.035378] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:13:40.107816] [I][startTestPlan] Success
+[2020/07/29 14:13:40.115909] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:13:42.653076] [I][startTestPlan] Success
+[2020/07/29 14:13:44.327096] [I][startTestPlan] 8.812000000000001, 14.751, 14.109
+[2020/07/29 14:13:44.886115] [I][startTestPlan] 0.081
+[2020/07/29 14:13:44.891110] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:13:45.744676] [I][startTestPlan] Success
+[2020/07/29 14:13:45.748676] [I][startTestPlan] Power: 8.812000000000001 dBm
+[2020/07/29 14:13:45.752688] [I][startTestPlan] Freq Err: 14.751 ppm
+[2020/07/29 14:13:45.756698] [I][startTestPlan] EVM: 14.109 %
+[2020/07/29 14:13:45.760709] [I][startTestPlan] Current: 0.081 A
+[2020/07/29 14:13:45.765723] [I][startTestPlan] Check Tx Result
+[2020/07/29 14:13:45.768765] [I][startBTTest] Tx Test Time: 27.074
+[2020/07/29 14:13:45.774751] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2470 ----------
+[2020/07/29 14:13:45.778723] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 14:13:45.782748] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:13:47.051883] [I][startTestPlan] Success
+[2020/07/29 14:13:47.056756] [I][startTestPlan] Set Tx Start
+[2020/07/29 14:13:49.498339] [I][startTestPlan] Success
+[2020/07/29 14:13:49.503353] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:13:55.442355] [I][startTestPlan] Success
+[2020/07/29 14:13:55.447326] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:13:57.982021] [I][startTestPlan] Success
+[2020/07/29 14:13:59.631068] [I][startTestPlan] 10.32, 14.757, 14.097
+[2020/07/29 14:14:00.199259] [I][startTestPlan] 0.08
+[2020/07/29 14:14:00.210820] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:14:01.072219] [I][startTestPlan] Success
+[2020/07/29 14:14:01.077325] [I][startTestPlan] Calibration
+[2020/07/29 14:14:01.081345] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 14:14:01.085230] [I][startTestPlan] DUT Tx Power: -1
+[2020/07/29 14:14:01.089249] [I][startTestPlan] Measure again
+[2020/07/29 14:14:01.093290] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:14:07.047246] [I][startTestPlan] Success
+[2020/07/29 14:14:07.050257] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:14:09.601367] [I][startTestPlan] Success
+[2020/07/29 14:14:11.250751] [I][startTestPlan] 9.192, 14.748, 14.786
+[2020/07/29 14:14:11.805959] [I][startTestPlan] 0.08
+[2020/07/29 14:14:11.811977] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:14:12.657316] [I][startTestPlan] Success
+[2020/07/29 14:14:12.661552] [I][startTestPlan] Power: 9.192 dBm
+[2020/07/29 14:14:12.664562] [I][startTestPlan] Freq Err: 14.748 ppm
+[2020/07/29 14:14:12.669604] [I][startTestPlan] EVM: 14.786 %
+[2020/07/29 14:14:12.673579] [I][startTestPlan] Current: 0.08 A
+[2020/07/29 14:14:12.677593] [I][startTestPlan] Check Tx Result
+[2020/07/29 14:14:12.681602] [I][startBTTest] Tx Test Time: 26.909
+[2020/07/29 14:14:12.685612] ---------- Test Plan 2 ----------
+[2020/07/29 14:14:12.690625] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2445 ----------
+[2020/07/29 14:14:12.694637] [I][startTestPlan]---------- Measure Rx Start ----------
+[2020/07/29 14:14:12.698647] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:14:14.200927] [I][startTestPlan] Success
+[2020/07/29 14:14:14.203937] [I][startTestPlan]---------- LNA ON ----------
+[2020/07/29 14:14:14.207948] [I][startTestPlan] Set Rx one tone
+[2020/07/29 14:14:14.257848] [I][startTestPlan] Success
+[2020/07/29 14:14:14.261862] [I][startTestPlan] Set DUT Rx
+[2020/07/29 14:14:18.524397] [I][startTestPlan] Success
+[2020/07/29 14:14:23.625586] [I][startTestPlan] Success
+[2020/07/29 14:14:28.796081] [I][startTestPlan] Rx RSSI: -16 dBm
+[2020/07/29 14:14:28.811351] [I][startTestPlan]---------- LNA OFF ----------
+[2020/07/29 14:14:28.816367] [I][startTestPlan] Set Rx one tone
+[2020/07/29 14:14:28.867267] [I][startTestPlan] Success
+[2020/07/29 14:14:28.872087] [I][startTestPlan] Set DUT Rx
+[2020/07/29 14:14:33.143876] [I][startTestPlan] Success
+[2020/07/29 14:14:37.389220] [I][startTestPlan] Success
+[2020/07/29 14:14:42.496520] [I][startTestPlan] Rx RSSI: -28 dBm
+[2020/07/29 14:14:42.510605] [I][startTestPlan] Check Rx Result
+[2020/07/29 14:14:42.514601] [I][startBTTest] Rx Test Time: 29.824
+[2020/07/29 14:14:42.521214] [I][startBTTest] Copy calibration data
+[2020/07/29 14:14:42.528259] [I][startBTTest] Write Calibration Data
+[2020/07/29 14:14:42.895501] [I][TestResult] Test Pass!
+[2020/07/29 14:24:46.242726] ========== Start ==========
+[2020/07/29 14:24:46.248742] [I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/07/29 14:24:46.252619] [I][main] GFI20_RF_Zigbee.py 3.0.0.3
+[2020/07/29 14:24:46.257637] [I][readINI] ---------- INI ----------
+[2020/07/29 14:24:46.267699] [I][readINI] SKU = 1
+[2020/07/29 14:24:46.272151] [I][readINI] InstrumentINI = GFI20_Zigbee_Instrument_Setting
+[2020/07/29 14:24:46.277184] [I][readINI] ---------- Test Plan 1 ----------
+[2020/07/29 14:24:46.281832] [I][readINI] TestPlan1 = ZIGBEE_2450;15/2425,21/2455,24/2470;TX_Power
+[2020/07/29 14:24:46.285614] [I][readINI] CableLoss = ['8.2', '8.9', '8.8'] dBm
+[2020/07/29 14:24:46.290630] [I][readINI] TX_Power = ['0', '0', '0'] dBm
+[2020/07/29 14:24:46.294432] [I][readINI] Calibration_ON = 1
+[2020/07/29 14:24:46.299485] [I][readINI] Ca_Tx_Power_Target = ['9.2', '9.2', '9.2']
+[2020/07/29 14:24:46.303597] [I][readINI] Ca_Tx_Power_Gap = ['0.5', '0.5', '0.5']
+[2020/07/29 14:24:46.306663] [I][readINI] Ca_Tx_Power_Offset = ['0.86', '0.86', '0.86']
+[2020/07/29 14:24:46.311652] [I][readINI] Current_ON = 1
+[2020/07/29 14:24:46.316100] [I][readINI] TX_Current_SpecMax = ['0.18', '0.18', '0.18'] A
+[2020/07/29 14:24:46.321068] [I][readINI] TX_Current_SpecMin = ['0.045', '0.045', '0.045'] A
+[2020/07/29 14:24:46.325082] [I][readINI] TX_Power_SpecMax = ['12', '12', '12'] dBm
+[2020/07/29 14:24:46.329134] [I][readINI] TX_Power_SpecMin = ['6', '6', '6'] dBm
+[2020/07/29 14:24:46.334741] [I][readINI] ---------- Test Plan 1 ----------
+[2020/07/29 14:24:46.338754] [I][readINI] ---------- Test Plan 2 ----------
+[2020/07/29 14:24:46.342765] [I][readINI] TestPlan2 = ZIGBEE_2450;19/2445;RX_RSSI
+[2020/07/29 14:24:46.347080] [I][readINI] CableLoss = ['8.9'] dBm
+[2020/07/29 14:24:46.352268] [I][readINI] RX_Cell_Power = ['-25'] dBm
+[2020/07/29 14:24:46.356422] [I][readINI] RX_LNAON_RSSI_SpecMax = ['-9'] %
+[2020/07/29 14:24:46.361439] [I][readINI] RX_LNAON_RSSI_SpecMin = ['-18'] %
+[2020/07/29 14:24:46.365454] [I][readINI] RX_LNAOFF_RSSI_SpecMax = ['-24'] %
+[2020/07/29 14:24:46.368496] [I][readINI] RX_LNAOFF_RSSI_SpecMin = ['-30'] %
+[2020/07/29 14:24:46.375480] [I][readINI] ---------- Test Plan 2 ----------
+[2020/07/29 14:24:46.386061] [I][readINI] StartButton_ON = 0
+[2020/07/29 14:24:46.392111] [I][readINI] FailAutoExit = True
+[2020/07/29 14:24:46.396229] [I][readINI] FailRetryAll = True
+[2020/07/29 14:24:46.399284] [I][readINI] RFDatabase = True
+[2020/07/29 14:24:46.403249] [I][readINI] EC = 010000S01
+[2020/07/29 14:24:46.407261] [I][readINI] ---------- INI ----------
+[2020/07/29 14:24:46.413332] [I][readInstrumentINI] ---------- Common ----------
+[2020/07/29 14:24:46.417537] [I][readInstrumentINI] Instrument_Name = E6640A
+[2020/07/29 14:24:46.420583] [I][readInstrumentINI] Instrument_IP_Addr = TCPIP0::192.168.1.2::hislip0::INSTR
+[2020/07/29 14:24:46.425591] [I][readInstrumentINI] PowerSupplier_Name = 66321B
+[2020/07/29 14:24:46.428601] [I][readInstrumentINI] PowerSupplier_Addr = GPIB0::5::INSTR
+[2020/07/29 14:24:46.433736] [I][readInstrumentINI] Current_Delay = 0.5
+[2020/07/29 14:24:46.438033] [I][readInstrumentINI] ---------- Common ----------
+[2020/07/29 14:24:46.441042] [I][readInstrumentINI] ---------- ZIGBEE_2450 ----------
+[2020/07/29 14:24:46.446210] [I][readInstrumentINI] RFIO_Input = 1
+[2020/07/29 14:24:46.449263] [I][readInstrumentINI] Tx_Span = 10000.0 kHz
+[2020/07/29 14:24:46.454747] [I][readInstrumentINI] Tx_PowRange = 20.0 dBm
+[2020/07/29 14:24:46.458739] [I][readInstrumentINI] Tx_SymbolRate = 1000.0 kHz
+[2020/07/29 14:24:46.461790] [I][readInstrumentINI] Tx_MeasInterval = 500
+[2020/07/29 14:24:46.465759] [I][readInstrumentINI] Tx_TrigLevel = 30.0 mV
+[2020/07/29 14:24:46.469771] [I][readInstrumentINI] Tx_TrigDelay = 0.3 ms
+[2020/07/29 14:24:46.474785] [I][readInstrumentINI] RFIO_Output = 1
+[2020/07/29 14:24:46.478831] [I][readInstrumentINI] ---------- ZIGBEE_2450 ----------
+[2020/07/29 14:24:46.482815] ---------- StartTest ----------
+[2020/07/29 14:24:46.494839] [I][chkDUTConnect] Connect to DUT
+[2020/07/29 14:24:46.509912] [I][chkDUTConnect] Check DUT status
+[2020/07/29 14:24:47.365135] [I][chkDUTConnect] Success
+[2020/07/29 14:24:47.382182] [I][chkE6640AConnect] Connect to E6640A
+[2020/07/29 14:24:48.449563] [I][chkE6640AConnect] Preset E6640A status
+[2020/07/29 14:24:49.576684] [I][chkE6640AConnect] success
+[2020/07/29 14:24:49.842036] ---------- Test Plan 1 ----------
+[2020/07/29 14:24:49.845982] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2425 ----------
+[2020/07/29 14:24:49.851045] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 14:24:49.856011] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:24:50.831570] [I][startTestPlan] Success
+[2020/07/29 14:24:50.836290] [I][startTestPlan] Set Tx Start
+[2020/07/29 14:24:53.395563] [I][startTestPlan] Success
+[2020/07/29 14:24:53.400541] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:24:59.434846] [I][startTestPlan] Success
+[2020/07/29 14:24:59.438864] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:25:02.028003] [I][startTestPlan] Success
+[2020/07/29 14:25:03.616759] [I][startTestPlan] 10.328999999999999, 17.509, 14.302
+[2020/07/29 14:25:04.186247] [I][startTestPlan] 0.082
+[2020/07/29 14:25:04.195219] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:25:05.181547] [I][startTestPlan] Success
+[2020/07/29 14:25:05.188025] [I][startTestPlan] Calibration
+[2020/07/29 14:25:05.191037] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 14:25:05.197080] [I][startTestPlan] DUT Tx Power: -1
+[2020/07/29 14:25:05.201062] [I][startTestPlan] Measure again
+[2020/07/29 14:25:05.205081] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:25:11.178464] [I][startTestPlan] Success
+[2020/07/29 14:25:11.182475] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:25:13.739400] [I][startTestPlan] Success
+[2020/07/29 14:25:15.410056] [I][startTestPlan] 9.219999999999999, 17.489, 13.865
+[2020/07/29 14:25:15.968404] [I][startTestPlan] 0.081
+[2020/07/29 14:25:15.974748] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:25:16.830420] [I][startTestPlan] Success
+[2020/07/29 14:25:16.836110] [I][startTestPlan] Power: 9.219999999999999 dBm
+[2020/07/29 14:25:16.840445] [I][startTestPlan] Freq Err: 17.489 ppm
+[2020/07/29 14:25:16.844468] [I][startTestPlan] EVM: 13.865 %
+[2020/07/29 14:25:16.848516] [I][startTestPlan] Current: 0.081 A
+[2020/07/29 14:25:16.853180] [I][startTestPlan] Check Tx Result
+[2020/07/29 14:25:16.857193] [I][startBTTest] Tx Test Time: 27.012
+[2020/07/29 14:25:16.862646] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2455 ----------
+[2020/07/29 14:25:16.867663] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 14:25:16.871736] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:25:18.144995] [I][startTestPlan] Success
+[2020/07/29 14:25:18.149958] [I][startTestPlan] Set Tx Start
+[2020/07/29 14:25:20.598043] [I][startTestPlan] Success
+[2020/07/29 14:25:20.603011] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:25:26.636027] [I][startTestPlan] Success
+[2020/07/29 14:25:26.641000] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:25:29.201855] [I][startTestPlan] Success
+[2020/07/29 14:25:30.884462] [I][startTestPlan] 10.811, 17.494, 14.23
+[2020/07/29 14:25:31.445287] [I][startTestPlan] 0.08
+[2020/07/29 14:25:31.452306] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:25:32.320232] [I][startTestPlan] Success
+[2020/07/29 14:25:32.327206] [I][startTestPlan] Calibration
+[2020/07/29 14:25:32.331662] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 14:25:32.336677] [I][startTestPlan] DUT Tx Power: -2
+[2020/07/29 14:25:32.340689] [I][startTestPlan] Measure again
+[2020/07/29 14:25:32.345747] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:25:38.364790] [I][startTestPlan] Success
+[2020/07/29 14:25:38.369848] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:25:40.943210] [I][startTestPlan] Success
+[2020/07/29 14:25:42.614002] [I][startTestPlan] 8.417, 17.476, 14.607
+[2020/07/29 14:25:43.176382] [I][startTestPlan] 0.08
+[2020/07/29 14:25:43.185786] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:25:44.034878] [I][startTestPlan] Success
+[2020/07/29 14:25:44.038936] [I][startTestPlan] Power: 8.417 dBm
+[2020/07/29 14:25:44.044734] [I][startTestPlan] Freq Err: 17.476 ppm
+[2020/07/29 14:25:44.048756] [I][startTestPlan] EVM: 14.607 %
+[2020/07/29 14:25:44.053806] [I][startTestPlan] Current: 0.08 A
+[2020/07/29 14:25:44.058767] [I][startTestPlan] Check Tx Result
+[2020/07/29 14:25:44.061778] [I][startBTTest] Tx Test Time: 27.2
+[2020/07/29 14:25:44.067793] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2470 ----------
+[2020/07/29 14:25:44.071872] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 14:25:44.076819] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:25:45.339478] [I][startTestPlan] Success
+[2020/07/29 14:25:45.344442] [I][startTestPlan] Set Tx Start
+[2020/07/29 14:25:47.834810] [I][startTestPlan] Success
+[2020/07/29 14:25:47.839822] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:25:53.865867] [I][startTestPlan] Success
+[2020/07/29 14:25:53.870926] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:25:56.450898] [I][startTestPlan] Success
+[2020/07/29 14:25:58.149999] [I][startTestPlan] 10.645000000000001, 17.474, 13.902
+[2020/07/29 14:25:58.716064] [I][startTestPlan] 0.081
+[2020/07/29 14:25:58.725093] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:25:59.584906] [I][startTestPlan] Success
+[2020/07/29 14:25:59.591080] [I][startTestPlan] Calibration
+[2020/07/29 14:25:59.595094] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 14:25:59.600108] [I][startTestPlan] DUT Tx Power: -2
+[2020/07/29 14:25:59.605136] [I][startTestPlan] Measure again
+[2020/07/29 14:25:59.611528] [I][startTestPlan] Set DUT Tx
+[2020/07/29 14:26:05.742420] [I][startTestPlan] Success
+[2020/07/29 14:26:05.748441] [I][startTestPlan] Start DUT Tx
+[2020/07/29 14:26:08.324445] [I][startTestPlan] Success
+[2020/07/29 14:26:09.901832] [I][startTestPlan] 8.664000000000001, 17.465, 13.951
+[2020/07/29 14:26:10.462892] [I][startTestPlan] 0.079
+[2020/07/29 14:26:10.471913] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 14:26:11.331977] [I][startTestPlan] Success
+[2020/07/29 14:26:11.336951] [I][startTestPlan] Power: 8.664000000000001 dBm
+[2020/07/29 14:26:11.342258] [I][startTestPlan] Freq Err: 17.465 ppm
+[2020/07/29 14:26:11.347318] [I][startTestPlan] EVM: 13.951 %
+[2020/07/29 14:26:11.352474] [I][startTestPlan] Current: 0.079 A
+[2020/07/29 14:26:11.356486] [I][startTestPlan] Check Tx Result
+[2020/07/29 14:26:11.361235] [I][startBTTest] Tx Test Time: 27.294
+[2020/07/29 14:26:11.365262] ---------- Test Plan 2 ----------
+[2020/07/29 14:26:11.370282] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2445 ----------
+[2020/07/29 14:26:11.374288] [I][startTestPlan]---------- Measure Rx Start ----------
+[2020/07/29 14:26:11.379375] [I][startTestPlan] Preset E6640A
+[2020/07/29 14:26:12.616110] [I][startTestPlan] Success
+[2020/07/29 14:26:12.620164] [I][startTestPlan]---------- LNA ON ----------
+[2020/07/29 14:26:12.624134] [I][startTestPlan] Set Rx one tone
+[2020/07/29 14:26:12.692624] [I][startTestPlan] Success
+[2020/07/29 14:26:12.697562] [I][startTestPlan] Set DUT Rx
+[2020/07/29 14:26:17.005027] [I][startTestPlan] Success
+[2020/07/29 14:26:22.136382] [I][startTestPlan] Success
+[2020/07/29 14:26:26.698772] [I][startTestPlan] Rx RSSI: -15 dBm
+[2020/07/29 14:26:26.715089] [I][startTestPlan]---------- LNA OFF ----------
+[2020/07/29 14:26:26.719103] [I][startTestPlan] Set Rx one tone
+[2020/07/29 14:26:26.776464] [I][startTestPlan] Success
+[2020/07/29 14:26:26.780522] [I][startTestPlan] Set DUT Rx
+[2020/07/29 14:26:31.211748] [I][startTestPlan] Success
+[2020/07/29 14:26:35.509973] [I][startTestPlan] Success
+[2020/07/29 14:26:40.608590] [I][startTestPlan] Rx RSSI: -28 dBm
+[2020/07/29 14:26:40.624493] [I][startTestPlan] Check Rx Result
+[2020/07/29 14:26:40.628539] [I][startBTTest] Rx Test Time: 29.258
+[2020/07/29 14:26:40.635522] [I][startBTTest] Delete old calibration data
+[2020/07/29 14:26:40.640544] [I][startBTTest] Copy calibration data
+[2020/07/29 14:26:40.648649] [I][startBTTest] Write Calibration Data
+[2020/07/29 14:26:40.944860] [I][TestResult] Test Pass!
+[2020/07/29 19:47:17.497821] ========== Start ==========
+[2020/07/29 19:47:17.503852] [I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/07/29 19:47:17.507848] [I][main] GFI20_RF_Zigbee.py 3.0.0.3
+[2020/07/29 19:47:17.513901] [I][readINI] ---------- INI ----------
+[2020/07/29 19:47:17.518897] [I][readINI] SKU = 1
+[2020/07/29 19:47:17.521885] [I][readINI] InstrumentINI = GFI20_Zigbee_Instrument_Setting
+[2020/07/29 19:47:17.526899] [I][readINI] ---------- Test Plan 1 ----------
+[2020/07/29 19:47:17.530908] [I][readINI] TestPlan1 = ZIGBEE_2450;15/2425,21/2455,24/2470;TX_Power
+[2020/07/29 19:47:17.540936] [I][readINI] CableLoss = ['8.2', '8.9', '8.8'] dBm
+[2020/07/29 19:47:17.544947] [I][readINI] TX_Power = ['0', '0', '0'] dBm
+[2020/07/29 19:47:17.550963] [I][readINI] Calibration_ON = 1
+[2020/07/29 19:47:17.555975] [I][readINI] Ca_Tx_Power_Target = ['9.2', '9.2', '9.2']
+[2020/07/29 19:47:17.560997] [I][readINI] Ca_Tx_Power_Gap = ['0.5', '0.5', '0.5']
+[2020/07/29 19:47:17.564999] [I][readINI] Ca_Tx_Power_Offset = ['0.86', '0.86', '0.86']
+[2020/07/29 19:47:17.570013] [I][readINI] Current_ON = 1
+[2020/07/29 19:47:17.574204] [I][readINI] TX_Current_SpecMax = ['0.18', '0.18', '0.18'] A
+[2020/07/29 19:47:17.579220] [I][readINI] TX_Current_SpecMin = ['0.045', '0.045', '0.045'] A
+[2020/07/29 19:47:17.583281] [I][readINI] TX_Power_SpecMax = ['12', '12', '12'] dBm
+[2020/07/29 19:47:17.588248] [I][readINI] TX_Power_SpecMin = ['6', '6', '6'] dBm
+[2020/07/29 19:47:17.594277] [I][readINI] ---------- Test Plan 1 ----------
+[2020/07/29 19:47:17.599273] [I][readINI] ---------- Test Plan 2 ----------
+[2020/07/29 19:47:17.603287] [I][readINI] TestPlan2 = ZIGBEE_2450;19/2445;RX_RSSI
+[2020/07/29 19:47:17.609300] [I][readINI] CableLoss = ['8.9'] dBm
+[2020/07/29 19:47:17.613851] [I][readINI] RX_Cell_Power = ['-25'] dBm
+[2020/07/29 19:47:17.618872] [I][readINI] RX_LNAON_RSSI_SpecMax = ['-9'] %
+[2020/07/29 19:47:17.623209] [I][readINI] RX_LNAON_RSSI_SpecMin = ['-18'] %
+[2020/07/29 19:47:17.629015] [I][readINI] RX_LNAOFF_RSSI_SpecMax = ['-24'] %
+[2020/07/29 19:47:17.633544] [I][readINI] RX_LNAOFF_RSSI_SpecMin = ['-30'] %
+[2020/07/29 19:47:17.639561] [I][readINI] ---------- Test Plan 2 ----------
+[2020/07/29 19:47:17.649971] [I][readINI] StartButton_ON = 0
+[2020/07/29 19:47:17.653949] [I][readINI] FailAutoExit = True
+[2020/07/29 19:47:17.657962] [I][readINI] FailRetryAll = True
+[2020/07/29 19:47:17.663440] [I][readINI] RFDatabase = True
+[2020/07/29 19:47:17.666451] [I][readINI] EC = 010000S01
+[2020/07/29 19:47:17.671473] [I][readINI] ---------- INI ----------
+[2020/07/29 19:47:17.676503] [I][readInstrumentINI] ---------- Common ----------
+[2020/07/29 19:47:17.681802] [I][readInstrumentINI] Instrument_Name = E6640A
+[2020/07/29 19:47:17.685815] [I][readInstrumentINI] Instrument_IP_Addr = TCPIP0::192.168.1.2::hislip0::INSTR
+[2020/07/29 19:47:17.690859] [I][readInstrumentINI] PowerSupplier_Name = 66321B
+[2020/07/29 19:47:17.695867] [I][readInstrumentINI] PowerSupplier_Addr = GPIB0::5::INSTR
+[2020/07/29 19:47:17.701860] [I][readInstrumentINI] Current_Delay = 0.5
+[2020/07/29 19:47:17.705872] [I][readInstrumentINI] ---------- Common ----------
+[2020/07/29 19:47:17.709923] [I][readInstrumentINI] ---------- ZIGBEE_2450 ----------
+[2020/07/29 19:47:17.714893] [I][readInstrumentINI] RFIO_Input = 1
+[2020/07/29 19:47:17.718904] [I][readInstrumentINI] Tx_Span = 10000.0 kHz
+[2020/07/29 19:47:17.723917] [I][readInstrumentINI] Tx_PowRange = 20.0 dBm
+[2020/07/29 19:47:17.728930] [I][readInstrumentINI] Tx_SymbolRate = 1000.0 kHz
+[2020/07/29 19:47:17.732969] [I][readInstrumentINI] Tx_MeasInterval = 500
+[2020/07/29 19:47:17.737451] [I][readInstrumentINI] Tx_TrigLevel = 30.0 mV
+[2020/07/29 19:47:17.742470] [I][readInstrumentINI] Tx_TrigDelay = 0.3 ms
+[2020/07/29 19:47:17.746510] [I][readInstrumentINI] RFIO_Output = 1
+[2020/07/29 19:47:17.750488] [I][readInstrumentINI] ---------- ZIGBEE_2450 ----------
+[2020/07/29 19:47:17.754499] ---------- StartTest ----------
+[2020/07/29 19:47:17.764526] [I][chkDUTConnect] Connect to DUT
+[2020/07/29 19:47:17.782167] [I][chkDUTConnect] Check DUT status
+[2020/07/29 19:47:18.632330] [I][chkDUTConnect] Success
+[2020/07/29 19:47:18.650597] [I][chkE6640AConnect] Connect to E6640A
+[2020/07/29 19:47:19.671590] [I][chkE6640AConnect] Preset E6640A status
+[2020/07/29 19:47:20.801429] [I][chkE6640AConnect] success
+[2020/07/29 19:47:21.063450] ---------- Test Plan 1 ----------
+[2020/07/29 19:47:21.068476] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2425 ----------
+[2020/07/29 19:47:21.073480] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 19:47:21.077491] [I][startTestPlan] Preset E6640A
+[2020/07/29 19:47:22.030345] [I][startTestPlan] Success
+[2020/07/29 19:47:22.035321] [I][startTestPlan] Set Tx Start
+[2020/07/29 19:47:24.603506] [I][startTestPlan] Success
+[2020/07/29 19:47:24.608517] [I][startTestPlan] Set DUT Tx
+[2020/07/29 19:47:30.578648] [I][startTestPlan] Success
+[2020/07/29 19:47:30.584321] [I][startTestPlan] Start DUT Tx
+[2020/07/29 19:47:33.143971] [I][startTestPlan] Success
+[2020/07/29 19:47:34.719313] [I][startTestPlan] 9.713, 11.694, 13.021
+[2020/07/29 19:47:35.275580] [I][startTestPlan] 0.081
+[2020/07/29 19:47:35.280602] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 19:47:36.139455] [I][startTestPlan] Success
+[2020/07/29 19:47:36.145597] [I][startTestPlan] Calibration
+[2020/07/29 19:47:36.149609] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 19:47:36.154663] [I][startTestPlan] DUT Tx Power: -1
+[2020/07/29 19:47:36.158678] [I][startTestPlan] Measure again
+[2020/07/29 19:47:36.163646] [I][startTestPlan] Set DUT Tx
+[2020/07/29 19:47:42.142693] [I][startTestPlan] Success
+[2020/07/29 19:47:42.147990] [I][startTestPlan] Start DUT Tx
+[2020/07/29 19:47:44.700289] [I][startTestPlan] Success
+[2020/07/29 19:47:46.267211] [I][startTestPlan] 8.623999999999999, 11.675, 14.673
+[2020/07/29 19:47:46.826475] [I][startTestPlan] 0.08
+[2020/07/29 19:47:46.833494] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 19:47:47.689984] [I][startTestPlan] Success
+[2020/07/29 19:47:47.695027] [I][startTestPlan] Power: 8.623999999999999 dBm
+[2020/07/29 19:47:47.699044] [I][startTestPlan] Freq Err: 11.675 ppm
+[2020/07/29 19:47:47.704022] [I][startTestPlan] EVM: 14.673 %
+[2020/07/29 19:47:47.709041] [I][startTestPlan] Current: 0.08 A
+[2020/07/29 19:47:47.714048] [I][startTestPlan] Check Tx Result
+[2020/07/29 19:47:47.718097] [I][startBTTest] Tx Test Time: 26.651
+[2020/07/29 19:47:47.725027] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2455 ----------
+[2020/07/29 19:47:47.729040] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 19:47:47.734063] [I][startTestPlan] Preset E6640A
+[2020/07/29 19:47:49.003631] [I][startTestPlan] Success
+[2020/07/29 19:47:49.008817] [I][startTestPlan] Set Tx Start
+[2020/07/29 19:47:51.523359] [I][startTestPlan] Success
+[2020/07/29 19:47:51.527938] [I][startTestPlan] Set DUT Tx
+[2020/07/29 19:47:57.507118] [I][startTestPlan] Success
+[2020/07/29 19:47:57.512669] [I][startTestPlan] Start DUT Tx
+[2020/07/29 19:48:00.054192] [I][startTestPlan] Success
+[2020/07/29 19:48:01.649766] [I][startTestPlan] 11.108, 11.677, 15.546
+[2020/07/29 19:48:02.216006] [I][startTestPlan] 0.079
+[2020/07/29 19:48:02.221113] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 19:48:03.079172] [I][startTestPlan] Success
+[2020/07/29 19:48:03.085629] [I][startTestPlan] Calibration
+[2020/07/29 19:48:03.089642] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 19:48:03.094719] [I][startTestPlan] DUT Tx Power: -2
+[2020/07/29 19:48:03.098733] [I][startTestPlan] Measure again
+[2020/07/29 19:48:03.104065] [I][startTestPlan] Set DUT Tx
+[2020/07/29 19:48:09.067176] [I][startTestPlan] Success
+[2020/07/29 19:48:09.072766] [I][startTestPlan] Start DUT Tx
+[2020/07/29 19:48:11.626870] [I][startTestPlan] Success
+[2020/07/29 19:48:13.328711] [I][startTestPlan] 9.141, 11.664, 15.508
+[2020/07/29 19:48:13.893825] [I][startTestPlan] 0.078
+[2020/07/29 19:48:13.899801] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 19:48:14.751575] [I][startTestPlan] Success
+[2020/07/29 19:48:14.755588] [I][startTestPlan] Power: 9.141 dBm
+[2020/07/29 19:48:14.759639] [I][startTestPlan] Freq Err: 11.664 ppm
+[2020/07/29 19:48:14.764613] [I][startTestPlan] EVM: 15.508 %
+[2020/07/29 19:48:14.768661] [I][startTestPlan] Current: 0.078 A
+[2020/07/29 19:48:14.772635] [I][startTestPlan] Check Tx Result
+[2020/07/29 19:48:14.778603] [I][startBTTest] Tx Test Time: 27.055
+[2020/07/29 19:48:14.783621] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2470 ----------
+[2020/07/29 19:48:14.788634] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/07/29 19:48:14.793149] [I][startTestPlan] Preset E6640A
+[2020/07/29 19:48:16.048402] [I][startTestPlan] Success
+[2020/07/29 19:48:16.053451] [I][startTestPlan] Set Tx Start
+[2020/07/29 19:48:18.540238] [I][startTestPlan] Success
+[2020/07/29 19:48:18.544755] [I][startTestPlan] Set DUT Tx
+[2020/07/29 19:48:24.544265] [I][startTestPlan] Success
+[2020/07/29 19:48:24.548417] [I][startTestPlan] Start DUT Tx
+[2020/07/29 19:48:27.113088] [I][startTestPlan] Success
+[2020/07/29 19:48:28.700627] [I][startTestPlan] 11.206000000000001, 11.589, 13.285
+[2020/07/29 19:48:29.263139] [I][startTestPlan] 0.076
+[2020/07/29 19:48:29.269157] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 19:48:30.130714] [I][startTestPlan] Success
+[2020/07/29 19:48:30.136766] [I][startTestPlan] Calibration
+[2020/07/29 19:48:30.140741] [I][startTestPlan] Calculate DUT Tx Power
+[2020/07/29 19:48:30.146099] [I][startTestPlan] DUT Tx Power: -2
+[2020/07/29 19:48:30.150111] [I][startTestPlan] Measure again
+[2020/07/29 19:48:30.155125] [I][startTestPlan] Set DUT Tx
+[2020/07/29 19:48:36.140055] [I][startTestPlan] Success
+[2020/07/29 19:48:36.145044] [I][startTestPlan] Start DUT Tx
+[2020/07/29 19:48:38.702780] [I][startTestPlan] Success
+[2020/07/29 19:48:40.290548] [I][startTestPlan] 9.364, 11.586, 13.801
+[2020/07/29 19:48:40.847759] [I][startTestPlan] 0.076
+[2020/07/29 19:48:40.852778] [I][startTestPlan] Stop DUT Tx
+[2020/07/29 19:48:41.712016] [I][startTestPlan] Success
+[2020/07/29 19:48:41.717045] [I][startTestPlan] Power: 9.364 dBm
+[2020/07/29 19:48:41.721823] [I][startTestPlan] Freq Err: 11.586 ppm
+[2020/07/29 19:48:41.726843] [I][startTestPlan] EVM: 13.801 %
+[2020/07/29 19:48:41.731852] [I][startTestPlan] Current: 0.076 A
+[2020/07/29 19:48:41.737869] [I][startTestPlan] Check Tx Result
+[2020/07/29 19:48:41.742093] [I][startBTTest] Tx Test Time: 26.959
+[2020/07/29 19:48:41.748112] ---------- Test Plan 2 ----------
+[2020/07/29 19:48:41.753175] [I][startTestPlan]---------- ZIGBEE_2450 Freq 2445 ----------
+[2020/07/29 19:48:41.758225] [I][startTestPlan]---------- Measure Rx Start ----------
+[2020/07/29 19:48:41.762661] [I][startTestPlan] Preset E6640A
+[2020/07/29 19:48:43.034629] [I][startTestPlan] Success
+[2020/07/29 19:48:43.039643] [I][startTestPlan]---------- LNA ON ----------
+[2020/07/29 19:48:43.044435] [I][startTestPlan] Set Rx one tone
+[2020/07/29 19:48:43.109752] [I][startTestPlan] Success
+[2020/07/29 19:48:43.114883] [I][startTestPlan] Set DUT Rx
+[2020/07/29 19:48:47.381555] [I][startTestPlan] Success
+[2020/07/29 19:48:52.484633] [I][startTestPlan] Success
+[2020/07/29 19:48:57.447924] [I][startTestPlan] Rx RSSI: -16 dBm
+[2020/07/29 19:48:57.467977] [I][startTestPlan]---------- LNA OFF ----------
+[2020/07/29 19:48:57.474228] [I][startTestPlan] Set Rx one tone
+[2020/07/29 19:48:57.536985] [I][startTestPlan] Success
+[2020/07/29 19:48:57.540979] [I][startTestPlan] Set DUT Rx
+[2020/07/29 19:49:01.809960] [I][startTestPlan] Success
+[2020/07/29 19:49:06.084495] [I][startTestPlan] Success
+[2020/07/29 19:49:10.718415] [I][startTestPlan] Rx RSSI: -29 dBm
+[2020/07/29 19:49:10.737377] [I][startTestPlan] Check Rx Result
+[2020/07/29 19:49:10.742189] [I][startBTTest] Rx Test Time: 28.989
+[2020/07/29 19:49:10.748239] [I][startBTTest] Delete old calibration data
+[2020/07/29 19:49:10.753231] [I][startBTTest] Copy calibration data
+[2020/07/29 19:49:10.760240] [I][startBTTest] Write Calibration Data
+[2020/07/29 19:49:11.233568] [I][TestResult] Test Pass!

@@ -1,0 +1,938 @@
+[2020/07/28 20:23:44.218831]========== Start ==========
+[2020/07/28 20:23:44.222843][I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/07/28 20:23:44.224905][I][main] GFI20LastScript.py 3.0.0.6
+[2020/07/28 20:23:44.227892][I][readINI] ---------- INI ----------
+[2020/07/28 20:23:44.228858][I][readINI] StartButton_ON = False
+[2020/07/28 20:23:44.231910][I][readINI] PowerSupplier = 66321B
+[2020/07/28 20:23:44.233871][I][readINI] PowerSupplierAddr = GPIB0::5::INSTR
+[2020/07/28 20:23:44.235876][I][readINI] DigitalMeter = 8261A
+[2020/07/28 20:23:44.238462][I][readINI] DigitalMeter_COMPort = 1
+[2020/07/28 20:23:44.239498][I][readINI] ELoadTestState = False
+[2020/07/28 20:23:44.243478][I][readINI] Voltage_Ch = 107
+[2020/07/28 20:23:44.245483][I][readINI] Voltage_Max = 0.3
+[2020/07/28 20:23:44.249494][I][readINI] Voltage_Min = 0
+[2020/07/28 20:23:44.253068][I][readINI] DetectVoltage = 0.3
+[2020/07/28 20:23:44.255742][I][readINI] TestTimeout = 50.0
+[2020/07/28 20:23:44.257749][I][readINI] LeastTestTime = 2.5
+[2020/07/28 20:23:44.259754][I][readINI] EC = 010000S03
+[2020/07/28 20:23:44.263790][I][readINI] ---------- INI ----------
+[2020/07/28 20:23:44.267862]---------- startTest ----------
+[2020/07/28 20:23:44.270253]================ Control DM ================
+[2020/07/28 20:23:44.275268]==================Setup digital meter==================
+[2020/07/28 20:23:44.287172][I][setupDigitalMeter] Get visa resource manager...
+[2020/07/28 20:23:44.325120][I][setupDigitalMeter] Get visa resource instrument...
+[2020/07/28 20:23:44.341662][I][setupDigitalMeter] Output = GWInstek,GDM8261A,GEU860209,1.03
+[2020/07/28 20:23:44.344671][I][setupDigitalMeter] Connect to digital meter PASS
+[2020/07/28 20:23:44.348713]==================Check Vol==================
+[2020/07/28 20:23:44.351431][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:44.353437][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:44.356496][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:44.758936][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:44.981819][I][CheckVoltage] CH107 = -4.011 V
+[2020/07/28 20:23:44.985798][I][startTest] First detect voltage : -4.011
+[2020/07/28 20:23:44.988805]================ Close PS ================
+[2020/07/28 20:23:45.268113][I][startTest] Close power supplier sccucessfully!!
+[2020/07/28 20:23:45.270885]================ Control DM ================
+[2020/07/28 20:23:45.277937]==================Check Vol==================
+[2020/07/28 20:23:45.281948][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:45.284955][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:45.288968][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:45.688586][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:45.911786][I][CheckVoltage] CH107 = -3.992 V
+[2020/07/28 20:23:45.915760][W][startTest] Not detect voltage decrease 0.3V!!
+[2020/07/28 20:23:45.920815]==================Check Vol==================
+[2020/07/28 20:23:45.924785][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:45.928479][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:45.932498][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:46.333649][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:46.557155][I][CheckVoltage] CH107 = -3.976 V
+[2020/07/28 20:23:46.561166][W][startTest] Not detect voltage decrease 0.3V!!
+[2020/07/28 20:23:46.565187]==================Check Vol==================
+[2020/07/28 20:23:46.570158][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:46.573167][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:46.576169][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:46.978206][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:47.201824][I][CheckVoltage] CH107 = -3.966 V
+[2020/07/28 20:23:47.205856][W][startTest] Not detect voltage decrease 0.3V!!
+[2020/07/28 20:23:47.210489]==================Check Vol==================
+[2020/07/28 20:23:47.215533][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:47.218544][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:47.221551][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:47.623737][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:47.846051][I][CheckVoltage] CH107 = -1.908 V
+[2020/07/28 20:23:47.851030][I][startTest] Detect voltage decrease 0.3V succesfully!
+[2020/07/28 20:23:47.855680]==================Check Vol==================
+[2020/07/28 20:23:47.861697][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:47.865535][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:47.869505][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:48.271939][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:48.495707][I][CheckVoltage] CH107 = -1.738 V
+[2020/07/28 20:23:48.499769][I][CheckVoltage] 0.0 <= -1.738 <= 0.3 - FAIL
+[2020/07/28 20:23:48.504129][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:48.508157][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:48.512182]==================Check Vol==================
+[2020/07/28 20:23:48.517169][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:48.521669][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:48.524853][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:48.925581][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:49.148133][I][CheckVoltage] CH107 = -1.581 V
+[2020/07/28 20:23:49.153194][I][CheckVoltage] 0.0 <= -1.581 <= 0.3 - FAIL
+[2020/07/28 20:23:49.156235][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:49.160216][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:49.165264]==================Check Vol==================
+[2020/07/28 20:23:49.170281][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:49.174283][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:49.177260][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:49.578263][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:49.801717][I][CheckVoltage] CH107 = -1.433 V
+[2020/07/28 20:23:49.805745][I][CheckVoltage] 0.0 <= -1.433 <= 0.3 - FAIL
+[2020/07/28 20:23:49.808756][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:49.812749][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:49.817760]==================Check Vol==================
+[2020/07/28 20:23:49.823576][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:49.826624][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:49.829594][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:50.231001][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:50.454009][I][CheckVoltage] CH107 = -1.295 V
+[2020/07/28 20:23:50.459023][I][CheckVoltage] 0.0 <= -1.295 <= 0.3 - FAIL
+[2020/07/28 20:23:50.463297][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:50.467596][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:50.471639]==================Check Vol==================
+[2020/07/28 20:23:50.476623][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:50.480633][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:50.483661][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:50.813528][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:50.979541][I][CheckVoltage] CH107 = -1.178 V
+[2020/07/28 20:23:50.984566][I][CheckVoltage] 0.0 <= -1.178 <= 0.3 - FAIL
+[2020/07/28 20:23:50.988336][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:50.992355][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:50.997370]==================Check Vol==================
+[2020/07/28 20:23:51.002376][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:51.006055][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:51.010071][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:51.342561][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:51.508717][I][CheckVoltage] CH107 = -1.077 V
+[2020/07/28 20:23:51.513789][I][CheckVoltage] 0.0 <= -1.077 <= 0.3 - FAIL
+[2020/07/28 20:23:51.516800][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:51.521812][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:51.526839]==================Check Vol==================
+[2020/07/28 20:23:51.531839][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:51.535853][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:51.542372][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:51.872452][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:52.038127][I][CheckVoltage] CH107 = -0.981 V
+[2020/07/28 20:23:52.043142][I][CheckVoltage] 0.0 <= -0.981 <= 0.3 - FAIL
+[2020/07/28 20:23:52.047153][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:52.051165][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:52.056228]==================Check Vol==================
+[2020/07/28 20:23:52.061228][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:52.065198][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:52.071790][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:52.401481][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:52.565937][I][CheckVoltage] CH107 = -0.888 V
+[2020/07/28 20:23:52.570950][I][CheckVoltage] 0.0 <= -0.888 <= 0.3 - FAIL
+[2020/07/28 20:23:52.574940][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:52.579939][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:52.584993]==================Check Vol==================
+[2020/07/28 20:23:52.590664][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:52.593674][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:52.600536][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:52.930481][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:53.095307][I][CheckVoltage] CH107 = -0.800 V
+[2020/07/28 20:23:53.100285][I][CheckVoltage] 0.0 <= -0.8 <= 0.3 - FAIL
+[2020/07/28 20:23:53.103292][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:53.108308][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:53.112316]==================Check Vol==================
+[2020/07/28 20:23:53.117330][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:53.122149][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:53.125195][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:53.458928][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:53.624768][I][CheckVoltage] CH107 = -0.715 V
+[2020/07/28 20:23:53.628773][I][CheckVoltage] 0.0 <= -0.715 <= 0.3 - FAIL
+[2020/07/28 20:23:53.632755][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:53.636809][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:53.642779]==================Check Vol==================
+[2020/07/28 20:23:53.646788][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:53.650798][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:53.654809][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:53.985049][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:54.153835][I][CheckVoltage] CH107 = -0.653 V
+[2020/07/28 20:23:54.159428][I][CheckVoltage] 0.0 <= -0.653 <= 0.3 - FAIL
+[2020/07/28 20:23:54.163648][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:54.168708][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:54.173752]==================Check Vol==================
+[2020/07/28 20:23:54.179457][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:54.183291][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:54.188202][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:54.521869][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:54.686807][I][CheckVoltage] CH107 = -0.599 V
+[2020/07/28 20:23:54.692596][I][CheckVoltage] 0.0 <= -0.599 <= 0.3 - FAIL
+[2020/07/28 20:23:54.696631][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:54.701121][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:54.706164]==================Check Vol==================
+[2020/07/28 20:23:54.711680][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:54.715587][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:54.720101][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:55.054819][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:55.219760][I][CheckVoltage] CH107 = -0.548 V
+[2020/07/28 20:23:55.224774][I][CheckVoltage] 0.0 <= -0.548 <= 0.3 - FAIL
+[2020/07/28 20:23:55.227782][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:55.232796][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:55.237809]==================Check Vol==================
+[2020/07/28 20:23:55.243825][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:55.247837][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:55.252676][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:55.583328][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:55.748797][I][CheckVoltage] CH107 = -0.500 V
+[2020/07/28 20:23:55.753771][I][CheckVoltage] 0.0 <= -0.5 <= 0.3 - FAIL
+[2020/07/28 20:23:55.757784][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:55.761799][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:55.766841]==================Check Vol==================
+[2020/07/28 20:23:55.772828][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:55.776871][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:55.781851][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:56.116712][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:56.282359][I][CheckVoltage] CH107 = -0.458 V
+[2020/07/28 20:23:56.287535][I][CheckVoltage] 0.0 <= -0.458 <= 0.3 - FAIL
+[2020/07/28 20:23:56.291382][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:56.295415][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:56.300458]==================Check Vol==================
+[2020/07/28 20:23:56.306449][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:56.309458][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:56.315093][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:56.645415][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:56.810873][I][CheckVoltage] CH107 = -0.419 V
+[2020/07/28 20:23:56.815887][I][CheckVoltage] 0.0 <= -0.419 <= 0.3 - FAIL
+[2020/07/28 20:23:56.820593][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:56.825750][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:56.830774]==================Check Vol==================
+[2020/07/28 20:23:56.835778][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:56.840191][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:56.845205][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:57.179345][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:57.344575][I][CheckVoltage] CH107 = -0.383 V
+[2020/07/28 20:23:57.349584][I][CheckVoltage] 0.0 <= -0.383 <= 0.3 - FAIL
+[2020/07/28 20:23:57.352561][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:57.357576][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:57.362590]==================Check Vol==================
+[2020/07/28 20:23:57.367602][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:57.371611][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:57.376662][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:57.708193][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:57.873661][I][CheckVoltage] CH107 = -0.350 V
+[2020/07/28 20:23:57.878721][I][CheckVoltage] 0.0 <= -0.35 <= 0.3 - FAIL
+[2020/07/28 20:23:57.881731][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:57.886745][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:57.891759]==================Check Vol==================
+[2020/07/28 20:23:57.896773][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:57.900783][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:57.904800][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:58.237198][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:58.402317][I][CheckVoltage] CH107 = -0.320 V
+[2020/07/28 20:23:58.408330][I][CheckVoltage] 0.0 <= -0.32 <= 0.3 - FAIL
+[2020/07/28 20:23:58.412320][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:58.417350][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:58.422345]==================Check Vol==================
+[2020/07/28 20:23:58.427346][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:58.431417][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:58.436438][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:58.770664][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:58.935100][I][CheckVoltage] CH107 = -0.293 V
+[2020/07/28 20:23:58.940078][I][CheckVoltage] 0.0 <= -0.293 <= 0.3 - FAIL
+[2020/07/28 20:23:58.944088][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:58.949128][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:58.954141]==================Check Vol==================
+[2020/07/28 20:23:58.959129][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:58.963139][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:58.968155][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:59.298955][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:59.464428][I][CheckVoltage] CH107 = -0.268 V
+[2020/07/28 20:23:59.469404][I][CheckVoltage] 0.0 <= -0.268 <= 0.3 - FAIL
+[2020/07/28 20:23:59.473421][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:23:59.477425][E][startTest] Check voltage failed!!
+[2020/07/28 20:23:59.482439]==================Check Vol==================
+[2020/07/28 20:23:59.488491][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:23:59.492466][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:23:59.496478][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:23:59.828983][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:23:59.993213][I][CheckVoltage] CH107 = -0.246 V
+[2020/07/28 20:23:59.998233][I][CheckVoltage] 0.0 <= -0.246 <= 0.3 - FAIL
+[2020/07/28 20:24:00.003204][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:00.010223][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:00.016239]==================Check Vol==================
+[2020/07/28 20:24:00.021724][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:00.025744][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:00.029749][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:00.361885][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:00.526455][I][CheckVoltage] CH107 = -0.225 V
+[2020/07/28 20:24:00.531432][I][CheckVoltage] 0.0 <= -0.225 <= 0.3 - FAIL
+[2020/07/28 20:24:00.535443][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:00.540502][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:00.545471]==================Check Vol==================
+[2020/07/28 20:24:00.550515][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:00.554509][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:00.559526][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:00.891063][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:01.055481][I][CheckVoltage] CH107 = -0.206 V
+[2020/07/28 20:24:01.060489][I][CheckVoltage] 0.0 <= -0.206 <= 0.3 - FAIL
+[2020/07/28 20:24:01.064469][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:01.069507][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:01.074496]==================Check Vol==================
+[2020/07/28 20:24:01.079510][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:01.083520][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:01.090569][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:01.424164][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:01.589027][I][CheckVoltage] CH107 = -0.189 V
+[2020/07/28 20:24:01.595047][I][CheckVoltage] 0.0 <= -0.189 <= 0.3 - FAIL
+[2020/07/28 20:24:01.599021][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:01.604070][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:01.609077]==================Check Vol==================
+[2020/07/28 20:24:01.614809][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:01.618878][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:01.623699][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:01.957370][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:02.122631][I][CheckVoltage] CH107 = -0.174 V
+[2020/07/28 20:24:02.127647][I][CheckVoltage] 0.0 <= -0.174 <= 0.3 - FAIL
+[2020/07/28 20:24:02.132622][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:02.137662][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:02.142693]==================Check Vol==================
+[2020/07/28 20:24:02.148665][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:02.152976][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:02.157018][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:02.490475][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:02.655831][I][CheckVoltage] CH107 = -0.160 V
+[2020/07/28 20:24:02.661450][I][CheckVoltage] 0.0 <= -0.16 <= 0.3 - FAIL
+[2020/07/28 20:24:02.665465][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:02.670502][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:02.675518]==================Check Vol==================
+[2020/07/28 20:24:02.681440][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:02.685459][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:02.690382][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:03.023296][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:03.188631][I][CheckVoltage] CH107 = -0.147 V
+[2020/07/28 20:24:03.193651][I][CheckVoltage] 0.0 <= -0.147 <= 0.3 - FAIL
+[2020/07/28 20:24:03.197656][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:03.202670][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:03.207683]==================Check Vol==================
+[2020/07/28 20:24:03.212708][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:03.216705][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:03.221719][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:03.552690][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:03.718061][I][CheckVoltage] CH107 = -0.135 V
+[2020/07/28 20:24:03.722093][I][CheckVoltage] 0.0 <= -0.135 <= 0.3 - FAIL
+[2020/07/28 20:24:03.726079][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:03.731099][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:03.736100]==================Check Vol==================
+[2020/07/28 20:24:03.742327][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:03.746341][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:03.750400][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:04.081758][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:04.246281][I][CheckVoltage] CH107 = -0.125 V
+[2020/07/28 20:24:04.251250][I][CheckVoltage] 0.0 <= -0.125 <= 0.3 - FAIL
+[2020/07/28 20:24:04.255261][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:04.260290][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:04.265289]==================Check Vol==================
+[2020/07/28 20:24:04.271326][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:04.275315][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:04.280329][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:04.540463][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:04.705920][I][CheckVoltage] CH107 = -0.116 V
+[2020/07/28 20:24:04.710982][I][CheckVoltage] 0.0 <= -0.116 <= 0.3 - FAIL
+[2020/07/28 20:24:04.714945][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:04.718955][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:04.724981]==================Check Vol==================
+[2020/07/28 20:24:04.729985][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:04.733995][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:04.740041][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:04.999098][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:05.164460][I][CheckVoltage] CH107 = -0.109 V
+[2020/07/28 20:24:05.169500][I][CheckVoltage] 0.0 <= -0.109 <= 0.3 - FAIL
+[2020/07/28 20:24:05.173483][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:05.178498][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:05.183540]==================Check Vol==================
+[2020/07/28 20:24:05.188553][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:05.193543][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:05.199964][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:05.461658][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:05.626807][I][CheckVoltage] CH107 = -0.102 V
+[2020/07/28 20:24:05.632824][I][CheckVoltage] 0.0 <= -0.102 <= 0.3 - FAIL
+[2020/07/28 20:24:05.636843][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:05.640808][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:05.646826]==================Check Vol==================
+[2020/07/28 20:24:05.651838][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:05.655848][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:05.660863][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:05.924764][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:06.089773][I][CheckVoltage] CH107 = -0.095 V
+[2020/07/28 20:24:06.095753][I][CheckVoltage] 0.0 <= -0.095 <= 0.3 - FAIL
+[2020/07/28 20:24:06.099764][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:06.104777][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:06.109791]==================Check Vol==================
+[2020/07/28 20:24:06.114823][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:06.119850][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:06.123827][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:06.388088][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:06.552664][I][CheckVoltage] CH107 = -0.089 V
+[2020/07/28 20:24:06.558649][I][CheckVoltage] 0.0 <= -0.089 <= 0.3 - FAIL
+[2020/07/28 20:24:06.562671][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:06.568696][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:06.575698]==================Check Vol==================
+[2020/07/28 20:24:06.580711][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:06.586727][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:06.590737][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:06.851033][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:07.015888][I][CheckVoltage] CH107 = -0.083 V
+[2020/07/28 20:24:07.020892][I][CheckVoltage] 0.0 <= -0.083 <= 0.3 - FAIL
+[2020/07/28 20:24:07.024902][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:07.029887][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:07.034930]==================Check Vol==================
+[2020/07/28 20:24:07.040915][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:07.044955][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:07.049940][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:07.309814][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:07.474458][I][CheckVoltage] CH107 = -0.078 V
+[2020/07/28 20:24:07.479432][I][CheckVoltage] 0.0 <= -0.078 <= 0.3 - FAIL
+[2020/07/28 20:24:07.483449][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:07.488456][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:07.494474]==================Check Vol==================
+[2020/07/28 20:24:07.499486][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:07.503496][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:07.509514][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:07.772543][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:07.937709][I][CheckVoltage] CH107 = -0.074 V
+[2020/07/28 20:24:07.942699][I][CheckVoltage] 0.0 <= -0.074 <= 0.3 - FAIL
+[2020/07/28 20:24:07.946710][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:07.951742][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:07.956737]==================Check Vol==================
+[2020/07/28 20:24:07.962791][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:07.966763][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:07.971777][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:08.235214][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:08.400924][I][CheckVoltage] CH107 = -0.069 V
+[2020/07/28 20:24:08.405976][I][CheckVoltage] 0.0 <= -0.069 <= 0.3 - FAIL
+[2020/07/28 20:24:08.409950][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:08.414994][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:08.419977]==================Check Vol==================
+[2020/07/28 20:24:08.425994][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:08.430004][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:08.435047][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:08.698706][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:08.863615][I][CheckVoltage] CH107 = -0.065 V
+[2020/07/28 20:24:08.868659][I][CheckVoltage] 0.0 <= -0.065 <= 0.3 - FAIL
+[2020/07/28 20:24:08.873642][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:08.877651][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:08.882665]==================Check Vol==================
+[2020/07/28 20:24:08.888721][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:08.893694][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:08.899712][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:09.161516][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:09.326180][I][CheckVoltage] CH107 = -0.061 V
+[2020/07/28 20:24:09.331158][I][CheckVoltage] 0.0 <= -0.061 <= 0.3 - FAIL
+[2020/07/28 20:24:09.335173][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:09.340182][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:09.346203]==================Check Vol==================
+[2020/07/28 20:24:09.351223][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:09.355222][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:09.360235][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:09.619720][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:09.785593][I][CheckVoltage] CH107 = -0.058 V
+[2020/07/28 20:24:09.791329][I][CheckVoltage] 0.0 <= -0.058 <= 0.3 - FAIL
+[2020/07/28 20:24:09.795343][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:09.800355][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:09.805372]==================Check Vol==================
+[2020/07/28 20:24:09.811384][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:09.815426][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:09.820410][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:10.083248][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:10.248119][I][CheckVoltage] CH107 = -0.055 V
+[2020/07/28 20:24:10.253133][I][CheckVoltage] 0.0 <= -0.055 <= 0.3 - FAIL
+[2020/07/28 20:24:10.257105][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:10.262118][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:10.267132]==================Check Vol==================
+[2020/07/28 20:24:10.273177][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:10.277158][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:10.282172][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:10.541777][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:10.706805][I][CheckVoltage] CH107 = -0.052 V
+[2020/07/28 20:24:10.712786][I][CheckVoltage] 0.0 <= -0.052 <= 0.3 - FAIL
+[2020/07/28 20:24:10.716851][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:10.721810][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:10.726878]==================Check Vol==================
+[2020/07/28 20:24:10.731836][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:10.737855][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:10.742866][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:11.005067][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:11.170300][I][CheckVoltage] CH107 = -0.049 V
+[2020/07/28 20:24:11.175317][I][CheckVoltage] 0.0 <= -0.049 <= 0.3 - FAIL
+[2020/07/28 20:24:11.179356][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:11.184342][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:11.189389]==================Check Vol==================
+[2020/07/28 20:24:11.195370][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:11.199409][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:11.204423][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:11.467186][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:11.632588][I][CheckVoltage] CH107 = -0.047 V
+[2020/07/28 20:24:11.638800][I][CheckVoltage] 0.0 <= -0.047 <= 0.3 - FAIL
+[2020/07/28 20:24:11.642813][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:11.647828][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:11.652871]==================Check Vol==================
+[2020/07/28 20:24:11.658858][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:11.665877][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:11.670892][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:11.930720][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:12.095653][I][CheckVoltage] CH107 = -0.044 V
+[2020/07/28 20:24:12.101539][I][CheckVoltage] 0.0 <= -0.044 <= 0.3 - FAIL
+[2020/07/28 20:24:12.105559][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:12.110566][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:12.115583]==================Check Vol==================
+[2020/07/28 20:24:12.121604][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:12.125649][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:12.132632][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:12.393828][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:12.558636][I][CheckVoltage] CH107 = -0.042 V
+[2020/07/28 20:24:12.563613][I][CheckVoltage] 0.0 <= -0.042 <= 0.3 - FAIL
+[2020/07/28 20:24:12.568642][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:12.573642][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:12.581667]==================Check Vol==================
+[2020/07/28 20:24:12.586674][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:12.591688][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:12.595697][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:12.856814][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:13.021292][I][CheckVoltage] CH107 = -0.040 V
+[2020/07/28 20:24:13.026269][I][CheckVoltage] 0.0 <= -0.04 <= 0.3 - FAIL
+[2020/07/28 20:24:13.031286][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:13.036298][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:13.041352]==================Check Vol==================
+[2020/07/28 20:24:13.047341][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:13.051339][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:13.058322][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:13.319708][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:13.484602][I][CheckVoltage] CH107 = -0.038 V
+[2020/07/28 20:24:13.489645][I][CheckVoltage] 0.0 <= -0.038 <= 0.3 - FAIL
+[2020/07/28 20:24:13.494654][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:13.498638][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:13.504657]==================Check Vol==================
+[2020/07/28 20:24:13.509698][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:13.514684][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:13.519745][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:13.782437][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:13.947483][I][CheckVoltage] CH107 = -0.037 V
+[2020/07/28 20:24:13.953501][I][CheckVoltage] 0.0 <= -0.037 <= 0.3 - FAIL
+[2020/07/28 20:24:13.957511][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:13.963527][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:13.970589]==================Check Vol==================
+[2020/07/28 20:24:13.975600][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:13.981584][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:13.986176][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:14.249227][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:14.414135][I][CheckVoltage] CH107 = -0.035 V
+[2020/07/28 20:24:14.420149][I][CheckVoltage] 0.0 <= -0.035 <= 0.3 - FAIL
+[2020/07/28 20:24:14.425151][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:14.430161][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:14.437044]==================Check Vol==================
+[2020/07/28 20:24:14.442662][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:14.447677][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:14.451717][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:14.716809][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:14.881120][I][CheckVoltage] CH107 = -0.033 V
+[2020/07/28 20:24:14.887102][I][CheckVoltage] 0.0 <= -0.033 <= 0.3 - FAIL
+[2020/07/28 20:24:14.891111][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:14.896124][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:14.902142]==================Check Vol==================
+[2020/07/28 20:24:14.908194][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:14.915176][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:14.919217][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:15.179642][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:15.344896][I][CheckVoltage] CH107 = -0.032 V
+[2020/07/28 20:24:15.349937][I][CheckVoltage] 0.0 <= -0.032 <= 0.3 - FAIL
+[2020/07/28 20:24:15.353927][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:15.358971][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:15.364962]==================Check Vol==================
+[2020/07/28 20:24:15.370008][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:15.375012][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:15.382002][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:15.641973][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:15.807853][I][CheckVoltage] CH107 = -0.031 V
+[2020/07/28 20:24:15.812911][I][CheckVoltage] 0.0 <= -0.031 <= 0.3 - FAIL
+[2020/07/28 20:24:15.816876][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:15.822929][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:15.828910]==================Check Vol==================
+[2020/07/28 20:24:15.834748][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:15.839313][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:15.844535][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:16.104943][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:16.269834][I][CheckVoltage] CH107 = -0.030 V
+[2020/07/28 20:24:16.275814][I][CheckVoltage] 0.0 <= -0.03 <= 0.3 - FAIL
+[2020/07/28 20:24:16.279824][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:16.284837][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:16.290859]==================Check Vol==================
+[2020/07/28 20:24:16.295868][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:16.300880][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:16.307903][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:16.567659][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:16.733547][I][CheckVoltage] CH107 = -0.028 V
+[2020/07/28 20:24:16.738525][I][CheckVoltage] 0.0 <= -0.028 <= 0.3 - FAIL
+[2020/07/28 20:24:16.743552][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:16.748588][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:16.753567]==================Check Vol==================
+[2020/07/28 20:24:16.759582][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:16.764606][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:16.769669][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:17.031326][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:17.196164][I][CheckVoltage] CH107 = -0.027 V
+[2020/07/28 20:24:17.201177][I][CheckVoltage] 0.0 <= -0.027 <= 0.3 - FAIL
+[2020/07/28 20:24:17.206230][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:17.211209][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:17.216218]==================Check Vol==================
+[2020/07/28 20:24:17.222234][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:17.230308][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:17.234265][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:17.498433][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:17.663714][I][CheckVoltage] CH107 = -0.027 V
+[2020/07/28 20:24:17.668731][I][CheckVoltage] 0.0 <= -0.027 <= 0.3 - FAIL
+[2020/07/28 20:24:17.672741][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:17.677784][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:17.683775]==================Check Vol==================
+[2020/07/28 20:24:17.689785][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:17.694801][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:17.700818][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:17.960952][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:18.126261][I][CheckVoltage] CH107 = -0.026 V
+[2020/07/28 20:24:18.132089][I][CheckVoltage] 0.0 <= -0.026 <= 0.3 - FAIL
+[2020/07/28 20:24:18.136132][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:18.141147][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:18.147133]==================Check Vol==================
+[2020/07/28 20:24:18.152175][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:18.157188][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:18.162201][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:18.423764][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:18.589349][I][CheckVoltage] CH107 = -0.025 V
+[2020/07/28 20:24:18.595517][I][CheckVoltage] 0.0 <= -0.025 <= 0.3 - FAIL
+[2020/07/28 20:24:18.599562][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:18.604575][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:18.610561]==================Check Vol==================
+[2020/07/28 20:24:18.615573][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:18.620618][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:18.625631][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:18.886907][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:19.052307][I][CheckVoltage] CH107 = -0.024 V
+[2020/07/28 20:24:19.057322][I][CheckVoltage] 0.0 <= -0.024 <= 0.3 - FAIL
+[2020/07/28 20:24:19.062314][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:19.067364][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:19.072356]==================Check Vol==================
+[2020/07/28 20:24:19.078353][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:19.085400][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:19.090375][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:19.350048][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:19.515114][I][CheckVoltage] CH107 = -0.023 V
+[2020/07/28 20:24:19.520126][I][CheckVoltage] 0.0 <= -0.023 <= 0.3 - FAIL
+[2020/07/28 20:24:19.525139][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:19.529150][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:19.535168]==================Check Vol==================
+[2020/07/28 20:24:19.541218][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:19.545193][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:19.550206][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:19.812957][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:19.977822][I][CheckVoltage] CH107 = -0.023 V
+[2020/07/28 20:24:19.983851][I][CheckVoltage] 0.0 <= -0.023 <= 0.3 - FAIL
+[2020/07/28 20:24:19.987846][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:19.992876][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:19.998877]==================Check Vol==================
+[2020/07/28 20:24:20.004947][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:20.008902][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:20.013915][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:20.275650][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:20.441118][I][CheckVoltage] CH107 = -0.022 V
+[2020/07/28 20:24:20.446165][I][CheckVoltage] 0.0 <= -0.022 <= 0.3 - FAIL
+[2020/07/28 20:24:20.453153][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:20.458194][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:20.464220]==================Check Vol==================
+[2020/07/28 20:24:20.470227][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:20.476253][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:20.481259][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:20.746763][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:20.911615][I][CheckVoltage] CH107 = -0.021 V
+[2020/07/28 20:24:20.917596][I][CheckVoltage] 0.0 <= -0.021 <= 0.3 - FAIL
+[2020/07/28 20:24:20.921606][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:20.926619][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:20.932637]==================Check Vol==================
+[2020/07/28 20:24:20.938700][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:20.942662][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:20.947675][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:21.209973][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:21.375239][I][CheckVoltage] CH107 = -0.021 V
+[2020/07/28 20:24:21.380284][I][CheckVoltage] 0.0 <= -0.021 <= 0.3 - FAIL
+[2020/07/28 20:24:21.384265][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:21.389279][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:21.397335]==================Check Vol==================
+[2020/07/28 20:24:21.402313][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:21.408331][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:21.412371][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:21.676927][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:21.842249][I][CheckVoltage] CH107 = -0.020 V
+[2020/07/28 20:24:21.847238][I][CheckVoltage] 0.0 <= -0.02 <= 0.3 - FAIL
+[2020/07/28 20:24:21.853215][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:21.858229][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:21.864289]==================Check Vol==================
+[2020/07/28 20:24:21.870806][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:21.875823][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:21.879833][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:22.144085][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:22.309040][I][CheckVoltage] CH107 = -0.020 V
+[2020/07/28 20:24:22.314084][I][CheckVoltage] 0.0 <= -0.02 <= 0.3 - FAIL
+[2020/07/28 20:24:22.319076][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:22.324088][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:22.329093]==================Check Vol==================
+[2020/07/28 20:24:22.335139][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:22.340121][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:22.345134][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:22.606906][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:22.771318][I][CheckVoltage] CH107 = -0.019 V
+[2020/07/28 20:24:22.777993][I][CheckVoltage] 0.0 <= -0.019 <= 0.3 - FAIL
+[2020/07/28 20:24:22.782036][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:22.787049][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:22.795070]==================Check Vol==================
+[2020/07/28 20:24:22.800054][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:22.807096][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:22.812087][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:23.074070][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:23.239029][I][CheckVoltage] CH107 = -0.019 V
+[2020/07/28 20:24:23.244072][I][CheckVoltage] 0.0 <= -0.019 <= 0.3 - FAIL
+[2020/07/28 20:24:23.249055][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:23.254068][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:23.260086]==================Check Vol==================
+[2020/07/28 20:24:23.266161][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:23.273856][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:23.277901][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:23.541075][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:23.706015][I][CheckVoltage] CH107 = -0.018 V
+[2020/07/28 20:24:23.711028][I][CheckVoltage] 0.0 <= -0.018 <= 0.3 - FAIL
+[2020/07/28 20:24:23.716041][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:23.721054][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:23.727075]==================Check Vol==================
+[2020/07/28 20:24:23.733087][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:23.740921][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:23.744934][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:24.008170][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:24.173397][I][CheckVoltage] CH107 = -0.018 V
+[2020/07/28 20:24:24.179416][I][CheckVoltage] 0.0 <= -0.018 <= 0.3 - FAIL
+[2020/07/28 20:24:24.183465][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:24.188481][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:24.196467]==================Check Vol==================
+[2020/07/28 20:24:24.201475][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:24.206526][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:24.211530][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:24.475231][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:24.639723][I][CheckVoltage] CH107 = -0.018 V
+[2020/07/28 20:24:24.646169][I][CheckVoltage] 0.0 <= -0.018 <= 0.3 - FAIL
+[2020/07/28 20:24:24.650226][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:24.655228][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:24.663247]==================Check Vol==================
+[2020/07/28 20:24:24.668230][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:24.674248][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:24.678257][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:24.941911][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:25.107557][I][CheckVoltage] CH107 = -0.017 V
+[2020/07/28 20:24:25.112492][I][CheckVoltage] 0.0 <= -0.017 <= 0.3 - FAIL
+[2020/07/28 20:24:25.116503][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:25.121516][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:25.127574]==================Check Vol==================
+[2020/07/28 20:24:25.133549][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:25.138600][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:25.143574][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:25.404889][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:25.570158][I][CheckVoltage] CH107 = -0.017 V
+[2020/07/28 20:24:25.576114][I][CheckVoltage] 0.0 <= -0.017 <= 0.3 - FAIL
+[2020/07/28 20:24:25.580158][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:25.586144][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:25.593162]==================Check Vol==================
+[2020/07/28 20:24:25.598205][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:25.604223][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:25.609205][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:25.872278][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:26.037597][I][CheckVoltage] CH107 = -0.017 V
+[2020/07/28 20:24:26.042664][I][CheckVoltage] 0.0 <= -0.017 <= 0.3 - FAIL
+[2020/07/28 20:24:26.046621][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:26.052650][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:26.057652]==================Check Vol==================
+[2020/07/28 20:24:26.063668][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:26.070687][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:26.075349][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:26.335220][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:26.499816][I][CheckVoltage] CH107 = -0.016 V
+[2020/07/28 20:24:26.506043][I][CheckVoltage] 0.0 <= -0.016 <= 0.3 - FAIL
+[2020/07/28 20:24:26.510085][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:26.515109][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:26.521091]==================Check Vol==================
+[2020/07/28 20:24:26.526099][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:26.531142][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:26.536155][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:26.798053][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:26.962635][I][CheckVoltage] CH107 = -0.016 V
+[2020/07/28 20:24:26.968646][I][CheckVoltage] 0.0 <= -0.016 <= 0.3 - FAIL
+[2020/07/28 20:24:26.972641][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:26.977640][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:26.985693]==================Check Vol==================
+[2020/07/28 20:24:26.990675][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:26.996697][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:27.001705][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:27.264493][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:27.430485][I][CheckVoltage] CH107 = -0.016 V
+[2020/07/28 20:24:27.435471][I][CheckVoltage] 0.0 <= -0.016 <= 0.3 - FAIL
+[2020/07/28 20:24:27.440506][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:27.445499][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:27.452364]==================Check Vol==================
+[2020/07/28 20:24:27.457379][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:27.463394][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:27.467434][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:27.732344][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:27.897541][I][CheckVoltage] CH107 = -0.016 V
+[2020/07/28 20:24:27.902508][I][CheckVoltage] 0.0 <= -0.016 <= 0.3 - FAIL
+[2020/07/28 20:24:27.906520][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:27.912581][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:27.917576]==================Check Vol==================
+[2020/07/28 20:24:27.923571][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:27.930581][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:27.935594][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:28.198984][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:28.364570][I][CheckVoltage] CH107 = -0.015 V
+[2020/07/28 20:24:28.369619][I][CheckVoltage] 0.0 <= -0.015 <= 0.3 - FAIL
+[2020/07/28 20:24:28.375639][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:28.380645][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:28.387636]==================Check Vol==================
+[2020/07/28 20:24:28.392677][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:28.399703][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:28.403712][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:28.665849][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:28.831393][I][CheckVoltage] CH107 = -0.015 V
+[2020/07/28 20:24:28.836406][I][CheckVoltage] 0.0 <= -0.015 <= 0.3 - FAIL
+[2020/07/28 20:24:28.840416][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:28.846468][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:28.851446]==================Check Vol==================
+[2020/07/28 20:24:28.857478][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:28.862476][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:28.867501][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:29.129019][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:29.294231][I][CheckVoltage] CH107 = -0.015 V
+[2020/07/28 20:24:29.300249][I][CheckVoltage] 0.0 <= -0.015 <= 0.3 - FAIL
+[2020/07/28 20:24:29.304222][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:29.309236][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:29.317288]==================Check Vol==================
+[2020/07/28 20:24:29.322311][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:29.327288][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:29.332297][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:29.595641][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:29.761800][I][CheckVoltage] CH107 = -0.015 V
+[2020/07/28 20:24:29.766812][I][CheckVoltage] 0.0 <= -0.015 <= 0.3 - FAIL
+[2020/07/28 20:24:29.773450][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:29.777498][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:29.783479]==================Check Vol==================
+[2020/07/28 20:24:29.789524][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:29.794537][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:29.799551][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:30.062960][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:30.228794][I][CheckVoltage] CH107 = -0.015 V
+[2020/07/28 20:24:30.233839][I][CheckVoltage] 0.0 <= -0.015 <= 0.3 - FAIL
+[2020/07/28 20:24:30.239858][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:30.244870][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:30.250856]==================Check Vol==================
+[2020/07/28 20:24:30.256909][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:30.261917][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:30.266932][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:30.530567][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:30.695903][I][CheckVoltage] CH107 = -0.014 V
+[2020/07/28 20:24:30.700949][I][CheckVoltage] 0.0 <= -0.014 <= 0.3 - FAIL
+[2020/07/28 20:24:30.706968][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:30.711978][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:30.718969]==================Check Vol==================
+[2020/07/28 20:24:30.724008][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:30.730006][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:30.734043][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:30.996924][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:31.162622][I][CheckVoltage] CH107 = -0.014 V
+[2020/07/28 20:24:31.168702][I][CheckVoltage] 0.0 <= -0.014 <= 0.3 - FAIL
+[2020/07/28 20:24:31.172755][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:31.178731][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:31.185616]==================Check Vol==================
+[2020/07/28 20:24:31.190658][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:31.197641][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:31.202655][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:31.464558][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:31.629740][I][CheckVoltage] CH107 = -0.014 V
+[2020/07/28 20:24:31.635766][I][CheckVoltage] 0.0 <= -0.014 <= 0.3 - FAIL
+[2020/07/28 20:24:31.639772][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:31.645784][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:31.652802]==================Check Vol==================
+[2020/07/28 20:24:31.657844][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:31.665265][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:31.669279][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:31.931870][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:32.096970][I][CheckVoltage] CH107 = -0.014 V
+[2020/07/28 20:24:32.101949][I][CheckVoltage] 0.0 <= -0.014 <= 0.3 - FAIL
+[2020/07/28 20:24:32.106966][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:32.111984][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:32.117992]==================Check Vol==================
+[2020/07/28 20:24:32.124006][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:32.131025][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:32.135036][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:32.398942][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:32.563375][I][CheckVoltage] CH107 = -0.014 V
+[2020/07/28 20:24:32.569951][I][CheckVoltage] 0.0 <= -0.014 <= 0.3 - FAIL
+[2020/07/28 20:24:32.573994][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:32.579981][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:32.586813]==================Check Vol==================
+[2020/07/28 20:24:32.592818][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:32.597830][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:32.602843][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:32.865224][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:33.031239][I][CheckVoltage] CH107 = -0.014 V
+[2020/07/28 20:24:33.036289][I][CheckVoltage] 0.0 <= -0.014 <= 0.3 - FAIL
+[2020/07/28 20:24:33.042301][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:33.047285][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:33.053300]==================Check Vol==================
+[2020/07/28 20:24:33.059317][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:33.064361][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:33.069375][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:33.333058][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:33.498293][I][CheckVoltage] CH107 = -0.013 V
+[2020/07/28 20:24:33.503343][I][CheckVoltage] 0.0 <= -0.013 <= 0.3 - FAIL
+[2020/07/28 20:24:33.509361][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:33.514338][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:33.520354]==================Check Vol==================
+[2020/07/28 20:24:33.526401][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:33.531423][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:33.536397][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:33.800224][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:33.965172][I][CheckVoltage] CH107 = -0.013 V
+[2020/07/28 20:24:33.970184][I][CheckVoltage] 0.0 <= -0.013 <= 0.3 - FAIL
+[2020/07/28 20:24:33.975234][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:33.980213][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:33.985225]==================Check Vol==================
+[2020/07/28 20:24:33.991273][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:33.996254][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:34.001267][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:34.263110][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:34.428235][I][CheckVoltage] CH107 = -0.013 V
+[2020/07/28 20:24:34.433199][I][CheckVoltage] 0.0 <= -0.013 <= 0.3 - FAIL
+[2020/07/28 20:24:34.438212][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:34.443227][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:34.448239]==================Check Vol==================
+[2020/07/28 20:24:34.455258][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:34.462279][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:34.466287][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:34.730282][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:34.895378][I][CheckVoltage] CH107 = -0.013 V
+[2020/07/28 20:24:34.900452][I][CheckVoltage] 0.0 <= -0.013 <= 0.3 - FAIL
+[2020/07/28 20:24:34.905408][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:34.910444][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:34.915433]==================Check Vol==================
+[2020/07/28 20:24:34.922451][I][CheckVoltage] Detect Channel = [107]
+[2020/07/28 20:24:34.929471][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/28 20:24:34.934516][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/28 20:24:35.196956][I][CheckVoltage] Output = SCAN OK
+[2020/07/28 20:24:35.362185][I][CheckVoltage] CH107 = -0.013 V
+[2020/07/28 20:24:35.368201][I][CheckVoltage] 0.0 <= -0.013 <= 0.3 - FAIL
+[2020/07/28 20:24:35.372211][E][CheckVoltage] CH107 test fail
+[2020/07/28 20:24:35.377224][E][startTest] Check voltage failed!!
+[2020/07/28 20:24:42.285741][I][pressOKBtn] User click OK button
+[2020/07/28 20:24:42.352447][I][TestResult] Test Fail! Check voltage failed!!

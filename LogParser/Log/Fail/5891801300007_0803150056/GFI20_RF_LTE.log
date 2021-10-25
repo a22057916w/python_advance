@@ -1,0 +1,888 @@
+[2020/08/03 14:55:51.607225] ========== Start ==========
+[2020/08/03 14:55:51.611235] [I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/08/03 14:55:51.613783] [I][main] GFI20_RF_LTE.py 3.0.0.11
+[2020/08/03 14:55:51.615819] [I][readINI] ---------- INI ----------
+[2020/08/03 14:55:51.617796] [I][readINI] StartButton_ON = 0
+[2020/08/03 14:55:51.620804] [I][readINI] FailAutoExit = True
+[2020/08/03 14:55:51.622810] [I][readINI] FailRetryAll = True
+[2020/08/03 14:55:51.624815] [I][readINI] RFDatabase = True
+[2020/08/03 14:55:51.627289] [I][readINI] USB4_COM = COM14
+[2020/08/03 14:55:51.630345] [I][readINI] EC = 010000L01
+[2020/08/03 14:55:51.633182] [I][readINI] SKU = 8
+[2020/08/03 14:55:51.639228] [I][readINI] InstrumentINI = GFI20_LTE_Instrument_Setting_1
+[2020/08/03 14:55:51.642211] [I][readINI] ---------- Test Plan 1 ----------
+[2020/08/03 14:55:51.644253] [I][readINI] TestPlan1 = LTE_3G;2878/897,9750/1950.4;TX_Power
+[2020/08/03 14:55:51.646219] [I][readINI] CableLoss = ['8.5', '9.2'] dBm
+[2020/08/03 14:55:51.649244] [I][readINI] Current_ON = 1
+[2020/08/03 14:55:51.652235] [I][readINI] TX_Current_SpecMax = ['0.4', '0.35'] A
+[2020/08/03 14:55:51.656466] [I][readINI] TX_Current_SpecMin = ['0.2', '0.15'] A
+[2020/08/03 14:55:51.658889] [I][readINI] TX_Power = ['384', '384'] dBm
+[2020/08/03 14:55:51.661902] [I][readINI] TX_Power_SpecMax = ['26', '23.5'] dBm
+[2020/08/03 14:55:51.664907] [I][readINI] TX_Power_SpecMin = ['21', '18.5'] dBm
+[2020/08/03 14:55:51.668617] [I][readINI] ---------- Test Plan 1 ----------
+[2020/08/03 14:55:51.671659] [I][readINI] ---------- Test Plan 2 ----------
+[2020/08/03 14:55:51.675084] [I][readINI] TestPlan2 = LTE_2G;124/914.8;TX_Power
+[2020/08/03 14:55:51.677280] [I][readINI] CableLoss = ['8.5'] dBm
+[2020/08/03 14:55:51.679287] [I][readINI] Current_ON = 1
+[2020/08/03 14:55:51.682296] [I][readINI] TX_Current_SpecMax = ['0.25'] A
+[2020/08/03 14:55:51.686037] [I][readINI] TX_Current_SpecMin = ['0.08'] A
+[2020/08/03 14:55:51.689047] [I][readINI] TX_Power = ['0'] dBm
+[2020/08/03 14:55:51.692058] [I][readINI] TX_Power_SpecMax = ['35'] dBm
+[2020/08/03 14:55:51.695807] [I][readINI] TX_Power_SpecMin = ['28'] dBm
+[2020/08/03 14:55:51.698602] [I][readINI] ---------- Test Plan 2 ----------
+[2020/08/03 14:55:51.702661] [I][readINI] ---------- Test Plan 3 ----------
+[2020/08/03 14:55:51.705624] [I][readINI] TestPlan3 = LTE_2G;124/959.8;RX_RSSI
+[2020/08/03 14:55:51.709080] [I][readINI] CableLoss = ['8.5'] dBm
+[2020/08/03 14:55:51.712117] [I][readINI] Current_ON = 0
+[2020/08/03 14:55:51.716126] [I][readINI] RX_Cell_Power = ['-60'] dBm
+[2020/08/03 14:55:51.719135] [I][readINI] RX_RSSI_SpecMax = ['-55'] %
+[2020/08/03 14:55:51.721141] [I][readINI] RX_RSSI_SpecMin = ['-65'] %
+[2020/08/03 14:55:51.725151] [I][readINI] ---------- Test Plan 3 ----------
+[2020/08/03 14:55:51.730965] [I][readINI] ---------- INI ----------
+[2020/08/03 14:55:51.734974] [I][readInstrumentINI] ---------- Instrument INI ----------
+[2020/08/03 14:55:51.737981] [I][readInstrumentINI] [Method1_Common]
+[2020/08/03 14:55:51.739987] [I][readInstrumentINI] DUT_Number = 1
+[2020/08/03 14:55:51.744052] [I][readInstrumentINI] Instrument_Name = E6640A
+[2020/08/03 14:55:51.747046] [I][readInstrumentINI] Instrument_IP_Addr = TCPIP0::192.168.1.2::hislip0::INSTR
+[2020/08/03 14:55:51.750049] [I][readInstrumentINI] PowerSupplier_Name = 66321B
+[2020/08/03 14:55:51.754026] [I][readInstrumentINI] PowerSupplier_Addr = GPIB0::5::INSTR
+[2020/08/03 14:55:51.757885] [I][readInstrumentINI] Current_Delay = 1.0
+[2020/08/03 14:55:51.759895] [I][readInstrumentINI] [LTE_3G]
+[2020/08/03 14:55:51.763905] [I][readInstrumentINI] RFIO_Input = 1
+[2020/08/03 14:55:51.767914] [I][readInstrumentINI] Tx_PowRange = 30.0 dBm
+[2020/08/03 14:55:51.770923] [I][readInstrumentINI] Tx_TrigDelay = 0.1 ms
+[2020/08/03 14:55:51.774934] [I][readInstrumentINI] [LTE_2G]
+[2020/08/03 14:55:51.777941] [I][readInstrumentINI] RFIO_Input = 1
+[2020/08/03 14:55:51.779946] [I][readInstrumentINI] Tx_PowRange = 30.0 dBm
+[2020/08/03 14:55:51.783957] [I][readInstrumentINI] Tx_TrigDelay = 2.0 ms
+[2020/08/03 14:55:51.786965] [I][readInstrumentINI] RFIO_Output = 1
+[2020/08/03 14:55:51.789973] [I][readInstrumentINI] Rx_WaveName = CTX10_RFLTE_20160809.wfm
+[2020/08/03 14:55:51.791978] [I][readInstrumentINI] Rx_SampleRate = 100 kHz
+[2020/08/03 14:55:51.794987] [I][readInstrumentINI] ---------- Instrument INI ----------
+[2020/08/03 14:55:51.797995] ---------- StartTest ----------
+[2020/08/03 14:55:51.802006] [I][ConnectCOM] Start to connect DUT.
+[2020/08/03 14:55:51.809085] [I][ConnectCOM] Connect DUT succesfully by COM.
+[2020/08/03 14:55:51.812127] [I][setTestMode] Start to set test mode.
+[2020/08/03 14:55:51.817262] [I][sendCOMCommand] Send DUT Command: b'AT#TESTMODE="TM"\r\n'
+[2020/08/03 14:55:51.921112] [I][sendCOMCommand] Serial buffer size: 24
+[2020/08/03 14:55:51.928518] [I][sendCOMCommand] DUT return: AT#TESTMODE="TM"
+
+OK
+
+[2020/08/03 14:55:57.461423] [I][setTestMode] 
+COM1: USB §Ç¦C¸Ë¸m (COM1) [USB VID:PID=2184:001A SER=GEU860209 LOCATION=1-1.2:x.2]
+[2020/08/03 14:55:57.466129] [I][setTestMode] 
+COM14: Telit Mobile (USB4) (COM14) [USB VID:PID=1BC7:0021 SER=000000000000000 LOCATION=1-2.2:x.8]
+[2020/08/03 14:55:57.469139] [I][setTestMode] 
+COM15: Telit Mobile (USB2) (COM15) [USB VID:PID=1BC7:0021 SER=000000000000000 LOCATION=1-2.2:x.4]
+[2020/08/03 14:55:57.474153] [I][setTestMode] 
+COM16: Telit Mobile (USB3) (COM16) [USB VID:PID=1BC7:0021 SER=000000000000000 LOCATION=1-2.2:x.6]
+[2020/08/03 14:55:57.478155] [I][setTestMode] 
+COM17: Telit Mobile (USB1) (COM17) [USB VID:PID=1BC7:0021 SER=000000000000000 LOCATION=1-2.2:x.2]
+[2020/08/03 14:55:57.482565] [I][setTestMode] 
+COM19: Telit Mobile (USB5) (COM19) [USB VID:PID=1BC7:0021 LOCATION=1-2.2:x.4]
+[2020/08/03 14:55:57.486031] [I][sendCOMCommand] Send DUT Command: b'AT#TESTMODE="TM"\r\n'
+[2020/08/03 14:55:58.094400] [W][sendCOMCommand] DUT return: None
+[2020/08/03 14:56:03.110364] [I][setTestMode] 
+COM1: USB §Ç¦C¸Ë¸m (COM1) [USB VID:PID=2184:001A SER=GEU860209 LOCATION=1-1.2]
+[2020/08/03 14:56:03.114378] [I][sendCOMCommand] Send DUT Command: b'AT#TESTMODE="TM"\r\n'
+[2020/08/03 14:56:03.722775] [W][sendCOMCommand] DUT return: None
+[2020/08/03 14:56:08.753379] [I][setTestMode] 
+COM1: USB §Ç¦C¸Ë¸m (COM1) [USB VID:PID=2184:001A SER=GEU860209 LOCATION=1-1.2:x.2]
+[2020/08/03 14:56:08.757391] [I][setTestMode] 
+COM752: Telit Mobile (USB5) (COM752) [USB VID:PID=1BC7:0021 LOCATION=1-2.2:x.4]
+[2020/08/03 14:56:08.761402] [I][setTestMode] 
+COM753: Telit Mobile (USB2) (COM753) [USB VID:PID=1BC7:0021 SER=009787105891348 LOCATION=1-2.2:x.4]
+[2020/08/03 14:56:08.766123] [I][setTestMode] 
+COM754: Telit Mobile (USB1) (COM754) [USB VID:PID=1BC7:0021 SER=009787105891348 LOCATION=1-2.2:x.2]
+[2020/08/03 14:56:08.769221] [I][setTestMode] 
+COM756: Telit Mobile (USB3) (COM756) [USB VID:PID=1BC7:0021 SER=009787105891348 LOCATION=1-2.2:x.6]
+[2020/08/03 14:56:08.774602] [I][setTestMode] 
+COM757: Telit Mobile (USB4) (COM757) [USB VID:PID=1BC7:0021 SER=009787105891348 LOCATION=1-2.2:x.8]
+[2020/08/03 14:56:08.777675] [I][setTestMode] Get test mode COM: COM757 (USB4)
+[2020/08/03 14:56:08.781624] [I][ConnectCOM] Start to connect DUT.
+[2020/08/03 14:56:08.790664] [I][ConnectCOM] Connect test mode DUT succesfully by COM.
+[2020/08/03 14:56:08.802332] [I][chkE6640AConnect] Connect to E6640A
+[2020/08/03 14:56:09.986472] [I][chkE6640AConnect] Preset E6640A status
+[2020/08/03 14:56:11.078330] [I][chkE6640AConnect] success
+[2020/08/03 14:56:11.320405] ---------- Test Plan 1 ----------
+[2020/08/03 14:56:11.324415] [I][startTestPlan]---------- LTE_3G Freq 897.4 ----------
+[2020/08/03 14:56:11.328437] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:56:11.331435] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:56:12.439075] [I][startTestPlan] Success
+[2020/08/03 14:56:12.442124] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:56:13.154189] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:56:13.158193] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:56:13.262999] [I][sendTMCOMCommand] Serial buffer size: 21
+[2020/08/03 14:56:13.278036] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+[2020/08/03 14:56:13.488244] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:13.495269] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:13.502622] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:56:14.311236] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:56:14.421285] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:56:14.431004] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:56:15.240937] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 2787"\r\n'
+[2020/08/03 14:56:15.355647] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:56:15.364516] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 2787"
+OK
+
+[2020/08/03 14:56:16.173839] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:56:16.180800] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:56:16.286344] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:56:16.301384] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:56:16.715791] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:16.725116] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:16.730323] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:56:20.231380] [I][startTestPlan] 0.37
+[2020/08/03 14:56:20.236193] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:56:20.240207] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:56:20.344947] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:56:20.359933] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:56:20.572055] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:20.578811] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:20.584830] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:56:21.094016] [I][startTestPlan] Power: 22.525
+[2020/08/03 14:56:21.101041] [I][startTestPlan] Current: 0.37 A
+[2020/08/03 14:56:21.105052] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:56:21.109099] [I][startBTTest] Tx Test Time: 9.786
+[2020/08/03 14:56:21.113721] [I][startTestPlan]---------- LTE_3G Freq 1950 ----------
+[2020/08/03 14:56:21.118816] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:56:21.121827] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:56:22.165144] [I][startTestPlan] Success
+[2020/08/03 14:56:22.169174] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:56:22.875361] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:56:22.880409] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:56:22.986486] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:56:23.002707] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:56:23.816639] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:56:23.932849] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:56:23.949007] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:56:24.763225] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 9750"\r\n'
+[2020/08/03 14:56:24.872992] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:56:24.891036] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 9750"
+OK
+
+[2020/08/03 14:56:25.704427] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:56:25.713400] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:56:25.819616] [I][sendTMCOMCommand] Serial buffer size: 31
+[2020/08/03 14:56:25.837146] [I][sendTMCOMCommand] DUT return: 
++PBREADY
+AT#TESTMODE="TX3G"
+[2020/08/03 14:56:26.249460] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:26.257077] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:26.262140] [I][sendTMCOMCommand] DUT return: 
++PBREADY
+AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:56:29.764181] [I][startTestPlan] 0.315
+[2020/08/03 14:56:29.769159] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:56:29.773169] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:56:29.877580] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:56:29.883739] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:56:30.090561] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:30.099566] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:30.104540] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:56:30.612894] [I][startTestPlan] Power: 20.906
+[2020/08/03 14:56:30.620922] [I][startTestPlan] Current: 0.315 A
+[2020/08/03 14:56:30.624932] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:56:30.628943] [I][startBTTest] Tx Test Time: 9.515
+[2020/08/03 14:56:30.632953] ---------- Test Plan 2 ----------
+[2020/08/03 14:56:30.637831] [I][startTestPlan]---------- LTE_2G Freq 914.8 ----------
+[2020/08/03 14:56:30.640876] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:56:30.645901] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:56:31.710188] [I][startTestPlan] Success
+[2020/08/03 14:56:31.716204] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:56:32.426129] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:56:32.430142] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL 0"\r\n'
+[2020/08/03 14:56:32.536292] [I][sendTMCOMCommand] Serial buffer size: 25
+[2020/08/03 14:56:32.553337] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL 0"
+OK
+
+[2020/08/03 14:56:33.365726] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH 124"\r\n'
+[2020/08/03 14:56:33.475590] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:56:33.493489] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH 124"
+OK
+
+[2020/08/03 14:56:34.305039] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:56:34.313018] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TCH"\r\n'
+[2020/08/03 14:56:34.419101] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:56:34.427413] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TCH"
+OK
+
+[2020/08/03 14:56:40.129863] [I][startTestPlan] 0.265
+[2020/08/03 14:56:40.134951] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:56:40.137961] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:56:40.243679] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:56:40.248705] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:56:40.757446] [I][startTestPlan] Power: 31.427
+[2020/08/03 14:56:40.766046] [I][startTestPlan] Current: 0.265 A
+[2020/08/03 14:56:40.770059] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:56:40.774945] [W][startTestPlan] Current: 0.265 out of SPEC(Hi/Lo): 0.25 / 0.08
+[2020/08/03 14:56:40.777956] [I][startBTTest] Tx Test Time: 10.141
+[2020/08/03 14:56:40.881794] ---------- Test Plan 1 ----------
+[2020/08/03 14:56:40.888665] [I][startTestPlan]---------- LTE_3G Freq 897.4 ----------
+[2020/08/03 14:56:40.892678] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:56:40.897691] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:56:41.880112] [I][startTestPlan] Success
+[2020/08/03 14:56:41.886120] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:56:42.604822] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:56:42.609885] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:56:42.715882] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:56:42.722273] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:56:43.532758] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:56:43.643573] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:56:43.649606] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:56:44.460710] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 2787"\r\n'
+[2020/08/03 14:56:44.569036] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:56:44.586091] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 2787"
+OK
+
+[2020/08/03 14:56:45.401307] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:56:45.407436] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:56:45.513051] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:56:45.520607] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:56:45.927015] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:45.935041] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:45.942216] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:56:49.462278] [I][startTestPlan] 0.374
+[2020/08/03 14:56:49.471706] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:56:49.475574] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:56:49.580682] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:56:49.588642] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:56:49.795505] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:49.803437] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:49.809472] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:56:50.317726] [I][startTestPlan] Power: 22.536
+[2020/08/03 14:56:50.325859] [I][startTestPlan] Current: 0.374 A
+[2020/08/03 14:56:50.329889] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:56:50.334626] [I][startBTTest] Tx Test Time: 9.446
+[2020/08/03 14:56:50.341357] [I][startTestPlan]---------- LTE_3G Freq 1950 ----------
+[2020/08/03 14:56:50.345370] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:56:50.350530] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:56:51.316430] [I][startTestPlan] Success
+[2020/08/03 14:56:51.320442] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:56:52.082367] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:56:52.086380] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:56:52.192973] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:56:52.211282] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:56:53.032056] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:56:53.141009] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:56:53.160008] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:56:53.979176] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 9750"\r\n'
+[2020/08/03 14:56:54.087020] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:56:54.102806] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 9750"
+OK
+
+[2020/08/03 14:56:54.913925] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:56:54.919944] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:56:55.024789] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:56:55.031789] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:56:55.440049] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:55.448481] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:55.454498] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:56:58.978536] [I][startTestPlan] 0.316
+[2020/08/03 14:56:58.983552] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:56:58.988564] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:56:59.093808] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:56:59.098827] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:56:59.305165] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:56:59.316138] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:56:59.321340] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:56:59.829811] [I][startTestPlan] Power: 20.959
+[2020/08/03 14:56:59.837830] [I][startTestPlan] Current: 0.316 A
+[2020/08/03 14:56:59.842890] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:56:59.847859] [I][startBTTest] Tx Test Time: 9.508
+[2020/08/03 14:56:59.854193] ---------- Test Plan 2 ----------
+[2020/08/03 14:56:59.858249] [I][startTestPlan]---------- LTE_2G Freq 914.8 ----------
+[2020/08/03 14:56:59.863221] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:56:59.868540] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:57:00.987361] [I][startTestPlan] Success
+[2020/08/03 14:57:00.993146] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:57:01.771344] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:57:01.775356] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL 0"\r\n'
+[2020/08/03 14:57:01.881234] [I][sendTMCOMCommand] Serial buffer size: 25
+[2020/08/03 14:57:01.899293] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL 0"
+OK
+
+[2020/08/03 14:57:02.718751] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH 124"\r\n'
+[2020/08/03 14:57:02.826468] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:57:02.844553] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH 124"
+OK
+
+[2020/08/03 14:57:03.666858] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:57:03.673882] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TCH"\r\n'
+[2020/08/03 14:57:03.780582] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:57:03.798233] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TCH"
+OK
+
+[2020/08/03 14:57:09.511625] [I][startTestPlan] 0.265
+[2020/08/03 14:57:09.515946] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:57:09.521008] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:57:09.627340] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:57:09.636370] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:57:10.144861] [I][startTestPlan] Power: 31.424
+[2020/08/03 14:57:10.152177] [I][startTestPlan] Current: 0.265 A
+[2020/08/03 14:57:10.157232] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:57:10.162123] [W][startTestPlan] Current: 0.265 out of SPEC(Hi/Lo): 0.25 / 0.08
+[2020/08/03 14:57:10.167208] [I][startBTTest] Tx Test Time: 10.307
+[2020/08/03 14:57:10.430743] ---------- Test Plan 1 ----------
+[2020/08/03 14:57:10.440702] [I][startTestPlan]---------- LTE_3G Freq 897.4 ----------
+[2020/08/03 14:57:10.445391] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:57:10.449405] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:57:11.471180] [I][startTestPlan] Success
+[2020/08/03 14:57:11.476157] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:57:12.189558] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:57:12.194572] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:57:12.300445] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:57:12.318496] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:57:13.135494] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:57:13.247479] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:57:13.266529] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:57:14.083501] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 2787"\r\n'
+[2020/08/03 14:57:14.194211] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:57:14.212259] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 2787"
+OK
+
+[2020/08/03 14:57:15.026947] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:57:15.035831] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:57:15.142965] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:57:15.153035] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:57:15.561110] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:57:15.570062] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:57:15.575752] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:57:19.109441] [I][startTestPlan] 0.374
+[2020/08/03 14:57:19.117535] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:57:19.122511] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:57:19.228889] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:57:19.245888] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:57:19.458095] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:57:19.464082] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:57:19.468099] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:57:19.978650] [I][startTestPlan] Power: 22.553
+[2020/08/03 14:57:19.985674] [I][startTestPlan] Current: 0.374 A
+[2020/08/03 14:57:19.990689] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:57:19.995638] [I][startBTTest] Tx Test Time: 9.556
+[2020/08/03 14:57:20.001303] [I][startTestPlan]---------- LTE_3G Freq 1950 ----------
+[2020/08/03 14:57:20.006657] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:57:20.011672] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:57:21.016548] [I][startTestPlan] Success
+[2020/08/03 14:57:21.022437] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:57:21.744914] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:57:21.749930] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:57:21.855656] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:57:21.874762] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:57:22.690310] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:57:22.797811] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:57:22.815825] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:57:23.629876] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 9750"\r\n'
+[2020/08/03 14:57:23.739060] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:57:23.757118] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 9750"
+OK
+
+[2020/08/03 14:57:24.571066] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:57:24.577089] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:57:24.683439] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:57:24.700518] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:57:25.116863] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:57:25.134979] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:57:25.146382] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:57:28.683360] [I][startTestPlan] 0.316
+[2020/08/03 14:57:28.691379] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:57:28.699403] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:57:28.805878] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:57:28.813973] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:57:29.021832] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:57:29.028847] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:57:29.035506] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:57:29.546268] [I][startTestPlan] Power: 20.901
+[2020/08/03 14:57:29.563309] [I][startTestPlan] Current: 0.316 A
+[2020/08/03 14:57:29.573437] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:57:29.580458] [I][startBTTest] Tx Test Time: 9.578
+[2020/08/03 14:57:29.585835] ---------- Test Plan 2 ----------
+[2020/08/03 14:57:29.591853] [I][startTestPlan]---------- LTE_2G Freq 914.8 ----------
+[2020/08/03 14:57:29.595928] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:57:29.601718] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:57:30.608018] [I][startTestPlan] Success
+[2020/08/03 14:57:30.612998] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:57:31.339465] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:57:31.344478] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL 0"\r\n'
+[2020/08/03 14:57:31.451497] [I][sendTMCOMCommand] Serial buffer size: 25
+[2020/08/03 14:57:31.471506] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL 0"
+OK
+
+[2020/08/03 14:57:32.281556] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH 124"\r\n'
+[2020/08/03 14:57:32.390495] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:57:32.399462] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH 124"
+OK
+
+[2020/08/03 14:57:33.208597] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:57:33.216855] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TCH"\r\n'
+[2020/08/03 14:57:33.322882] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:57:33.340969] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TCH"
+OK
+
+[2020/08/03 14:57:39.062446] [I][startTestPlan] 0.263
+[2020/08/03 14:57:39.074478] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:57:39.083502] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:57:39.190898] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:57:39.202499] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:57:39.716614] [I][startTestPlan] Power: 31.424
+[2020/08/03 14:57:39.725581] [I][startTestPlan] Current: 0.263 A
+[2020/08/03 14:57:39.731424] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:57:39.736440] [W][startTestPlan] Current: 0.263 out of SPEC(Hi/Lo): 0.25 / 0.08
+[2020/08/03 14:57:39.741828] [I][startBTTest] Tx Test Time: 10.151
+[2020/08/03 14:58:48.834919] [I][pressRetryBtn] User click Retry button
+[2020/08/03 14:58:48.842176] ---------- Test Plan 1 ----------
+[2020/08/03 14:58:48.849212] [I][startTestPlan]---------- LTE_3G Freq 897.4 ----------
+[2020/08/03 14:58:48.856216] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:58:48.861667] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:58:50.391936] [I][startTestPlan] Success
+[2020/08/03 14:58:50.397865] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:58:51.125864] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:58:51.129839] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:58:51.236653] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:58:51.254738] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:58:52.067463] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:58:52.176346] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:58:52.195403] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:58:53.009338] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 2787"\r\n'
+[2020/08/03 14:58:53.118754] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:58:53.137841] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 2787"
+OK
+
+[2020/08/03 14:58:53.951204] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:58:53.959268] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:58:54.066719] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:58:54.075713] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:58:54.483963] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:58:54.492123] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:58:54.498073] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:58:58.038111] [I][startTestPlan] 0.374
+[2020/08/03 14:58:58.045198] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:58:58.051149] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:58:58.158053] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:58:58.175092] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:58:58.388108] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:58:58.395952] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:58:58.401782] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:58:58.909993] [I][startTestPlan] Power: 22.531
+[2020/08/03 14:58:58.917401] [I][startTestPlan] Current: 0.374 A
+[2020/08/03 14:58:58.922455] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:58:58.927429] [I][startBTTest] Tx Test Time: 10.081
+[2020/08/03 14:58:58.935496] [I][startTestPlan]---------- LTE_3G Freq 1950 ----------
+[2020/08/03 14:58:58.940488] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:58:58.946497] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:58:59.962363] [I][startTestPlan] Success
+[2020/08/03 14:58:59.967377] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:59:00.693340] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:59:00.696349] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:59:00.803411] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:59:00.814505] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:59:01.629297] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:59:01.739836] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:59:01.756906] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:59:02.570278] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 9750"\r\n'
+[2020/08/03 14:59:02.678986] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:59:02.697062] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 9750"
+OK
+
+[2020/08/03 14:59:03.509444] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:59:03.517456] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:59:03.623766] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:59:03.642043] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:59:04.055925] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:04.063951] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:04.068669] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:59:07.603355] [I][startTestPlan] 0.316
+[2020/08/03 14:59:07.610393] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:59:07.618360] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:59:07.727649] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:59:07.744725] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:59:07.956180] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:07.962199] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:07.967212] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:59:08.477385] [I][startTestPlan] Power: 20.953
+[2020/08/03 14:59:08.483440] [I][startTestPlan] Current: 0.316 A
+[2020/08/03 14:59:08.490422] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:59:08.495021] [I][startBTTest] Tx Test Time: 9.561
+[2020/08/03 14:59:08.499087] ---------- Test Plan 2 ----------
+[2020/08/03 14:59:08.504047] [I][startTestPlan]---------- LTE_2G Freq 914.8 ----------
+[2020/08/03 14:59:08.509064] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:59:08.514132] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:59:09.549843] [I][startTestPlan] Success
+[2020/08/03 14:59:09.553848] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:59:10.274851] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:59:10.278866] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL 0"\r\n'
+[2020/08/03 14:59:10.385135] [I][sendTMCOMCommand] Serial buffer size: 25
+[2020/08/03 14:59:10.403178] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL 0"
+OK
+
+[2020/08/03 14:59:11.214753] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH 124"\r\n'
+[2020/08/03 14:59:11.325369] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:59:11.342422] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH 124"
+OK
+
+[2020/08/03 14:59:12.155627] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:59:12.162691] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TCH"\r\n'
+[2020/08/03 14:59:12.269500] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:59:12.286584] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TCH"
+OK
+
+[2020/08/03 14:59:18.007875] [I][startTestPlan] 0.265
+[2020/08/03 14:59:18.012888] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:59:18.017939] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:59:18.124484] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:59:18.141535] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:59:18.654442] [I][startTestPlan] Power: 31.432
+[2020/08/03 14:59:18.663472] [I][startTestPlan] Current: 0.265 A
+[2020/08/03 14:59:18.668504] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:59:18.673553] [W][startTestPlan] Current: 0.265 out of SPEC(Hi/Lo): 0.25 / 0.08
+[2020/08/03 14:59:18.678932] [I][startBTTest] Tx Test Time: 10.174
+[2020/08/03 14:59:18.967463] ---------- Test Plan 1 ----------
+[2020/08/03 14:59:18.975681] [I][startTestPlan]---------- LTE_3G Freq 897.4 ----------
+[2020/08/03 14:59:18.980743] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:59:18.985710] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:59:20.077394] [I][startTestPlan] Success
+[2020/08/03 14:59:20.086843] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:59:20.812905] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:59:20.817923] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:59:20.924463] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:59:20.941541] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:59:21.757028] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:59:21.867965] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:59:21.885964] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:59:22.700853] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 2787"\r\n'
+[2020/08/03 14:59:22.808542] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:59:22.816071] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 2787"
+OK
+
+[2020/08/03 14:59:23.625485] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:59:23.634844] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:59:23.740964] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:59:23.757990] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:59:24.171503] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:24.189537] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:24.199605] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:59:27.759774] [I][startTestPlan] 0.373
+[2020/08/03 14:59:27.772273] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:59:27.780346] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:59:27.888825] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:59:27.905908] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:59:28.118151] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:28.126421] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:28.131533] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:59:28.640170] [I][startTestPlan] Power: 22.570999999999998
+[2020/08/03 14:59:28.658227] [I][startTestPlan] Current: 0.373 A
+[2020/08/03 14:59:28.669255] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:59:28.676272] [I][startBTTest] Tx Test Time: 9.701
+[2020/08/03 14:59:28.682958] [I][startTestPlan]---------- LTE_3G Freq 1950 ----------
+[2020/08/03 14:59:28.686970] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:59:28.691986] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:59:29.687942] [I][startTestPlan] Success
+[2020/08/03 14:59:29.692956] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:59:30.434313] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:59:30.439332] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:59:30.545119] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:59:30.563174] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:59:31.378709] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:59:31.490308] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:59:31.497276] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:59:32.305579] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 9750"\r\n'
+[2020/08/03 14:59:32.415417] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:59:32.434480] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 9750"
+OK
+
+[2020/08/03 14:59:33.250031] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:59:33.257045] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:59:33.362922] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:59:33.372235] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:59:33.781492] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:33.788908] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:33.793968] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:59:37.322688] [I][startTestPlan] 0.316
+[2020/08/03 14:59:37.335689] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:59:37.344429] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:59:37.452954] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:59:37.471032] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:59:37.684144] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:37.691207] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:37.697185] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:59:38.206651] [I][startTestPlan] Power: 20.891
+[2020/08/03 14:59:38.224701] [I][startTestPlan] Current: 0.316 A
+[2020/08/03 14:59:38.232727] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:59:38.237783] [I][startBTTest] Tx Test Time: 9.554
+[2020/08/03 14:59:38.243331] ---------- Test Plan 2 ----------
+[2020/08/03 14:59:38.247343] [I][startTestPlan]---------- LTE_2G Freq 914.8 ----------
+[2020/08/03 14:59:38.252733] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:59:38.256872] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:59:39.324229] [I][startTestPlan] Success
+[2020/08/03 14:59:39.330244] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:59:40.053750] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:59:40.060771] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL 0"\r\n'
+[2020/08/03 14:59:40.168628] [I][sendTMCOMCommand] Serial buffer size: 25
+[2020/08/03 14:59:40.186194] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL 0"
+OK
+
+[2020/08/03 14:59:41.000836] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH 124"\r\n'
+[2020/08/03 14:59:41.110598] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:59:41.128590] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH 124"
+OK
+
+[2020/08/03 14:59:41.944404] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:59:41.952431] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TCH"\r\n'
+[2020/08/03 14:59:42.059018] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:59:42.077065] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TCH"
+OK
+
+[2020/08/03 14:59:47.807515] [I][startTestPlan] 0.263
+[2020/08/03 14:59:47.820499] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:59:47.828519] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:59:47.936076] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 14:59:47.954080] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:59:48.469399] [I][startTestPlan] Power: 31.43
+[2020/08/03 14:59:48.486419] [I][startTestPlan] Current: 0.263 A
+[2020/08/03 14:59:48.496833] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:59:48.502851] [W][startTestPlan] Current: 0.263 out of SPEC(Hi/Lo): 0.25 / 0.08
+[2020/08/03 14:59:48.508867] [I][startBTTest] Tx Test Time: 10.262
+[2020/08/03 14:59:49.015586] ---------- Test Plan 1 ----------
+[2020/08/03 14:59:49.023345] [I][startTestPlan]---------- LTE_3G Freq 897.4 ----------
+[2020/08/03 14:59:49.028365] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:59:49.034100] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:59:50.027262] [I][startTestPlan] Success
+[2020/08/03 14:59:50.032242] [I][startTestPlan] Set Tx Start
+[2020/08/03 14:59:50.760667] [I][startTestPlan] Set DUT Tx
+[2020/08/03 14:59:50.765716] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 14:59:50.873090] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 14:59:50.892154] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 14:59:51.709601] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 14:59:51.818049] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 14:59:51.836101] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 14:59:52.659090] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 2787"\r\n'
+[2020/08/03 14:59:52.769756] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 14:59:52.778294] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 2787"
+OK
+
+[2020/08/03 14:59:53.589408] [I][startTestPlan] Start DUT Tx
+[2020/08/03 14:59:53.595453] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 14:59:53.702533] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 14:59:53.721538] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 14:59:54.141955] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:54.149919] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:54.155934] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 14:59:57.691920] [I][startTestPlan] 0.373
+[2020/08/03 14:59:57.696936] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 14:59:57.701945] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 14:59:57.808558] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 14:59:57.818106] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 14:59:58.024855] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 14:59:58.034500] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 14:59:58.041197] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 14:59:58.551836] [I][startTestPlan] Power: 22.517
+[2020/08/03 14:59:58.560571] [I][startTestPlan] Current: 0.373 A
+[2020/08/03 14:59:58.571335] [I][startTestPlan] Check Tx Result
+[2020/08/03 14:59:58.578357] [I][startBTTest] Tx Test Time: 9.555
+[2020/08/03 14:59:58.584997] [I][startTestPlan]---------- LTE_3G Freq 1950 ----------
+[2020/08/03 14:59:58.589008] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 14:59:58.594056] [I][startTestPlan] Preset E6640A
+[2020/08/03 14:59:59.665671] [I][startTestPlan] Success
+[2020/08/03 14:59:59.670726] [I][startTestPlan] Set Tx Start
+[2020/08/03 15:00:00.395413] [I][startTestPlan] Set DUT Tx
+[2020/08/03 15:00:00.400428] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="INIT3G"\r\n'
+[2020/08/03 15:00:00.507945] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 15:00:00.517128] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="INIT3G"
+OK
+
+[2020/08/03 15:00:01.326652] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL3G 384"\r\n'
+[2020/08/03 15:00:01.435050] [I][sendTMCOMCommand] Serial buffer size: 29
+[2020/08/03 15:00:01.454072] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL3G 384"
+OK
+
+[2020/08/03 15:00:02.269560] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH3G 9750"\r\n'
+[2020/08/03 15:00:02.380789] [I][sendTMCOMCommand] Serial buffer size: 30
+[2020/08/03 15:00:02.399848] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH3G 9750"
+OK
+
+[2020/08/03 15:00:03.215214] [I][startTestPlan] Start DUT Tx
+[2020/08/03 15:00:03.224244] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TX3G"\r\n'
+[2020/08/03 15:00:03.331328] [I][sendTMCOMCommand] Serial buffer size: 19
+[2020/08/03 15:00:03.349324] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+[2020/08/03 15:00:03.771603] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 15:00:03.780569] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 15:00:03.785594] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TX3G"
+OK
+
+[2020/08/03 15:00:07.314346] [I][startTestPlan] 0.316
+[2020/08/03 15:00:07.328409] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 15:00:07.336405] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 15:00:07.444660] [I][sendTMCOMCommand] Serial buffer size: 18
+[2020/08/03 15:00:07.463723] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+[2020/08/03 15:00:07.683045] [W][sendTMCOMCommand] Buffer not empty!!!
+[2020/08/03 15:00:07.691072] [I][sendTMCOMCommand] Serial buffer size: 6
+[2020/08/03 15:00:07.696560] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 15:00:08.206595] [I][startTestPlan] Power: 20.909
+[2020/08/03 15:00:08.225660] [I][startTestPlan] Current: 0.316 A
+[2020/08/03 15:00:08.233675] [I][startTestPlan] Check Tx Result
+[2020/08/03 15:00:08.238688] [I][startBTTest] Tx Test Time: 9.656
+[2020/08/03 15:00:08.243777] ---------- Test Plan 2 ----------
+[2020/08/03 15:00:08.249716] [I][startTestPlan]---------- LTE_2G Freq 914.8 ----------
+[2020/08/03 15:00:08.253762] [I][startTestPlan]---------- Measure Tx Start ----------
+[2020/08/03 15:00:08.259742] [I][startTestPlan] Preset E6640A
+[2020/08/03 15:00:09.310638] [I][startTestPlan] Success
+[2020/08/03 15:00:09.316651] [I][startTestPlan] Set Tx Start
+[2020/08/03 15:00:10.038355] [I][startTestPlan] Set DUT Tx
+[2020/08/03 15:00:10.043426] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="PL 0"\r\n'
+[2020/08/03 15:00:10.150205] [I][sendTMCOMCommand] Serial buffer size: 25
+[2020/08/03 15:00:10.158253] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="PL 0"
+OK
+
+[2020/08/03 15:00:10.967025] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="CH 124"\r\n'
+[2020/08/03 15:00:11.073630] [I][sendTMCOMCommand] Serial buffer size: 27
+[2020/08/03 15:00:11.080691] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="CH 124"
+OK
+
+[2020/08/03 15:00:11.893074] [I][startTestPlan] Start DUT Tx
+[2020/08/03 15:00:11.900099] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="TCH"\r\n'
+[2020/08/03 15:00:12.007659] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 15:00:12.026675] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="TCH"
+OK
+
+[2020/08/03 15:00:17.756818] [I][startTestPlan] 0.264
+[2020/08/03 15:00:17.769045] [I][startTestPlan] Stop DUT Tx
+[2020/08/03 15:00:17.777027] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="ESC"\r\n'
+[2020/08/03 15:00:17.884171] [I][sendTMCOMCommand] Serial buffer size: 24
+[2020/08/03 15:00:17.902212] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="ESC"
+OK
+
+[2020/08/03 15:00:18.420115] [I][startTestPlan] Power: 31.427
+[2020/08/03 15:00:18.429068] [I][startTestPlan] Current: 0.264 A
+[2020/08/03 15:00:18.434081] [I][startTestPlan] Check Tx Result
+[2020/08/03 15:00:18.438133] [W][startTestPlan] Current: 0.264 out of SPEC(Hi/Lo): 0.25 / 0.08
+[2020/08/03 15:00:18.443932] [I][startBTTest] Tx Test Time: 10.193
+[2020/08/03 15:00:26.736136] [I][pressCancelBtn] User click cancel button!
+[2020/08/03 15:00:26.829838] [I][setNormalMode] Start to set normal mode.
+[2020/08/03 15:00:26.836842] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="OM"\r\n'
+[2020/08/03 15:00:26.945435] [I][sendTMCOMCommand] Serial buffer size: 23
+[2020/08/03 15:00:26.952460] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="OM"
+OK
+
+[2020/08/03 15:00:32.463813] [I][setNormalMode] AT#TESTMODE=OM return OK
+[2020/08/03 15:00:32.469805] [I][setNormalMode] Get USB4 COM Number
+[2020/08/03 15:00:32.677495] [I][setNormalMode] Get normal mode COM: COM14
+[2020/08/03 15:00:32.683510] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="OM"\r\n'
+[2020/08/03 15:00:33.291130] [W][sendTMCOMCommand] DUT return: None
+[2020/08/03 15:00:38.302540] [I][setNormalMode] Get USB4 COM Number
+[2020/08/03 15:00:38.513256] [I][setNormalMode] Get normal mode COM: COM0
+[2020/08/03 15:00:38.519271] [I][sendTMCOMCommand] Send DUT Command: b'AT#TESTMODE="OM"\r\n'
+[2020/08/03 15:00:38.624089] [I][sendTMCOMCommand] Serial buffer size: 23
+[2020/08/03 15:00:38.630105] [I][sendTMCOMCommand] DUT return: AT#TESTMODE="OM"
+OK
+
+[2020/08/03 15:00:44.139450] [I][setNormalMode] AT#TESTMODE=OM return OK
+[2020/08/03 15:00:44.147456] [I][setNormalMode] Get USB4 COM Number
+[2020/08/03 15:00:44.342099] [I][setNormalMode] Get normal mode COM: COM14
+[2020/08/03 15:00:45.886442] [I][disconnectDUT] Disconnect DUT success
+[2020/08/03 15:00:45.892431] [I][disconnectDUT] Disconnect test mode DUT success
+[2020/08/03 15:00:47.081847] [I][TestResult] Test Fail! LTE_2G 914.8
+Tx Current FAIL
+[2020/08/03 15:00:47.091875] ========== End MDUT ==========
+
+

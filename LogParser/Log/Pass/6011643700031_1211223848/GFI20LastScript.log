@@ -1,0 +1,225 @@
+[2020/12/11 22:38:33.586365]========== Start ==========
+[2020/12/11 22:38:33.589377][I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/12/11 22:38:33.591414][I][main] GFI20LastScript.py 3.0.0.12
+[2020/12/11 22:38:33.594426][I][readINI] ---------- INI ----------
+[2020/12/11 22:38:33.596429][I][readINI] StartButton_ON = False
+[2020/12/11 22:38:33.600449][I][readINI] PowerSupplier = 66321B
+[2020/12/11 22:38:33.601404][I][readINI] PowerSupplierAddr = GPIB0::5::INSTR
+[2020/12/11 22:38:33.605222][I][readINI] DigitalMeter = 8261A
+[2020/12/11 22:38:33.606226][I][readINI] DigitalMeter_COMPort = 1
+[2020/12/11 22:38:33.608572][I][readINI] FirstVoltage_Min = 0.8
+[2020/12/11 22:38:33.615058][I][readINI] ELoadTestState = True
+[2020/12/11 22:38:33.618093][I][readINI] ElectronicLoad = 63600
+[2020/12/11 22:38:33.620368][I][readINI] ElectronicLoadAddr = USB0::0x0A69::0x083E::636002002670::INSTR
+[2020/12/11 22:38:33.622148][I][readINI] ELoadMode = CRL
+[2020/12/11 22:38:33.623152][I][readINI] ELoadSide = L1
+[2020/12/11 22:38:33.626161][I][readINI] ELoadCR_OHM = 0.345
+[2020/12/11 22:38:33.628165][I][readINI] Voltage_Ch = 108
+[2020/12/11 22:38:33.630752][I][readINI] Voltage_Max = 0.3
+[2020/12/11 22:38:33.632798][I][readINI] Voltage_Min = 0
+[2020/12/11 22:38:33.635774][I][readINI] DetectVoltage = 0.3
+[2020/12/11 22:38:33.639026][I][readINI] TestTimeout = 20.0
+[2020/12/11 22:38:33.641253][I][readINI] LeastTestTime = 2.5
+[2020/12/11 22:38:33.643350][I][readINI] EC = 010000S03
+[2020/12/11 22:38:33.644354][I][readINI] ---------- INI ----------
+[2020/12/11 22:38:33.648482]---------- startTest ----------
+[2020/12/11 22:38:33.650762]================ Control DM ================
+[2020/12/11 22:38:33.653699]==================Setup digital meter==================
+[2020/12/11 22:38:33.668905][I][setupDigitalMeter] Get visa resource manager...
+[2020/12/11 22:38:33.681573][I][setupDigitalMeter] Get visa resource instrument...
+[2020/12/11 22:38:33.695375][I][setupDigitalMeter] Output = GWInstek,GDM8261A,GEU860209,1.03
+[2020/12/11 22:38:33.699816][I][setupDigitalMeter] Connect to digital meter PASS
+[2020/12/11 22:38:33.701822]==================Check Vol==================
+[2020/12/11 22:38:33.704845][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:33.706836][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:33.710847][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:34.091506][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:34.314524][I][CheckVoltage] CH108 = 4.046 V
+[2020/12/11 22:38:34.318535][I][CheckVoltage] 0.8 <= 4.046 - PASS
+[2020/12/11 22:38:34.323222][I][startTest] First detect voltage : 4.046
+[2020/12/11 22:38:34.326271]================ Close PS ================
+[2020/12/11 22:38:34.598314][I][startTest] Close power supplier sccucessfully!!
+[2020/12/11 22:38:34.601288]================ Open ELoad ================
+[2020/12/11 22:38:34.604290][I][startTest] Control ELoad...
+[2020/12/11 22:38:34.930582][I][startTest] ELoad Mode: CRL
+
+[2020/12/11 22:38:34.940423][I][startTest] Set ELoad L1 resistance: 0.3450
+ ohm
+[2020/12/11 22:38:34.951334][I][startTest] ELoad ON succesfully!!
+[2020/12/11 22:38:34.954079]================ Control DM ================
+[2020/12/11 22:38:34.958094]==================Check Vol==================
+[2020/12/11 22:38:34.962105][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:34.965135][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:34.968033][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:35.349082][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:35.570905][I][CheckVoltage] CH108 = 1.504 V
+[2020/12/11 22:38:35.574881][I][CheckVoltage] 0.0 <= 1.504 <= 0.3 - FAIL
+[2020/12/11 22:38:35.579677][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:35.583676][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:35.587687]==================Check Vol==================
+[2020/12/11 22:38:35.590694][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:35.594767][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:35.598734][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:35.981040][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:36.203576][I][CheckVoltage] CH108 = 1.367 V
+[2020/12/11 22:38:36.208596][I][CheckVoltage] 0.0 <= 1.367 <= 0.3 - FAIL
+[2020/12/11 22:38:36.212931][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:36.216925][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:36.220972]==================Check Vol==================
+[2020/12/11 22:38:36.224980][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:36.229647][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:36.232658][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:36.613553][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:36.836578][I][CheckVoltage] CH108 = 1.244 V
+[2020/12/11 22:38:36.840618][I][CheckVoltage] 0.0 <= 1.244 <= 0.3 - FAIL
+[2020/12/11 22:38:36.845461][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:36.849437][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:36.853478]==================Check Vol==================
+[2020/12/11 22:38:36.859307][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:36.862346][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:36.868394][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:37.179572][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:37.345174][I][CheckVoltage] CH108 = 1.141 V
+[2020/12/11 22:38:37.349184][I][CheckVoltage] 0.0 <= 1.141 <= 0.3 - FAIL
+[2020/12/11 22:38:37.354301][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:37.358277][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:37.362320]==================Check Vol==================
+[2020/12/11 22:38:37.368479][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:37.371500][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:37.374514][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:37.684009][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:37.849517][I][CheckVoltage] CH108 = 1.052 V
+[2020/12/11 22:38:37.854690][I][CheckVoltage] 0.0 <= 1.052 <= 0.3 - FAIL
+[2020/12/11 22:38:37.859093][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:37.863107][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:37.868117]==================Check Vol==================
+[2020/12/11 22:38:37.873147][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:37.876158][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:37.879164][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:38.193063][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:38.358437][I][CheckVoltage] CH108 = 0.970 V
+[2020/12/11 22:38:38.362487][I][CheckVoltage] 0.0 <= 0.97 <= 0.3 - FAIL
+[2020/12/11 22:38:38.366496][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:38.371478][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:38.375485]==================Check Vol==================
+[2020/12/11 22:38:38.380498][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:38.384508][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:38.387517][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:38.697615][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:38.861942][I][CheckVoltage] CH108 = 0.885 V
+[2020/12/11 22:38:38.866921][I][CheckVoltage] 0.0 <= 0.885 <= 0.3 - FAIL
+[2020/12/11 22:38:38.871524][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:38.875505][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:38.879545]==================Check Vol==================
+[2020/12/11 22:38:38.885533][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:38.888936][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:38.891948][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:39.205797][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:39.371033][I][CheckVoltage] CH108 = 0.806 V
+[2020/12/11 22:38:39.375089][I][CheckVoltage] 0.0 <= 0.806 <= 0.3 - FAIL
+[2020/12/11 22:38:39.380093][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:39.384068][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:39.389440]==================Check Vol==================
+[2020/12/11 22:38:39.394697][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:39.397739][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:39.403724][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:39.714108][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:39.879545][I][CheckVoltage] CH108 = 0.728 V
+[2020/12/11 22:38:39.884532][I][CheckVoltage] 0.0 <= 0.728 <= 0.3 - FAIL
+[2020/12/11 22:38:39.889421][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:39.893876][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:39.898893]==================Check Vol==================
+[2020/12/11 22:38:39.903906][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:39.906954][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:39.909962][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:40.222592][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:40.388509][I][CheckVoltage] CH108 = 0.651 V
+[2020/12/11 22:38:40.392510][I][CheckVoltage] 0.0 <= 0.651 <= 0.3 - FAIL
+[2020/12/11 22:38:40.398491][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:40.402531][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:40.406541]==================Check Vol==================
+[2020/12/11 22:38:40.412139][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:40.417175][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:40.421184][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:40.731375][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:40.896677][I][CheckVoltage] CH108 = 0.577 V
+[2020/12/11 22:38:40.901782][I][CheckVoltage] 0.0 <= 0.577 <= 0.3 - FAIL
+[2020/12/11 22:38:40.906840][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:40.910809][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:40.915823]==================Check Vol==================
+[2020/12/11 22:38:40.920840][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:40.923878][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:40.926851][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:41.240288][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:41.405363][I][CheckVoltage] CH108 = 0.536 V
+[2020/12/11 22:38:41.410376][I][CheckVoltage] 0.0 <= 0.536 <= 0.3 - FAIL
+[2020/12/11 22:38:41.415840][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:41.419964][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:41.424480]==================Check Vol==================
+[2020/12/11 22:38:41.430496][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:41.434003][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:41.438016][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:41.749533][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:41.913970][I][CheckVoltage] CH108 = 0.492 V
+[2020/12/11 22:38:41.918983][I][CheckVoltage] 0.0 <= 0.492 <= 0.3 - FAIL
+[2020/12/11 22:38:41.923997][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:41.928512][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:41.933526]==================Check Vol==================
+[2020/12/11 22:38:41.938535][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:41.945052][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:41.949565][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:42.261393][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:42.426364][I][CheckVoltage] CH108 = 0.450 V
+[2020/12/11 22:38:42.431349][I][CheckVoltage] 0.0 <= 0.45 <= 0.3 - FAIL
+[2020/12/11 22:38:42.436398][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:42.440372][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:42.445407]==================Check Vol==================
+[2020/12/11 22:38:42.450403][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:42.453406][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:42.458463][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:42.770250][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:42.934716][I][CheckVoltage] CH108 = 0.413 V
+[2020/12/11 22:38:42.940703][I][CheckVoltage] 0.0 <= 0.413 <= 0.3 - FAIL
+[2020/12/11 22:38:42.945758][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:42.949726][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:42.955781]==================Check Vol==================
+[2020/12/11 22:38:42.960755][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:42.964766][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:42.969785][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:43.282610][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:43.448080][I][CheckVoltage] CH108 = 0.378 V
+[2020/12/11 22:38:43.453063][I][CheckVoltage] 0.0 <= 0.378 <= 0.3 - FAIL
+[2020/12/11 22:38:43.461086][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:43.465134][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:43.473040]==================Check Vol==================
+[2020/12/11 22:38:43.478103][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:43.483070][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:43.487080][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:43.799912][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:43.960362][I][CheckVoltage] CH108 = 0.345 V
+[2020/12/11 22:38:43.964348][I][CheckVoltage] 0.0 <= 0.345 <= 0.3 - FAIL
+[2020/12/11 22:38:43.969392][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:43.974376][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:43.978385]==================Check Vol==================
+[2020/12/11 22:38:43.983401][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:43.986405][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:43.990450][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:44.299262][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:44.460699][I][CheckVoltage] CH108 = 0.316 V
+[2020/12/11 22:38:44.465682][I][CheckVoltage] 0.0 <= 0.316 <= 0.3 - FAIL
+[2020/12/11 22:38:44.470694][W][CheckVoltage] CH108 test not in spec
+[2020/12/11 22:38:44.474704][W][startTest] Voltage out of range!!
+[2020/12/11 22:38:44.479717]==================Check Vol==================
+[2020/12/11 22:38:44.483729][I][CheckVoltage] Detect Channel = [108]
+[2020/12/11 22:38:44.486736][I][CheckVoltage] Channel Max = [0.3]
+[2020/12/11 22:38:44.490748][I][CheckVoltage] Channel Min = [0.0]
+[2020/12/11 22:38:44.804585][I][CheckVoltage] Output = SCAN OK
+[2020/12/11 22:38:44.970045][I][CheckVoltage] CH108 = 0.290 V
+[2020/12/11 22:38:44.974031][I][CheckVoltage] 0.0 <= 0.29 <= 0.3 - PASS
+[2020/12/11 22:38:44.979043][I][startTest] Check voltage succesfully!
+[2020/12/11 22:38:44.983054][I][startTest] Spent time : 10.023 sec
+[2020/12/11 22:38:44.990074][I][startTest] Set ELoad status off!!
+[2020/12/11 22:38:44.995090][I][startTest] Close ELoad success!!
+[2020/12/11 22:38:44.999129][I][TestResult] Close power supplier success!!
+[2020/12/11 22:38:45.008153][I][TestResult] Close digital meter success!!
+[2020/12/11 22:38:45.012133][I][TestResult] Test Pass!

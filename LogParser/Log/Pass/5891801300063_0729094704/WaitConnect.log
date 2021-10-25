@@ -1,0 +1,54 @@
+[2020/07/29 09:43:19]========== Start ==========
+[2020/07/29 09:43:19][I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/07/29 09:43:19][I][main] WaitConnect.py 3.0.0.4
+[2020/07/29 09:43:19][I][readINI] ---------- INI ----------
+[2020/07/29 09:43:19][I][readINI] StartButton_ON = 0
+[2020/07/29 09:43:19][I][readINI] Title_Value = 等待開機~
+[2020/07/29 09:43:19][I][readINI] Timeout_Value = 40
+[2020/07/29 09:43:19][I][readINI] TestCMD_Value = z
+[2020/07/29 09:43:19][I][readINI] EC = 123
+[2020/07/29 09:43:19][I][readINI] ---------- INI ----------
+[2020/07/29 09:43:19]---------- startTest ----------
+[2020/07/29 09:43:19][I][ConnectCOM] Connect DUT succesfully by COM.
+[2020/07/29 09:43:19][I][startTest] Connection set up.
+[2020/07/29 09:43:19][I][sendCOMCommand] Send DUT Command: b'z\r\n'
+[2020/07/29 09:43:19][I][sendCOMCommand] Serial buffer size: 46
+[2020/07/29 09:43:19][I][sendCOMCommand] DUT return: Set mesh receive HGM:1
+>>> Init ZigBee GPIO
+
+[2020/07/29 09:43:20][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 09:43:20][I][sendCOMCommand] Serial buffer size: 272
+[2020/07/29 09:43:20][I][sendCOMCommand] DUT return: Set mesh receive HGM:1
+>>> Init ZigBee GPIO
+[EZSP]Setting GPIO was successful. (portPin=7, cfg=1, out=1)
+$[1]
+[EZSP]Setting GPIO was successful. (portPin=15, cfg=1, out=1)
+$[1]
+[EZSP]Setting GPIO was successful. (portPin=23, cfg=1, out=0)
+$[0]
+>>> Open SPI
+>>> Set Mesh Reset# to H
+*** VaultIC Initializing
+
+[2020/07/29 09:43:20][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 09:43:20][I][sendCOMCommand] Serial buffer size: 60
+[2020/07/29 09:43:20][I][sendCOMCommand] DUT return: Set mesh receive HGM:1
+>>> Init ZigBee GPIO
+[EZSP]Setting GPIO was successful. (portPin=7, cfg=1, out=1)
+$[1]
+[EZSP]Setting GPIO was successful. (portPin=15, cfg=1, out=1)
+$[1]
+[EZSP]Setting GPIO was successful. (portPin=23, cfg=1, out=0)
+$[0]
+>>> Open SPI
+>>> Set Mesh Reset# to H
+*** VaultIC Initializing
+VltApiInit() vltRet: 0xC000
+*** VaultIC Initializing done
+
+[2020/07/29 09:43:20][I][startTest] DUT return some value!
+[2020/07/29 09:43:20][I][ConnectCOM] Disconnect DUT succesfully by COM.
+[2020/07/29 09:43:20][I][TestResult] Test Pass!
+[2020/07/29 09:43:21]========== End MDUT ==========
+
+

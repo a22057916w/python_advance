@@ -1,0 +1,23 @@
+[2020/12/11 22:38:34]============== Control ELoad 63600 ==============
+[2020/12/11 22:38:34]List resource: ['USB0::0x0A69::0x083E::636002002670::0::INSTR', 'TCPIP0::192.168.1.2::hislip0::INSTR', 'ASRL1::INSTR', 'ASRL3::INSTR', 'ASRL4::INSTR', 'ASRL5::INSTR', 'ASRL6::INSTR', 'ASRL7::INSTR', 'ASRL8::INSTR', 'GPIB0::5::INSTR']
+[2020/12/11 22:38:34]Electronic Load: control 63600 successfully
+[2020/12/11 22:38:34]Electronic Load send: *RST
+[2020/12/11 22:38:34]Electronic Load send: *IDN?
+[2020/12/11 22:38:34]Electronic Load recv: CHROMA,63600-2,636002002670,1.92
+
+[2020/12/11 22:38:34]Electronic Load is: CHROMA,63600-2,636002002670,1.92
+ 
+
+[2020/12/11 22:38:34]Electronic Load send: MODE CRL
+[2020/12/11 22:38:34]Electronic Load send: MODE?
+[2020/12/11 22:38:34]Electronic Load recv: CRL
+
+[2020/12/11 22:38:34]Electronic Load send: RES:STAT:L1 0.345
+[2020/12/11 22:38:34]Electronic Load send: RES:STAT:L1?
+[2020/12/11 22:38:34]Electronic Load recv: 0.3450
+
+[2020/12/11 22:38:34]Electronic Load send: LOAD 1
+[2020/12/11 22:38:34]Electronic Load send: LOAD?
+[2020/12/11 22:38:34]Electronic Load recv: ON
+
+[2020/12/11 22:38:44]Electronic Load send: LOAD 0

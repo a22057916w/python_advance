@@ -1,0 +1,27 @@
+[2020/07/27 09:56:06.115967] ========== Start ==========
+[2020/07/27 09:56:06.125986] [I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/07/27 09:56:06.125986] [I][main] GFI20_RF_LTE.py 3.0.0.10
+[2020/07/27 09:56:06.125986] [I][readINI] ---------- INI ----------
+[2020/07/27 09:56:06.125986] [I][readINI] StartButton_ON = 0
+[2020/07/27 09:56:06.125986] [I][readINI] FailAutoExit = False
+[2020/07/27 09:56:06.135977] [I][readINI] FailRetryAll = False
+[2020/07/27 09:56:06.135977] [I][readINI] RFDatabase = True
+[2020/07/27 09:56:06.186037] [E][readINI] Error: Traceback (most recent call last):
+  File "C:\Python37\lib\configparser.py", line 788, in get
+    value = d[option]
+  File "C:\Python37\lib\collections\__init__.py", line 914, in __getitem__
+    return self.__missing__(key)            # support subclasses that define __missing__
+  File "C:\Python37\lib\collections\__init__.py", line 906, in __missing__
+    raise KeyError(key)
+KeyError: 'usb4_com'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./Script\GFI20_RF_LTE.py", line 439, in readINI
+    self.strUSB4_COM = config.get(strMethod, "USB4_COM")
+  File "C:\Python37\lib\configparser.py", line 791, in get
+    raise NoOptionError(option, section)
+configparser.NoOptionError: No option 'usb4_com' in section: 'Method1'
+
+[2020/07/27 09:56:06.186037] [E][readINI] Error: No option 'usb4_com' in section: 'Method1'

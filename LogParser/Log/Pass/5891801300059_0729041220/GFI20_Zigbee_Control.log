@@ -1,0 +1,802 @@
+[2020/07/29 04:08:14.315547][I][class_GFI20] Initial class_GFI20
+[2020/07/29 04:08:14.320492][I][connectDUT] COM: COM20, BaudRate: 115200
+[2020/07/29 04:08:14.324509][I][connectDUT] Connect DUT success
+[2020/07/29 04:08:14.329517][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:14.531671][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:14.639073][I][sendCOMCommand] Serial buffer size: 252
+[2020/07/29 04:08:14.746676][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 04:08:14.753732][I][sendCOMCommand] Serial buffer size: 126
+[2020/07/29 04:08:15.264498][I][sendCOMCommand] DUT => Set mesh receive HGM:1
+>>> Init ZigBee GPIO
+[EZSP]Setting GPIO was successful. (portPin=7, cfg=1, out=1)
+$[1]
+[EZSP]Setting GPIO was successful. (portPin=15, cfg=1, out=1)
+$[1]
+[EZSP]Setting GPIO was successful. (portPin=23, cfg=1, out=0)
+$[0]
+>>> Open SPI
+>>> Set Mesh Reset# to H
+*** VaultIC Initializing
+VltApiInit() vltRet: 0xC000
+*** VaultIC Initializing done
+
+[2020/07/29 04:08:15.475018][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:15.683962][I][sendCOMCommand] Serial buffer size: 283
+[2020/07/29 04:08:16.197453][I][sendCOMCommand] DUT => MeshChipStateInit ended
+Scimitar F/T program.
+[1]: Cellular(Telit)
+[2]: Zigbee(EM357)
+[3]: Mesh(CC1200)
+[4]: Other Device & Function
+[5]: GUID & Certification Files/Keys
+[6]: Calibration Data
+[7]: Inject Keys
+[d]: Diagnostics
+[v]: Test Pro Version
+[z]: Display menu.
+$>
+
+[2020/07/29 04:08:16.202604][I][setScimitarMenu] Success
+[2020/07/29 04:08:21.450713][I][setZigbee_Tx] ZIGBEE_2450 CH: 15, Tx PWR: 0 dBm
+[2020/07/29 04:08:21.452921][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:21.656686][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:21.765805][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:08:22.278817][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:08:22.282789][I][setScimitarMenu] Success
+[2020/07/29 04:08:22.284797][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:08:22.489802][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:22.598140][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:23.112478][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:23.123502][I][setZigbeeMenu] Success
+[2020/07/29 04:08:23.131520][I][setZigbee_Tx] Set Diagnostics Menu
+[2020/07/29 04:08:23.339289][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:08:23.443780][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:23.954572][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:23.961616][I][setZigbee_Tx] Success
+[2020/07/29 04:08:23.964775][I][setZigbee_Tx] Set Channel Menu
+[2020/07/29 04:08:24.168546][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:24.276670][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:08:24.793269][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:08:24.799319][I][setZigbee_Tx] Success
+[2020/07/29 04:08:24.801281][I][setZigbee_Tx] Set Channel
+[2020/07/29 04:08:25.005861][I][sendCOMCommand] DUT <= 0F
+[2020/07/29 04:08:25.114689][I][sendCOMCommand] Serial buffer size: 34
+[2020/07/29 04:08:25.227710][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 04:08:25.240386][I][sendCOMCommand] Serial buffer size: 19
+[2020/07/29 04:08:25.751162][I][sendCOMCommand] DUT => Set Channel: 15 (0x0F)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:25.755166][I][setZigbee_Tx] Success
+[2020/07/29 04:08:25.758313][I][setZigbee_Tx] Set PWR Menu
+[2020/07/29 04:08:25.963027][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:08:26.067397][I][sendCOMCommand] Serial buffer size: 79
+[2020/07/29 04:08:26.579612][I][sendCOMCommand] DUT => 3
+$2-d-3_Set Power (-32 => +8dBm, Step=1dB) [-2B - 08 by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:08:26.585939][I][setZigbee_Tx] Success
+[2020/07/29 04:08:26.588950][I][setZigbee_Tx] Set Tx PWR
+[2020/07/29 04:08:26.793795][I][sendCOMCommand] DUT <= 00
+[2020/07/29 04:08:26.902839][I][sendCOMCommand] Serial buffer size: 50
+[2020/07/29 04:08:27.420596][I][sendCOMCommand] DUT => Set Power: 0 (0x00)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:27.426088][I][setZigbee_Tx] Success
+[2020/07/29 04:08:27.435155][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:27.639605][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:27.754619][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:28.267290][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:28.475428][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:28.584983][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:08:29.102687][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:08:29.107686][I][setScimitarMenu] Success
+[2020/07/29 04:08:29.110694][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:08:29.315203][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:29.424827][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:29.943234][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:29.950266][I][setZigbeeMenu] Success
+[2020/07/29 04:08:29.953274][I][setTxStart] Set Tx start
+[2020/07/29 04:08:32.119339][I][setTxStop] Set Tx stop
+[2020/07/29 04:08:32.323859][I][sendCOMCommand] DUT <= 5
+[2020/07/29 04:08:32.432413][I][sendCOMCommand] Serial buffer size: 170
+[2020/07/29 04:08:32.945140][I][sendCOMCommand] DUT => [mfglib]Send Packet(100 bytes)
+[mfglib]Send Packet(100 bytes)
+5
+ZigBee send packet test end.
+Total number of emberStatus errors:0
+$[0]
+$DONE_OK
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:32.951154][I][setTxStop] Success
+[2020/07/29 04:08:32.972735][I][setZigbee_Tx] ZIGBEE_2450 CH: 15, Tx PWR: -1 dBm
+[2020/07/29 04:08:32.976128][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:33.180495][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:33.289549][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:08:33.806486][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:08:33.820571][I][setScimitarMenu] Success
+[2020/07/29 04:08:33.831591][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:08:34.039273][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:34.148875][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:34.667253][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:34.674254][I][setZigbeeMenu] Success
+[2020/07/29 04:08:34.678031][I][setZigbee_Tx] Set Diagnostics Menu
+[2020/07/29 04:08:34.881449][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:08:34.989498][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:35.506141][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:35.514147][I][setZigbee_Tx] Success
+[2020/07/29 04:08:35.517114][I][setZigbee_Tx] Set Channel Menu
+[2020/07/29 04:08:35.722056][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:35.831484][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:08:36.351427][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:08:36.356429][I][setZigbee_Tx] Success
+[2020/07/29 04:08:36.359436][I][setZigbee_Tx] Set Channel
+[2020/07/29 04:08:36.565235][I][sendCOMCommand] DUT <= 0F
+[2020/07/29 04:08:36.674373][I][sendCOMCommand] Serial buffer size: 53
+[2020/07/29 04:08:37.187610][I][sendCOMCommand] DUT => Set Channel: 15 (0x0F)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:37.195627][I][setZigbee_Tx] Success
+[2020/07/29 04:08:37.198636][I][setZigbee_Tx] Set PWR Menu
+[2020/07/29 04:08:37.402173][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:08:37.511312][I][sendCOMCommand] Serial buffer size: 79
+[2020/07/29 04:08:38.028637][I][sendCOMCommand] DUT => 3
+$2-d-3_Set Power (-32 => +8dBm, Step=1dB) [-2B - 08 by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:08:38.035662][I][setZigbee_Tx] Success
+[2020/07/29 04:08:38.038874][I][setZigbee_Tx] Set Tx PWR
+[2020/07/29 04:08:38.243671][I][sendCOMCommand] DUT <= FF
+[2020/07/29 04:08:38.354214][I][sendCOMCommand] Serial buffer size: 57
+[2020/07/29 04:08:38.862894][I][sendCOMCommand] DUT => Set Power: -1 (0xFFFFFFFF)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:38.865907][I][setZigbee_Tx] Success
+[2020/07/29 04:08:38.877938][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:39.083648][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:39.199667][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:39.713065][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:39.922625][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:40.032414][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:08:40.551797][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:08:40.558798][I][setScimitarMenu] Success
+[2020/07/29 04:08:40.561766][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:08:40.767046][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:40.876454][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:41.384937][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:41.389958][I][setZigbeeMenu] Success
+[2020/07/29 04:08:41.394899][I][setTxStart] Set Tx start
+[2020/07/29 04:08:43.622602][I][setTxStop] Set Tx stop
+[2020/07/29 04:08:43.827140][I][sendCOMCommand] DUT <= 5
+[2020/07/29 04:08:43.935239][I][sendCOMCommand] Serial buffer size: 170
+[2020/07/29 04:08:44.449139][I][sendCOMCommand] DUT => [mfglib]Send Packet(100 bytes)
+[mfglib]Send Packet(100 bytes)
+5
+ZigBee send packet test end.
+Total number of emberStatus errors:0
+$[0]
+$DONE_OK
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:44.455161][I][setTxStop] Success
+[2020/07/29 04:08:48.085002][I][setZigbee_Tx] ZIGBEE_2450 CH: 21, Tx PWR: 0 dBm
+[2020/07/29 04:08:48.088031][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:48.292796][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:48.403144][I][sendCOMCommand] Serial buffer size: 3
+[2020/07/29 04:08:48.923311][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:08:48.930333][I][setScimitarMenu] Success
+[2020/07/29 04:08:48.934540][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:08:49.139890][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:49.255644][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:49.776201][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:49.783200][I][setZigbeeMenu] Success
+[2020/07/29 04:08:49.787212][I][setZigbee_Tx] Set Diagnostics Menu
+[2020/07/29 04:08:49.991676][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:08:50.101652][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:50.619994][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:50.625953][I][setZigbee_Tx] Success
+[2020/07/29 04:08:50.628961][I][setZigbee_Tx] Set Channel Menu
+[2020/07/29 04:08:50.834380][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:50.944461][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:08:51.463107][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:08:51.470198][I][setZigbee_Tx] Success
+[2020/07/29 04:08:51.473542][I][setZigbee_Tx] Set Channel
+[2020/07/29 04:08:51.678263][I][sendCOMCommand] DUT <= 15
+[2020/07/29 04:08:51.787977][I][sendCOMCommand] Serial buffer size: 34
+[2020/07/29 04:08:52.307592][I][sendCOMCommand] DUT => Set Channel: 21 (0x15)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:52.314627][I][setZigbee_Tx] Success
+[2020/07/29 04:08:52.318874][I][setZigbee_Tx] Set PWR Menu
+[2020/07/29 04:08:52.523573][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:08:52.634133][I][sendCOMCommand] Serial buffer size: 79
+[2020/07/29 04:08:53.154763][I][sendCOMCommand] DUT => 3
+$2-d-3_Set Power (-32 => +8dBm, Step=1dB) [-2B - 08 by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:08:53.170847][I][setZigbee_Tx] Success
+[2020/07/29 04:08:53.180825][I][setZigbee_Tx] Set Tx PWR
+[2020/07/29 04:08:53.387804][I][sendCOMCommand] DUT <= 00
+[2020/07/29 04:08:53.494098][I][sendCOMCommand] Serial buffer size: 31
+[2020/07/29 04:08:54.006464][I][sendCOMCommand] DUT => Set Power: 0 (0x00)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:08:54.013644][I][setZigbee_Tx] Success
+[2020/07/29 04:08:54.023750][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:54.229119][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:54.339514][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:54.851697][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:55.060553][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:55.169777][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:08:55.682916][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:08:55.690250][I][setScimitarMenu] Success
+[2020/07/29 04:08:55.694202][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:08:55.897637][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:08:56.004936][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:08:56.525537][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:56.531550][I][setZigbeeMenu] Success
+[2020/07/29 04:08:56.535595][I][setTxStart] Set Tx start
+[2020/07/29 04:08:58.754905][I][setTxStop] Set Tx stop
+[2020/07/29 04:08:58.960517][I][sendCOMCommand] DUT <= 5
+[2020/07/29 04:08:59.069671][I][sendCOMCommand] Serial buffer size: 170
+[2020/07/29 04:08:59.591717][I][sendCOMCommand] DUT => [mfglib]Send Packet(100 bytes)
+[mfglib]Send Packet(100 bytes)
+5
+ZigBee send packet test end.
+Total number of emberStatus errors:0
+$[0]
+$DONE_OK
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:08:59.599745][I][setTxStop] Success
+[2020/07/29 04:08:59.622538][I][setZigbee_Tx] ZIGBEE_2450 CH: 21, Tx PWR: -2 dBm
+[2020/07/29 04:08:59.626528][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:08:59.830995][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:08:59.940396][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:00.461276][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:00.469303][I][setScimitarMenu] Success
+[2020/07/29 04:09:00.472785][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:00.677424][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:00.788146][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:01.308626][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:01.316681][I][setZigbeeMenu] Success
+[2020/07/29 04:09:01.320709][I][setZigbee_Tx] Set Diagnostics Menu
+[2020/07/29 04:09:01.525850][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:09:01.636396][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:02.155882][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:02.163844][I][setZigbee_Tx] Success
+[2020/07/29 04:09:02.167862][I][setZigbee_Tx] Set Channel Menu
+[2020/07/29 04:09:02.372755][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:02.482472][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:09:03.002936][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:03.008527][I][setZigbee_Tx] Success
+[2020/07/29 04:09:03.012573][I][setZigbee_Tx] Set Channel
+[2020/07/29 04:09:03.217558][I][sendCOMCommand] DUT <= 15
+[2020/07/29 04:09:03.334507][I][sendCOMCommand] Serial buffer size: 53
+[2020/07/29 04:09:03.853950][I][sendCOMCommand] DUT => Set Channel: 21 (0x15)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:03.861395][I][setZigbee_Tx] Success
+[2020/07/29 04:09:03.864584][I][setZigbee_Tx] Set PWR Menu
+[2020/07/29 04:09:04.068797][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:09:04.176776][I][sendCOMCommand] Serial buffer size: 79
+[2020/07/29 04:09:04.699594][I][sendCOMCommand] DUT => 3
+$2-d-3_Set Power (-32 => +8dBm, Step=1dB) [-2B - 08 by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:04.708559][I][setZigbee_Tx] Success
+[2020/07/29 04:09:04.712312][I][setZigbee_Tx] Set Tx PWR
+[2020/07/29 04:09:04.916332][I][sendCOMCommand] DUT <= FE
+[2020/07/29 04:09:05.023051][I][sendCOMCommand] Serial buffer size: 57
+[2020/07/29 04:09:05.536708][I][sendCOMCommand] DUT => Set Power: -2 (0xFFFFFFFE)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:05.544199][I][setZigbee_Tx] Success
+[2020/07/29 04:09:05.554343][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:05.759886][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:05.869861][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:06.391573][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:06.600861][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:06.711025][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:07.231055][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:07.237076][I][setScimitarMenu] Success
+[2020/07/29 04:09:07.241089][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:07.445895][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:07.555478][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:08.076177][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:08.084297][I][setZigbeeMenu] Success
+[2020/07/29 04:09:08.088975][I][setTxStart] Set Tx start
+[2020/07/29 04:09:10.187574][I][setTxStop] Set Tx stop
+[2020/07/29 04:09:10.392631][I][sendCOMCommand] DUT <= 5
+[2020/07/29 04:09:10.502545][I][sendCOMCommand] Serial buffer size: 170
+[2020/07/29 04:09:11.023676][I][sendCOMCommand] DUT => [mfglib]Send Packet(100 bytes)
+[mfglib]Send Packet(100 bytes)
+5
+ZigBee send packet test end.
+Total number of emberStatus errors:0
+$[0]
+$DONE_OK
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:11.029867][I][setTxStop] Success
+[2020/07/29 04:09:14.667233][I][setZigbee_Tx] ZIGBEE_2450 CH: 24, Tx PWR: 0 dBm
+[2020/07/29 04:09:14.672251][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:14.877597][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:14.985070][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:15.497277][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:15.503958][I][setScimitarMenu] Success
+[2020/07/29 04:09:15.506967][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:15.712808][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:15.823022][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:16.345978][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:16.352988][I][setZigbeeMenu] Success
+[2020/07/29 04:09:16.357000][I][setZigbee_Tx] Set Diagnostics Menu
+[2020/07/29 04:09:16.561839][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:09:16.672027][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:17.193038][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:17.200091][I][setZigbee_Tx] Success
+[2020/07/29 04:09:17.204102][I][setZigbee_Tx] Set Channel Menu
+[2020/07/29 04:09:17.409559][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:17.520052][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:09:18.031630][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:18.039667][I][setZigbee_Tx] Success
+[2020/07/29 04:09:18.043684][I][setZigbee_Tx] Set Channel
+[2020/07/29 04:09:18.248707][I][sendCOMCommand] DUT <= 18
+[2020/07/29 04:09:18.366138][I][sendCOMCommand] Serial buffer size: 34
+[2020/07/29 04:09:18.885892][I][sendCOMCommand] DUT => Set Channel: 24 (0x18)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:18.893904][I][setZigbee_Tx] Success
+[2020/07/29 04:09:18.897920][I][setZigbee_Tx] Set PWR Menu
+[2020/07/29 04:09:19.103340][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:09:19.217046][I][sendCOMCommand] Serial buffer size: 79
+[2020/07/29 04:09:19.738244][I][sendCOMCommand] DUT => 3
+$2-d-3_Set Power (-32 => +8dBm, Step=1dB) [-2B - 08 by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:19.746509][I][setZigbee_Tx] Success
+[2020/07/29 04:09:19.750528][I][setZigbee_Tx] Set Tx PWR
+[2020/07/29 04:09:19.955727][I][sendCOMCommand] DUT <= 00
+[2020/07/29 04:09:20.064614][I][sendCOMCommand] Serial buffer size: 31
+[2020/07/29 04:09:20.586026][I][sendCOMCommand] DUT => Set Power: 0 (0x00)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:20.593053][I][setZigbee_Tx] Success
+[2020/07/29 04:09:20.603653][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:20.809105][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:20.916953][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:21.435490][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:21.641922][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:21.751566][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:22.273563][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:22.280587][I][setScimitarMenu] Success
+[2020/07/29 04:09:22.285007][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:22.490602][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:22.607619][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:23.121276][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:23.127300][I][setZigbeeMenu] Success
+[2020/07/29 04:09:23.131332][I][setTxStart] Set Tx start
+[2020/07/29 04:09:25.352757][I][setTxStop] Set Tx stop
+[2020/07/29 04:09:25.558013][I][sendCOMCommand] DUT <= 5
+[2020/07/29 04:09:25.668392][I][sendCOMCommand] Serial buffer size: 151
+[2020/07/29 04:09:26.191226][I][sendCOMCommand] DUT => [mfglib]Send Packet(100 bytes)
+[mfglib]Send Packet(100 bytes)
+5
+ZigBee send packet test end.
+Total number of emberStatus errors:0
+$[0]
+$DONE_OK
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:26.207281][I][setTxStop] Success
+[2020/07/29 04:09:26.243347][I][setZigbee_Tx] ZIGBEE_2450 CH: 24, Tx PWR: -2 dBm
+[2020/07/29 04:09:26.246353][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:26.452115][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:26.557822][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:27.070405][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:27.077427][I][setScimitarMenu] Success
+[2020/07/29 04:09:27.085421][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:27.293776][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:27.403819][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:27.926153][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:27.934179][I][setZigbeeMenu] Success
+[2020/07/29 04:09:27.939192][I][setZigbee_Tx] Set Diagnostics Menu
+[2020/07/29 04:09:28.144726][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:09:28.262394][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:28.783409][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:28.789427][I][setZigbee_Tx] Success
+[2020/07/29 04:09:28.793438][I][setZigbee_Tx] Set Channel Menu
+[2020/07/29 04:09:28.998272][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:29.107668][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:09:29.629076][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:29.634095][I][setZigbee_Tx] Success
+[2020/07/29 04:09:29.638105][I][setZigbee_Tx] Set Channel
+[2020/07/29 04:09:29.843955][I][sendCOMCommand] DUT <= 18
+[2020/07/29 04:09:29.953934][I][sendCOMCommand] Serial buffer size: 34
+[2020/07/29 04:09:30.064407][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 04:09:30.072370][I][sendCOMCommand] Serial buffer size: 19
+[2020/07/29 04:09:30.580549][I][sendCOMCommand] DUT => Set Channel: 24 (0x18)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:30.586570][I][setZigbee_Tx] Success
+[2020/07/29 04:09:30.591209][I][setZigbee_Tx] Set PWR Menu
+[2020/07/29 04:09:30.796661][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:09:30.906719][I][sendCOMCommand] Serial buffer size: 79
+[2020/07/29 04:09:31.417560][I][sendCOMCommand] DUT => 3
+$2-d-3_Set Power (-32 => +8dBm, Step=1dB) [-2B - 08 by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:31.425572][I][setZigbee_Tx] Success
+[2020/07/29 04:09:31.429581][I][setZigbee_Tx] Set Tx PWR
+[2020/07/29 04:09:31.634736][I][sendCOMCommand] DUT <= FE
+[2020/07/29 04:09:31.744560][I][sendCOMCommand] Serial buffer size: 57
+[2020/07/29 04:09:32.264978][I][sendCOMCommand] DUT => Set Power: -2 (0xFFFFFFFE)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:32.272978][I][setZigbee_Tx] Success
+[2020/07/29 04:09:32.285031][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:32.489712][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:32.607114][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:33.121140][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:33.328833][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:33.440106][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:33.955612][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:33.959624][I][setScimitarMenu] Success
+[2020/07/29 04:09:33.963974][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:34.169640][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:34.279120][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:34.800547][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:34.808514][I][setZigbeeMenu] Success
+[2020/07/29 04:09:34.812653][I][setTxStart] Set Tx start
+[2020/07/29 04:09:37.006703][I][setTxStop] Set Tx stop
+[2020/07/29 04:09:37.212780][I][sendCOMCommand] DUT <= 5
+[2020/07/29 04:09:37.323239][I][sendCOMCommand] Serial buffer size: 170
+[2020/07/29 04:09:37.844108][I][sendCOMCommand] DUT => [mfglib]Send Packet(100 bytes)
+[mfglib]Send Packet(100 bytes)
+5
+ZigBee send packet test end.
+Total number of emberStatus errors:0
+$[0]
+$DONE_OK
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:37.852155][I][setTxStop] Success
+[2020/07/29 04:09:39.152402][I][setZigbee_Rx] ZIGBEE_2450 CH: 19
+[2020/07/29 04:09:39.156414][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:39.361534][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:39.470774][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:39.992787][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:39.999810][I][setScimitarMenu] Success
+[2020/07/29 04:09:40.004389][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:40.209974][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:40.320430][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:40.843657][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:40.850680][I][setZigbeeMenu] Success
+[2020/07/29 04:09:40.855363][I][setZigbee_Rx] Set Diagnostics Menu
+[2020/07/29 04:09:41.060886][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:09:41.170714][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:41.691865][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:41.697887][I][setZigbee_Rx] Success
+[2020/07/29 04:09:41.702607][I][setZigbee_Rx] Set Channel Menu
+[2020/07/29 04:09:41.907348][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:42.017492][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:09:42.540614][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:42.548641][I][setZigbee_Rx] Success
+[2020/07/29 04:09:42.553027][I][setZigbee_Rx] Set Channel
+[2020/07/29 04:09:42.758434][I][sendCOMCommand] DUT <= 13
+[2020/07/29 04:09:42.867784][I][sendCOMCommand] Serial buffer size: 53
+[2020/07/29 04:09:43.380433][I][sendCOMCommand] DUT => Set Channel: 19 (0x13)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:43.388396][I][setZigbee_Rx] Success
+[2020/07/29 04:09:43.396015][I][setZigbeeLNAMode] LNA Mode: 1
+[2020/07/29 04:09:43.399752][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:43.604950][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:43.715718][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:44.236945][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:44.446305][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:44.556633][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:45.067294][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:45.075300][I][setScimitarMenu] Success
+[2020/07/29 04:09:45.079430][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:45.284834][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:45.405280][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:45.918250][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:45.926307][I][setZigbeeMenu] Success
+[2020/07/29 04:09:45.930274][I][setZigbeeLNAMode] Set GPIO Write Menu
+[2020/07/29 04:09:46.135699][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:09:46.246199][I][sendCOMCommand] Serial buffer size: 28
+[2020/07/29 04:09:46.771524][I][sendCOMCommand] DUT => 3
+$2-3_ZigBee GPIO Write>
+
+[2020/07/29 04:09:46.777546][I][setZigbeeLNAMode] Success
+[2020/07/29 04:09:46.782517][I][setZigbeeLNAMode] Set LNA Mode
+[2020/07/29 04:09:46.986913][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:09:47.093512][I][sendCOMCommand] Serial buffer size: 106
+[2020/07/29 04:09:47.607915][I][sendCOMCommand] DUT => 3
+[EZSP]Setting GPIO was successful. (portPin=3, cfg=1, out=0)
+$[0]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/07/29 04:09:47.816391][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:09:47.926834][I][sendCOMCommand] Serial buffer size: 106
+[2020/07/29 04:09:48.447120][I][sendCOMCommand] DUT => 3
+[EZSP]Setting GPIO was successful. (portPin=3, cfg=1, out=1)
+$[1]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/07/29 04:09:48.455129][I][setZigbeeLNAMode] Success
+[2020/07/29 04:09:49.474327][I][getRxResult] Get Rx Result
+[2020/07/29 04:09:49.480246][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:49.686010][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:49.796543][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:50.317630][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:50.528225][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:50.638002][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:51.158528][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:51.165534][I][setScimitarMenu] Success
+[2020/07/29 04:09:51.170190][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:51.375161][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:51.485449][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:51.992862][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:51.998857][I][setZigbeeMenu] Success
+[2020/07/29 04:09:52.205756][I][sendCOMCommand] DUT <= b
+[2020/07/29 04:09:52.315849][I][sendCOMCommand] Serial buffer size: 94
+[2020/07/29 04:09:52.535722][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 04:09:52.545388][I][sendCOMCommand] Serial buffer size: 183
+[2020/07/29 04:09:53.053453][I][sendCOMCommand] DUT => b
+ZigBee get Rssi test start.
+Start Scan ... (Channel: 19 (0x13) duration:2 mask:00080000)
+Channel: 19 (0x13), Rssi:-14
+Total OK!    OOO   K  K   !
+            O   O  K K    !
+            O   O  KK     !
+            O   O  K K     
+             OOO   K  Kk  !
+$[-14]
+
+[2020/07/29 04:09:53.122639][I][setZigbee_Rx] ZIGBEE_2450 CH: 19
+[2020/07/29 04:09:53.126656][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:53.332506][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:53.442607][I][sendCOMCommand] Serial buffer size: 32
+[2020/07/29 04:09:53.963724][I][sendCOMCommand] DUT => $DONE_OK
+$2_Zigbee(EM357)>
+x
+$>
+
+[2020/07/29 04:09:53.974044][I][setScimitarMenu] Success
+[2020/07/29 04:09:53.978057][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:54.184697][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:54.304079][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:54.816311][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:54.825318][I][setZigbeeMenu] Success
+[2020/07/29 04:09:54.829568][I][setZigbee_Rx] Set Diagnostics Menu
+[2020/07/29 04:09:55.034062][I][sendCOMCommand] DUT <= d
+[2020/07/29 04:09:55.141698][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:55.656198][I][sendCOMCommand] DUT => d
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:55.665901][I][setZigbee_Rx] Success
+[2020/07/29 04:09:55.669919][I][setZigbee_Rx] Set Channel Menu
+[2020/07/29 04:09:55.875777][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:55.986394][I][sendCOMCommand] Serial buffer size: 66
+[2020/07/29 04:09:56.495024][I][sendCOMCommand] DUT => 2
+$2-d-2_Set Channel (11 => 26) [0B - 1A by HEX]>
+$PARAMETER?>
+
+[2020/07/29 04:09:56.499036][I][setZigbee_Rx] Success
+[2020/07/29 04:09:56.503678][I][setZigbee_Rx] Set Channel
+[2020/07/29 04:09:56.711108][I][sendCOMCommand] DUT <= 13
+[2020/07/29 04:09:56.821715][I][sendCOMCommand] Serial buffer size: 53
+[2020/07/29 04:09:57.343592][I][sendCOMCommand] DUT => Set Channel: 19 (0x13)
+$DONE_OK
+$2-d_Diagnostics>
+
+[2020/07/29 04:09:57.351558][I][setZigbee_Rx] Success
+[2020/07/29 04:09:57.359614][I][setZigbeeLNAMode] LNA Mode: 0
+[2020/07/29 04:09:57.364445][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:09:57.569731][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:57.680701][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:58.201850][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:58.408273][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:09:58.518098][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:09:59.027589][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:09:59.034606][I][setScimitarMenu] Success
+[2020/07/29 04:09:59.038655][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:09:59.244532][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:09:59.364061][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:09:59.887261][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:09:59.895234][I][setZigbeeMenu] Success
+[2020/07/29 04:09:59.899593][I][setZigbeeLNAMode] Set GPIO Write Menu
+[2020/07/29 04:10:00.103760][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:10:00.223557][I][sendCOMCommand] Serial buffer size: 28
+[2020/07/29 04:10:00.743490][I][sendCOMCommand] DUT => 3
+$2-3_ZigBee GPIO Write>
+
+[2020/07/29 04:10:00.750538][I][setZigbeeLNAMode] Success
+[2020/07/29 04:10:00.754549][I][setZigbeeLNAMode] Set LNA Mode
+[2020/07/29 04:10:00.960602][I][sendCOMCommand] DUT <= 3
+[2020/07/29 04:10:01.070666][I][sendCOMCommand] Serial buffer size: 106
+[2020/07/29 04:10:01.594295][I][sendCOMCommand] DUT => 3
+[EZSP]Setting GPIO was successful. (portPin=3, cfg=1, out=0)
+$[0]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/07/29 04:10:01.603829][I][setZigbeeLNAMode] Success
+[2020/07/29 04:10:02.620673][I][getRxResult] Get Rx Result
+[2020/07/29 04:10:02.628712][I][setScimitarMenu] Set Scimitar menu
+[2020/07/29 04:10:02.834653][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:10:02.954246][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:10:03.467539][I][sendCOMCommand] DUT => x
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:10:03.675458][I][sendCOMCommand] DUT <= x
+[2020/07/29 04:10:03.785667][I][sendCOMCommand] Serial buffer size: 7
+[2020/07/29 04:10:04.307332][I][sendCOMCommand] DUT => x
+$>
+
+[2020/07/29 04:10:04.314363][I][setScimitarMenu] Success
+[2020/07/29 04:10:04.318992][I][setZigbeeMenu] Check Zigbee Menu
+[2020/07/29 04:10:04.524046][I][sendCOMCommand] DUT <= 2
+[2020/07/29 04:10:04.631906][I][sendCOMCommand] Serial buffer size: 22
+[2020/07/29 04:10:05.145668][I][sendCOMCommand] DUT => 2
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:10:05.151689][I][setZigbeeMenu] Success
+[2020/07/29 04:10:05.358152][I][sendCOMCommand] DUT <= b
+[2020/07/29 04:10:05.468410][I][sendCOMCommand] Serial buffer size: 94
+[2020/07/29 04:10:05.579101][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 04:10:05.597100][I][sendCOMCommand] Serial buffer size: 183
+[2020/07/29 04:10:06.008475][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 04:10:06.013999][I][sendCOMCommand] Serial buffer size: 10
+[2020/07/29 04:10:06.120143][W][sendCOMCommand] Buffer not empty!!!
+[2020/07/29 04:10:06.138198][I][sendCOMCommand] Serial buffer size: 19
+[2020/07/29 04:10:06.654391][I][sendCOMCommand] DUT => b
+ZigBee get Rssi test start.
+Start Scan ... (Channel: 19 (0x13) duration:2 mask:00080000)
+Channel: 19 (0x13), Rssi:-27
+Total OK!    OOO   K  K   !
+            O   O  K K    !
+            O   O  KK     !
+            O   O  K K     
+             OOO   K  Kk  !
+$[-27]
+$DONE_OK
+$2_Zigbee(EM357)>
+
+[2020/07/29 04:10:06.998709][I][disconnectDUT] Disconnect DUT success

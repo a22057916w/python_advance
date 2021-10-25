@@ -1,0 +1,189 @@
+[2020/12/11 22:37:46.796770] ========== Start ==========
+[2020/12/11 22:37:46.798777] [I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/12/11 22:37:46.801174] [I][main] GFI20_RF_WriteData.py 3.0.0.2
+[2020/12/11 22:37:46.803217] [I][readINI] ---------- INI ----------
+[2020/12/11 22:37:46.808235] [I][readINI] StartButton_ON = 0
+[2020/12/11 22:37:46.810847] [I][readINI] SKU_Value = 9
+[2020/12/11 22:37:46.812627] [I][readINI] USB4COM_Value = COM3
+[2020/12/11 22:37:46.813631] [I][readINI] COM_Timeout_Value = 1.0
+[2020/12/11 22:37:46.815682] [I][readINI] CalData_ON = 1
+[2020/12/11 22:37:46.818682] [I][readINI] CPLData_ON = 1
+[2020/12/11 22:37:46.820672] [I][readINI] CPLSetType_Value = 1
+[2020/12/11 22:37:46.824726] [I][readINI] Set CPL by INI setting
+[2020/12/11 22:37:46.825748] [I][readINI] CPL = 55340400
+[2020/12/11 22:37:46.829779] [I][readINI] EC = 010000L01
+[2020/12/11 22:37:46.832751] [I][readINI] ---------- INI ----------
+[2020/12/11 22:37:46.834756] ---------- StartTest ----------
+[2020/12/11 22:37:46.838780] [I][chkDUTConnect] Connect to DUT
+[2020/12/11 22:37:46.843017] [I][connectDUT] COM: COM3, BaudRate: 115200
+[2020/12/11 22:37:46.848789] [I][connectDUT] Connect DUT success
+[2020/12/11 22:37:46.851799] [I][chkDUTConnect] Check DUT status
+[2020/12/11 22:37:46.856812] [I][sendCOMCommand] DUT <= AT
+[2020/12/11 22:37:47.360705] [I][sendCOMCommand] Serial buffer size: 10
+[2020/12/11 22:37:48.371253] [I][sendCOMCommand] DUT => AT
+
+OK
+
+[2020/12/11 22:37:48.375004] [I][chkDUTConnect] Success
+[2020/12/11 22:37:48.378016] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:37:48.406990] [I][writeRFData] DUT => AT#M2MLIST
+#M2MLIST: <swm>
+#M2MLIST: <att>
+#M2MLIST: <MOD>
+#M2MLIST: "m2m_config",185
+#M2MLIST: "compal_sn.txt",13
+#M2MLIST: free bytes: 27194368
+
+OK
+[2020/12/11 22:37:48.411209] [I][writeRFData] DUT <= AT#M2MMKDIR="MFG"
+[2020/12/11 22:37:48.431396] [I][writeRFData] DUT => AT#M2MMKDIR="MFG"
+
+OK
+[2020/12/11 22:37:48.435367] [I][writeRFData] DUT <= AT#M2MCHDIR="MFG"
+[2020/12/11 22:37:48.455208] [I][writeRFData] DUT => AT#M2MCHDIR="MFG"
+
+OK
+[2020/12/11 22:37:48.459542] [I][write_file] Write file
+[2020/12/11 22:37:49.523047] [I][write_file] Sizeof file:3277
+[2020/12/11 22:37:49.534093] [I][write_file] DUT <= AT#M2MWRITE="rfcal.dat",3277
+[2020/12/11 22:37:50.544596] [I][write_file] Upload file:D:\GFI20_BRF_ALL_SKU_20201130\MDUT_Plus_3_0_0_15_GFI20_BRF/Log/Temp/6011643700031/SKU9_CalibrationData.dat
+[2020/12/11 22:37:50.551601] [I][wait_for_ok] Wait for writing file finish
+[2020/12/11 22:37:52.667766] [I][verify_WriteFile] Verify file
+[2020/12/11 22:37:53.738002] [I][verify_WriteFile] Reading file rfcal.dat with size 3277 B from the CH
+[2020/12/11 22:37:53.745018] [I][verify_WriteFile] DUT <= AT#M2MREAD="rfcal.dat"
+[2020/12/11 22:37:55.895352] [I][verify_WriteFile] DUT => b'AT#M2MREAD="rfcal.dat"\r\n\r\n<<<;;;; RF Calibration Values\r\nFactory_settings;  ZigBeeTX11;       [0E]\r\nFactory_settings;  ZigBeeTX12;       [0E]\r\nFactory_settings;  ZigBeeTX13;       [0E]\r\nFactory_settings;  ZigBeeTX14;       [0E]\r\nFactory_settings;  ZigBeeTX15;       [0E]\r\nFactory_settings;  ZigBeeTX16;       [0E]\r\nFactory_settings;  ZigBeeTX17;       [0E]\r\nFactory_settings;  ZigBeeTX18;       [0E]\r\nFactory_settings;  ZigBeeTX19;       [0E]\r\nFactory_settings;  ZigBeeTX20;       [0E]\r\nFactory_settings;  ZigBeeTX21;       [0E]\r\nFactory_settings;  ZigBeeTX22;       [0E]\r\nFactory_settings;  ZigBeeTX23;       [0E]\r\nFactory_settings;  ZigBeeTX24;       [0E]\r\nFactory_settings;  ZigBeeTX25;       [0E]\r\nFactory_settings;  ZigBeeTX26;       [0E]\r\nFactory_settings;  ZigbeeRX_LNAON;   [F3]\r\nFactory_settings;  ZigbeeRX_LNAOFF;  [FA]\r\nFactory_settings;  MeshTX_HGMON;     [38]\r\nFactory_settings;  MeshTX_HGMOFF;    [10]\r\nFactory_settings;  MeshRX_HGMON;     [A4]\r\nFactory_settings;  MeshRX_HGMOFF;    [B5]\r\nFactory_settings;  ZigBeeSubGHzTX00;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX01;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX02;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX03;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX04;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX05;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX06;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX07;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX08;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX09;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX10;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX11;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX12;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX13;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX14;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX15;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX16;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX17;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX18;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX19;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX20;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX21;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX22;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX23;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX24;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX25;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX26;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX27;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX28;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX29;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX30;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX31;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX32;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX33;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX34;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX35;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX36;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX37;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX38;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX39;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX40;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX41;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX42;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX43;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX44;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX45;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX46;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX47;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX48;   [0D]\r\nFactory_settings;  ZigBeeSubGHzRX_LNAON;   [EF]\r\nFactory_settings;  ZigBeeSubGHzRX_LNAOFF;  [29]\r\n\r\nOK\r\n'
+[2020/12/11 22:37:55.903473] [I][verify_WriteFile] File is the same
+[2020/12/11 22:37:55.906613] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:37:55.933593] [I][writeRFData] DUT => AT#M2MLIST
+#M2MLIST: <.>
+#M2MLIST: <..>
+#M2MLIST: "rfcal.dat",3277
+#M2MLIST: free bytes: 27190784
+
+OK
+[2020/12/11 22:37:55.937579] [I][writeRFData] DUT <= AT#M2MCHDIR=".."
+[2020/12/11 22:37:55.955047] [I][writeRFData] DUT => AT#M2MCHDIR=".."
+
+OK
+[2020/12/11 22:37:55.959056] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:37:55.986682] [I][writeRFData] DUT => AT#M2MLIST
+
+#M2MLIST: <swm>
+#M2MLIST: <att>
+#M2MLIST: <MOD>
+#M2MLIST: "m2m_config",185
+#M2MLIST: "compal_sn.txt",13
+#M2MLIST: <MFG>
+#M2MLIST: free bytes: 27190784
+
+OK
+[2020/12/11 22:37:55.990654] [I][writeRFData] DUT <= AT#M2MCHDIR="MFG"
+[2020/12/11 22:37:56.007850] [I][writeRFData] DUT => AT#M2MCHDIR="MFG"
+
+OK
+[2020/12/11 22:37:56.012365] [I][write_file] Write file
+[2020/12/11 22:37:57.070965] [I][write_file] Sizeof file:3277
+[2020/12/11 22:37:57.077325] [I][write_file] DUT <= AT#M2MWRITE="rfcal.dup",3277
+[2020/12/11 22:37:58.082235] [I][write_file] Upload file:D:\GFI20_BRF_ALL_SKU_20201130\MDUT_Plus_3_0_0_15_GFI20_BRF/Log/Temp/6011643700031/SKU9_CalibrationData.dat
+[2020/12/11 22:37:58.090718] [I][wait_for_ok] Wait for writing file finish
+[2020/12/11 22:38:00.207588] [I][verify_WriteFile] Verify file
+[2020/12/11 22:38:01.273725] [I][verify_WriteFile] Reading file rfcal.dup with size 3277 B from the CH
+[2020/12/11 22:38:01.279914] [I][verify_WriteFile] DUT <= AT#M2MREAD="rfcal.dup"
+[2020/12/11 22:38:03.426907] [I][verify_WriteFile] DUT => b'AT#M2MREAD="rfcal.dup"\r\n\r\n<<<;;;; RF Calibration Values\r\nFactory_settings;  ZigBeeTX11;       [0E]\r\nFactory_settings;  ZigBeeTX12;       [0E]\r\nFactory_settings;  ZigBeeTX13;       [0E]\r\nFactory_settings;  ZigBeeTX14;       [0E]\r\nFactory_settings;  ZigBeeTX15;       [0E]\r\nFactory_settings;  ZigBeeTX16;       [0E]\r\nFactory_settings;  ZigBeeTX17;       [0E]\r\nFactory_settings;  ZigBeeTX18;       [0E]\r\nFactory_settings;  ZigBeeTX19;       [0E]\r\nFactory_settings;  ZigBeeTX20;       [0E]\r\nFactory_settings;  ZigBeeTX21;       [0E]\r\nFactory_settings;  ZigBeeTX22;       [0E]\r\nFactory_settings;  ZigBeeTX23;       [0E]\r\nFactory_settings;  ZigBeeTX24;       [0E]\r\nFactory_settings;  ZigBeeTX25;       [0E]\r\nFactory_settings;  ZigBeeTX26;       [0E]\r\nFactory_settings;  ZigbeeRX_LNAON;   [F3]\r\nFactory_settings;  ZigbeeRX_LNAOFF;  [FA]\r\nFactory_settings;  MeshTX_HGMON;     [38]\r\nFactory_settings;  MeshTX_HGMOFF;    [10]\r\nFactory_settings;  MeshRX_HGMON;     [A4]\r\nFactory_settings;  MeshRX_HGMOFF;    [B5]\r\nFactory_settings;  ZigBeeSubGHzTX00;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX01;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX02;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX03;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX04;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX05;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX06;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX07;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX08;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX09;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX10;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX11;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX12;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX13;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX14;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX15;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX16;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX17;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX18;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX19;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX20;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX21;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX22;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX23;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX24;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX25;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX26;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX27;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX28;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX29;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX30;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX31;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX32;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX33;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX34;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX35;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX36;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX37;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX38;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX39;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX40;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX41;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX42;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX43;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX44;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX45;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX46;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX47;   [0D]\r\nFactory_settings;  ZigBeeSubGHzTX48;   [0D]\r\nFactory_settings;  ZigBeeSubGHzRX_LNAON;   [EF]\r\nFactory_settings;  ZigBeeSubGHzRX_LNAOFF;  [29]\r\n\r\nOK\r\n'
+[2020/12/11 22:38:03.435918] [I][verify_WriteFile] File is the same
+[2020/12/11 22:38:03.438887] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:38:03.467591] [I][writeRFData] DUT => AT#M2MLIST
+#M2MLIST: <.>
+#M2MLIST: <..>
+#M2MLIST: "rfcal.dat",3277
+#M2MLIST: "rfcal.dup",3277
+#M2MLIST: free bytes: 27187200
+
+OK
+[2020/12/11 22:38:03.471988] [I][writeRFData] DUT <= AT#M2MCHDIR=".."
+[2020/12/11 22:38:03.490052] [I][writeRFData] DUT => AT#M2MCHDIR=".."
+
+OK
+[2020/12/11 22:38:03.494161] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:38:03.523487] [I][writeRFData] DUT => AT#M2MLIST
+
+#M2MLIST: <swm>
+#M2MLIST: <att>
+#M2MLIST: <MOD>
+#M2MLIST: "m2m_config",185
+#M2MLIST: "compal_sn.txt",13
+#M2MLIST: <MFG>
+#M2MLIST: free bytes: 27187200
+
+OK
+[2020/12/11 22:38:03.527500] [I][writeRFData] DUT <= AT#M2MCHDIR="MFG"
+[2020/12/11 22:38:03.546952] [I][writeRFData] DUT => AT#M2MCHDIR="MFG"
+
+OK
+[2020/12/11 22:38:03.551955] [I][write_file] Write file
+[2020/12/11 22:38:04.607584] [I][write_file] Sizeof file:10
+[2020/12/11 22:38:04.615612] [I][write_file] DUT <= AT#M2MWRITE="CPLversion.dat",10
+[2020/12/11 22:38:05.625908] [I][write_file] Upload file:D:\GFI20_BRF_ALL_SKU_20201130\MDUT_Plus_3_0_0_15_GFI20_BRF/Log/Temp/6011643700031/SKU9_CPLversion.dat
+[2020/12/11 22:38:05.638941] [I][wait_for_ok] Wait for writing file finish
+[2020/12/11 22:38:07.772766] [I][verify_WriteFile] Verify file
+[2020/12/11 22:38:08.842591] [I][verify_WriteFile] Reading file CPLversion.dat with size 10 B from the CH
+[2020/12/11 22:38:08.849801] [I][verify_WriteFile] DUT <= AT#M2MREAD="CPLversion.dat"
+[2020/12/11 22:38:10.968698] [I][verify_WriteFile] DUT => b'AT#M2MREAD="CPLversion.dat"\r\n\r\n<<<55340400\r\n\r\nOK\r\n'
+[2020/12/11 22:38:10.975725] [I][verify_WriteFile] File is the same
+[2020/12/11 22:38:10.981405] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:38:11.009388] [I][writeRFData] DUT => AT#M2MLIST
+#M2MLIST: <.>
+#M2MLIST: <..>
+#M2MLIST: "rfcal.dat",3277
+#M2MLIST: "rfcal.dup",3277
+#M2MLIST: "CPLversion.dat",10
+#M2MLIST: free bytes: 27186688
+
+OK
+[2020/12/11 22:38:11.014366] [I][writeRFData] DUT <= AT#M2MCHDIR=".."
+[2020/12/11 22:38:11.032089] [I][writeRFData] DUT => AT#M2MCHDIR=".."
+
+OK
+[2020/12/11 22:38:11.036103] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:38:11.064319] [I][writeRFData] DUT => AT#M2MLIST
+
+#M2MLIST: <swm>
+#M2MLIST: <att>
+#M2MLIST: <MOD>
+#M2MLIST: "m2m_config",185
+#M2MLIST: "compal_sn.txt",13
+#M2MLIST: <MFG>
+#M2MLIST: free bytes: 27186688
+
+OK
+[2020/12/11 22:38:11.069300] [I][writeRFData] DUT <= AT#M2MCHDIR="MFG"
+[2020/12/11 22:38:11.087466] [I][writeRFData] DUT => AT#M2MCHDIR="MFG"
+
+OK
+[2020/12/11 22:38:11.091482] [I][write_file] Write file
+[2020/12/11 22:38:12.153055] [I][write_file] Sizeof file:10
+[2020/12/11 22:38:12.160380] [I][write_file] DUT <= AT#M2MWRITE="CPLversion.dup",10
+[2020/12/11 22:38:13.165774] [I][write_file] Upload file:D:\GFI20_BRF_ALL_SKU_20201130\MDUT_Plus_3_0_0_15_GFI20_BRF/Log/Temp/6011643700031/SKU9_CPLversion.dat
+[2020/12/11 22:38:13.173775] [I][wait_for_ok] Wait for writing file finish
+[2020/12/11 22:38:15.292445] [I][verify_WriteFile] Verify file
+[2020/12/11 22:38:16.351486] [I][verify_WriteFile] Reading file CPLversion.dup with size 10 B from the CH
+[2020/12/11 22:38:16.358510] [I][verify_WriteFile] DUT <= AT#M2MREAD="CPLversion.dup"
+[2020/12/11 22:38:18.484727] [I][verify_WriteFile] DUT => b'AT#M2MREAD="CPLversion.dup"\r\n\r\n<<<55340400\r\n\r\nOK\r\n'
+[2020/12/11 22:38:18.491930] [I][verify_WriteFile] File is the same
+[2020/12/11 22:38:18.495944] [I][writeRFData] DUT <= AT#M2MLIST
+[2020/12/11 22:38:18.534934] [I][writeRFData] DUT => AT#M2MLIST
+#M2MLIST: <.>
+#M2MLIST: <..>
+#M2MLIST: "rfcal.dat",3277
+#M2MLIST: "rfcal.dup",3277
+#M2MLIST: "CPLversion.dat",10
+#M2MLIST: "CPLversion.dup",10
+#M2MLIST: free bytes: 27186176
+
+OK
+[2020/12/11 22:38:18.540585] [I][writeRFData] DUT <= AT#M2MCHDIR=".."
+[2020/12/11 22:38:18.559143] [I][writeRFData] DUT => AT#M2MCHDIR=".."
+
+OK
+[2020/12/11 22:38:18.571095] [I][disconnectDUT] Disconnect DUT success
+[2020/12/11 22:38:18.577114] [I][TestResult] Test Pass!

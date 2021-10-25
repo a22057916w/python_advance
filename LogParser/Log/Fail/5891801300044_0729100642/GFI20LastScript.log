@@ -1,0 +1,59 @@
+[2020/07/29 10:06:17.276305]========== Start ==========
+[2020/07/29 10:06:17.279312][I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/07/29 10:06:17.283330][I][main] GFI20LastScript.py 3.0.0.6
+[2020/07/29 10:06:17.286369][I][readINI] ---------- INI ----------
+[2020/07/29 10:06:17.289340][I][readINI] StartButton_ON = False
+[2020/07/29 10:06:17.291344][I][readINI] PowerSupplier = 66321B
+[2020/07/29 10:06:17.293671][I][readINI] PowerSupplierAddr = GPIB0::5::INSTR
+[2020/07/29 10:06:17.295680][I][readINI] DigitalMeter = 8261A
+[2020/07/29 10:06:17.297684][I][readINI] DigitalMeter_COMPort = 1
+[2020/07/29 10:06:17.300728][I][readINI] ELoadTestState = False
+[2020/07/29 10:06:17.305669][I][readINI] Voltage_Ch = 107
+[2020/07/29 10:06:17.307685][I][readINI] Voltage_Max = 0.3
+[2020/07/29 10:06:17.315405][I][readINI] Voltage_Min = 0
+[2020/07/29 10:06:17.317862][I][readINI] DetectVoltage = 0.3
+[2020/07/29 10:06:17.319870][I][readINI] TestTimeout = 50.0
+[2020/07/29 10:06:17.321874][I][readINI] LeastTestTime = 2.5
+[2020/07/29 10:06:17.325933][I][readINI] EC = 010000S03
+[2020/07/29 10:06:17.328894][I][readINI] ---------- INI ----------
+[2020/07/29 10:06:17.332009]---------- startTest ----------
+[2020/07/29 10:06:17.335063]================ Control DM ================
+[2020/07/29 10:06:17.339060]==================Setup digital meter==================
+[2020/07/29 10:06:17.351858][I][setupDigitalMeter] Get visa resource manager...
+[2020/07/29 10:06:17.381117][I][setupDigitalMeter] Get visa resource instrument...
+[2020/07/29 10:06:17.397607][I][setupDigitalMeter] Output = GWInstek,GDM8261A,GEU860209,1.03
+[2020/07/29 10:06:17.399614][I][setupDigitalMeter] Connect to digital meter PASS
+[2020/07/29 10:06:17.403624]==================Check Vol==================
+[2020/07/29 10:06:17.406847][I][CheckVoltage] Detect Channel = [107]
+[2020/07/29 10:06:17.408908][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/29 10:06:17.412876][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/29 10:06:17.743496][I][CheckVoltage] Output = SCAN OK
+[2020/07/29 10:06:17.905128][I][CheckVoltage] CH107 = 0.806 V
+[2020/07/29 10:06:17.909153][I][startTest] First detect voltage : 0.806
+[2020/07/29 10:06:17.912147]================ Close PS ================
+[2020/07/29 10:06:18.159446][I][startTest] Close power supplier sccucessfully!!
+[2020/07/29 10:06:18.163469]================ Control DM ================
+[2020/07/29 10:06:18.170484]==================Check Vol==================
+[2020/07/29 10:06:18.173460][I][CheckVoltage] Detect Channel = [107]
+[2020/07/29 10:06:18.177472][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/29 10:06:18.181546][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/29 10:06:18.512230][I][CheckVoltage] Output = SCAN OK
+[2020/07/29 10:06:18.673329][I][CheckVoltage] CH107 = 0.704 V
+[2020/07/29 10:06:18.678399][W][startTest] Not detect voltage decrease 0.3V!!
+[2020/07/29 10:06:18.681420]==================Check Vol==================
+[2020/07/29 10:06:18.686425][I][CheckVoltage] Detect Channel = [107]
+[2020/07/29 10:06:18.689431][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/29 10:06:18.694450][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/29 10:06:18.955268][I][CheckVoltage] Output = SCAN OK
+[2020/07/29 10:06:19.116368][I][CheckVoltage] CH107 = -0.000 V
+[2020/07/29 10:06:19.120489][I][startTest] Detect voltage decrease 0.3V succesfully!
+[2020/07/29 10:06:19.123499]==================Check Vol==================
+[2020/07/29 10:06:19.128519][I][CheckVoltage] Detect Channel = [107]
+[2020/07/29 10:06:19.132524][I][CheckVoltage] Channel Max = [0.3]
+[2020/07/29 10:06:19.135561][I][CheckVoltage] Channel Min = [0.0]
+[2020/07/29 10:06:19.397442][I][CheckVoltage] Output = SCAN OK
+[2020/07/29 10:06:19.557973][I][CheckVoltage] CH107 = 0.000 V
+[2020/07/29 10:06:19.561959][I][CheckVoltage] 0.0 <= 0.0 <= 0.3 - PASS
+[2020/07/29 10:06:19.565959][E][startTest] Voltage is not normal consumption in 50.0 sec!!
+[2020/07/29 10:06:39.185563][I][pressOKBtn] User click OK button
+[2020/07/29 10:06:39.213772][I][TestResult] Test Fail! Voltage is not normal consumption in 50.0 sec!!
