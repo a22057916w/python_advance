@@ -23,6 +23,8 @@
 import re
 import os
 import pandas as pd
+import codecs
+import time
 
 # [Main]
 g_strVersion = "3.0.0.1"
@@ -37,7 +39,7 @@ def getDateTimeFormat():
 
 def printLog(strPrintLine):
     strFileName = os.path.basename(__file__).split('.')[0]
-    fileLog = codecs.open(g_strLogPath, 'a', "utf-8")
+    fileLog = codecs.open(g_strSNLog, 'a', "utf-8")
     print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
@@ -45,23 +47,22 @@ def printLog(strPrintLine):
 def readLog():
     # ------------ find the target file --------------
     try:
-        # first layer
+        # get file names of TryingLog (first layer)
         listSNLogs = os.listdir(g_LogDir)
-        #print(listSNLogs)
-        for strSNLogDir in listSNLogs:
-            #dictLogInfo["SN"] = strSNLogDir.split("_")[0]
-            strLogPath = os.path.join(g_LogDir, strSNLogDir)
-            print(strLogPath)
-            # second layer
-            for strLog in os.listdir(strLogPath):
-                #print(strLog)
 
-                strLog = os.path.join(strLogPath, strLog)
-                reMatch = re.fullmatch("^.*RF_LTE\.log", strLog, re.I)  #!
-                #strLTELog = os.path.join(SNLogPath, strLog)
+        for strSNDir in listSNLogs:
+            strSNLog = os.path.join(g_LogDir, strSNDir)
+
+            # iterate through log files in a SN folder (second layer)
+            for strLog in os.listdir(strSNLog):
+                strLog = os.path.join(strSNLog, strLog)
+
+                # parse GFI20_RF_LTE.log files
+                listLTE = []
+                reMatch = re.fullmatch("^.*RF_LTE\.log", strLog, re.I)
                 if(reMatch != None):
                     print(strLog)
-                    #parseLTE(strLTELog, dictLogInfo)
+                    parseLTE(strLog)
                     break
                 else:
                     pass
@@ -72,9 +73,9 @@ def readLog():
         print(e)
 
 # ----------- read and parse target log--------
-def parseLTE(strLTELog, dictLogInfo):
+def parseLTE(strLTEPath):
     #print("SDfsdfsdf")
-    dictLTELogInfo = {
+    dictLTE = {
         "dBm_CH9750" : None,
         "dBm_CH2787" : None,
         "dBm_2G_CH124" : None,
@@ -84,25 +85,38 @@ def parseLTE(strLTELog, dictLogInfo):
         "dBm_CH124" : None }
 
     listLTElogs = []
-    with open(strLTELog) as logFile:
-        blocks = re.split('\-* LTE_[2|3]G Freq.*\-*' ,logFile.read())
+    nPowerCase = 1
+    nCurrentCase = 1
+    with open(strLTEPath, encoding='big5') as log:  # big5 for windows
+        content = log.readlines()
+        for line in content:
+            strPower = "-1e9"
+            strCurrent = "-1e9"
 
-        # idx 2-> CH2787, idx 3->CH9750, idx 4-> CH124, idx 5-> dBm_Ch124
-        for i in range (0, 1):
-            #print(blocks[i].split('\n'))
-            str_dBm = None
-            strCurrent = None
-            #print(type(blocks[2]))
-            lines = blocks[2].split("\n")
-            """
-            for line in blocks.split('\r\n'):
-                #print(line)
-                if "Power" in line:
-                    #print(line)
-                    str_dBm = line.split(": ")[-1]
-                    #print(str_dBm)
-                    break
-            """
+            if "Power: " in line:
+                # get the figure of the line "Power: 31.718\n"
+                strPower = line.split(": ")[1].strip(" \n")
+                print(strPower)
+                if nPowerCase == 1:
+                    dictLTE["dBm_CH2787"] = strPower
+                elif nPowerCase == 2:
+                    dictLTE["dBm_CH9750"] = strPower
+                elif nPowerCase == 3:
+                    dictLTE["dBm_2G_CH124"] = strPower
+                nPowerCase += 1
+
+            if "Current: " in line:
+                strCurrent = line.split(": ")[1].strip(" A\n")
+                print(strCurrent)
+                if nCurrentCase == 1:
+                    dictLTE["Current_mA_3G_CH2787"] = str(eval(strCurrent) * 1000)
+                elif nCurrentCase == 2:
+                    dictLTE["Current_mA_3G_CH9750"] = str(eval(strCurrent) * 1000)
+                elif nCurrentCase == 3:
+                    dictLTE["Current_mA_2G_CH124"] =str(eval(strCurrent) * 1000)
+                nCurrentCase += 1
+
+    print(dictLTE)
 
 if __name__ == "__main__":
     readLog()
