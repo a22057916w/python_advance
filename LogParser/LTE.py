@@ -43,11 +43,66 @@ def printLog(strPrintLine):
     fileLog.close()
 
 def readLog():
-    # read first layer of log dir
-    listSnLogs = os.listdir(g_LogDir)
+    # ------------ find the target file --------------
+    try:
+        # first layer
+        listSNLogs = os.listdir(g_LogDir)
+        #print(listSNLogs)
+        for strSNLogDir in listSNLogs:
+            #dictLogInfo["SN"] = strSNLogDir.split("_")[0]
+            strLogPath = os.path.join(g_LogDir, strSNLogDir)
+            print(strLogPath)
+            # second layer
+            for strLog in os.listdir(strLogPath):
+                #print(strLog)
 
-    for
-    reMatch = re.fullmatch("^.*\.(MP3|MP4|WAV)", strVoiceName, re.I)
+                strLog = os.path.join(strLogPath, strLog)
+                reMatch = re.fullmatch("^.*RF_LTE\.log", strLog, re.I)  #!
+                #strLTELog = os.path.join(SNLogPath, strLog)
+                if(reMatch != None):
+                    print(strLog)
+                    #parseLTE(strLTELog, dictLogInfo)
+                    break
+                else:
+                    pass
+                #print("____________")
+
+            break
+    except Exception as e:
+        print(e)
+
+# ----------- read and parse target log--------
+def parseLTE(strLTELog, dictLogInfo):
+    #print("SDfsdfsdf")
+    dictLTELogInfo = {
+        "dBm_CH9750" : None,
+        "dBm_CH2787" : None,
+        "dBm_2G_CH124" : None,
+        "Current_mA_3G_CH9750" : None,
+        "Current_mA_3G_CH2787" : None,
+        "Current_mA_2G_CH124" : None,
+        "dBm_CH124" : None }
+
+    listLTElogs = []
+    with open(strLTELog) as logFile:
+        blocks = re.split('\-* LTE_[2|3]G Freq.*\-*' ,logFile.read())
+
+        # idx 2-> CH2787, idx 3->CH9750, idx 4-> CH124, idx 5-> dBm_Ch124
+        for i in range (0, 1):
+            #print(blocks[i].split('\n'))
+            str_dBm = None
+            strCurrent = None
+            #print(type(blocks[2]))
+            lines = blocks[2].split("\n")
+            """
+            for line in blocks.split('\r\n'):
+                #print(line)
+                if "Power" in line:
+                    #print(line)
+                    str_dBm = line.split(": ")[-1]
+                    #print(str_dBm)
+                    break
+            """
 
 if __name__ == "__main__":
     readLog()
