@@ -22,6 +22,7 @@
 ##==============================================================================
 import re
 import os
+import pandas as pd
 
 # [Main]
 g_strVersion = "3.0.0.1"
@@ -41,4 +42,12 @@ def printLog(strPrintLine):
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
+def readLog():
+    # read first layer of log dir
+    listSnLogs = os.listdir(g_LogDir)
+
+    for
+    reMatch = re.fullmatch("^.*\.(MP3|MP4|WAV)", strVoiceName, re.I)
+
 if __name__ == "__main__":
+    readLog()
