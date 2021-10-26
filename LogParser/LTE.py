@@ -84,7 +84,7 @@ def parseLTE(strLTEPath):
                 #strPower = "-1e9"
                 #strCurrent = "-1e9"
 
-                if "Power: " in line:
+                if re.search("Power: [0-9]*\.[0-9]*", line) != None:
                     # get the figure of the line "Power: 31.718\n"
                     strPower = line.split(": ")[1].strip(" \n")
                     #print(strPower)
@@ -96,7 +96,7 @@ def parseLTE(strLTEPath):
                         dictLTE["dBm_2G_CH124"] = strPower
                     nPowerCase += 1
 
-                if "Current: " in line:
+                if re.search("Current: [0-9]*\.[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.246 A\n"
                     strCurrent = line.split(": ")[1].strip(" A\n")
                     #print(strCurrent)
@@ -149,7 +149,7 @@ def parseZigbee(strZigBeePath):
                         dictZigbee["Power_dBm_CH24"] = strPower
                     nPowerCase += 1
 
-                if "Current: " in line:
+                if re.search("Current: [0-9]*\.[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.081 A\n"
                     strCurrent = line.split(": ")[1].strip(" A\n")
                     #print(strCurrent)
@@ -190,6 +190,21 @@ def save(listLTE, listZigbee):
 
     #print(dfLogInfo)
 
+def mergeLogs(listLTE, listZigbee):
+    try:
+        printLog("[I][mergeLogs] ------- Merging two Log data -------")
+        # listLTE and listZigbee both has same length
+        listInfo = [None] * len(listLTE)
+        for i in range (0, len(listLTE)):
+            listLTE[i].update(listZigbee[i])
+            listInfo[i] = listLTE[i]
+        printLog("[I][mergeLogs] ------- Merged two Log data -------")
+        return listInfo
+    except Exception as e:
+        printLog("[E][mergeLogs] Unexpected Error: " + str(e))
+        return None
+
+# --------------- print log functions ----------------------
 
 def getDateTimeFormat():
     strDateTime = "[%s]" % (time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
@@ -218,10 +233,13 @@ if __name__ == "__main__":
         listSNLogs = os.listdir(g_strLogDir)
         # iterate through log files in a SN folder (second layer)
         listLTE, listZigbee = parseLog(listSNLogs)
+        # merge data from two different log files
+        listInfo = mergeLogs(listLTE, listZigbee)
 
-
-        print(listLTE)
+        #print(listLTE)
 
         save(listLTE, listZigbee)
+
     except Exception as e:
         print(e)
+    printLog("========== End ==========")
