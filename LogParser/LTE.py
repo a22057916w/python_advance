@@ -30,7 +30,7 @@ import time
 g_strVersion = "3.0.0.1"
 
 #[LogPath]
-g_LogDir = "./singleLog"
+g_LogDir = "./TryingLog"
 
 
 def getDateTimeFormat():
