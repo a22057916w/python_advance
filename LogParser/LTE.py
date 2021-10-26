@@ -248,7 +248,6 @@ if __name__ == "__main__":
     printLog("[I][main] Python " + sys.version)
     printLog("[I][main] %s.py %s" % (g_strFileName, g_strVersion))
 
-    listLTE, listZigbee = [], []
     # ------------ find the target file --------------
     try:
         # get directory names of TryingLog (first layer)
