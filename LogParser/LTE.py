@@ -84,7 +84,7 @@ def parseLTE(strLTEPath):
                 #strPower = "-1e9"
                 #strCurrent = "-1e9"
 
-                if re.search("Power: [0-9]*\.[0-9]*", line) != None:
+                if re.search("Power: [+-]?[0-9]*\.?[0-9]*", line) != None:
                     # get the figure of the line "Power: 31.718\n"
                     strPower = line.split(": ")[1].strip(" \n")
                     #print(strPower)
@@ -96,7 +96,7 @@ def parseLTE(strLTEPath):
                         dictLTE["dBm_2G_CH124"] = strPower
                     nPowerCase += 1
 
-                if re.search("Current: [0-9]*\.[0-9]* A", line) != None:
+                if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.246 A\n"
                     strCurrent = line.split(": ")[1].strip(" A\n")
                     #print(strCurrent)
@@ -108,9 +108,10 @@ def parseLTE(strLTEPath):
                         dictLTE["Current_mA_2G_CH124"] = str(eval(strCurrent) * 1000)
                     nCurrentCase += 1
 
-                if "Rx RSSI: " in line:
+                if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    strRSSI = line.split(": ")[1].strip(" dbm\n")
+                    print(line)
+                    strRSSI = line.split(": ")[1].strip(" dBm\n")
                     dictLTE["dBm_CH124"] = strRSSI
                     break
     except Exception as e:
@@ -137,7 +138,7 @@ def parseZigbee(strZigBeePath):
                 #strPower = "-1e9"
                 #strCurrent = "-1e9"
 
-                if re.search("Power: [0-9]*\.[0-9]* dBm", line) != None:
+                if re.search("Power: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Power: 8.817 dBm\n"
                     strPower = line.split(": ")[1].strip(" dBm\n")
                     #print(strPower)
@@ -149,7 +150,7 @@ def parseZigbee(strZigBeePath):
                         dictZigbee["Power_dBm_CH24"] = strPower
                     nPowerCase += 1
 
-                if re.search("Current: [0-9]*\.[0-9]* A", line) != None:
+                if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.081 A\n"
                     strCurrent = line.split(": ")[1].strip(" A\n")
                     #print(strCurrent)
@@ -161,7 +162,7 @@ def parseZigbee(strZigBeePath):
                         dictZigbee["Current_mA_CH24"] = str(eval(strCurrent) * 1000)
                     nCurrentCase += 1
 
-                if "Rx RSSI: " in line:
+                if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
                     strRSSI = line.split(": ")[1].strip(" dBm\n")
                     if nLNACase == 1:
@@ -241,5 +242,5 @@ if __name__ == "__main__":
         save(listLTE, listZigbee)
 
     except Exception as e:
-        print(e)
+        printLog("[E][main] Unexpected Error: " + str(e))
     printLog("========== End ==========")
