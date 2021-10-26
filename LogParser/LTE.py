@@ -7,17 +7,16 @@
 ##    Compal STiD NPSD Test Program Release Notification.
 ##
 ##    ModuleName:
-##            FFA60Audio.py
+##            LTE.py
 ##
 ##    Abstract:
-##            Test audio(Mic) reacording with sox.exe and tool(dtmf_test)
-##            provided by client
+##            Parsing log info to a excel with 4 sheets 
 ##
 ##    Author:
-##            30-Sep-2021 Willy Chen
+##            25-Oct-2021 Willy Chen
 ##
 ##    Revision History:
-##            Rev 1.0.0.1 30-Sep-2021 Willy
+##            Rev 1.0.0.1 25-Oct-2021 Willy
 ##                    First create.
 ##==============================================================================
 import re
