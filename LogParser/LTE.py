@@ -111,7 +111,6 @@ def parseLTE(strLTEPath):
 
                 if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    print(line)
                     strRSSI = line.split(": ")[1].strip(" dBm\n")
                     dictLTE["dBm_CH124"] = strRSSI
                     break
