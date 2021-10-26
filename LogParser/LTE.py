@@ -26,6 +26,7 @@ import sys
 import pandas as pd
 import codecs
 import time
+import configparser
 
 # [Main]
 g_strVersion = "3.0.0.1"
@@ -204,6 +205,25 @@ def mergeLogs(listLTE, listZigbee):
     except Exception as e:
         printLog("[E][mergeLogs] Unexpected Error: " + str(e))
         return None
+
+def readINI(strINIPath, nMethodIndex):
+        try:
+            config = configparser.ConfigParser()
+            config.read(strINIPath)
+            strMethod = 'Method%s' % nMethodIndex
+            printLog("[I][readINI] ---------- INI ----------")
+
+            self.bStartButton = bool(int(config.get(strMethod, 'StartButton_ON')))
+            printLog("[I][readINI] StartButton_ON = %s" % self.bStartButton)
+
+            self.strErrorCode = config.get(strMethod, 'EC')
+            printLog("[I][readINI] EC = %s" % self.strErrorCode)
+            printLog("[I][readINI] ---------- INI ----------")
+            return True
+        except Exception as e:
+            printLog("[E][readINI] Error: %s" % str(e))
+            self.strFailReasonTemp = "Read INI error: %s" % str(e)
+            return False
 
 # ------------------ print log functions ----------------------
 
