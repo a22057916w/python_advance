@@ -239,8 +239,10 @@ def printLog(strPrintLine):
 
 
 if __name__ == "__main__":
-    global g_strFileName    # log file of the program
+    global g_strFileName, g_strINIPath, g_nMethodIndex
     g_strFileName = os.path.basename(__file__).split('.')[0]
+    g_strINIPath = os.path.join(os.getcwd(), g_strFileName + ".ini")
+    g_nMethodIndex = 1
 
     printLog("========== Start ==========")
     printLog("[I][main] Python " + sys.version)
@@ -255,7 +257,6 @@ if __name__ == "__main__":
         listLTE, listZigbee = parseLog(listSNLogs)
         # merge data from two different log files
         listInfo = mergeLogs(listLTE, listZigbee)
-
 
 
         save(listLTE, listZigbee)
