@@ -30,7 +30,7 @@ import time
 g_strVersion = "3.0.0.1"
 
 #[LogPath]
-g_LogDir = "./TryingLog"
+g_LogDir = "./singleLog"
 
 
 def getDateTimeFormat():
@@ -141,16 +141,17 @@ def parseZigbee(strZigBeePath):
                 #strPower = "-1e9"
                 #strCurrent = "-1e9"
 
-                if "Power: " in line:
+                if re.search("Power: [0-9]*\.[0-9]* dBm", line) != None:
+                    print(line)
                     # get the figure of the line "Power: 8.817 dBm\n"
                     strPower = line.split(": ")[1].strip(" dBm\n")
                     #print(strPower)
                     if nPowerCase == 1:
-                        dictLTE["Power_dBm_CH15"] = strPower
+                        dictZigbee["Power_dBm_CH15"] = strPower
                     elif nPowerCase == 2:
-                        dictLTE["Power_dBm_CH21"] = strPower
+                        dictZigbee["Power_dBm_CH21"] = strPower
                     elif nPowerCase == 3:
-                        dictLTE["Power_dBm_CH24"] = strPower
+                        dictZigbee["Power_dBm_CH24"] = strPower
                     nPowerCase += 1
 
                 if "Current: " in line:
@@ -158,11 +159,11 @@ def parseZigbee(strZigBeePath):
                     strCurrent = line.split(": ")[1].strip(" A\n")
                     #print(strCurrent)
                     if nCurrentCase == 1:
-                        dictLTE["Current_mA_CH15"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH15"] = str(eval(strCurrent) * 1000)
                     elif nCurrentCase == 2:
-                        dictLTE["Current_mA_CH21"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH21"] = str(eval(strCurrent) * 1000)
                     elif nCurrentCase == 3:
-                        dictLTE["Current_mA_CH24"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH24"] = str(eval(strCurrent) * 1000)
                     nCurrentCase += 1
 
     except Exception as e:
