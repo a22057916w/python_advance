@@ -117,6 +117,7 @@ def parseLTE(strLTEPath):
                 nCurrentCase += 1
 
             if "Rx RSSI: " in line:
+                # get the figure of the line "Rx RSSI: -15 dBm\n"
                 strRSSI = line.split(": ")[1].strip(" dbm\n")
                 dictLTE["dBm_CH124"] = strRSSI
                 break
@@ -133,8 +134,8 @@ def parseZigbee(strZigBeePath):
         "Current_mA_CH21" : None,
         "Current_mA_CH24" : None }
     try:
-        nPowerCase = 1
-        nCurrentCase = 1
+        nPowerCase , nCurrentCase, nLNACase = 1, 1, 1
+
         with open(strZigBeePath, encoding="big5") as Zigbee:    # big5 for windows
             content = Zigbee.readlines()
             for line in content:
@@ -142,7 +143,6 @@ def parseZigbee(strZigBeePath):
                 #strCurrent = "-1e9"
 
                 if re.search("Power: [0-9]*\.[0-9]* dBm", line) != None:
-                    print(line)
                     # get the figure of the line "Power: 8.817 dBm\n"
                     strPower = line.split(": ")[1].strip(" dBm\n")
                     #print(strPower)
@@ -166,10 +166,65 @@ def parseZigbee(strZigBeePath):
                         dictZigbee["Current_mA_CH24"] = str(eval(strCurrent) * 1000)
                     nCurrentCase += 1
 
+                if "Rx RSSI: " in line:
+                    # get the figure of the line "Rx RSSI: -15 dBm\n"
+                    strRSSI = line.split(": ")[1].strip(" dBm\n")
+                    if nLNACase == 1:
+                        dictZigbee["dBm_LNA_ON"] = strRSSI
+                    elif nLNACase == 2:
+                        dictZigbee["dBm_LNA_Off"] = strRSSI
+                        break
+                    nLNACase += 1
+
     except Exception as e:
         print(str(e))
 
-    print(dictZigbee)
+    return(dictZigbee)
+
+def save(listLTE, listZigbee):
+    # listLTE and listZigbee both has same length
+    listInfo = [None] * len(listLTE)
+    #print(listLTE)
+    for i in range (0, len(listLTE)):
+        listLTE[i].update(listZigbee[i])
+        listInfo[i] = listLTE[i]
+    dfLogInfo = pd.DataFrame(listInfo)
+
+    writer = pd.ExcelWriter("test.xlsx", engine='xlsxwriter')
+    dfLogInfo.to_excel(writer)
+    writer.save()
+
+    print(dfLogInfo)
 
 if __name__ == "__main__":
-    readLog()
+    listLTE, listZigbee = [], []
+    dictInfo = {"SN" : None}
+    # ------------ find the target file --------------
+    try:
+        # get file names of TryingLog (first layer)
+        listSNLogs = os.listdir(g_LogDir)
+
+        for strSNDir in listSNLogs:
+            strSNLog = os.path.join(g_LogDir, strSNDir)
+
+            # iterate through log files in a SN folder (second layer)
+            for strLog in os.listdir(strSNLog):
+                strLog = os.path.join(strSNLog, strLog)
+                # parse GFI20_RF_LTE.log files
+                reMatch = re.fullmatch("^.*RF_LTE\.log", strLog)
+                if(reMatch != None):
+                    dictLTE = parseLTE(strLog)
+                    dictLTE.update({"SN" : strSNDir})   # update() for concat two dicts
+                    listLTE.append(dictLTE)
+                # parse GFI20_RF_Zigbee.log files
+                reMatch = re.fullmatch("^.*RF_Zigbee\.log", strLog)
+                if(reMatch != None):
+                    dictZigbee = parseZigbee(strLog)
+                    dictZigbee.update({"SN" : strSNDir})
+                    listZigbee.append(dictZigbee)
+
+            #print(listLTE)
+
+        save(listLTE, listZigbee)
+    except Exception as e:
+        print(e)
