@@ -29,9 +29,8 @@ import time
 # [Main]
 g_strVersion = "3.0.0.1"
 
-#[LogPath]
-g_LogDir = "./TryingLog"
-
+#[ParseLogPath]
+g_strLogDir = "./TryingLog"
 
 def getDateTimeFormat():
     strDateTime = "[%s]" % (time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
@@ -39,39 +38,11 @@ def getDateTimeFormat():
 
 def printLog(strPrintLine):
     strFileName = os.path.basename(__file__).split('.')[0]
-    fileLog = codecs.open(g_strSNLog, 'a', "utf-8")
+    fileLog = codecs.open(strFileName, 'a', "utf-8")
     print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
-def readLog():
-    # ------------ find the target file --------------
-    try:
-        # get file names of TryingLog (first layer)
-        listSNLogs = os.listdir(g_LogDir)
-
-        for strSNDir in listSNLogs:
-            strSNLog = os.path.join(g_LogDir, strSNDir)
-
-            # iterate through log files in a SN folder (second layer)
-            for strLog in os.listdir(strSNLog):
-                strLog = os.path.join(strSNLog, strLog)
-
-                # parse GFI20_RF_LTE.log files
-                listLTE = []
-                reMatch = re.fullmatch("^.*RF_LTE\.log", strLog)
-                #if(reMatch != None):
-                    #print(strLog)
-                    #listLTE.append(parseLTE(strLog))
-                reMatch = re.fullmatch("^.*RF_Zigbee\.log", strLog)
-                if(reMatch != None):
-                    print(strLog)
-                    parseZigbee(strLog)
-                    break
-
-            break
-    except Exception as e:
-        print(e)
 
 # ----------- read and parse target log--------
 def parseLTE(strLTEPath):
@@ -202,10 +173,10 @@ if __name__ == "__main__":
     # ------------ find the target file --------------
     try:
         # get file names of TryingLog (first layer)
-        listSNLogs = os.listdir(g_LogDir)
+        listSNLogs = os.listdir(g_strLogDir)
 
         for strSNDir in listSNLogs:
-            strSNLog = os.path.join(g_LogDir, strSNDir)
+            strSNLog = os.path.join(g_strLogDir, strSNDir)
 
             # iterate through log files in a SN folder (second layer)
             for strLog in os.listdir(strSNLog):
