@@ -205,7 +205,7 @@ def mergeLogs(listLTE, listZigbee):
         printLog("[E][mergeLogs] Unexpected Error: " + str(e))
         return None
 
-# --------------- print log functions ----------------------
+# ------------------ print log functions ----------------------
 
 def getDateTimeFormat():
     strDateTime = "[%s]" % (time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
@@ -220,7 +220,7 @@ def printLog(strPrintLine):
 
 
 if __name__ == "__main__":
-    global g_strFileName
+    global g_strFileName    # log file of the program
     g_strFileName = os.path.basename(__file__).split('.')[0]
 
     printLog("========== Start ==========")
@@ -237,7 +237,7 @@ if __name__ == "__main__":
         # merge data from two different log files
         listInfo = mergeLogs(listLTE, listZigbee)
 
-        #print(listLTE)
+
 
         save(listLTE, listZigbee)
 
