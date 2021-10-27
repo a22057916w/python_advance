@@ -26,6 +26,8 @@ import pandas as pd
 import codecs
 import time
 import configparser
+import openpyxl
+from openpyxl import Workbook
 
 # [Main]
 g_strVersion = "3.0.0.1"
