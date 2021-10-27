@@ -10,7 +10,7 @@
 ##            LTE.py
 ##
 ##    Abstract:
-##            Parsing log info to a excel with 4 sheets 
+##            Parsing log info to a excel with 4 sheets
 ##
 ##    Author:
 ##            25-Oct-2021 Willy Chen
@@ -40,8 +40,8 @@ def parseLog(strSNDLog):
 
     listLTE, listZigbee = [], []
     try:
-        for strSNDir in listSNLogs:
-            strSNLog = os.path.join(g_strLogDir, strSNDir)
+        for strSN in listSNLogs:
+            strSNLog = os.path.join(g_strLogDir, strSN)
 
             # iterate through log files in a SN folder (second layer)
             for strLog in os.listdir(strSNLog):
@@ -50,25 +50,24 @@ def parseLog(strSNDLog):
                 # parse GFI20_RF_LTE.log files
                 reMatch = re.fullmatch("^.*RF_LTE\.log", strLog)
                 if(reMatch != None):
-                    dictLTE = parseLTE(strLog)
-                    dictLTE.update({"SN" : strSNDir})   # update() for concat two dicts
+                    dictLTE = parseLTE(strLog, strSN)
                     listLTE.append(dictLTE)
 
                 # parse GFI20_RF_Zigbee.log files
                 reMatch = re.fullmatch("^.*RF_Zigbee\.log", strLog)
                 if(reMatch != None):
-                    dictZigbee = parseZigbee(strLog)
-                    dictZigbee.update({"SN" : strSNDir})
+                    dictZigbee = parseZigbee(strLog, strSN)
                     listZigbee.append(dictZigbee)
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
         printLog("[E][parseLog] Unexpected Error: " + str(e))
     return listLTE, listZigbee
 
-def parseLTE(strLTEPath):
+def parseLTE(strLTEPath, strSN):
     printLog("[I][parseLTE] Parse LTE log: %s" % strLTEPath)
 
     dictLTE = {
+        "SN" : strSN,
         "dBm_CH9750" : None,
         "dBm_CH2787" : None,
         "dBm_2G_CH124" : None,
@@ -117,10 +116,11 @@ def parseLTE(strLTEPath):
         printLog("[E][parseLTE] Unexpected Error: " + str(e))
     return(dictLTE)
 
-def parseZigbee(strZigBeePath):
+def parseZigbee(strZigBeePath, strSN):
     printLog("[I][parseZigbee] Parse Zigbee log: %s" % strZigBeePath)
 
     dictZigbee = {
+        "SN" : strSN,
         "Power_dBm_CH15" : None,
         "Power_dBm_CH21" : None,
         "Power_dBm_CH24" : None,
@@ -204,24 +204,6 @@ def mergeLogs(listLTE, listZigbee):
         printLog("[E][mergeLogs] Unexpected Error: " + str(e))
         return None
 
-def readINI(strINIPath, nMethodIndex):
-        try:
-            config = configparser.ConfigParser()
-            config.read(strINIPath)
-            strMethod = 'Method%s' % nMethodIndex
-            printLog("[I][readINI] ---------- INI ----------")
-
-            self.bStartButton = bool(int(config.get(strMethod, 'StartButton_ON')))
-            printLog("[I][readINI] StartButton_ON = %s" % self.bStartButton)
-
-            self.strErrorCode = config.get(strMethod, 'EC')
-            printLog("[I][readINI] EC = %s" % self.strErrorCode)
-            printLog("[I][readINI] ---------- INI ----------")
-            return True
-        except Exception as e:
-            printLog("[E][readINI] Error: %s" % str(e))
-            self.strFailReasonTemp = "Read INI error: %s" % str(e)
-            return False
 
 # ------------------ print log functions ----------------------
 
@@ -236,6 +218,40 @@ def printLog(strPrintLine):
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
+
+# ------------------ log to excel functions ---------------------
+
+def log_to_excel(listInfo):
+    printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
+
+    listKey = [
+        "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "dBm_LNA_ON", "dBm_LNA_Off", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24",
+        "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH124"]
+    dictThreshold = {}
+
+    printLog("[I][log_to_excel] ----- INI reading -----")
+    for key in listKey:
+        dictThreshold[key] = readINI(key)
+    printLog("[I][log_to_excel] ----- INI read -----")
+
+
+
+def readINI(strKey):
+        try:
+            config = configparser.ConfigParser()
+            config.read(g_strINIPath)
+            strMethod = 'Method%s' % g_nMethodIndex
+
+            strValue = config.get(strMethod, strKey)
+            if re.fullmatch("[+-]?[0-9]*,[+-]?[0-9]*", strValue):
+                printLog("[I][readINI] %s = %s" % (strKey, strValue))
+                return strValue
+            else:
+                printLog("[W][readINI] Read %s Fail !!" % strKey)
+                sys.exit("Read %s Fail !!" % strKey)
+        except Exception as e:
+            printLog("[E][readINI] Error: %s" % str(e))
+            sys.exit("Error: %s" % str(e))
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
@@ -256,8 +272,8 @@ if __name__ == "__main__":
         # merge data from two different log files
         listInfo = mergeLogs(listLTE, listZigbee)
 
-
-        save(listLTE, listZigbee)
+        log_to_excel(listInfo)
+        #save(listLTE, listZigbee)
 
     except Exception as e:
         printLog("[E][main] Unexpected Error: " + str(e))
