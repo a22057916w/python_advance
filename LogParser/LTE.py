@@ -227,8 +227,8 @@ def log_to_excel(listInfo):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
     listKey = [
-        "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "dBm_LNA_ON", "dBm_LNA_Off", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24",
-        "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH124"]
+        "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
+         "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]
     dictThreshold = {}  # store INI data for futher usage
 
     # get the threshold data from INI
@@ -237,11 +237,13 @@ def log_to_excel(listInfo):
         dictThreshold[key] = readINI(key)
     printLog("[I][log_to_excel] ----- INI read -----")
 
-    df_logInfo = pd.DataFrame(listInfo)
-
+    df_logInfo = pd.DataFrame(listInfo)     # listInfo -> list of dict
+    listSheetName = ["LTE_Power_Current", "LTE_LAN", "Zigbee_Current", "Zigbee_dBm"]
     # 新增 Excel 活頁簿
     wb = openpyxl.Workbook()
 
+    for strName in listSheetName:
+        newSheet(wb, strName, df)
     # new 4 sheets
     ws_LTE_Power_Current = "LTE_Power_Current"
     ws_LTE_LAN = "LTE_LAN"
