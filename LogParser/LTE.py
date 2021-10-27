@@ -27,7 +27,7 @@ import codecs
 import time
 import configparser
 import openpyxl
-from openpyxl import Workbook
+from openpyxl.utils.dataframe import dataframe_to_rows
 
 # [Main]
 g_strVersion = "3.0.0.1"
@@ -229,14 +229,39 @@ def log_to_excel(listInfo):
     listKey = [
         "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "dBm_LNA_ON", "dBm_LNA_Off", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24",
         "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH124"]
-    dictThreshold = {}
+    dictThreshold = {}  # store INI data for futher usage
 
+    # get the threshold data from INI
     printLog("[I][log_to_excel] ----- INI reading -----")
     for key in listKey:
         dictThreshold[key] = readINI(key)
     printLog("[I][log_to_excel] ----- INI read -----")
 
+    df_logInfo = pd.DataFrame(listInfo)
 
+    # 新增 Excel 活頁簿
+    wb = openpyxl.Workbook()
+
+    # new 4 sheets
+    ws_LTE_Power_Current = "LTE_Power_Current"
+    ws_LTE_LAN = "LTE_LAN"
+    ws_Zigbee_Current = "Zigbee_Current"
+    ws_Zigbee_dBm = "Zigbee_dBm"
+
+    wb.create_sheet(ws_LTE_Power_Current)
+    wb.create_sheet(ws_LTE_LAN)
+    wb.create_sheet(ws_Zigbee_Current)
+    wb.create_sheet(ws_Zigbee_dBm)
+
+    df_LTE_Power_Current = df_logInfo[["SN", "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24"]]
+    for row in dataframe_to_rows(df_LTE_Power_Current, index=False, header=True):
+        wb[ws_LTE_Power_Current].append(row)
+    df_LTE_LAN = df_logInfo[["SN", "dBm_LNA_ON", "dBm_LNA_Off"]]
+    for row in dataframe_to_rows(df_LTE_Power_Current, index=False, header=True):
+        wb[ws_LTE_LAN].append(row)
+
+    wb.remove(wb['Sheet'])
+    wb.save('LTE.xlsx')
 
 def readINI(strKey):
         try:
@@ -254,6 +279,7 @@ def readINI(strKey):
         except Exception as e:
             printLog("[E][readINI] Error: %s" % str(e))
             sys.exit("Error: %s" % str(e))
+
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
