@@ -230,46 +230,28 @@ def log_to_excel(listInfo):
         "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
          "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]
     dictThreshold = {}  # store INI data for futher usage
+    try:
+        # ----- get the threshold data from INI ------
+        printLog("[I][log_to_excel] ----- INI reading -----")
+        for key in listKey:
+            dictThreshold[key] = readINI(key)
+        printLog("[I][log_to_excel] ----- INI read -----")
 
-    # get the threshold data from INI
-    printLog("[I][log_to_excel] ----- INI reading -----")
-    for key in listKey:
-        dictThreshold[key] = readINI(key)
-    printLog("[I][log_to_excel] ----- INI read -----")
+        # ------ New Excel workbook and sheets ------
+        df_logInfo = pd.DataFrame(listInfo)     # listInfo -> list of dict
+        listSheetName = ["LTE_Power_Current", "LTE_LAN", "Zigbee_Current", "Zigbee_dBm"]
+        listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet
+        wb = openpyxl.Workbook()    # 新增 Excel 活頁簿
 
-    df_logInfo = pd.DataFrame(listInfo)     # listInfo -> list of dict
-    listSheetName = ["LTE_Power_Current", "LTE_LAN", "Zigbee_Current", "Zigbee_dBm"]
-    # 新增 Excel 活頁簿
-    wb = openpyxl.Workbook()
+        printLog("[I][log_to_excel] ----- Excel Sheet Creating -----")
+        for i in range(0, len(listSheetName)):
+            newSheet(wb, listSheetName[i], df_logInfo[["SN"] + listCol[i]])
+        printLog("[I][log_to_excel] ----- Excel Sheet Created-----")
 
-    for strName in listSheetName:
-        newSheet(wb, strName, df)
-    # new 4 sheets
-    ws_LTE_Power_Current = "LTE_Power_Current"
-    ws_LTE_LAN = "LTE_LAN"
-    ws_Zigbee_Current = "Zigbee_Current"
-    ws_Zigbee_dBm = "Zigbee_dBm"
-
-    wb.create_sheet(ws_LTE_Power_Current)
-    wb.create_sheet(ws_LTE_LAN)
-    wb.create_sheet(ws_Zigbee_Current)
-    wb.create_sheet(ws_Zigbee_dBm)
-
-    df_LTE_Power_Current = df_logInfo[["SN", "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24"]]
-    for row in dataframe_to_rows(df_LTE_Power_Current, index=False, header=True):
-        wb[ws_LTE_Power_Current].append(row)
-    df_LTE_LAN = df_logInfo[["SN", "dBm_LNA_ON", "dBm_LNA_Off"]]
-    for row in dataframe_to_rows(df_LTE_LAN, index=False, header=True):
-        wb[ws_LTE_LAN].append(row)
-    df_Zigbee_Current = df_logInfo[["SN", "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124"]]
-    for row in dataframe_to_rows(df_Zigbee_Current, index=False, header=True):
-        wb[ws_Zigbee_Current].append(row)
-    df_ZIgbee_dBm = df_logInfo[["SN", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]]
-    for row in dataframe_to_rows(df_ZIgbee_dBm, index=False, header=True):
-        wb[ws_Zigbee_dBm].append(row)
-
-    wb.remove(wb['Sheet'])
-    wb.save('LTE.xlsx')
+        wb.remove(wb['Sheet'])
+        wb.save('LTE.xlsx')
+    except Exception as e:
+        printLog("[E][log_to_excel] Unexpected Error: " + str(e))
 
 def readINI(strKey):
         try:
@@ -288,6 +270,14 @@ def readINI(strKey):
             printLog("[E][readINI] Error: %s" % str(e))
             sys.exit("Error: %s" % str(e))
 
+def newSheet(workbook, strSheetName, df_SheetCol):
+    try:
+        workbook.create_sheet(strSheetName)
+        for row in dataframe_to_rows(df_SheetCol, index=False, header=True):
+            workbook[strSheetName].append(row)
+        printLog("[I][newSheet] Sheet: %s Created" % strSheetName)
+    except Exception as e:
+        printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
