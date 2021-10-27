@@ -257,8 +257,14 @@ def log_to_excel(listInfo):
     for row in dataframe_to_rows(df_LTE_Power_Current, index=False, header=True):
         wb[ws_LTE_Power_Current].append(row)
     df_LTE_LAN = df_logInfo[["SN", "dBm_LNA_ON", "dBm_LNA_Off"]]
-    for row in dataframe_to_rows(df_LTE_Power_Current, index=False, header=True):
+    for row in dataframe_to_rows(df_LTE_LAN, index=False, header=True):
         wb[ws_LTE_LAN].append(row)
+    df_Zigbee_Current = df_logInfo[["SN", "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124"]]
+    for row in dataframe_to_rows(df_Zigbee_Current, index=False, header=True):
+        wb[ws_Zigbee_Current].append(row)
+    df_ZIgbee_dBm = df_logInfo[["SN", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]]
+    for row in dataframe_to_rows(df_ZIgbee_dBm, index=False, header=True):
+        wb[ws_Zigbee_dBm].append(row)
 
     wb.remove(wb['Sheet'])
     wb.save('LTE.xlsx')
@@ -301,7 +307,7 @@ if __name__ == "__main__":
         listInfo = mergeLogs(listLTE, listZigbee)
 
         log_to_excel(listInfo)
-        #save(listLTE, listZigbee)
+        save(listLTE, listZigbee)
 
     except Exception as e:
         printLog("[E][main] Unexpected Error: " + str(e))
