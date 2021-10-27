@@ -28,6 +28,7 @@ import time
 import configparser
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.styles import Font, Fill, colors
 
 # [Main]
 g_strVersion = "3.0.0.1"
@@ -243,12 +244,17 @@ def log_to_excel(listInfo):
         listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet
         wb = openpyxl.Workbook()    # 新增 Excel 活頁簿
 
+        wb.remove(wb['Sheet'])
+
         printLog("[I][log_to_excel] ----- Excel Sheet Creating -----")
         for i in range(0, len(listSheetName)):
             newSheet(wb, listSheetName[i], df_logInfo[["SN"] + listCol[i]])
         printLog("[I][log_to_excel] ----- Excel Sheet Created-----")
 
-        wb.remove(wb['Sheet'])
+        #print(wb.worksheets)
+        check_threshold(wb, dictThreshold)
+
+
         wb.save('LTE.xlsx')
     except Exception as e:
         printLog("[E][log_to_excel] Unexpected Error: " + str(e))
@@ -278,6 +284,29 @@ def newSheet(workbook, strSheetName, df_SheetCol):
         printLog("[I][newSheet] Sheet: %s Created" % strSheetName)
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
+
+
+def check_threshold(workbook, dictThreshold):
+    try:
+        for ws in workbook.worksheets:
+            print(ws.title)
+            for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
+                f_upper_val, f_lower_val = -1e9, 1e9
+                for cell in col:
+                    print(cell.value)
+                    if (cell.row == 1) and (cell.value in dictThreshold):
+                        strThreshold = dictThreshold[cell.value]
+                        f_upper_val = eval(strThreshold.split(",")[0])
+                        f_lower_val = eval(strThreshold.split(",")[1])
+                        continue
+                    #print(cell.value)
+                    if cell.value == None:
+                        continue
+                    if eval(cell.value) > f_upper_val or eval(cell.value) < f_lower_val:
+                        cell.font = Font(color="00FF0000")
+
+    except Exception as e:
+        printLog("[E][check_threshold] Unexpected Error: " + str(e))
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
