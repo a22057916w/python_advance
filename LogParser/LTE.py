@@ -25,6 +25,7 @@ import sys
 import pandas as pd
 import codecs
 import time
+import math
 import configparser
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
@@ -83,37 +84,37 @@ def parseLTE(strLTEPath, strSN):
         with open(strLTEPath, encoding='big5') as log:  # big5 for windows
             content = log.readlines()
             for line in content:
-                #strPower = "-1e9"
-                #strCurrent = "-1e9"
+                #fPower = "-1e9"
+                #fCurrent = "-1e9"
 
                 if re.search("Power: [+-]?[0-9]*\.?[0-9]*", line) != None:
                     # get the figure of the line "Power: 31.718\n"
-                    strPower = line.split(": ")[1].strip(" \n")
-                    #print(strPower)
+                    fPower = eval(line.split(": ")[1].strip(" \n"))
+                    #print(fPower)
                     if nPowerCase == 1:
-                        dictLTE["dBm_CH2787"] = strPower
+                        dictLTE["dBm_CH2787"] = fPower
                     elif nPowerCase == 2:
-                        dictLTE["dBm_CH9750"] = strPower
+                        dictLTE["dBm_CH9750"] = fPower
                     elif nPowerCase == 3:
-                        dictLTE["dBm_2G_CH124"] = strPower
+                        dictLTE["dBm_2G_CH124"] = fPower
                     nPowerCase += 1
 
                 if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.246 A\n"
-                    strCurrent = line.split(": ")[1].strip(" A\n")
-                    #print(strCurrent)
+                    fCurrent = eval(line.split(": ")[1].strip(" A\n"))
+                    #print(fCurrent)
                     if nCurrentCase == 1:
-                        dictLTE["Current_mA_3G_CH2787"] = str(eval(strCurrent) * 1000)
+                        dictLTE["Current_mA_3G_CH2787"] = fCurrent * 1000
                     elif nCurrentCase == 2:
-                        dictLTE["Current_mA_3G_CH9750"] = str(eval(strCurrent) * 1000)
+                        dictLTE["Current_mA_3G_CH9750"] = fCurrent * 1000
                     elif nCurrentCase == 3:
-                        dictLTE["Current_mA_2G_CH124"] = str(eval(strCurrent) * 1000)
+                        dictLTE["Current_mA_2G_CH124"] = fCurrent * 1000
                     nCurrentCase += 1
 
                 if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    strRSSI = line.split(": ")[1].strip(" dBm\n")
-                    dictLTE["dBm_CH124"] = strRSSI
+                    fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
+                    dictLTE["dBm_CH124"] = fRSSI
                     break
     except Exception as e:
         printLog("[E][parseLTE] Unexpected Error: " + str(e))
@@ -137,40 +138,40 @@ def parseZigbee(strZigBeePath, strSN):
         with open(strZigBeePath, encoding="big5") as Zigbee:    # big5 for windows
             content = Zigbee.readlines()
             for line in content:
-                #strPower = "-1e9"
-                #strCurrent = "-1e9"
+                #fPower = "-1e9"
+                #fCurrent = "-1e9"
 
                 if re.search("Power: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Power: 8.817 dBm\n"
-                    strPower = line.split(": ")[1].strip(" dBm\n")
-                    #print(strPower)
+                    fPower = eval(line.split(": ")[1].strip(" dBm\n"))
+                    #print(fPower)
                     if nPowerCase == 1:
-                        dictZigbee["Power_dBm_CH15"] = strPower
+                        dictZigbee["Power_dBm_CH15"] = fPower
                     elif nPowerCase == 2:
-                        dictZigbee["Power_dBm_CH21"] = strPower
+                        dictZigbee["Power_dBm_CH21"] = fPower
                     elif nPowerCase == 3:
-                        dictZigbee["Power_dBm_CH24"] = strPower
+                        dictZigbee["Power_dBm_CH24"] = fPower
                     nPowerCase += 1
 
                 if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.081 A\n"
-                    strCurrent = line.split(": ")[1].strip(" A\n")
-                    #print(strCurrent)
+                    fCurrent = eval(line.split(": ")[1].strip(" A\n"))
+                    #print(fCurrent)
                     if nCurrentCase == 1:
-                        dictZigbee["Current_mA_CH15"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH15"] = fCurrent * 1000
                     elif nCurrentCase == 2:
-                        dictZigbee["Current_mA_CH21"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH21"] = fCurrent * 1000
                     elif nCurrentCase == 3:
-                        dictZigbee["Current_mA_CH24"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH24"] = fCurrent * 1000
                     nCurrentCase += 1
 
                 if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    strRSSI = line.split(": ")[1].strip(" dBm\n")
+                    fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
                     if nLNACase == 1:
-                        dictZigbee["dBm_LNA_ON"] = strRSSI
+                        dictZigbee["dBm_LNA_ON"] = fRSSI
                     elif nLNACase == 2:
-                        dictZigbee["dBm_LNA_Off"] = strRSSI
+                        dictZigbee["dBm_LNA_Off"] = fRSSI
                         break
                     nLNACase += 1
 
@@ -300,9 +301,9 @@ def check_threshold(workbook, dictThreshold):
                         f_lower_val = eval(strThreshold.split(",")[1])
                         continue
                     #print(cell.value)
-                    if cell.value == None:
+                    if math.isnan(cell.value):
                         continue
-                    if eval(cell.value) > f_upper_val or eval(cell.value) < f_lower_val:
+                    if cell.value > f_upper_val or cell.value < f_lower_val:
                         cell.font = Font(color="00FF0000")
 
     except Exception as e:
