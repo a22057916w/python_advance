@@ -30,6 +30,7 @@ import configparser
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Font, Fill, colors
+from openpyxl.formatting.rule import CellIsRule
 
 # [Main]
 g_strVersion = "3.0.0.1"
@@ -289,22 +290,25 @@ def newSheet(workbook, strSheetName, df_SheetCol):
 
 def check_threshold(workbook, dictThreshold):
     try:
+        strStart, strEnd = None, None
+        listInterval = []
         for ws in workbook.worksheets:
             print(ws.title)
             for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
-                f_upper_val, f_lower_val = -1e9, 1e9
-                for cell in col:
-                    print(cell.value)
-                    if (cell.row == 1) and (cell.value in dictThreshold):
-                        strThreshold = dictThreshold[cell.value]
-                        f_upper_val = eval(strThreshold.split(",")[0])
-                        f_lower_val = eval(strThreshold.split(",")[1])
-                        continue
-                    #print(cell.value)
-                    if math.isnan(cell.value):
-                        continue
-                    if cell.value > f_upper_val or cell.value < f_lower_val:
-                        cell.font = Font(color="00FF0000")
+                #f_upper_val, f_lower_val = -1e9, 1e9
+                strStart, strEnd = None, None
+                if len(col) > 1:
+                    strStart = col[1].coordinate
+                    strEnd = col[-1].coordinate
+                    print(strStart, strEnd)
+                    strThreshold = dictThreshold[col[0].value]
+                    listInterval = strThreshold.split(",")
+
+                    red_text = Font(color="9C0006")
+
+                range_string = "%s:%s" % (strStart, strEnd)
+                ws.conditional_formatting.add(range_string,
+                    CellIsRule(operator='notBetween', formula=listInterval, stopIfTrue=True, font=red_text))
 
     except Exception as e:
         printLog("[E][check_threshold] Unexpected Error: " + str(e))
