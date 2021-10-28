@@ -25,9 +25,11 @@ import sys
 import pandas as pd
 import codecs
 import time
+import math
 import configparser
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.styles import Font, Fill, colors
 
 # [Main]
 g_strVersion = "3.0.0.1"
@@ -82,37 +84,37 @@ def parseLTE(strLTEPath, strSN):
         with open(strLTEPath, encoding='big5') as log:  # big5 for windows
             content = log.readlines()
             for line in content:
-                #strPower = "-1e9"
-                #strCurrent = "-1e9"
+                #fPower = "-1e9"
+                #fCurrent = "-1e9"
 
                 if re.search("Power: [+-]?[0-9]*\.?[0-9]*", line) != None:
                     # get the figure of the line "Power: 31.718\n"
-                    strPower = line.split(": ")[1].strip(" \n")
-                    #print(strPower)
+                    fPower = eval(line.split(": ")[1].strip(" \n"))
+                    #print(fPower)
                     if nPowerCase == 1:
-                        dictLTE["dBm_CH2787"] = strPower
+                        dictLTE["dBm_CH2787"] = fPower
                     elif nPowerCase == 2:
-                        dictLTE["dBm_CH9750"] = strPower
+                        dictLTE["dBm_CH9750"] = fPower
                     elif nPowerCase == 3:
-                        dictLTE["dBm_2G_CH124"] = strPower
+                        dictLTE["dBm_2G_CH124"] = fPower
                     nPowerCase += 1
 
                 if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.246 A\n"
-                    strCurrent = line.split(": ")[1].strip(" A\n")
-                    #print(strCurrent)
+                    fCurrent = eval(line.split(": ")[1].strip(" A\n"))
+                    #print(fCurrent)
                     if nCurrentCase == 1:
-                        dictLTE["Current_mA_3G_CH2787"] = str(eval(strCurrent) * 1000)
+                        dictLTE["Current_mA_3G_CH2787"] = fCurrent * 1000
                     elif nCurrentCase == 2:
-                        dictLTE["Current_mA_3G_CH9750"] = str(eval(strCurrent) * 1000)
+                        dictLTE["Current_mA_3G_CH9750"] = fCurrent * 1000
                     elif nCurrentCase == 3:
-                        dictLTE["Current_mA_2G_CH124"] = str(eval(strCurrent) * 1000)
+                        dictLTE["Current_mA_2G_CH124"] = fCurrent * 1000
                     nCurrentCase += 1
 
                 if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    strRSSI = line.split(": ")[1].strip(" dBm\n")
-                    dictLTE["dBm_CH124"] = strRSSI
+                    fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
+                    dictLTE["dBm_CH124"] = fRSSI
                     break
     except Exception as e:
         printLog("[E][parseLTE] Unexpected Error: " + str(e))
@@ -136,40 +138,40 @@ def parseZigbee(strZigBeePath, strSN):
         with open(strZigBeePath, encoding="big5") as Zigbee:    # big5 for windows
             content = Zigbee.readlines()
             for line in content:
-                #strPower = "-1e9"
-                #strCurrent = "-1e9"
+                #fPower = "-1e9"
+                #fCurrent = "-1e9"
 
                 if re.search("Power: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Power: 8.817 dBm\n"
-                    strPower = line.split(": ")[1].strip(" dBm\n")
-                    #print(strPower)
+                    fPower = eval(line.split(": ")[1].strip(" dBm\n"))
+                    #print(fPower)
                     if nPowerCase == 1:
-                        dictZigbee["Power_dBm_CH15"] = strPower
+                        dictZigbee["Power_dBm_CH15"] = fPower
                     elif nPowerCase == 2:
-                        dictZigbee["Power_dBm_CH21"] = strPower
+                        dictZigbee["Power_dBm_CH21"] = fPower
                     elif nPowerCase == 3:
-                        dictZigbee["Power_dBm_CH24"] = strPower
+                        dictZigbee["Power_dBm_CH24"] = fPower
                     nPowerCase += 1
 
                 if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.081 A\n"
-                    strCurrent = line.split(": ")[1].strip(" A\n")
-                    #print(strCurrent)
+                    fCurrent = eval(line.split(": ")[1].strip(" A\n"))
+                    #print(fCurrent)
                     if nCurrentCase == 1:
-                        dictZigbee["Current_mA_CH15"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH15"] = fCurrent * 1000
                     elif nCurrentCase == 2:
-                        dictZigbee["Current_mA_CH21"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH21"] = fCurrent * 1000
                     elif nCurrentCase == 3:
-                        dictZigbee["Current_mA_CH24"] = str(eval(strCurrent) * 1000)
+                        dictZigbee["Current_mA_CH24"] = fCurrent * 1000
                     nCurrentCase += 1
 
                 if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    strRSSI = line.split(": ")[1].strip(" dBm\n")
+                    fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
                     if nLNACase == 1:
-                        dictZigbee["dBm_LNA_ON"] = strRSSI
+                        dictZigbee["dBm_LNA_ON"] = fRSSI
                     elif nLNACase == 2:
-                        dictZigbee["dBm_LNA_Off"] = strRSSI
+                        dictZigbee["dBm_LNA_Off"] = fRSSI
                         break
                     nLNACase += 1
 
@@ -227,47 +229,36 @@ def log_to_excel(listInfo):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
     listKey = [
-        "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "dBm_LNA_ON", "dBm_LNA_Off", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24",
-        "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH124"]
+        "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
+         "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]
     dictThreshold = {}  # store INI data for futher usage
+    try:
+        # ----- get the threshold data from INI ------
+        printLog("[I][log_to_excel] ----- INI reading -----")
+        for key in listKey:
+            dictThreshold[key] = readINI(key)
+        printLog("[I][log_to_excel] ----- INI read -----")
 
-    # get the threshold data from INI
-    printLog("[I][log_to_excel] ----- INI reading -----")
-    for key in listKey:
-        dictThreshold[key] = readINI(key)
-    printLog("[I][log_to_excel] ----- INI read -----")
+        # ------ New Excel workbook and sheets ------
+        df_logInfo = pd.DataFrame(listInfo)     # listInfo -> list of dict
+        listSheetName = ["LTE_Power_Current", "LTE_LAN", "Zigbee_Current", "Zigbee_dBm"]
+        listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet
+        wb = openpyxl.Workbook()    # 新增 Excel 活頁簿
 
-    df_logInfo = pd.DataFrame(listInfo)
+        wb.remove(wb['Sheet'])
 
-    # 新增 Excel 活頁簿
-    wb = openpyxl.Workbook()
+        printLog("[I][log_to_excel] ----- Excel Sheet Creating -----")
+        for i in range(0, len(listSheetName)):
+            newSheet(wb, listSheetName[i], df_logInfo[["SN"] + listCol[i]])
+        printLog("[I][log_to_excel] ----- Excel Sheet Created-----")
 
-    # new 4 sheets
-    ws_LTE_Power_Current = "LTE_Power_Current"
-    ws_LTE_LAN = "LTE_LAN"
-    ws_Zigbee_Current = "Zigbee_Current"
-    ws_Zigbee_dBm = "Zigbee_dBm"
+        #print(wb.worksheets)
+        check_threshold(wb, dictThreshold)
 
-    wb.create_sheet(ws_LTE_Power_Current)
-    wb.create_sheet(ws_LTE_LAN)
-    wb.create_sheet(ws_Zigbee_Current)
-    wb.create_sheet(ws_Zigbee_dBm)
 
-    df_LTE_Power_Current = df_logInfo[["SN", "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24"]]
-    for row in dataframe_to_rows(df_LTE_Power_Current, index=False, header=True):
-        wb[ws_LTE_Power_Current].append(row)
-    df_LTE_LAN = df_logInfo[["SN", "dBm_LNA_ON", "dBm_LNA_Off"]]
-    for row in dataframe_to_rows(df_LTE_LAN, index=False, header=True):
-        wb[ws_LTE_LAN].append(row)
-    df_Zigbee_Current = df_logInfo[["SN", "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124"]]
-    for row in dataframe_to_rows(df_Zigbee_Current, index=False, header=True):
-        wb[ws_Zigbee_Current].append(row)
-    df_ZIgbee_dBm = df_logInfo[["SN", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]]
-    for row in dataframe_to_rows(df_ZIgbee_dBm, index=False, header=True):
-        wb[ws_Zigbee_dBm].append(row)
-
-    wb.remove(wb['Sheet'])
-    wb.save('LTE.xlsx')
+        wb.save('LTE.xlsx')
+    except Exception as e:
+        printLog("[E][log_to_excel] Unexpected Error: " + str(e))
 
 def readINI(strKey):
         try:
@@ -286,6 +277,37 @@ def readINI(strKey):
             printLog("[E][readINI] Error: %s" % str(e))
             sys.exit("Error: %s" % str(e))
 
+def newSheet(workbook, strSheetName, df_SheetCol):
+    try:
+        workbook.create_sheet(strSheetName)
+        for row in dataframe_to_rows(df_SheetCol, index=False, header=True):
+            workbook[strSheetName].append(row)
+        printLog("[I][newSheet] Sheet: %s Created" % strSheetName)
+    except Exception as e:
+        printLog("[E][newSheet] Unexpected Error: " + str(e))
+
+
+def check_threshold(workbook, dictThreshold):
+    try:
+        for ws in workbook.worksheets:
+            print(ws.title)
+            for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
+                f_upper_val, f_lower_val = -1e9, 1e9
+                for cell in col:
+                    print(cell.value)
+                    if (cell.row == 1) and (cell.value in dictThreshold):
+                        strThreshold = dictThreshold[cell.value]
+                        f_upper_val = eval(strThreshold.split(",")[0])
+                        f_lower_val = eval(strThreshold.split(",")[1])
+                        continue
+                    #print(cell.value)
+                    if math.isnan(cell.value):
+                        continue
+                    if cell.value > f_upper_val or cell.value < f_lower_val:
+                        cell.font = Font(color="00FF0000")
+
+    except Exception as e:
+        printLog("[E][check_threshold] Unexpected Error: " + str(e))
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
