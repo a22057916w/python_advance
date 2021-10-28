@@ -36,7 +36,7 @@ from openpyxl.formatting.rule import CellIsRule
 g_strVersion = "3.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./TryingLog"
+g_strLogDir = "./Log/Pass"
 
 
 # ----------- read and parse target log ----------
@@ -254,7 +254,7 @@ def log_to_excel(listInfo):
         printLog("[I][log_to_excel] ----- Excel Sheet Created-----")
 
         #print(wb.worksheets)
-        check_threshold(wb, dictThreshold)
+        set_threshold_to_excel(wb, dictThreshold)
 
 
         wb.save('LTE.xlsx')
@@ -288,14 +288,13 @@ def newSheet(workbook, strSheetName, df_SheetCol):
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 
-def check_threshold(workbook, dictThreshold):
+def set_threshold_to_excel(workbook, dictThreshold):
     try:
         strStart, strEnd = None, None
         listInterval = []
         for ws in workbook.worksheets:
             print(ws.title)
             for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
-                #f_upper_val, f_lower_val = -1e9, 1e9
                 strStart, strEnd = None, None
                 if len(col) > 1:
                     strStart = col[1].coordinate
@@ -311,7 +310,7 @@ def check_threshold(workbook, dictThreshold):
                     CellIsRule(operator='notBetween', formula=listInterval, stopIfTrue=True, font=red_text))
 
     except Exception as e:
-        printLog("[E][check_threshold] Unexpected Error: " + str(e))
+        printLog("[E][set_threshold_to_excel] Unexpected Error: " + str(e))
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
