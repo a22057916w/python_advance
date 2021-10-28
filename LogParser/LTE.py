@@ -251,13 +251,14 @@ def log_to_excel(listInfo):
         printLog("[I][log_to_excel] ----- Excel Sheet Creating -----")
         for i in range(0, len(listSheetName)):
             newSheet(wb, listSheetName[i], df_logInfo[["SN"] + listCol[i]])
-        printLog("[I][log_to_excel] ----- Excel Sheet Created-----")
+        printLog("[I][log_to_excel] ----- Excel Sheet Created -----")
 
-        #print(wb.worksheets)
+        # modify cell font-color according to thershold that parsed from INI
         set_threshold_to_excel(wb, dictThreshold)
 
+        wb.save('LTE.xlsx')     # save the worksheet as excel file
 
-        wb.save('LTE.xlsx')
+        printLog("[I][log_to_excel] ------- Parsed Log to Excel -------")
     except Exception as e:
         printLog("[E][log_to_excel] Unexpected Error: " + str(e))
 
@@ -290,25 +291,28 @@ def newSheet(workbook, strSheetName, df_SheetCol):
 
 def set_threshold_to_excel(workbook, dictThreshold):
     try:
-        strStart, strEnd = None, None
-        listInterval = []
+        printLog("[I][set_threshold_to_excel] ----- threshold setting -----")
+
         for ws in workbook.worksheets:
-            print(ws.title)
+            printLog("[I][set_threshold_to_excel] setting worksheet: %s" % ws.title)
+
             for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
                 strStart, strEnd = None, None
+                istInterval = []
+
                 if len(col) > 1:
                     strStart = col[1].coordinate
                     strEnd = col[-1].coordinate
-                    print(strStart, strEnd)
+                    #print(strStart, strEnd)
                     strThreshold = dictThreshold[col[0].value]
                     listInterval = strThreshold.split(",")
 
-                red_text = Font(color="9C0006")
-
-                range_string = "%s:%s" % (strStart, strEnd)
+                red_text = Font(color="9C0006")                 # font-color: RED
+                range_string = "%s:%s" % (strStart, strEnd)     # the value would be like A1:A10
                 ws.conditional_formatting.add(range_string,
                     CellIsRule(operator='notBetween', formula=listInterval, stopIfTrue=True, font=red_text))
 
+        printLog("[I][set_threshold_to_excel] ----- threshold set -----")
     except Exception as e:
         printLog("[E][set_threshold_to_excel] Unexpected Error: " + str(e))
 
@@ -330,9 +334,8 @@ if __name__ == "__main__":
         listLTE, listZigbee = parseLog(listSNLogs)
         # merge data from two different log files
         listInfo = mergeLogs(listLTE, listZigbee)
-
+        # save log to excel with thershold setting
         log_to_excel(listInfo)
-        save(listLTE, listZigbee)
 
     except Exception as e:
         printLog("[E][main] Unexpected Error: " + str(e))
