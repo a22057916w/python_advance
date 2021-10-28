@@ -180,21 +180,6 @@ def parseZigbee(strZigBeePath, strSN):
         printLog("[E][parseZigbee] Unexpected Error: " + str(e))
     return(dictZigbee)
 
-def save(listLTE, listZigbee):
-    # listLTE and listZigbee both has same length
-    listInfo = [None] * len(listLTE)
-    #print(listLTE)
-    for i in range (0, len(listLTE)):
-        listLTE[i].update(listZigbee[i])
-        listInfo[i] = listLTE[i]
-    dfLogInfo = pd.DataFrame(listInfo)
-
-    writer = pd.ExcelWriter("test.xlsx", engine='xlsxwriter')
-    dfLogInfo.to_excel(writer)
-    writer.save()
-
-    #print(dfLogInfo)
-
 def mergeLogs(listLTE, listZigbee):
     try:
         printLog("[I][mergeLogs] ------- Merging two Log data -------")
