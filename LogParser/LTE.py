@@ -39,7 +39,10 @@ g_strVersion = "3.0.0.1"
 g_strLogDir = "./Log/Pass"
 
 
-# ----------- read and parse target log ----------
+#/====================================================================\#
+#|               Functions of parseing target logs                    |#
+#\====================================================================/#
+
 def parseLog(strSNDLog):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
 
@@ -195,21 +198,9 @@ def mergeLogs(listLTE, listZigbee):
         return None
 
 
-# ------------------ print log functions ----------------------
-
-def getDateTimeFormat():
-    strDateTime = "[%s]" % (time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
-    return strDateTime
-
-def printLog(strPrintLine):
-    strFileName = os.path.basename(__file__).split('.')[0]
-    fileLog = codecs.open(g_strFileName + ".log", 'a', "utf-8")
-    print(strPrintLine)
-    fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
-    fileLog.close()
-
-
-# ------------------ log to excel functions ---------------------
+#/====================================================================\#
+#|              Functions of parsing log to excel                     |#
+#\====================================================================/#
 
 def log_to_excel(listInfo):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
@@ -231,7 +222,7 @@ def log_to_excel(listInfo):
         listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet
         wb = openpyxl.Workbook()    # 新增 Excel 活頁簿
 
-        wb.remove(wb['Sheet'])
+        wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
 
         printLog("[I][log_to_excel] ----- Excel Sheet Creating -----")
         for i in range(0, len(listSheetName)):
@@ -300,6 +291,22 @@ def set_threshold_to_excel(workbook, dictThreshold):
         printLog("[I][set_threshold_to_excel] ----- threshold set -----")
     except Exception as e:
         printLog("[E][set_threshold_to_excel] Unexpected Error: " + str(e))
+
+
+#/====================================================================\#
+#|              Functions of printing log of LTE.py                   |#
+#\====================================================================/#
+
+def getDateTimeFormat():
+    strDateTime = "[%s]" % (time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
+    return strDateTime
+
+def printLog(strPrintLine):
+    strFileName = os.path.basename(__file__).split('.')[0]
+    fileLog = codecs.open(g_strFileName + ".log", 'a', "utf-8")
+    print(strPrintLine)
+    fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
+    fileLog.close()
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
