@@ -88,13 +88,12 @@ def parseLTE(strLTEPath, strSN):
         with open(strLTEPath, encoding='big5') as log:  # big5 for windows
             content = log.readlines()
             for line in content:
-                #fPower = "-1e9"
-                #fCurrent = "-1e9"
 
+                # search pattern like "Power: (int/float)"
                 if re.search("Power: [+-]?[0-9]*\.?[0-9]*", line) != None:
                     # get the figure of the line "Power: 31.718\n"
                     fPower = eval(line.split(": ")[1].strip(" \n"))
-                    #print(fPower)
+
                     if nPowerCase == 1:
                         dictLTE["dBm_CH2787"] = fPower
                     elif nPowerCase == 2:
@@ -103,10 +102,11 @@ def parseLTE(strLTEPath, strSN):
                         dictLTE["dBm_2G_CH124"] = fPower
                     nPowerCase += 1
 
+                # search pattern like "Current: (int/float) A"
                 if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.246 A\n"
                     fCurrent = eval(line.split(": ")[1].strip(" A\n"))
-                    #print(fCurrent)
+
                     if nCurrentCase == 1:
                         dictLTE["Current_mA_3G_CH2787"] = fCurrent * 1000
                     elif nCurrentCase == 2:
@@ -120,6 +120,7 @@ def parseLTE(strLTEPath, strSN):
                     fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
                     dictLTE["dBm_CH124"] = fRSSI
                     break
+
     except Exception as e:
         printLog("[E][parseLTE] Unexpected Error: " + str(e))
     return(dictLTE)
@@ -142,13 +143,12 @@ def parseZigbee(strZigBeePath, strSN):
         with open(strZigBeePath, encoding="big5") as Zigbee:    # big5 for windows
             content = Zigbee.readlines()
             for line in content:
-                #fPower = "-1e9"
-                #fCurrent = "-1e9"
 
+                # search pattern like "Power: (int/float) dBm"
                 if re.search("Power: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Power: 8.817 dBm\n"
                     fPower = eval(line.split(": ")[1].strip(" dBm\n"))
-                    #print(fPower)
+
                     if nPowerCase == 1:
                         dictZigbee["Power_dBm_CH15"] = fPower
                     elif nPowerCase == 2:
@@ -160,7 +160,7 @@ def parseZigbee(strZigBeePath, strSN):
                 if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.081 A\n"
                     fCurrent = eval(line.split(": ")[1].strip(" A\n"))
-                    #print(fCurrent)
+
                     if nCurrentCase == 1:
                         dictZigbee["Current_mA_CH15"] = fCurrent * 1000
                     elif nCurrentCase == 2:
