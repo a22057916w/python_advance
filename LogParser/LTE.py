@@ -268,7 +268,7 @@ def readINI(strKey):
             strMethod = 'Method%s' % g_nMethodIndex
 
             strValue = config.get(strMethod, strKey)
-            if re.fullmatch("[+-]?[0-9]*\.?[0-9]*,[+-]?[0-9]*\.?[0-9]*", strValue):
+            if re.fullmatch("[+-]?[0-9]+\.?[0-9]*,[+-]?[0-9]+\.?[0-9]*", strValue):
                 printLog("[I][readINI] %s = %s" % (strKey, strValue))
                 return strValue
             else:
