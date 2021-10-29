@@ -10,7 +10,14 @@
 ##            LTE.py
 ##
 ##    Abstract:
-##            Parsing log info to a excel with 4 sheets
+##            Parsing log info to a excel with 4 sheets.
+##              1. Read log file: parse -> store (a list of dict)
+##              2. Read the INI threshold data: store as dict
+##              3. New excel workbook: by openpyxl
+##              4. Set worksheet according to Step 1: by dict
+##              5. Set condition formating for each sheet
+##                 according to Step 2: by dict
+##              6. Save the workbook to xlsx file
 ##
 ##    Author:
 ##            25-Oct-2021 Willy Chen
@@ -40,7 +47,7 @@ g_strLogDir = "./Log/Pass"
 
 
 #/====================================================================\#
-#|               Functions of parseing target logs                    |#
+#|               Functions of parsing target logs                     |#
 #\====================================================================/#
 
 def parseLog(strSNDLog):
@@ -183,13 +190,14 @@ def parseZigbee(strZigBeePath, strSN):
         printLog("[E][parseZigbee] Unexpected Error: " + str(e))
     return(dictZigbee)
 
+# merge two list of dict to single list of dict
 def mergeLogs(listLTE, listZigbee):
     try:
         printLog("[I][mergeLogs] ------- Merging two Log data -------")
         # listLTE and listZigbee both has same length
         listInfo = [None] * len(listLTE)
         for i in range (0, len(listLTE)):
-            listLTE[i].update(listZigbee[i])
+            listLTE[i].update(listZigbee[i])    # merge two dict
             listInfo[i] = listLTE[i]
         printLog("[I][mergeLogs] ------- Merged two Log data -------")
         return listInfo
@@ -208,20 +216,20 @@ def log_to_excel(listInfo):
     listKey = [
         "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
          "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]
-    dictThreshold = {}  # store INI data for futher usage
+    dictThreshold = {}  # store INI threshold ata for setting conditional formating
     try:
-        # ----- get the threshold data from INI ------
+        # ========== get the threshold data from INI ==========
         printLog("[I][log_to_excel] ----- INI reading -----")
         for key in listKey:
             dictThreshold[key] = readINI(key)
         printLog("[I][log_to_excel] ----- INI read -----")
 
-        # ------ New Excel workbook and sheets ------
+        # ========== New Excel workbook and sheets ==========
         df_logInfo = pd.DataFrame(listInfo)     # listInfo -> list of dict
         listSheetName = ["LTE_Power_Current", "LTE_LAN", "Zigbee_Current", "Zigbee_dBm"]
-        listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet
-        wb = openpyxl.Workbook()    # 新增 Excel 活頁簿
+        listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet above
 
+        wb = openpyxl.Workbook()    # 新增 Excel 活頁
         wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
 
         printLog("[I][log_to_excel] ----- Excel Sheet Creating -----")
@@ -238,6 +246,7 @@ def log_to_excel(listInfo):
     except Exception as e:
         printLog("[E][log_to_excel] Unexpected Error: " + str(e))
 
+# read INI values one by one by giving keys, then store to var dictThreshold
 def readINI(strKey):
         try:
             config = configparser.ConfigParser()
@@ -245,6 +254,8 @@ def readINI(strKey):
             strMethod = 'Method%s' % g_nMethodIndex
 
             strValue = config.get(strMethod, strKey)
+
+            # search pattern like "+-(int/float),+-(int/float)"
             if re.fullmatch("[+-]?[0-9]+\.?[0-9]*,[+-]?[0-9]+\.?[0-9]*", strValue):
                 printLog("[I][readINI] %s = %s" % (strKey, strValue))
                 return strValue
@@ -255,6 +266,7 @@ def readINI(strKey):
             printLog("[E][readINI] Error: %s" % str(e))
             sys.exit("Error: %s" % str(e))
 
+# new worksheets by DataFrame
 def newSheet(workbook, strSheetName, df_SheetCol):
     try:
         workbook.create_sheet(strSheetName)
@@ -264,23 +276,27 @@ def newSheet(workbook, strSheetName, df_SheetCol):
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
-
+# set conditional formating for sheets by dictionay containg thershold data
 def set_threshold_to_excel(workbook, dictThreshold):
     try:
         printLog("[I][set_threshold_to_excel] ----- threshold setting -----")
 
+        # iterate through every worksheet to set conditional formatting
         for ws in workbook.worksheets:
             printLog("[I][set_threshold_to_excel] setting worksheet: %s" % ws.title)
 
+            # iterate from Col 2 since Col 1 is the Serial Number(SN)
             for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
-                strStart, strEnd = None, None
-                istInterval = []
+                strStart, strEnd = None, None       # set the test range for cell e.g. A1:A10
+                istInterval = []                    # set the threshold range for the formula below
 
+                # check the column is not empty, col[0] is column name
                 if len(col) > 1:
-                    strStart = col[1].coordinate
-                    strEnd = col[-1].coordinate
-                    #print(strStart, strEnd)
-                    strThreshold = dictThreshold[col[0].value]
+                    strStart = col[1].coordinate    # set starting cell for thershold testing
+                    strEnd = col[-1].coordinate     # set ending cell
+
+                    # get the thershold and store as interval for the formula below
+                    strThreshold = dictThreshold[col[0].value]      # get the test thershold by the column name(col[0])
                     listInterval = strThreshold.split(",")
 
                 red_text = Font(color="9C0006")                 # font-color: RED
@@ -307,6 +323,7 @@ def printLog(strPrintLine):
     print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
+
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
