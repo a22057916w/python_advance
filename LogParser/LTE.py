@@ -96,7 +96,7 @@ def parseLTE(strLTEPath, strSN):
             for line in content:
 
                 # search pattern like "Power: (int/float)"
-                if re.search("Power: [+-]?[0-9]*\.?[0-9]*", line) != None:
+                if re.search("Power: [+-]?[0-9]+\.?[0-9]*", line) != None:
                     # get the figure of the line "Power: 31.718\n"
                     fPower = eval(line.split(": ")[1].strip(" \n"))
 
@@ -109,7 +109,7 @@ def parseLTE(strLTEPath, strSN):
                     nPowerCase += 1
 
                 # search pattern like "Current: (int/float) A"
-                if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
+                if re.search("Current: [+-]?[0-9]+\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.246 A\n"
                     fCurrent = eval(line.split(": ")[1].strip(" A\n"))
 
@@ -121,7 +121,7 @@ def parseLTE(strLTEPath, strSN):
                         dictLTE["Current_mA_2G_CH124"] = fCurrent * 1000
                     nCurrentCase += 1
 
-                if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
+                if re.search("Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
                     fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
                     dictLTE["dBm_CH124"] = fRSSI
@@ -151,7 +151,7 @@ def parseZigbee(strZigBeePath, strSN):
             for line in content:
 
                 # search pattern like "Power: (int/float) dBm"
-                if re.search("Power: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
+                if re.search("Power: [+-]?[0-9]+\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Power: 8.817 dBm\n"
                     fPower = eval(line.split(": ")[1].strip(" dBm\n"))
 
@@ -163,7 +163,7 @@ def parseZigbee(strZigBeePath, strSN):
                         dictZigbee["Power_dBm_CH24"] = fPower
                     nPowerCase += 1
 
-                if re.search("Current: [+-]?[0-9]*\.?[0-9]* A", line) != None:
+                if re.search("Current: [+-]?[0-9]+\.?[0-9]* A", line) != None:
                     # get the figure of the line "Current: 0.081 A\n"
                     fCurrent = eval(line.split(": ")[1].strip(" A\n"))
 
@@ -175,7 +175,7 @@ def parseZigbee(strZigBeePath, strSN):
                         dictZigbee["Current_mA_CH24"] = fCurrent * 1000
                     nCurrentCase += 1
 
-                if re.search("Rx RSSI: [+-]?[0-9]*\.?[0-9]* dBm", line) != None:
+                if re.search("Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm", line) != None:
                     # get the figure of the line "Rx RSSI: -15 dBm\n"
                     fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
                     if nLNACase == 1:
