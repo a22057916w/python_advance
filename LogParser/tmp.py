@@ -30,12 +30,13 @@ import configparser
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import Font, Fill, colors
+from openpyxl.formatting.rule import CellIsRule
 
 # [Main]
 g_strVersion = "3.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./TryingLog"
+g_strLogDir = "./Log/Pass"
 
 
 # ----------- read and parse target log ----------
@@ -179,20 +180,6 @@ def parseZigbee(strZigBeePath, strSN):
         printLog("[E][parseZigbee] Unexpected Error: " + str(e))
     return(dictZigbee)
 
-def save(listLTE, listZigbee):
-    # listLTE and listZigbee both has same length
-    listInfo = [None] * len(listLTE)
-    #print(listLTE)
-    for i in range (0, len(listLTE)):
-        listLTE[i].update(listZigbee[i])
-        listInfo[i] = listLTE[i]
-    dfLogInfo = pd.DataFrame(listInfo)
-
-    writer = pd.ExcelWriter("test.xlsx", engine='xlsxwriter')
-    dfLogInfo.to_excel(writer)
-    writer.save()
-
-    #print(dfLogInfo)
 
 def mergeLogs(listLTE, listZigbee):
     try:
@@ -250,13 +237,14 @@ def log_to_excel(listInfo):
         printLog("[I][log_to_excel] ----- Excel Sheet Creating -----")
         for i in range(0, len(listSheetName)):
             newSheet(wb, listSheetName[i], df_logInfo[["SN"] + listCol[i]])
-        printLog("[I][log_to_excel] ----- Excel Sheet Created-----")
+        printLog("[I][log_to_excel] ----- Excel Sheet Created -----")
 
-        #print(wb.worksheets)
-        check_threshold(wb, dictThreshold)
+        # modify cell font-color according to thershold that parsed from INI
+        set_threshold_to_excel(wb, dictThreshold)
 
+        wb.save('LTE.xlsx')     # save the worksheet as excel file
 
-        wb.save('LTE.xlsx')
+        printLog("[I][log_to_excel] ------- Parsed Log to Excel -------")
     except Exception as e:
         printLog("[E][log_to_excel] Unexpected Error: " + str(e))
 
@@ -267,7 +255,7 @@ def readINI(strKey):
             strMethod = 'Method%s' % g_nMethodIndex
 
             strValue = config.get(strMethod, strKey)
-            if re.fullmatch("[+-]?[0-9]*,[+-]?[0-9]*", strValue):
+            if re.fullmatch("[+-]?[0-9]+\.?[0-9]*,[+-]?[0-9]+\.?[0-9]*", strValue):
                 printLog("[I][readINI] %s = %s" % (strKey, strValue))
                 return strValue
             else:
@@ -287,27 +275,32 @@ def newSheet(workbook, strSheetName, df_SheetCol):
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 
-def check_threshold(workbook, dictThreshold):
+def set_threshold_to_excel(workbook, dictThreshold):
     try:
-        for ws in workbook.worksheets:
-            print(ws.title)
-            for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
-                f_upper_val, f_lower_val = -1e9, 1e9
-                for cell in col:
-                    print(cell.value)
-                    if (cell.row == 1) and (cell.value in dictThreshold):
-                        strThreshold = dictThreshold[cell.value]
-                        f_upper_val = eval(strThreshold.split(",")[0])
-                        f_lower_val = eval(strThreshold.split(",")[1])
-                        continue
-                    #print(cell.value)
-                    if math.isnan(cell.value):
-                        continue
-                    if cell.value > f_upper_val or cell.value < f_lower_val:
-                        cell.font = Font(color="00FF0000")
+        printLog("[I][set_threshold_to_excel] ----- threshold setting -----")
 
+        for ws in workbook.worksheets:
+            printLog("[I][set_threshold_to_excel] setting worksheet: %s" % ws.title)
+
+            for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
+                strStart, strEnd = None, None
+                istInterval = []
+
+                if len(col) > 1:
+                    strStart = col[1].coordinate
+                    strEnd = col[-1].coordinate
+                    #print(strStart, strEnd)
+                    strThreshold = dictThreshold[col[0].value]
+                    listInterval = strThreshold.split(",")
+
+                red_text = Font(color="9C0006")                 # font-color: RED
+                range_string = "%s:%s" % (strStart, strEnd)     # the value would be like A1:A10
+                ws.conditional_formatting.add(range_string,
+                    CellIsRule(operator='notBetween', formula=listInterval, stopIfTrue=True, font=red_text))
+
+        printLog("[I][set_threshold_to_excel] ----- threshold set -----")
     except Exception as e:
-        printLog("[E][check_threshold] Unexpected Error: " + str(e))
+        printLog("[E][set_threshold_to_excel] Unexpected Error: " + str(e))
 
 if __name__ == "__main__":
     global g_strFileName, g_strINIPath, g_nMethodIndex
@@ -327,9 +320,8 @@ if __name__ == "__main__":
         listLTE, listZigbee = parseLog(listSNLogs)
         # merge data from two different log files
         listInfo = mergeLogs(listLTE, listZigbee)
-
+        # save log to excel with thershold setting
         log_to_excel(listInfo)
-        save(listLTE, listZigbee)
 
     except Exception as e:
         printLog("[E][main] Unexpected Error: " + str(e))
