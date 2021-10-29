@@ -7,14 +7,14 @@
 ##    Compal STiD NPSD Test Program Release Notification.
 ##
 ##    ModuleName:
-##            LTE.py
+##            LTE.py (Log to Excel)
 ##
 ##    Abstract:
 ##            Parsing log info to a excel with 4 sheets.
 ##              1. Read log file: parse -> store (a list of dict)
 ##              2. Read the INI threshold data: store as dict
 ##              3. New excel workbook: by openpyxl
-##              4. Set worksheet according to Step 1: by dict
+##              4. Set worksheet according to Step 1: by dict and DataFrame
 ##              5. Set condition formating for each sheet
 ##                 according to Step 2: by dict
 ##              6. Save the workbook to xlsx file
@@ -32,7 +32,6 @@ import sys
 import pandas as pd
 import codecs
 import time
-import math
 import configparser
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
