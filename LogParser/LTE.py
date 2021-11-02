@@ -42,8 +42,11 @@ from openpyxl.formatting.rule import CellIsRule
 g_strVersion = "3.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./singleLog"
+g_strLogDir = "./TryingLog"
 
+
+g_listKey = ["Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
+ "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]
 
 #/====================================================================\#
 #|               Functions of parsing target logs                     |#
@@ -119,42 +122,36 @@ def parseLTE(dictLTE, strLTEPath, strSN):
     printLog("[I][parseLTE] Parse LTE log: %s" % strLTEPath)
 
     try:
-        nPowerCase, nCurrentCase = 1, 1
+        listPostfix = [" \n", " A\n", " dBm\n"]
         with open(strLTEPath, encoding='big5') as log:  # big5 for windows
             content = log.readlines()
             for line in content:
+                re_power = "Power: [+-]?[0-9]+\.?[0-9]*"
+                re_current = "Current: [+-]?[0-9]+\.?[0-9]* A"
+                re_RX_RSSI = "Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm"
 
-                # search pattern like "Power: (int/float)"
-                if re.search("Power: [+-]?[0-9]+\.?[0-9]*", line) != None:
-                    # get the figure of the line "Power: 31.718\n"
-                    fPower = eval(line.split(": ")[1].strip(" \n"))
+                if re.search("-+ LTE_3G Freq 897.4 -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictLTE, re_power, g_listKey[11], listPostfix[0], 1, False)
+                    get_log_value(tmp_content, dictLTE, re_current, g_listKey[8], listPostfix[1], 1000, False)
 
-                    if nPowerCase == 1:
-                        dictLTE["dBm_CH2787"] = fPower
-                    elif nPowerCase == 2:
-                        dictLTE["dBm_CH9750"] = fPower
-                    elif nPowerCase == 3:
-                        dictLTE["dBm_2G_CH124"] = fPower
-                    nPowerCase += 1
+                if re.search("-+ LTE_3G Freq 1950 -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictLTE, re_power, g_listKey[12], listPostfix[0], 1, False)
+                    get_log_value(tmp_content, dictLTE, re_current, g_listKey[9], listPostfix[1], 1000, False)
 
-                # search pattern like "Current: (int/float) A"
-                if re.search("Current: [+-]?[0-9]+\.?[0-9]* A", line) != None:
-                    # get the figure of the line "Current: 0.246 A\n"
-                    fCurrent = eval(line.split(": ")[1].strip(" A\n"))
+                if re.search("-+ LTE_2G Freq 914.8 -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictLTE, re_power, g_listKey[13], listPostfix[0], 1, False)
+                    get_log_value(tmp_content, dictLTE, re_current, g_listKey[10], listPostfix[1], 1000, False)
 
-                    if nCurrentCase == 1:
-                        dictLTE["Current_mA_3G_CH2787"] = fCurrent * 1000
-                    elif nCurrentCase == 2:
-                        dictLTE["Current_mA_3G_CH9750"] = fCurrent * 1000
-                    elif nCurrentCase == 3:
-                        dictLTE["Current_mA_2G_CH124"] = fCurrent * 1000
-                    nCurrentCase += 1
-
-                if re.search("Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm", line) != None:
-                    # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
-                    dictLTE["dBm_CH124"] = fRSSI
-                    break
+                if re.search("-+ LTE_2G Freq 959.8 -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictLTE, re_RX_RSSI, g_listKey[14], listPostfix[2], 1,  True)
 
     except Exception as e:
         printLog("[E][parseLTE] Unexpected Error: " + str(e))
@@ -164,66 +161,56 @@ def parseZigbee(dictZigbee, strZigBeePath, strSN):
     printLog("[I][parseZigbee] Parse Zigbee log: %s" % strZigBeePath)
 
     try:
-        nPowerCase , nCurrentCase, nLNACase = 1, 1, 1
+        listPostfix = ["dBm\n", " A\n", " dBm\n"]
         with open(strZigBeePath, encoding="big5") as Zigbee:    # big5 for windows
             content = Zigbee.readlines()
             for line in content:
+                re_power = "Power: [+-]?[0-9]+\.?[0-9]* dBm"
+                re_current = "Current: [+-]?[0-9]+\.?[0-9]* A"
+                re_RX_RSSI = "Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm"
 
-                if re.search("-+ ZIGBEE_2450 Freq 2405 -+", line) != None:
-                    #print(line, content.index(line))
+                if re.search("-+ ZIGBEE_2450 Freq 2425 -+", line) != None:
                     idx = content.index(line)
                     tmp_content = content[idx:]
-                    get_log_value(tmp_content, re_target[0], listKey[0], listPostfix[0])
-                    #get_log_value(content, content.index(line),
-                # search pattern like "Power: (int/float) dBm"
-                if re.search("Power: [+-]?[0-9]+\.?[0-9]* dBm", line) != None:
-                    #print(content.index(line))
-                    # get the figure of the line "Power: 8.817 dBm\n"
-                    fPower = eval(line.split(": ")[1].strip(" dBm\n"))
+                    get_log_value(tmp_content, dictZigbee, re_power, g_listKey[0], listPostfix[0], 1, False)
+                    get_log_value(tmp_content, dictZigbee, re_current, g_listKey[3], listPostfix[1], 1000, False)
 
-                    if nPowerCase == 1:
-                        dictZigbee["Power_dBm_CH15"] = fPower
-                    elif nPowerCase == 2:
-                        dictZigbee["Power_dBm_CH21"] = fPower
-                    elif nPowerCase == 3:
-                        dictZigbee["Power_dBm_CH24"] = fPower
-                    nPowerCase += 1
+                if re.search("-+ ZIGBEE_2450 Freq 2455 -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictZigbee, re_power, g_listKey[1], listPostfix[0], 1, False)
+                    get_log_value(tmp_content, dictZigbee, re_current, g_listKey[4], listPostfix[1], 1000, False)
 
-                if re.search("Current: [+-]?[0-9]+\.?[0-9]* A", line) != None:
-                    # get the figure of the line "Current: 0.081 A\n"
-                    fCurrent = eval(line.split(": ")[1].strip(" A\n"))
+                if re.search("-+ ZIGBEE_2450 Freq 2470 -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictZigbee, re_power, g_listKey[2], listPostfix[0], 1, False)
+                    get_log_value(tmp_content, dictZigbee, re_current, g_listKey[5], listPostfix[1], 1000, False)
 
-                    if nCurrentCase == 1:
-                        dictZigbee["Current_mA_CH15"] = fCurrent * 1000
-                    elif nCurrentCase == 2:
-                        dictZigbee["Current_mA_CH21"] = fCurrent * 1000
-                    elif nCurrentCase == 3:
-                        dictZigbee["Current_mA_CH24"] = fCurrent * 1000
-                    nCurrentCase += 1
+                if re.search("-+ LNA ON -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictZigbee, re_RX_RSSI, g_listKey[6], listPostfix[2], 1,  False)
 
-                if re.search("Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm", line) != None:
-                    # get the figure of the line "Rx RSSI: -15 dBm\n"
-                    fRSSI = eval(line.split(": ")[1].strip(" dBm\n"))
-                    if nLNACase == 1:
-                        dictZigbee["dBm_LNA_ON"] = fRSSI
-                    elif nLNACase == 2:
-                        dictZigbee["dBm_LNA_Off"] = fRSSI
-                        break
-                    nLNACase += 1
+                if re.search("-+ LNA OFF -+", line) != None:
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, dictZigbee, re_RX_RSSI, g_listKey[7], listPostfix[2], 1, False)
+
 
     except Exception as e:
         printLog("[E][parseZigbee] Unexpected Error: " + str(e))
 
-def get_log_value(cut_content, re_target, strKey, strPostfix):
+def get_log_value(cut_content, dictInfo, re_target, strKey, strPostfix, nUnit, b_getMulti):
     for line in cut_content:
 
         # search pattern like "Power: (int/float) dBm"
         if re.search(re_target, line) != None:
-            #print(content.index(line))
-            # get the figure of the line "Power: 8.817 dBm\n"
-            fPower = eval(line.split(": ")[1].strip(strPostfix))
-                dictZigbee[strKey] = fPower
-
+            # get the figure of the line like "Power: 8.817 dBm\n"
+            fValue = eval(line.split(": ")[1].strip(strPostfix))
+            dictInfo[strKey] = fValue * nUnit
+            if not b_getMulti:
+                break;
 
 # merge two list of dict to single list of dict
 def mergeLogs(listLTE, listZigbee):
@@ -248,21 +235,21 @@ def mergeLogs(listLTE, listZigbee):
 def log_to_excel(listInfo):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
-    listKey = [
+    g_listKey = [
         "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
          "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]
     dictThreshold = {}  # store INI threshold ata for setting conditional formating
     try:
         # ========== get the threshold data from INI ==========
         printLog("[I][log_to_excel] ----- INI reading -----")
-        for key in listKey:
+        for key in g_listKey:
             dictThreshold[key] = readINI(key)
         printLog("[I][log_to_excel] ----- INI read -----")
 
         # ========== New Excel workbook and sheets ==========
         df_logInfo = pd.DataFrame(listInfo)     # listInfo -> list of dict
         listSheetName = ["Zigbee_Power_Current", "Zigbee_LAN", "LTE_Current", "LTE_dBm"]
-        listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet above
+        listCol = [g_listKey[:6], g_listKey[6:8], g_listKey[8:11], g_listKey[11:15]]    # columns for each sheet above
 
         wb = openpyxl.Workbook()    # 新增 Excel 活頁
         wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
