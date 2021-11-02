@@ -98,7 +98,7 @@ def parseLog(strSNDLog):
                     parseZigbee(dictZigbee, strLog, strSN)
                     b_hasZigbee = True
 
-            # if log not exists,append init dict
+            # if log not exists, append initial dict
             listLTE.append(dictLTE)
             listZigbee.append(dictZigbee)
 
@@ -115,7 +115,7 @@ def parseLog(strSNDLog):
         printLog("[E][parseLog] Unexpected Error: " + str(e))
     return listLTE, listZigbee
 
-def parseLTE(dictLTE, trLTEPath, strSN):
+def parseLTE(dictLTE, strLTEPath, strSN):
     printLog("[I][parseLTE] Parse LTE log: %s" % strLTEPath)
 
     try:
