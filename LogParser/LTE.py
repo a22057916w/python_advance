@@ -53,25 +53,39 @@ def parseLog(strSNDLog):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
 
     listLTE, listZigbee = [], []
+    strLTEName, strZigbeeName = "GFI20_RF_LTE.log", "GFI20_RF_Zigbee.log"
     try:
         for strSN in listSNLogs:
-            strSNLog = os.path.join(g_strLogDir, strSN)
+            b_hasLTE, b_hasZigbee = False, False            # flag for checking if the target log exists
+            strSNLog = os.path.join(g_strLogDir, strSN)     # set abspath for SN logs
 
             # iterate through log files in a SN folder (second layer)
             for strLog in os.listdir(strSNLog):
                 strLog = os.path.join(strSNLog, strLog)
 
-                # parse GFI20_RF_LTE.log files
+                # check GFI20_RF_LTE.log exists. If not, flag = False and parse only SN.
                 reMatch = re.fullmatch("^.*RF_LTE\.log", strLog)
                 if(reMatch != None):
                     dictLTE = parseLTE(strLog, strSN)
                     listLTE.append(dictLTE)
+                    b_hasLTE = True
+
 
                 # parse GFI20_RF_Zigbee.log files
                 reMatch = re.fullmatch("^.*RF_Zigbee\.log", strLog)
                 if(reMatch != None):
                     dictZigbee = parseZigbee(strLog, strSN)
                     listZigbee.append(dictZigbee)
+                    b_hasZigbee = True
+
+            # if there is no target log file in the folder, parse only SN
+            if not b_hasLTE:
+                listLTE.append({"SN": strSN})
+                printLog("[W][ParseLog] Cannot find log: %s" % os.path.join(strSN, strLTEName))
+            if not b_hasZigbee:
+                listZigbee.append({"SN" : strSN})
+                printLog("[W][ParseLog] Cannot find log: %s" % os.path.join(strSN, strZigbeeName))
+
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
         printLog("[E][parseLog] Unexpected Error: " + str(e))
