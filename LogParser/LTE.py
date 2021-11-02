@@ -169,8 +169,15 @@ def parseZigbee(dictZigbee, strZigBeePath, strSN):
             content = Zigbee.readlines()
             for line in content:
 
+                if re.search("-+ ZIGBEE_2450 Freq 2405 -+", line) != None:
+                    #print(line, content.index(line))
+                    idx = content.index(line)
+                    tmp_content = content[idx:]
+                    get_log_value(tmp_content, re_target[0], listKey[0], listPostfix[0])
+                    #get_log_value(content, content.index(line),
                 # search pattern like "Power: (int/float) dBm"
                 if re.search("Power: [+-]?[0-9]+\.?[0-9]* dBm", line) != None:
+                    #print(content.index(line))
                     # get the figure of the line "Power: 8.817 dBm\n"
                     fPower = eval(line.split(": ")[1].strip(" dBm\n"))
 
@@ -206,6 +213,16 @@ def parseZigbee(dictZigbee, strZigBeePath, strSN):
 
     except Exception as e:
         printLog("[E][parseZigbee] Unexpected Error: " + str(e))
+
+def get_log_value(cut_content, re_target, strKey, strPostfix):
+    for line in cut_content:
+
+        # search pattern like "Power: (int/float) dBm"
+        if re.search(re_target, line) != None:
+            #print(content.index(line))
+            # get the figure of the line "Power: 8.817 dBm\n"
+            fPower = eval(line.split(": ")[1].strip(strPostfix))
+                dictZigbee[strKey] = fPower
 
 
 # merge two list of dict to single list of dict
