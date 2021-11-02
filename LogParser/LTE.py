@@ -42,7 +42,7 @@ from openpyxl.formatting.rule import CellIsRule
 g_strVersion = "3.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./Log/Pass"
+g_strLogDir = "./singleLog"
 
 
 #/====================================================================\#
@@ -54,8 +54,30 @@ def parseLog(strSNDLog):
 
     listLTE, listZigbee = [], []
     strLTEName, strZigbeeName = "GFI20_RF_LTE.log", "GFI20_RF_Zigbee.log"
+
     try:
         for strSN in listSNLogs:
+            dictLTE = {
+                "SN" : strSN,
+                "dBm_CH9750" : None,
+                "dBm_CH2787" : None,
+                "dBm_2G_CH124" : None,
+                "Current_mA_3G_CH9750" : None,
+                "Current_mA_3G_CH2787" : None,
+                "Current_mA_2G_CH124" : None,
+                "dBm_CH124" : None }
+
+            dictZigbee = {
+                "SN" : strSN,
+                "Power_dBm_CH15" : None,
+                "Power_dBm_CH21" : None,
+                "Power_dBm_CH24" : None,
+                "dBm_LNA_ON" : None,
+                "dBm_LNA_Off" : None,
+                "Current_mA_CH15" : None,
+                "Current_mA_CH21" : None,
+                "Current_mA_CH24" : None }
+
             b_hasLTE, b_hasZigbee = False, False            # flag for checking if the target log exists
             strSNLog = os.path.join(g_strLogDir, strSN)     # set abspath for SN logs
 
@@ -66,24 +88,26 @@ def parseLog(strSNDLog):
                 # check GFI20_RF_LTE.log exists. If not, flag = False and parse only SN.
                 reMatch = re.fullmatch("^.*RF_LTE\.log", strLog)
                 if(reMatch != None):
-                    dictLTE = parseLTE(strLog, strSN)
-                    listLTE.append(dictLTE)
+                    parseLTE(dictLTE, strLog, strSN)
                     b_hasLTE = True
 
 
                 # parse GFI20_RF_Zigbee.log files
                 reMatch = re.fullmatch("^.*RF_Zigbee\.log", strLog)
                 if(reMatch != None):
-                    dictZigbee = parseZigbee(strLog, strSN)
-                    listZigbee.append(dictZigbee)
+                    parseZigbee(dictZigbee, strLog, strSN)
                     b_hasZigbee = True
+
+            # if log not exists,append init dict
+            listLTE.append(dictLTE)
+            listZigbee.append(dictZigbee)
 
             # if there is no target log file in the folder, parse only SN
             if not b_hasLTE:
-                listLTE.append({"SN": strSN})
+                #listLTE.append({"SN": strSN})
                 printLog("[W][ParseLog] Cannot find log: %s" % os.path.join(strSN, strLTEName))
             if not b_hasZigbee:
-                listZigbee.append({"SN" : strSN})
+                #listZigbee.append({"SN" : strSN})
                 printLog("[W][ParseLog] Cannot find log: %s" % os.path.join(strSN, strZigbeeName))
 
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
@@ -91,18 +115,9 @@ def parseLog(strSNDLog):
         printLog("[E][parseLog] Unexpected Error: " + str(e))
     return listLTE, listZigbee
 
-def parseLTE(strLTEPath, strSN):
+def parseLTE(dictLTE, trLTEPath, strSN):
     printLog("[I][parseLTE] Parse LTE log: %s" % strLTEPath)
 
-    dictLTE = {
-        "SN" : strSN,
-        "dBm_CH9750" : None,
-        "dBm_CH2787" : None,
-        "dBm_2G_CH124" : None,
-        "Current_mA_3G_CH9750" : None,
-        "Current_mA_3G_CH2787" : None,
-        "Current_mA_2G_CH124" : None,
-        "dBm_CH124" : None }
     try:
         nPowerCase, nCurrentCase = 1, 1
         with open(strLTEPath, encoding='big5') as log:  # big5 for windows
@@ -143,21 +158,11 @@ def parseLTE(strLTEPath, strSN):
 
     except Exception as e:
         printLog("[E][parseLTE] Unexpected Error: " + str(e))
-    return(dictLTE)
 
-def parseZigbee(strZigBeePath, strSN):
+
+def parseZigbee(dictZigbee, strZigBeePath, strSN):
     printLog("[I][parseZigbee] Parse Zigbee log: %s" % strZigBeePath)
 
-    dictZigbee = {
-        "SN" : strSN,
-        "Power_dBm_CH15" : None,
-        "Power_dBm_CH21" : None,
-        "Power_dBm_CH24" : None,
-        "dBm_LNA_ON" : None,
-        "dBm_LNA_Off" : None,
-        "Current_mA_CH15" : None,
-        "Current_mA_CH21" : None,
-        "Current_mA_CH24" : None }
     try:
         nPowerCase , nCurrentCase, nLNACase = 1, 1, 1
         with open(strZigBeePath, encoding="big5") as Zigbee:    # big5 for windows
@@ -201,7 +206,7 @@ def parseZigbee(strZigBeePath, strSN):
 
     except Exception as e:
         printLog("[E][parseZigbee] Unexpected Error: " + str(e))
-    return(dictZigbee)
+
 
 # merge two list of dict to single list of dict
 def mergeLogs(listLTE, listZigbee):
@@ -239,7 +244,7 @@ def log_to_excel(listInfo):
 
         # ========== New Excel workbook and sheets ==========
         df_logInfo = pd.DataFrame(listInfo)     # listInfo -> list of dict
-        listSheetName = ["LTE_Power_Current", "LTE_LAN", "Zigbee_Current", "Zigbee_dBm"]
+        listSheetName = ["Zigbee_Power_Current", "Zigbee_LAN", "LTE_Current", "LTE_dBm"]
         listCol = [listKey[:6], listKey[6:8], listKey[8:11], listKey[11:15]]    # columns for each sheet above
 
         wb = openpyxl.Workbook()    # 新增 Excel 活頁
