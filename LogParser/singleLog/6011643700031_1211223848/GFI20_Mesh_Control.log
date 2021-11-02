@@ -1,0 +1,1041 @@
+[2020/12/11 22:34:27.600738][I][class_GFI20] Initial class_GFI20
+[2020/12/11 22:34:27.605278][I][connectDUT] COM: COM6, BaudRate: 115200
+[2020/12/11 22:34:27.610430][I][connectDUT] Connect DUT success
+[2020/12/11 22:34:27.616486][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:34:27.818830][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:28.026679][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:34:28.538884][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:34:28.544898][I][setScimitarMenu] Success
+[2020/12/11 22:34:30.631971][I][setMeshHGM] HGM: 1
+[2020/12/11 22:34:30.632975][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:34:30.837865][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:31.045719][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:34:31.563520][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:34:31.570536][I][setScimitarMenu] Success
+[2020/12/11 22:34:31.574257][I][setTelitMenu] Check Telit Menu
+[2020/12/11 22:34:31.777581][I][sendCOMCommand] DUT <= 1
+[2020/12/11 22:34:31.988988][I][sendCOMCommand] Serial buffer size: 24
+[2020/12/11 22:34:32.501852][I][sendCOMCommand] DUT => 1
+$1_Cellular(Telit)>
+
+[2020/12/11 22:34:32.508857][I][setTelitMenu] Success
+[2020/12/11 22:34:32.512514][I][setMeshHGM] Set GPIO Write Menu
+[2020/12/11 22:34:32.716392][I][sendCOMCommand] DUT <= 6
+[2020/12/11 22:34:32.927742][I][sendCOMCommand] Serial buffer size: 21
+[2020/12/11 22:34:33.440757][I][sendCOMCommand] DUT => 6
+$1-6_Telit GPIO>
+
+[2020/12/11 22:34:33.444775][I][setMeshHGM] Success
+[2020/12/11 22:34:33.447479][I][setMeshHGM] Set HGM Menu
+[2020/12/11 22:34:33.650723][I][sendCOMCommand] DUT <= 7
+[2020/12/11 22:34:33.857858][I][sendCOMCommand] Serial buffer size: 49
+[2020/12/11 22:34:34.374907][I][sendCOMCommand] DUT => 7
+$1-d-7_GPIO07 MSHHGM [0 or 1]>
+$PARAMETER?>
+
+[2020/12/11 22:34:34.381876][I][setMeshHGM] Success
+[2020/12/11 22:34:34.384886][I][setMeshHGM] Set HGM
+[2020/12/11 22:34:34.589862][I][sendCOMCommand] DUT <= 1
+[2020/12/11 22:34:34.801232][I][sendCOMCommand] Serial buffer size: 34
+[2020/12/11 22:34:35.315067][I][sendCOMCommand] DUT => $[1]
+$DONE_OK
+$1-6_Telit GPIO>
+
+[2020/12/11 22:34:35.326095][I][setMeshHGM] Success
+[2020/12/11 22:34:38.532639][I][setMesh_Tx] Tx PWR: 56 dBm
+[2020/12/11 22:34:38.535019][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:34:38.738777][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:38.950797][I][sendCOMCommand] Serial buffer size: 24
+[2020/12/11 22:34:39.464944][I][sendCOMCommand] DUT => x
+$1_Cellular(Telit)>
+
+[2020/12/11 22:34:39.673824][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:39.883838][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:34:40.398251][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:34:40.405276][I][setScimitarMenu] Success
+[2020/12/11 22:34:40.408284][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:34:40.613253][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:34:40.828835][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:41.343035][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:34:41.350059][I][setMeshMenu] Success
+[2020/12/11 22:34:41.353993][I][setMesh_Tx] Set Diagnostics Menu
+[2020/12/11 22:34:41.557895][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:34:41.771394][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:42.284075][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:34:42.288043][I][setMesh_Tx] Success
+[2020/12/11 22:34:42.291184][I][setMesh_Tx] Set PWR Menu
+[2020/12/11 22:34:42.496141][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:34:42.703380][I][sendCOMCommand] Serial buffer size: 85
+[2020/12/11 22:34:43.222758][I][sendCOMCommand] DUT => 3
+$3-d-3_Set Power (-16.0 => +14.0dBm, Step=0.5dB) [00 - 3F by HEX]>
+$PARAMETER?>
+
+[2020/12/11 22:34:43.235735][I][setMesh_Tx] Success
+[2020/12/11 22:34:43.244755][I][setMesh_Tx] Set Tx PWR
+[2020/12/11 22:34:43.452448][I][sendCOMCommand] DUT <= 38
+[2020/12/11 22:34:43.661816][I][sendCOMCommand] Serial buffer size: 56
+[2020/12/11 22:34:44.181660][I][sendCOMCommand] DUT => *** Set REG(PA_CFG1=0x78)
+$DONE_OK
+$3-d_Diagnostics>
+
+[2020/12/11 22:34:44.196669][I][setMesh_Tx] Success
+[2020/12/11 22:34:44.217730][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:34:44.424038][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:44.634921][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:45.147129][I][sendCOMCommand] DUT => x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:34:45.353898][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:45.568875][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:34:46.083090][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:34:46.091054][I][setScimitarMenu] Success
+[2020/12/11 22:34:46.095064][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:34:46.299714][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:34:46.514954][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:47.030021][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:34:47.038050][I][setMeshMenu] Success
+[2020/12/11 22:34:47.042172][I][setTxStart] Set Diagnostics Menu
+[2020/12/11 22:34:47.246065][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:34:47.461666][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:47.977204][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:34:47.985184][I][setTxStart] Success
+[2020/12/11 22:34:47.989182][I][setTxStart] Set Packet Number
+[2020/12/11 22:34:48.194199][I][sendCOMCommand] DUT <= 5
+[2020/12/11 22:34:48.410816][I][sendCOMCommand] Serial buffer size: 307
+[2020/12/11 22:34:48.924721][I][sendCOMCommand] DUT => 5
+runTXPacket() Start
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+Read Mesh resister
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x78
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+$3-d-5_Mesh Transfer (Send Packet) /w Packet Num [1 - 65535]>
+$PARAMETER?>
+
+[2020/12/11 22:34:48.932684][I][setTxStart] Success
+[2020/12/11 22:34:48.936728][I][setTxStart] Set Tx start
+[2020/12/11 22:34:50.700492][I][chkTxStop] Set Tx stop
+[2020/12/11 22:34:50.910426][I][sendCOMCommand] DUT <= 
+
+[2020/12/11 22:34:51.125188][I][sendCOMCommand] Serial buffer size: 2225
+[2020/12/11 22:34:51.233985][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:34:51.248816][I][sendCOMCommand] Serial buffer size: 73
+[2020/12/11 22:34:51.461502][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:34:51.467665][I][sendCOMCommand] Serial buffer size: 68
+[2020/12/11 22:34:51.572946][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:34:51.587047][I][sendCOMCommand] Serial buffer size: 39
+[2020/12/11 22:34:51.799688][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:34:51.806760][I][sendCOMCommand] Serial buffer size: 107
+[2020/12/11 22:34:52.112670][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:34:52.120848][I][sendCOMCommand] Serial buffer size: 103
+[2020/12/11 22:34:52.631149][I][sendCOMCommand] DUT => *** Packet Num: 10
+CH_registerConfigReadAll() start
+Mesh registers.
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 0f 5a 30 1a 6e 4e 90 4e e8 23 47 0b 56 14 ba c8
+ 10 | 84 42 05 94 7a e1 27 17 00 11 20 11 d0 00 00 0b
+ 20 | 12 08 21 00 00 00 24 03 20 0f 00 78 56 0f ff 00
+SPI Strobe(cmd:0xBD/status:0x0F)
+CC120X_SNOP=0x0f
+
+Mesh registers.(Extended Register Space)
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 18 20 03 00 00 02 01 00 00 00 00 00 56 f3 d7 02
+ 10 | ee 10 04 50 00 20 40 0e 28 03 00 33 f7 0f 00 00
+ 20 | 6e 1c ac 14 00 00 00 b5 00 02 00 00 10 00 00 05
+ 30 | 01 01 0e a0 03 04 03 00 00 00 00 00 00 00 00 00
+ 40 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 50 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 60 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 70 | 00 80 00 41 00 ff 00 00 00 00 d1 00 3f 00 00 30
+ 80 | 7f 00 00 00 00 00 02 00 00 00 00 00 04 01 00 20
+ 90 | 11 08 10 00 00 00 00 00 00 00 00 0b 40 00 00 00
+ a0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ b0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ c0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ d0 | 00 00 00 00 00 00 00 00 0f 00 00 00 00 00 00 00
+ e0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ f0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+CH_registerConfigReadAll() end
+runTXPacket() Start
+SPI Strobe(cmd:0x3B/status:0x0F)
+SPI Strobe(cmd:0x3A/status:0x0F)
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:0
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:1
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:2
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:3
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:4
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:5
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:6
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:7
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:8
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:9
+runTXPacket() End
+CH_registerConfig()
+SPI Strobe(cmd:0x34/status:0x5F)
+$DONE_OK
+$3-d_Diagnostics>
+
+[2020/12/11 22:34:52.637278][I][chkTxStop] Success
+[2020/12/11 22:34:52.651198][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:34:52.856887][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:53.067270][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:53.592281][I][sendCOMCommand] DUT => x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:34:53.802424][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:34:54.009103][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:34:54.522925][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:34:54.531957][I][setScimitarMenu] Success
+[2020/12/11 22:34:54.535966][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:34:54.741374][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:34:54.957937][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:55.472978][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:34:55.480003][I][setMeshMenu] Success
+[2020/12/11 22:34:55.484696][I][setTxStartForCurrent] Set Diagnostics Menu
+[2020/12/11 22:34:55.690142][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:34:55.907253][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:34:56.423047][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:34:56.432116][I][setTxStartForCurrent] Success
+[2020/12/11 22:34:56.436088][I][setTxStartForCurrent] Set One Tone
+[2020/12/11 22:34:56.640414][I][sendCOMCommand] DUT <= A
+[2020/12/11 22:34:56.857168][I][sendCOMCommand] Serial buffer size: 110
+[2020/12/11 22:34:57.371363][I][sendCOMCommand] DUT => A
+$3-d-A_Mesh Transfer (Start Tone) /w Repeat Count [1 - 65535]>
+$PARAMETER?>
+- Repeat Count [1 - 65535]>
+
+[2020/12/11 22:34:57.380397][I][setTxStartForCurrent] Success
+[2020/12/11 22:34:57.384806][I][setTxStartForCurrent] Set Repeat Time
+[2020/12/11 22:34:57.590315][I][sendCOMCommand] DUT <= 5
+[2020/12/11 22:34:57.807677][I][sendCOMCommand] Serial buffer size: 52
+[2020/12/11 22:34:58.323736][I][sendCOMCommand] DUT => Repeat Count : 5
+- Transmit ON times [1 - 65535]>
+
+[2020/12/11 22:34:58.331704][I][setTxStartForCurrent] Set Transmit ON Time
+[2020/12/11 22:34:58.537597][I][sendCOMCommand] DUT <= 1000
+[2020/12/11 22:34:58.754772][I][sendCOMCommand] Serial buffer size: 61
+[2020/12/11 22:34:59.268601][I][sendCOMCommand] DUT => Transmit ON times : 1000
+- Transmit OFF times [1 - 65535]>
+
+[2020/12/11 22:34:59.277674][I][setTxStartForCurrent] Set Transmit OFF Time
+[2020/12/11 22:35:01.063248][I][chkTxStopForCurrent] Set Tx stop
+[2020/12/11 22:35:01.271139][I][sendCOMCommand] DUT <= 
+
+[2020/12/11 22:35:01.489746][I][sendCOMCommand] Serial buffer size: 1345
+[2020/12/11 22:35:02.010601][I][sendCOMCommand] DUT => Transmit OFF times : 10
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x78
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(1)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x78
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(2)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x78
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(3)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x78
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(4)
+
+[2020/12/11 22:35:02.014652][I][chkTxStopForCurrent] Success
+[2020/12/11 22:35:04.156233][I][getRxResult] Get Rx Result
+[2020/12/11 22:35:04.165211][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:04.371596][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:04.590534][I][sendCOMCommand] Serial buffer size: 496
+[2020/12/11 22:35:05.107620][I][sendCOMCommand] DUT => SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x78
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(5)
+CH_registerConfig()
+SPI Strobe(cmd:0x34/status:0x2F)
+Mesh Transfer (Stop Tone) /w Repeat
+$DONE_OK
+$3-d_Diagnostics>
+x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:05.317277][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:05.526786][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:06.040454][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:06.050467][I][setScimitarMenu] Success
+[2020/12/11 22:35:06.054802][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:35:06.260658][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:06.477868][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:06.992196][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:07.000163][I][setMeshMenu] Success
+[2020/12/11 22:35:07.205981][I][sendCOMCommand] DUT <= 9
+[2020/12/11 22:35:07.423724][I][sendCOMCommand] Serial buffer size: 1468
+[2020/12/11 22:35:07.534512][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:07.551043][I][sendCOMCommand] Serial buffer size: 19
+[2020/12/11 22:35:08.070447][I][sendCOMCommand] DUT => 9
+runRX() Start
+CH_registerConfig()
+CH_registerConfigReadAll() start
+Mesh registers.
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 0f 5a 30 1a 6e 4e 90 4e e5 23 47 0b 56 14 ba c8
+ 10 | 84 42 05 94 7a e1 27 17 00 11 20 11 d0 00 00 0b
+ 20 | 12 08 21 00 00 00 24 83 20 0f 00 78 56 0f ff 00
+SPI Strobe(cmd:0xBD/status:0x1F)
+CC120X_SNOP=0x1f
+
+Mesh registers.(Extended Register Space)
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 18 20 03 00 00 02 01 00 00 00 00 00 56 f3 d7 02
+ 10 | ee 10 07 aa 00 20 40 0e 09 03 00 33 f7 17 00 00
+ 20 | 6e 1c ac 18 00 50 9c b5 00 02 00 00 10 00 00 05
+ 30 | 01 01 0e a0 03 04 03 00 00 00 00 00 00 00 00 00
+ 40 | 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 50 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 60 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 70 | 00 2a 27 6d 00 5f 00 ff f6 00 9e 0c 26 00 00 30
+ 80 | 7f 00 02 2c 01 11 01 ff f9 00 01 1d 04 09 00 20
+ 90 | 11 08 11 00 00 00 00 00 00 00 00 0b 40 00 00 00
+ a0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ b0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ c0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ d0 | 00 00 00 00 00 00 00 00 0f 00 00 00 00 00 00 00
+ e0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ f0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+CH_registerConfigReadAll() end
+SPI Strobe(cmd:0x34/status:0x1F)
+RSSI0/RSSI1 = 39/42 -31 [dBm]
+runRX() End
+$[-31]
+$DONE_OK
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:08.105204][I][setMeshHGM] HGM: 0
+[2020/12/11 22:35:08.108213][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:08.313817][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:08.524379][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:09.049077][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:09.057049][I][setScimitarMenu] Success
+[2020/12/11 22:35:09.061817][I][setTelitMenu] Check Telit Menu
+[2020/12/11 22:35:09.266760][I][sendCOMCommand] DUT <= 1
+[2020/12/11 22:35:09.484549][I][sendCOMCommand] Serial buffer size: 24
+[2020/12/11 22:35:09.998486][I][sendCOMCommand] DUT => 1
+$1_Cellular(Telit)>
+
+[2020/12/11 22:35:10.007457][I][setTelitMenu] Success
+[2020/12/11 22:35:10.012170][I][setMeshHGM] Set GPIO Write Menu
+[2020/12/11 22:35:10.216216][I][sendCOMCommand] DUT <= 6
+[2020/12/11 22:35:10.429101][I][sendCOMCommand] Serial buffer size: 21
+[2020/12/11 22:35:10.944035][I][sendCOMCommand] DUT => 6
+$1-6_Telit GPIO>
+
+[2020/12/11 22:35:10.951998][I][setMeshHGM] Success
+[2020/12/11 22:35:10.956009][I][setMeshHGM] Set HGM Menu
+[2020/12/11 22:35:11.161956][I][sendCOMCommand] DUT <= 7
+[2020/12/11 22:35:11.377894][I][sendCOMCommand] Serial buffer size: 49
+[2020/12/11 22:35:11.892586][I][sendCOMCommand] DUT => 7
+$1-d-7_GPIO07 MSHHGM [0 or 1]>
+$PARAMETER?>
+
+[2020/12/11 22:35:11.901542][I][setMeshHGM] Success
+[2020/12/11 22:35:11.905588][I][setMeshHGM] Set HGM
+[2020/12/11 22:35:12.111678][I][sendCOMCommand] DUT <= 0
+[2020/12/11 22:35:12.329611][I][sendCOMCommand] Serial buffer size: 34
+[2020/12/11 22:35:12.842692][I][sendCOMCommand] DUT => $[0]
+$DONE_OK
+$1-6_Telit GPIO>
+
+[2020/12/11 22:35:12.851696][I][setMeshHGM] Success
+[2020/12/11 22:35:16.131831][I][setMesh_Tx] Tx PWR: 23 dBm
+[2020/12/11 22:35:16.136896][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:16.342273][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:16.550270][I][sendCOMCommand] Serial buffer size: 24
+[2020/12/11 22:35:17.064702][I][sendCOMCommand] DUT => x
+$1_Cellular(Telit)>
+
+[2020/12/11 22:35:17.274664][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:17.493489][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:18.007112][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:18.012978][I][setScimitarMenu] Success
+[2020/12/11 22:35:18.016992][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:35:18.223803][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:18.434043][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:18.958720][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:18.966712][I][setMeshMenu] Success
+[2020/12/11 22:35:18.971968][I][setMesh_Tx] Set Diagnostics Menu
+[2020/12/11 22:35:19.177547][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:35:19.387010][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:19.902526][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:19.919585][I][setMesh_Tx] Success
+[2020/12/11 22:35:19.929606][I][setMesh_Tx] Set PWR Menu
+[2020/12/11 22:35:20.138339][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:20.348843][I][sendCOMCommand] Serial buffer size: 85
+[2020/12/11 22:35:20.873109][I][sendCOMCommand] DUT => 3
+$3-d-3_Set Power (-16.0 => +14.0dBm, Step=0.5dB) [00 - 3F by HEX]>
+$PARAMETER?>
+
+[2020/12/11 22:35:20.890147][I][setMesh_Tx] Success
+[2020/12/11 22:35:20.900128][I][setMesh_Tx] Set Tx PWR
+[2020/12/11 22:35:21.107602][I][sendCOMCommand] DUT <= 17
+[2020/12/11 22:35:21.317776][I][sendCOMCommand] Serial buffer size: 56
+[2020/12/11 22:35:21.842983][I][sendCOMCommand] DUT => *** Set REG(PA_CFG1=0x57)
+$DONE_OK
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:21.860637][I][setMesh_Tx] Success
+[2020/12/11 22:35:21.881258][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:22.089243][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:22.299159][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:22.825303][I][sendCOMCommand] DUT => x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:23.035679][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:23.245595][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:23.769920][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:23.786967][I][setScimitarMenu] Success
+[2020/12/11 22:35:23.796043][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:35:24.003859][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:24.215038][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:24.727133][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:24.737157][I][setMeshMenu] Success
+[2020/12/11 22:35:24.744173][I][setTxStart] Set Diagnostics Menu
+[2020/12/11 22:35:24.951232][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:35:25.160698][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:25.684909][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:25.695879][I][setTxStart] Success
+[2020/12/11 22:35:25.700927][I][setTxStart] Set Packet Number
+[2020/12/11 22:35:25.907092][I][sendCOMCommand] DUT <= 5
+[2020/12/11 22:35:26.117196][I][sendCOMCommand] Serial buffer size: 307
+[2020/12/11 22:35:26.633180][I][sendCOMCommand] DUT => 5
+runTXPacket() Start
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+Read Mesh resister
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x57
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+$3-d-5_Mesh Transfer (Send Packet) /w Packet Num [1 - 65535]>
+$PARAMETER?>
+
+[2020/12/11 22:35:26.643189][I][setTxStart] Success
+[2020/12/11 22:35:26.647642][I][setTxStart] Set Tx start
+[2020/12/11 22:35:28.416840][I][chkTxStop] Set Tx stop
+[2020/12/11 22:35:28.624919][I][sendCOMCommand] DUT <= 
+
+[2020/12/11 22:35:28.842869][I][sendCOMCommand] Serial buffer size: 2191
+[2020/12/11 22:35:28.949903][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:28.957856][I][sendCOMCommand] Serial buffer size: 107
+[2020/12/11 22:35:29.164155][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:29.182940][I][sendCOMCommand] Serial buffer size: 34
+[2020/12/11 22:35:29.294198][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:29.311261][I][sendCOMCommand] Serial buffer size: 73
+[2020/12/11 22:35:29.523612][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:29.530617][I][sendCOMCommand] Serial buffer size: 68
+[2020/12/11 22:35:29.838896][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:29.846859][I][sendCOMCommand] Serial buffer size: 103
+[2020/12/11 22:35:30.364746][I][sendCOMCommand] DUT => *** Packet Num: 10
+CH_registerConfigReadAll() start
+Mesh registers.
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 0f 5a 30 1a 6e 4e 90 4e e8 23 47 0b 56 14 ba c8
+ 10 | 84 42 05 94 7a e1 27 17 00 11 20 11 d0 00 00 0b
+ 20 | 12 08 21 00 00 00 24 03 20 0f 00 57 56 0f ff 00
+SPI Strobe(cmd:0xBD/status:0x0F)
+CC120X_SNOP=0x0f
+
+Mesh registers.(Extended Register Space)
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 18 20 03 00 00 02 01 00 00 00 00 00 56 f3 d7 02
+ 10 | ee 10 04 50 00 20 40 0e 28 03 00 33 f7 0f 00 00
+ 20 | 6e 1c ac 14 00 00 00 b5 00 02 00 00 10 00 00 05
+ 30 | 01 01 0e a0 03 04 03 00 00 00 00 00 00 00 00 00
+ 40 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 50 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 60 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 70 | 00 80 00 41 00 ff 00 00 00 00 d1 00 3f 00 00 30
+ 80 | 7f 00 00 00 00 00 02 00 00 00 00 00 04 01 00 20
+ 90 | 11 08 10 00 00 00 00 00 00 00 00 0b 40 00 00 00
+ a0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ b0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ c0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ d0 | 00 00 00 00 00 00 00 00 0f 00 00 00 00 00 00 00
+ e0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ f0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+CH_registerConfigReadAll() end
+runTXPacket() Start
+SPI Strobe(cmd:0x3B/status:0x0F)
+SPI Strobe(cmd:0x3A/status:0x0F)
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:0
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:1
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:2
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:3
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:4
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:5
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:6
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:7
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:8
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:9
+runTXPacket() End
+CH_registerConfig()
+SPI Strobe(cmd:0x34/status:0x5F)
+$DONE_OK
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:30.368760][I][chkTxStop] Success
+[2020/12/11 22:35:30.380214][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:30.585480][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:30.793255][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:31.318858][I][sendCOMCommand] DUT => x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:31.539025][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:31.749114][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:32.273393][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:32.280326][I][setScimitarMenu] Success
+[2020/12/11 22:35:32.284760][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:35:32.490273][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:32.700646][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:33.219278][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:33.226215][I][setMeshMenu] Success
+[2020/12/11 22:35:33.230228][I][setTxStartForCurrent] Set Diagnostics Menu
+[2020/12/11 22:35:33.436155][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:35:33.644439][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:34.169359][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:34.179116][I][setTxStartForCurrent] Success
+[2020/12/11 22:35:34.183444][I][setTxStartForCurrent] Set One Tone
+[2020/12/11 22:35:34.388942][I][sendCOMCommand] DUT <= A
+[2020/12/11 22:35:34.609107][I][sendCOMCommand] Serial buffer size: 110
+[2020/12/11 22:35:35.125121][I][sendCOMCommand] DUT => A
+$3-d-A_Mesh Transfer (Start Tone) /w Repeat Count [1 - 65535]>
+$PARAMETER?>
+- Repeat Count [1 - 65535]>
+
+[2020/12/11 22:35:35.134192][I][setTxStartForCurrent] Success
+[2020/12/11 22:35:35.138161][I][setTxStartForCurrent] Set Repeat Time
+[2020/12/11 22:35:35.343844][I][sendCOMCommand] DUT <= 5
+[2020/12/11 22:35:35.562562][I][sendCOMCommand] Serial buffer size: 52
+[2020/12/11 22:35:36.077938][I][sendCOMCommand] DUT => Repeat Count : 5
+- Transmit ON times [1 - 65535]>
+
+[2020/12/11 22:35:36.087934][I][setTxStartForCurrent] Set Transmit ON Time
+[2020/12/11 22:35:36.293967][I][sendCOMCommand] DUT <= 1000
+[2020/12/11 22:35:36.512914][I][sendCOMCommand] Serial buffer size: 61
+[2020/12/11 22:35:37.028499][I][sendCOMCommand] DUT => Transmit ON times : 1000
+- Transmit OFF times [1 - 65535]>
+
+[2020/12/11 22:35:37.036511][I][setTxStartForCurrent] Set Transmit OFF Time
+[2020/12/11 22:35:38.826715][I][chkTxStopForCurrent] Set Tx stop
+[2020/12/11 22:35:39.037006][I][sendCOMCommand] DUT <= 
+
+[2020/12/11 22:35:39.248312][I][sendCOMCommand] Serial buffer size: 1345
+[2020/12/11 22:35:39.775201][I][sendCOMCommand] DUT => Transmit OFF times : 10
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x57
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(1)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x57
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(2)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x57
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(3)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x57
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(4)
+
+[2020/12/11 22:35:39.780211][I][chkTxStopForCurrent] Success
+[2020/12/11 22:35:39.809614][I][setMesh_Tx] Tx PWR: 16 dBm
+[2020/12/11 22:35:39.812624][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:40.018843][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:40.229010][I][sendCOMCommand] Serial buffer size: 353
+[2020/12/11 22:35:40.649036][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:40.658055][I][sendCOMCommand] Serial buffer size: 121
+[2020/12/11 22:35:41.171945][I][sendCOMCommand] DUT => SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x57
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(5)
+CH_registerConfig()
+SPI Strobe(cmd:0x34/status:0x2F)
+Mesh Transfer (Stop Tone) /w Repeat
+$DONE_OK
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:41.382528][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:41.602909][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:42.117817][I][sendCOMCommand] DUT => x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:42.328318][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:42.546207][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:43.061501][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:43.070476][I][setScimitarMenu] Success
+[2020/12/11 22:35:43.075491][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:35:43.281406][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:43.500390][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:44.015172][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:44.033172][I][setMeshMenu] Success
+[2020/12/11 22:35:44.042192][I][setMesh_Tx] Set Diagnostics Menu
+[2020/12/11 22:35:44.249189][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:35:44.458981][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:44.973048][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:44.990500][I][setMesh_Tx] Success
+[2020/12/11 22:35:44.999670][I][setMesh_Tx] Set PWR Menu
+[2020/12/11 22:35:45.207409][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:45.416721][I][sendCOMCommand] Serial buffer size: 85
+[2020/12/11 22:35:45.944443][I][sendCOMCommand] DUT => 3
+$3-d-3_Set Power (-16.0 => +14.0dBm, Step=0.5dB) [00 - 3F by HEX]>
+$PARAMETER?>
+
+[2020/12/11 22:35:45.962415][I][setMesh_Tx] Success
+[2020/12/11 22:35:45.973442][I][setMesh_Tx] Set Tx PWR
+[2020/12/11 22:35:46.181958][I][sendCOMCommand] DUT <= 10
+[2020/12/11 22:35:46.392718][I][sendCOMCommand] Serial buffer size: 56
+[2020/12/11 22:35:46.919176][I][sendCOMCommand] DUT => *** Set REG(PA_CFG1=0x50)
+$DONE_OK
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:46.929151][I][setMesh_Tx] Success
+[2020/12/11 22:35:46.941181][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:47.146902][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:47.355773][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:47.872809][I][sendCOMCommand] DUT => x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:48.083190][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:48.302689][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:48.818372][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:48.827442][I][setScimitarMenu] Success
+[2020/12/11 22:35:48.831412][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:35:49.037021][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:49.246254][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:49.757521][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:49.764115][I][setMeshMenu] Success
+[2020/12/11 22:35:49.769130][I][setTxStart] Set Diagnostics Menu
+[2020/12/11 22:35:49.975984][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:35:50.195915][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:50.713603][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:50.721614][I][setTxStart] Success
+[2020/12/11 22:35:50.726850][I][setTxStart] Set Packet Number
+[2020/12/11 22:35:50.931984][I][sendCOMCommand] DUT <= 5
+[2020/12/11 22:35:51.150411][I][sendCOMCommand] Serial buffer size: 307
+[2020/12/11 22:35:51.669191][I][sendCOMCommand] DUT => 5
+runTXPacket() Start
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+Read Mesh resister
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x50
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+$3-d-5_Mesh Transfer (Send Packet) /w Packet Num [1 - 65535]>
+$PARAMETER?>
+
+[2020/12/11 22:35:51.678223][I][setTxStart] Success
+[2020/12/11 22:35:51.682231][I][setTxStart] Set Tx start
+[2020/12/11 22:35:53.453688][I][chkTxStop] Set Tx stop
+[2020/12/11 22:35:53.661892][I][sendCOMCommand] DUT <= 
+
+[2020/12/11 22:35:53.881925][I][sendCOMCommand] Serial buffer size: 2191
+[2020/12/11 22:35:53.989097][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:54.006140][I][sendCOMCommand] Serial buffer size: 73
+[2020/12/11 22:35:54.218122][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:54.223175][I][sendCOMCommand] Serial buffer size: 34
+[2020/12/11 22:35:54.329426][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:54.347677][I][sendCOMCommand] Serial buffer size: 39
+[2020/12/11 22:35:54.556912][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:54.565877][I][sendCOMCommand] Serial buffer size: 107
+[2020/12/11 22:35:54.873684][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:54.881117][I][sendCOMCommand] Serial buffer size: 84
+[2020/12/11 22:35:54.986674][W][sendCOMCommand] Buffer not empty!!!
+[2020/12/11 22:35:55.003662][I][sendCOMCommand] Serial buffer size: 19
+[2020/12/11 22:35:55.525788][I][sendCOMCommand] DUT => *** Packet Num: 10
+CH_registerConfigReadAll() start
+Mesh registers.
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 0f 5a 30 1a 6e 4e 90 4e e8 23 47 0b 56 14 ba c8
+ 10 | 84 42 05 94 7a e1 27 17 00 11 20 11 d0 00 00 0b
+ 20 | 12 08 21 00 00 00 24 03 20 0f 00 50 56 0f ff 00
+SPI Strobe(cmd:0xBD/status:0x0F)
+CC120X_SNOP=0x0f
+
+Mesh registers.(Extended Register Space)
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 18 20 03 00 00 02 01 00 00 00 00 00 56 f3 d7 02
+ 10 | ee 10 04 50 00 20 40 0e 28 03 00 33 f7 0f 00 00
+ 20 | 6e 1c ac 14 00 00 00 b5 00 02 00 00 10 00 00 05
+ 30 | 01 01 0e a0 03 04 03 00 00 00 00 00 00 00 00 00
+ 40 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 50 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 60 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 70 | 00 80 00 41 00 ff 00 00 00 00 d1 00 3f 00 00 30
+ 80 | 7f 00 00 00 00 00 02 00 00 00 00 00 04 01 00 20
+ 90 | 11 08 10 00 00 00 00 00 00 00 00 0b 40 00 00 00
+ a0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ b0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ c0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ d0 | 00 00 00 00 00 00 00 00 0f 00 00 00 00 00 00 00
+ e0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ f0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+CH_registerConfigReadAll() end
+runTXPacket() Start
+SPI Strobe(cmd:0x3B/status:0x0F)
+SPI Strobe(cmd:0x3A/status:0x0F)
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:0
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:1
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:2
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:3
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:4
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:5
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:6
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:7
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:8
+SPI Strobe(cmd:0x34/status:0x5F)
+SPI Strobe(cmd:0x35/status:0x5F)
+Send Packet(30 bytes) packetCounter:9
+runTXPacket() End
+CH_registerConfig()
+SPI Strobe(cmd:0x34/status:0x5F)
+$DONE_OK
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:55.530863][I][chkTxStop] Success
+[2020/12/11 22:35:55.541894][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:35:55.747486][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:55.955895][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:56.482716][I][sendCOMCommand] DUT => x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:56.693502][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:35:56.905924][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:35:57.422710][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:35:57.431743][I][setScimitarMenu] Success
+[2020/12/11 22:35:57.437309][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:35:57.643471][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:35:57.863645][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:58.379102][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:35:58.389106][I][setMeshMenu] Success
+[2020/12/11 22:35:58.394020][I][setTxStartForCurrent] Set Diagnostics Menu
+[2020/12/11 22:35:58.599270][I][sendCOMCommand] DUT <= d
+[2020/12/11 22:35:58.818403][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:35:59.333230][I][sendCOMCommand] DUT => d
+$3-d_Diagnostics>
+
+[2020/12/11 22:35:59.341234][I][setTxStartForCurrent] Success
+[2020/12/11 22:35:59.346243][I][setTxStartForCurrent] Set One Tone
+[2020/12/11 22:35:59.552656][I][sendCOMCommand] DUT <= A
+[2020/12/11 22:35:59.772025][I][sendCOMCommand] Serial buffer size: 110
+[2020/12/11 22:36:00.284758][I][sendCOMCommand] DUT => A
+$3-d-A_Mesh Transfer (Start Tone) /w Repeat Count [1 - 65535]>
+$PARAMETER?>
+- Repeat Count [1 - 65535]>
+
+[2020/12/11 22:36:00.292791][I][setTxStartForCurrent] Success
+[2020/12/11 22:36:00.297757][I][setTxStartForCurrent] Set Repeat Time
+[2020/12/11 22:36:00.504287][I][sendCOMCommand] DUT <= 5
+[2020/12/11 22:36:00.723266][I][sendCOMCommand] Serial buffer size: 52
+[2020/12/11 22:36:01.239217][I][sendCOMCommand] DUT => Repeat Count : 5
+- Transmit ON times [1 - 65535]>
+
+[2020/12/11 22:36:01.248234][I][setTxStartForCurrent] Set Transmit ON Time
+[2020/12/11 22:36:01.455860][I][sendCOMCommand] DUT <= 1000
+[2020/12/11 22:36:01.675421][I][sendCOMCommand] Serial buffer size: 61
+[2020/12/11 22:36:02.192177][I][sendCOMCommand] DUT => Transmit ON times : 1000
+- Transmit OFF times [1 - 65535]>
+
+[2020/12/11 22:36:02.202146][I][setTxStartForCurrent] Set Transmit OFF Time
+[2020/12/11 22:36:03.993233][I][chkTxStopForCurrent] Set Tx stop
+[2020/12/11 22:36:04.204772][I][sendCOMCommand] DUT <= 
+
+[2020/12/11 22:36:04.415912][I][sendCOMCommand] Serial buffer size: 1345
+[2020/12/11 22:36:04.946208][I][sendCOMCommand] DUT => Transmit OFF times : 10
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x50
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(1)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x50
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(2)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x50
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(3)
+SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x50
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(4)
+
+[2020/12/11 22:36:04.951136][I][chkTxStopForCurrent] Success
+[2020/12/11 22:36:07.054063][I][getRxResult] Get Rx Result
+[2020/12/11 22:36:07.063061][I][setScimitarMenu] Set Scimitar menu
+[2020/12/11 22:36:07.269145][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:36:07.477292][I][sendCOMCommand] Serial buffer size: 496
+[2020/12/11 22:36:07.996704][I][sendCOMCommand] DUT => SPI Strobe(cmd:0x34/status:0x2F)
+CH_registerConfig()
+Mesh Transfer (Stop Tone) /w Repeat
+SPI Strobe(cmd:0x30/status:0xFF)
+CH_registerConfigTx()
+FREQ2=0x56, FREQ1=0xf3, FREQ0=0xd7, PA_CFG1=0x50
+AGC_CS_THR=0x17, PKT_CFG2=0x24, IOCFG3=0xf
+AGC_GAIN_ADJUST=0x0, AGC_REF=0x27
+SPI Strobe(cmd:0x35/status:0x5F)
+Mesh Transfer (Start Tone) /w Repeat(5)
+CH_registerConfig()
+SPI Strobe(cmd:0x34/status:0x2F)
+Mesh Transfer (Stop Tone) /w Repeat
+$DONE_OK
+$3-d_Diagnostics>
+x
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:36:08.215766][I][sendCOMCommand] DUT <= x
+[2020/12/11 22:36:08.425480][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:36:08.940030][I][sendCOMCommand] DUT => x
+$>
+
+[2020/12/11 22:36:08.958072][I][setScimitarMenu] Success
+[2020/12/11 22:36:08.969100][I][setMeshMenu] Check Mesh Menu
+[2020/12/11 22:36:09.177682][I][sendCOMCommand] DUT <= 3
+[2020/12/11 22:36:09.387372][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:36:09.913878][I][sendCOMCommand] DUT => 3
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:36:09.922893][I][setMeshMenu] Success
+[2020/12/11 22:36:10.128802][I][sendCOMCommand] DUT <= 9
+[2020/12/11 22:36:10.349855][I][sendCOMCommand] Serial buffer size: 1487
+[2020/12/11 22:36:10.868865][I][sendCOMCommand] DUT => 9
+runRX() Start
+CH_registerConfig()
+CH_registerConfigReadAll() start
+Mesh registers.
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 0f 5a 30 1a 6e 4e 90 4e e5 23 47 0b 56 14 ba c8
+ 10 | 84 42 05 94 7a e1 27 17 00 11 20 11 d0 00 00 0b
+ 20 | 12 08 21 00 00 00 24 83 20 0f 00 50 56 0f ff 00
+SPI Strobe(cmd:0xBD/status:0x1F)
+CC120X_SNOP=0x1f
+
+Mesh registers.(Extended Register Space)
+      00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+ 00 | 18 20 03 00 00 02 01 00 00 00 00 00 56 f3 d7 02
+ 10 | ee 10 07 aa 00 20 40 0e 08 03 00 33 f7 17 00 00
+ 20 | 6e 1c ac 18 00 50 9c b5 00 02 00 00 10 00 00 05
+ 30 | 01 01 0e a0 03 04 03 00 00 00 00 00 00 00 00 00
+ 40 | 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 50 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 60 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ 70 | 00 19 27 6d 00 5f 00 ff ec 0f 9e 0c 37 00 00 30
+ 80 | 7f 00 01 a2 02 27 01 ff 2d 01 ff 27 04 09 00 20
+ 90 | 11 08 11 00 00 00 00 00 00 00 00 0b 40 00 00 00
+ a0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ b0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ c0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ d0 | 00 00 00 00 00 00 00 00 0f 00 00 00 00 00 00 00
+ e0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ f0 | 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+CH_registerConfigReadAll() end
+SPI Strobe(cmd:0x34/status:0x1F)
+RSSI0/RSSI1 = 39/25 -48 [dBm]
+runRX() End
+$[-48]
+$DONE_OK
+$3_Mesh(CC1200)>>
+
+[2020/12/11 22:36:11.269900][I][disconnectDUT] Disconnect DUT success

@@ -1,0 +1,52 @@
+[2020/12/11 22:31:42]========== Start ==========
+[2020/12/11 22:31:42][I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/12/11 22:31:42][I][main] GFI20CompalSNRW.py 3.0.0.4
+[2020/12/11 22:31:42][I][readINI] ---------- INI ----------
+[2020/12/11 22:31:42][I][readINI] StartButton_ON = 0
+[2020/12/11 22:31:42][I][readINI] USB4_COM = COM3
+[2020/12/11 22:31:42][I][readINI] writeSN_ON = False
+[2020/12/11 22:31:42][I][readINI] CheckMethod_Value = Scan
+[2020/12/11 22:31:42][I][readINI] EC = 1111
+[2020/12/11 22:31:42][I][readINI] ---------- INI ----------
+[2020/12/11 22:31:42]---------- startTest ----------
+[2020/12/11 22:31:42][I][ConnectCOM] Connect DUT succesfully by COM.
+[2020/12/11 22:31:42][I][goBackToRoot] DUT <= AT#M2MLIST
+[2020/12/11 22:31:42][I][sendCOMCommand] DUT <= AT#M2MLIST
+[2020/12/11 22:31:43][I][sendCOMCommand] Serial buffer size: 161
+[2020/12/11 22:31:43][I][sendCOMCommand] DUT => AT#M2MLIST
+
+#M2MLIST: <swm>
+#M2MLIST: <att>
+#M2MLIST: <MOD>
+#M2MLIST: "m2m_config",185
+#M2MLIST: "compal_sn.txt",13
+#M2MLIST: free bytes: 27194368
+
+OK
+
+[2020/12/11 22:31:43][I][goBackToRoot] DUT => AT#M2MLIST
+
+#M2MLIST: <swm>
+#M2MLIST: <att>
+#M2MLIST: <MOD>
+#M2MLIST: "m2m_config",185
+#M2MLIST: "compal_sn.txt",13
+#M2MLIST: free bytes: 27194368
+
+OK
+
+[2020/12/11 22:31:43][I][goBackToRoot] DUT already in root dir.
+[2020/12/11 22:31:43][I][startTest] Now read SN.
+[2020/12/11 22:31:43][I][sendCOMCommand] DUT <= at#m2mread="compal_sn.txt"
+[2020/12/11 22:31:43][I][sendCOMCommand] Serial buffer size: 52
+[2020/12/11 22:31:44][I][sendCOMCommand] DUT => at#m2mread="compal_sn.txt"
+
+<<<6011643700031
+OK
+
+[2020/12/11 22:31:44][I][startTest] SN check success
+[2020/12/11 22:31:44][I][ConnectCOM] Disconnect DUT succesfully by COM.
+[2020/12/11 22:31:44][I][TestResult] Test Pass!
+[2020/12/11 22:31:45]========== End MDUT ==========
+
+

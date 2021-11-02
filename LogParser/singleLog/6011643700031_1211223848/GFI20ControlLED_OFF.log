@@ -1,0 +1,89 @@
+[2020/12/11 22:31:45]========== Start ==========
+[2020/12/11 22:31:45][I][main] Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+[2020/12/11 22:31:45][I][main] GFI20ControlLED_OFF.py 3.0.0.3
+[2020/12/11 22:31:45][I][readINI] ---------- INI ----------
+[2020/12/11 22:31:45][I][readINI] StartButton_ON = 0
+[2020/12/11 22:31:46][I][readINI] ControlLED_ON = False
+[2020/12/11 22:31:46][I][readINI] EC = 1111
+[2020/12/11 22:31:46][I][readINI] ---------- INI ----------
+[2020/12/11 22:31:46]---------- startTest ----------
+[2020/12/11 22:31:46][I][chkDUTConnect] Connect to DUT
+[2020/12/11 22:31:46][I][connectCOM] Connect DUT succesfully by COM.
+[2020/12/11 22:31:46][I][chkDUTConnect] Check DUT status
+[2020/12/11 22:31:46][I][setZigbeeMenu] Set Zigbee Menu
+[2020/12/11 22:31:46][I][sendCOMCommand] Send DUT Command: b'x\r\n'
+[2020/12/11 22:31:46][I][sendCOMCommand] Serial buffer size: 7
+[2020/12/11 22:31:46][I][sendCOMCommand] DUT return: x
+$>
+
+[2020/12/11 22:31:46][I][setZigbeeMenu] Check Zigbee Menu
+[2020/12/11 22:31:46][I][sendCOMCommand] Send DUT Command: b'2\r\n'
+[2020/12/11 22:31:46][I][sendCOMCommand] Serial buffer size: 22
+[2020/12/11 22:31:47][I][sendCOMCommand] DUT return: 2
+$2_Zigbee(EM357)>
+
+[2020/12/11 22:31:47][I][setZigbeeMenu] Success
+[2020/12/11 22:31:47][I][chkDUTConnect] Success
+[2020/12/11 22:31:47][I][controlAllLED] Control all LED False
+[2020/12/11 22:31:47][I][controlAllLED] Set GPIO Menu
+[2020/12/11 22:31:47][I][sendCOMCommand] Send DUT Command: b'3\r\n'
+[2020/12/11 22:31:47][I][sendCOMCommand] Serial buffer size: 28
+[2020/12/11 22:31:48][I][sendCOMCommand] DUT return: 3
+$2-3_ZigBee GPIO Write>
+
+[2020/12/11 22:31:48][I][controlAllLED] Success
+[2020/12/11 22:31:48][I][controlLED] Control LED6 False
+[2020/12/11 22:31:48][I][sendCOMCommand] Send DUT Command: b'6\r\n'
+[2020/12/11 22:31:48][I][sendCOMCommand] Serial buffer size: 95
+[2020/12/11 22:31:48][I][sendCOMCommand] DUT return: 6
+[EZSP]Setting GPIO was successful. (led=0, out=0)
+$[0]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/12/11 22:31:48][I][controlLED] Success
+[2020/12/11 22:31:48][I][controlLED] Control LEDh False
+[2020/12/11 22:31:48][I][sendCOMCommand] Send DUT Command: b'h\r\n'
+[2020/12/11 22:31:49][I][sendCOMCommand] Serial buffer size: 95
+[2020/12/11 22:31:49][I][sendCOMCommand] DUT return: h
+[EZSP]Setting GPIO was successful. (led=4, out=0)
+$[0]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/12/11 22:31:49][I][controlLED] Success
+[2020/12/11 22:31:49][I][controlLED] Control LED5 False
+[2020/12/11 22:31:49][I][sendCOMCommand] Send DUT Command: b'5\r\n'
+[2020/12/11 22:31:49][I][sendCOMCommand] Serial buffer size: 95
+[2020/12/11 22:31:50][I][sendCOMCommand] DUT return: 5
+[EZSP]Setting GPIO was successful. (led=3, out=0)
+$[0]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/12/11 22:31:50][I][controlLED] Success
+[2020/12/11 22:31:50][I][controlLED] Control LED7 False
+[2020/12/11 22:31:50][I][sendCOMCommand] Send DUT Command: b'7\r\n'
+[2020/12/11 22:31:50][I][sendCOMCommand] Serial buffer size: 95
+[2020/12/11 22:31:51][I][sendCOMCommand] DUT return: 7
+[EZSP]Setting GPIO was successful. (led=1, out=0)
+$[0]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/12/11 22:31:51][I][controlLED] Success
+[2020/12/11 22:31:51][I][controlLED] Control LED4 False
+[2020/12/11 22:31:51][I][sendCOMCommand] Send DUT Command: b'4\r\n'
+[2020/12/11 22:31:51][I][sendCOMCommand] Serial buffer size: 95
+[2020/12/11 22:31:51][I][sendCOMCommand] DUT return: 4
+[EZSP]Setting GPIO was successful. (led=2, out=0)
+$[0]
+$DONE_OK
+$2-3_ZigBee GPIO Write>
+
+[2020/12/11 22:31:51][I][controlLED] Success
+[2020/12/11 22:31:51][I][disconnectCOM] Disconnect DUT succesfully by COM.
+[2020/12/11 22:31:51][I][TestResult] Test Pass!
+[2020/12/11 22:31:52]========== End MDUT ==========
+
+
