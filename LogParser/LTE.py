@@ -23,6 +23,8 @@
 ##            25-Oct-2021 Willy Chen
 ##
 ##    Revision History:
+##            Rev 1.0.0.2 03-Nov-2021 Willy
+##                    Modified parsing logic for logs
 ##            Rev 1.0.0.1 25-Oct-2021 Willy
 ##                    First create.
 ##==============================================================================
@@ -39,10 +41,10 @@ from openpyxl.styles import Font, Fill, colors
 from openpyxl.formatting.rule import CellIsRule
 
 # [Main]
-g_strVersion = "3.0.0.1"
+g_strVersion = "3.0.0.2"
 
 #[ParseLogPath]
-g_strLogDir = "./TryingLog"
+g_strLogDir = "./Log/Pass"
 
 
 g_listKey = ["Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
@@ -52,7 +54,7 @@ g_listKey = ["Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_C
 #|               Functions of parsing target logs                     |#
 #\====================================================================/#
 
-def parseLog(strSNDLog):
+def parseLog(listSNLogs):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
 
     listLTE, listZigbee = [], []
@@ -235,9 +237,6 @@ def mergeLogs(listLTE, listZigbee):
 def log_to_excel(listInfo):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
-    g_listKey = [
-        "Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
-         "Current_mA_3G_CH9750", "Current_mA_3G_CH2787", "Current_mA_2G_CH124", "dBm_CH9750", "dBm_CH2787", "dBm_2G_CH124", "dBm_CH124"]
     dictThreshold = {}  # store INI threshold ata for setting conditional formating
     try:
         # ========== get the threshold data from INI ==========
