@@ -44,7 +44,7 @@ from openpyxl.formatting.rule import CellIsRule
 g_strVersion = "3.0.0.2"
 
 #[ParseLogPath]
-g_strLogDir = "./Log/Pass"
+g_strLogDir = "./Log/Pass/"
 
 
 g_listKey = ["Power_dBm_CH15", "Power_dBm_CH21", "Power_dBm_CH24", "Current_mA_CH15", "Current_mA_CH21", "Current_mA_CH24", "dBm_LNA_ON", "dBm_LNA_Off",
@@ -87,20 +87,20 @@ def parseLog(listSNLogs):
             strSNLog = os.path.join(g_strLogDir, strSN)     # set abspath for SN logs
 
             # iterate through log files in a SN folder (second layer)
-            for strLog in os.listdir(strSNLog):
-                strLog = os.path.join(strSNLog, strLog)
+            for strLogName in os.listdir(strSNLog):
+                strLogPath = os.path.join(strSNLog, strLogName)
 
                 # check GFI20_RF_LTE.log exists. If not, flag = False and parse only SN.
-                reMatch = re.fullmatch("^.*RF_LTE\.log", strLog)
+                reMatch = re.fullmatch("^.*RF_LTE\.log", strLogName)
                 if(reMatch != None):
-                    parseLTE(dictLTE, strLog, strSN)
+                    parseLTE(dictLTE, strLogPath)
                     b_hasLTE = True
 
 
                 # parse GFI20_RF_Zigbee.log files
-                reMatch = re.fullmatch("^.*RF_Zigbee\.log", strLog)
+                reMatch = re.fullmatch("^.*RF_Zigbee\.log", strLogName)
                 if(reMatch != None):
-                    parseZigbee(dictZigbee, strLog, strSN)
+                    parseZigbee(dictZigbee, strLogPath)
                     b_hasZigbee = True
 
             # if log not exists, append initial dict
@@ -109,32 +109,31 @@ def parseLog(listSNLogs):
 
             # if there is no target log file in the folder, parse only SN
             if not b_hasLTE:
-                #listLTE.append({"SN": strSN})
-                printLog("[W][ParseLog] Cannot find log: %s" % os.path.join(strSN, strLTEName))
+                printLog("\n[W][ParseLog] Cannot find log: %s\n" % os.path.join(strSN, strLTEName))
             if not b_hasZigbee:
-                #listZigbee.append({"SN" : strSN})
-                printLog("[W][ParseLog] Cannot find log: %s" % os.path.join(strSN, strZigbeeName))
+                printLog("\n[W][ParseLog] Cannot find log: %s\n" % os.path.join(strSN, strZigbeeName))
 
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
         printLog("[E][parseLog] Unexpected Error: " + str(e))
     return listLTE, listZigbee
 
-def parseLTE(dictLTE, strLTEPath, strSN):
-    printLog("[I][parseLTE] Parse LTE log: %s" % strLTEPath)
+def parseLTE(dictLTE, strLTEPath):
+    printLog("[I][parseLTE] Parse LTE log: %s" % strLTEPath.replace(g_strLogDir, ""))
 
     try:
+        re_power = "Power: [+-]?[0-9]+\.?[0-9]*"
+        re_current = "Current: [+-]?[0-9]+\.?[0-9]* A"
+        re_RX_RSSI = "Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm"
+
         listPostfix = [" \n", " A\n", " dBm\n"]
+
         with open(strLTEPath, encoding='big5') as log:  # big5 for windows
             content = log.readlines()
             for line in content:
-                re_power = "Power: [+-]?[0-9]+\.?[0-9]*"
-                re_current = "Current: [+-]?[0-9]+\.?[0-9]* A"
-                re_RX_RSSI = "Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm"
-
                 if re.search("-+ LTE_3G Freq 897.4 -+", line) != None:
-                    idx = content.index(line)
-                    tmp_content = content[idx:]
+                    idx = content.index(line)       # get the line index of keyword
+                    tmp_content = content[idx:]     # cut the content by the keyword
                     get_log_value(tmp_content, dictLTE, re_power, g_listKey[11], listPostfix[0], 1, False)
                     get_log_value(tmp_content, dictLTE, re_current, g_listKey[8], listPostfix[1], 1000, False)
 
@@ -153,24 +152,25 @@ def parseLTE(dictLTE, strLTEPath, strSN):
                 if re.search("-+ LTE_2G Freq 959.8 -+", line) != None:
                     idx = content.index(line)
                     tmp_content = content[idx:]
-                    get_log_value(tmp_content, dictLTE, re_RX_RSSI, g_listKey[14], listPostfix[2], 1,  True)
+                    get_log_value(tmp_content, dictLTE, re_RX_RSSI, g_listKey[14], listPostfix[2], 1, True)
 
     except Exception as e:
         printLog("[E][parseLTE] Unexpected Error: " + str(e))
 
 
-def parseZigbee(dictZigbee, strZigBeePath, strSN):
-    printLog("[I][parseZigbee] Parse Zigbee log: %s" % strZigBeePath)
+def parseZigbee(dictZigbee, strZigBeePath):
+    printLog("[I][parseZigbee] Parse Zigbee log: %s" % strZigBeePath.replace(g_strLogDir, ""))
 
     try:
+        re_power = "Power: [+-]?[0-9]+\.?[0-9]* dBm"
+        re_current = "Current: [+-]?[0-9]+\.?[0-9]* A"
+        re_RX_RSSI = "Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm"
+
         listPostfix = ["dBm\n", " A\n", " dBm\n"]
+
         with open(strZigBeePath, encoding="big5") as Zigbee:    # big5 for windows
             content = Zigbee.readlines()
             for line in content:
-                re_power = "Power: [+-]?[0-9]+\.?[0-9]* dBm"
-                re_current = "Current: [+-]?[0-9]+\.?[0-9]* A"
-                re_RX_RSSI = "Rx RSSI: [+-]?[0-9]+\.?[0-9]* dBm"
-
                 if re.search("-+ ZIGBEE_2450 Freq 2425 -+", line) != None:
                     idx = content.index(line)
                     tmp_content = content[idx:]
@@ -199,20 +199,23 @@ def parseZigbee(dictZigbee, strZigBeePath, strSN):
                     tmp_content = content[idx:]
                     get_log_value(tmp_content, dictZigbee, re_RX_RSSI, g_listKey[7], listPostfix[2], 1, False)
 
-
     except Exception as e:
         printLog("[E][parseZigbee] Unexpected Error: " + str(e))
 
+# strPostfix for striping string, nUnit for (power/current) unit transform
 def get_log_value(cut_content, dictInfo, re_target, strKey, strPostfix, nUnit, b_getMulti):
-    for line in cut_content:
+    try:
+        for line in cut_content:
+            # search pattern like "Power: (int/float) dBm"
+            if re.search(re_target, line) != None:
+                # get the figure of the line like "Power: 8.817 dBm\n"
+                fValue = eval(line.split(": ")[1].strip(strPostfix))
+                dictInfo[strKey] = fValue * nUnit
+                if not b_getMulti:
+                    break;
 
-        # search pattern like "Power: (int/float) dBm"
-        if re.search(re_target, line) != None:
-            # get the figure of the line like "Power: 8.817 dBm\n"
-            fValue = eval(line.split(": ")[1].strip(strPostfix))
-            dictInfo[strKey] = fValue * nUnit
-            if not b_getMulti:
-                break;
+    except Exception as e:
+        printLog("[E][get_log_value] Unexpected Error: " + str(e))
 
 # merge two list of dict to single list of dict
 def mergeLogs(listLTE, listZigbee):
