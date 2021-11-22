@@ -29,7 +29,8 @@ import openpyxl as opxl
 from openpyxl.styles import PatternFill, Alignment, Font
 from openpyxl.styles.borders import Border, Side
 import re
-import time, logging
+import time
+import codecs
 
 # [Main]
 g_strVersion = "1.0.0.1"
@@ -39,8 +40,6 @@ g_strLogDir = "./ALL_SN/"
 
 #[Webside progress bar]
 g_nProgressC = 0
-
-g_ShareFolder_ip = ""
 
 
 def get_host_ip():
@@ -71,18 +70,14 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
             f.write(strToWrite)
 
 
-def getDateTimeFormat():
-    strDateTime = "%s" % (time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()))
-    return strDateTime
-
 #/====================================================================\#
 #|               Functions of parsing target logs                     |#
 #\====================================================================/#
 
 def parseLog(list_SNs):
+    printLog("[I][parseLog] ------- Start Parsing Log -------")
 
     listRSSI, listWIFI = [], []
-
     try:
         for strSN in list_SNs:
             strRSSI_Intel, strRSSI_MTK = "ITPM_RSSITest_A32.LOG", "MTKlog_" + strSN + ".LOG"  # e.g. MTKlog_7228979800008.LOG
@@ -105,7 +100,7 @@ def parseLog(list_SNs):
             # iterate through log files in a SN folder
             for strFileName in os.listdir(strSNPath):
                 strLogPath = os.path.join(strSNPath, strFileName)
-                """
+
                 # check if ITPM_RSSITest_A32.log exists. If not, flag = False and parse only SN.
                 if strFileName == strRSSI_Intel:
                     parseRSSI_Intel(dictRSSI, strLogPath)
@@ -115,7 +110,8 @@ def parseLog(list_SNs):
                 if strFileName == strRSSI_MTK:
                     parseRSSI_MTK(dictRSSI, strLogPath)
                     b_hasRSSI = True
-                """
+
+                # parse SarLog_DynAnt.txt
                 if strFileName == strWIFI:
                     parseWIFI(dictWIFI, strLogPath)
                     b_hasWIFI = True
@@ -124,14 +120,18 @@ def parseLog(list_SNs):
             listRSSI.append(dictRSSI)
             listWIFI.append(dictWIFI)
 
+            # if there is no target log file in the folder, parse only SN
+            if not b_hasRSSI:
+                printLog("[W][ParseLog] Cannot find %s and %s by SN: %s" % (strRSSI_Intel, strRSSI_MTK, strSN))
+            if not b_hasWIFI:
+                printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strWIFI, strSN))
 
-
+        printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
-        print("[E][parseLog] Unexpected Error: " + str(e))
-
+        printLog("[E][parseLog] Unexpected Error: " + str(e))
+    return listRSSI, listWIF
 
 def parseRSSI_Intel(dictRSSI, strRSSIPath):
-    print("[I][parseRSSI_Intel] Parse RSSI-MTK log: %s" % strRSSIPath.replace(g_strLogDir, ""))
     try:
         with open(strRSSIPath, encoding="big5") as RSSILog:    # big5 for windows
             content = RSSILog.readlines()
@@ -160,11 +160,10 @@ def parseRSSI_Intel(dictRSSI, strRSSIPath):
                     strAux = list_Info = list_Info[4].split("=")[1].strip('"')
                     dictRSSI["Aux"] = strAux
     except Exception as e:
-        print("[E][parseRSSI_Intel] Unexpected Error: " + str(e))
+        printLog("[E][parseRSSI_Intel] Unexpected Error: " + str(e))
 
 
 def parseRSSI_MTK(dictRSSI, strRSSIPath):
-    print("[I][parseRSSI_MTK] Parse RSSI-MTK log: %s" % strRSSIPath.replace(g_strLogDir, ""))
     try:
         with open(strRSSIPath, encoding="big5") as RSSILog:    # big5 for windows
             content = RSSILog.readlines()
@@ -184,31 +183,51 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
                             dictRSSI["Aux"] = line.split(": ")[1].strip("\n")
                         if "PASS" in line or "FAIL" in line:
                             dictRSSI["Test Result"] = line.strip("\n")
-
     except Exception as e:
         print("[E][parseRSSI] Unexpected Error: " + str(e))
 
 def parseWIFI(dictWIFI, strWIFIPath):
-    print("[I][parseWIFI] Parse RSSI-MTK log: %s" % strWIFIPath.replace(g_strLogDir, ""))
     try:
         with open(strWIFIPath, encoding="big5") as WIFILog:    # big5 for windows
             content = WIFILog.readlines()
-            print(content[-1])
-            
-
+            if "Value Match" in content[-1] or "Value Not Match" in content[-1]:
+                dictWIFI["Result"] = content[-1].strip("\n")
     except Exception as e:
-        print("[E][parseWIFI] Unexpected Error: " + str(e))
+        printLog("[E][parseWIFI] Unexpected Error: " + str(e))
+
+
+#/====================================================================\#
+#|              Functions of printing log of LTE.py                   |#
+#\====================================================================/#
+
+def getDateTimeFormat():
+    strDateTime = "[%s]" % (time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
+    return strDateTime
+
+def printLog(strPrintLine):
+    strFileName = os.path.basename(__file__).split('.')[0]
+    fileLog = codecs.open(g_strFileName + ".log", 'a', "utf-8")
+    print(strPrintLine)
+    fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
+    fileLog.close()
 
 
 if __name__ == "__main__":
+    global g_strFileName, g_ShareFolder_ip
+    g_strFileName = os.path.basename(__file__).split('.')[0]
+
+    printLog("========== Start ==========")
+    printLog("[I][main] Python " + sys.version)
+    printLog("[I][main] %s.py %s" % (g_strFileName, g_strVersion))
 
     # ------------ find the target file --------------
     try:
         # get directory names of TryingLog (first layer)
         listSNLogs = os.listdir(g_strLogDir)
-        # iterate through log files in a SN folder (second layer)
-        parseLog(listSNLogs)
+        # iterate through log files in a SN folder and get parsed data
+        listRSSI, listWIFI = parseLog(listSNLogs)
 
 
     except Exception as e:
-        print("[E][main] Unexpected Error: " + str(e))
+        printLog("[E][main] Unexpected Error: " + str(e))
+    printLog("========== End ==========")
