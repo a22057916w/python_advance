@@ -19,3 +19,14 @@
 ##            Rev 1.0.0.1 22-Nov-2021 Willy
 ##                    First create.
 ##==============================================================================
+import os, sys
+import traceback
+import shutil
+import socket
+import requests
+import pandas as pd
+import openpyxl as opxl
+from openpyxl.styles import PatternFill, Alignment, Font
+from openpyxl.styles.borders import Border, Side
+import re
+import time, logging
