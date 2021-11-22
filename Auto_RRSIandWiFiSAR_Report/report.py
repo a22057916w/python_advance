@@ -75,39 +75,3 @@ def getDateTimeFormat():
 
 
 if __name__ == "__main__":
-
-    global strUser
-    global logPath
-    global bLocalDebug
-    bLocalDebug = True
-
-
-    """
-    if bResult:
-        shutil.copy2(strFileName, ResultPath)
-        updateWebpageInfo(100, "[I] F I N I S H.")
-
-    else:
-        updateWebpageInfo(1, "[E] Process Fail.")
-    """
-
-    # LYUR Update Record
-    try:
-        nSpendTime = int(time.time() - timeStartTime)
-        R1R3.module_logger.info("[I][main] Spend Time: %d s" % (nSpendTime))
-
-        hostname = socket.gethostname()
-        IPAddr = get_host_ip()
-        strDate = "%s" % (time.strftime("%Y-%m-%d", time.localtime()))
-        strTime = "%s" % (time.strftime("%H:%M:%S", time.localtime()))
-        data = {'pcip': IPAddr, 'pcname': hostname, 'account': strUser, 'toolid': 'Prj2011_SPT_CTOBOM_R1R3',
-                'rundate': strDate, 'runtime': strTime, 'executiontime': nSpendTime,
-                'note': 'version: %s' % (strVersion), 'cycle': 1, 'sbtn': 'Send'}
-        response = requests.post('http://10.110.140.43/LYUR/logYourUsageRecord.php', data)
-        R1R3.module_logger.info("[I][RunProgress] Posting to LYUR success.")
-
-
-    except:
-        R1R3.module_logger.warning("[W][RunProgress] Posting to LYUR failed.")
-        R1R3.module_logger.error("[E][main] Unexpected error: %s" % (str(traceback.format_exc())))
-        R1R3.module_logger.error("[E][main] Unexpected error: %s" % (str(sys.exc_info())))
