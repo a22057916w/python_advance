@@ -31,7 +31,8 @@ from openpyxl.styles.borders import Border, Side
 import re
 import time, logging
 
-
+# [Main]
+g_strVersion = "1.0.0.2"
 
 def get_host_ip():
     try:
@@ -64,29 +65,3 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
 def getDateTimeFormat():
     strDateTime = "%s" % (time.strftime("%Y-%m-%d-%H-%M-%S", time.localtime()))
     return strDateTime
-
-
-def setup_logger(name, log_file, level=logging.INFO):
-    """Function setup as many loggers as you want"""
-
-    fh = logging.FileHandler(log_file)
-    fh.setLevel(logging.INFO)
-    formatter = logging.Formatter('[%(asctime)s][%(levelname)-5s][%(lineno)-4d][%(funcName)s] %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
-    fh.setFormatter(formatter)
-
-    # define a Handler which writes INFO messages or higher to the sys.stderr
-    ch = logging.StreamHandler(sys.stdout)
-    # ch = logging.StreamHandler()
-    ch.setLevel(logging.CRITICAL)
-
-    # set a format which is simpler for console use
-    formatter = logging.Formatter('%(levelname)-5s - %(lineno)-4d - %(funcName)s : %(message)s')
-    # tell the handler to use this format
-    ch.setFormatter(formatter)
-
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-    logger.addHandler(fh)
-    logger.addHandler(ch)
-
-    return logger
