@@ -312,7 +312,7 @@ def set_threshold_to_excel(workbook, dictThreshold):
             # iterate from Col 2 since Col 1 is the Serial Number(SN)
             for col in ws.iter_cols(min_row=1, max_row=ws.max_row, min_col=2, max_col=ws.max_column):
                 strStart, strEnd = None, None       # set the test range for cell e.g. A1:A10
-                istInterval = []                    # set the threshold range for the formula below
+                listInterval = []                    # set the threshold range for the formula below
 
                 # check the column is not empty, col[0] is column name
                 if len(col) > 1:
