@@ -43,7 +43,7 @@ from openpyxl.chart.axis import DateAxis
 g_strVersion = "1.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./test_SN/"
+g_strLogDir = "./All_SN/"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -178,14 +178,14 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
 
                 if "== ANT1 (sub) ==" in line:
                     idx = content.index(line)       # get the line index of keyword
-                    for line in content[idx:]:
+                    for line in content[idx:]:      # start iteration from the line "== ANT1 (sub) =="
                         if "Threshold" in line:
                             strThreshold = line.split(": ")[1].strip("\n")
                             dictRSSI["Spec"] = eval(strThreshold)
                         if "Average" in line:
                             strMain = line.split(": ")[1].strip("\n")
                             dictRSSI["Main"] = eval(strMain)
-                            break
+                            break                   # find only one keyword "Average"
 
                 if "== ANT2 (main) ==" in line:
                     idx = content.index(line)       # get the line index of keyword
@@ -205,6 +205,7 @@ def parseWIFI(dictWIFI, strWIFIPath):
     try:
         with open(strWIFIPath, encoding="big5") as WIFILog:    # big5 for windows
             content = WIFILog.readlines()
+            # the target is in the last line
             if "Value Match" in content[-1] or "Value Not Match" in content[-1]:
                 strResult = content[-1].strip("\n")
                 dictWIFI["Result"] = strResult
@@ -218,26 +219,28 @@ def parseWIFI(dictWIFI, strWIFIPath):
 def log_to_excel(listRSSI, listWIFI):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
-    # ========== New Excel workbook and sheets ==========
-    try:
 
+    try:
+        # covert list of dict to DataFrame, to create worksheet
         df_logRSSI = pd.DataFrame(listRSSI)
         df_logWIFI = pd.DataFrame(listWIFI)
 
+        # list the arguments for createing Excel workbooks
         list_df = [df_logRSSI, df_logWIFI]
         list_sheetname = ["RSSI", "wifisarquery"]
         list_fname = ["RSSI_Report.xlsx", "WIFI_Report.xlsx"]
 
-
+        # new Excel workbook and sheets
         for i in range(len(list_df)):
             wb = openpyxl.Workbook()    # 新增 Excel 活頁
             wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
 
             df = list_df[i]
             str_sheet = list_sheetname[i]
-            # set up sheet by DataFrame
-            newSheet(wb, str_sheet, df)
 
+            newSheet(wb, str_sheet, df)             # set up sheet by DataFrame
+
+            # plot for RSSI_Report.xlsx
             if i == 0:
                 newLineChart(wb[str_sheet], df)
 
@@ -258,19 +261,18 @@ def newSheet(workbook, strSheetName, df_SheetCol):
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
-
+# draw a line chart with 3 lines for RSSI
 def newLineChart(ws, df):
     c1 = LineChart()
     c1.title = "UNIT PN_M"
     c1.style = 13
-    #c1.y_axis.title = 'Size'
-    #c1.x_axis.title = 'Test Number'
 
     data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=7)
     c1.add_data(data, titles_from_data=True)
 
-    #c1.y_axis.scaling.min = -100
-    #c1.y_axis.scaling.max = -40
+    c1.y_axis.scaling.max = -40
+
+    # style the lines
     line_Main = c1.series[0]
     line_Main.graphicalProperties.line.solidFill = "00AAAA"     # navyblue
 
@@ -279,7 +281,6 @@ def newLineChart(ws, df):
 
     line_Spec = c1.series[2]
     line_Spec.graphicalProperties.line.solidFill = "3D9140"     # cobaltgreen
-
 
     ws.add_chart(c1, "G1")
 
@@ -314,7 +315,7 @@ if __name__ == "__main__":
         listSNLogs = os.listdir(g_strLogDir)
         # iterate through log files in a SN folder and get parsed data
         listRSSI, listWIFI = parseLog(listSNLogs)
-
+        # save parsed data to excel
         log_to_excel(listRSSI, listWIFI)
 
 
