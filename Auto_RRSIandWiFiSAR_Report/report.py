@@ -197,6 +197,7 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
     except Exception as e:
         print("[E][parseRSSI_MTK] Unexpected Error: " + str(e))
 
+
 def parseWIFI(dictWIFI, strWIFIPath):
     try:
         with open(strWIFIPath, encoding="big5") as WIFILog:    # big5 for windows
@@ -214,21 +215,31 @@ def parseWIFI(dictWIFI, strWIFIPath):
 def log_to_excel(listRSSI, listWIFI):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
-    dictThreshold = {}  # store INI threshold ata for setting conditional formating
+    # ========== New Excel workbook and sheets ==========
     try:
 
-
-        # ========== New Excel workbook and sheets ==========
-        df_logRSSI = pd.DataFrame(listRSSI)     # listInfo -> list of dict
+        df_logRSSI = pd.DataFrame(listRSSI)
         df_logWIFI = pd.DataFrame(listWIFI)
 
-        wb = openpyxl.Workbook()    # 新增 Excel 活頁
-        wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
+        list_df = [df_logRSSI, df_logWIFI]
+        list_sheetname = ["RSSI", "wifisarquery"]
+        list_fname = ["RSSI_Report.xlsx", "WIFI_Report.xlsx"]
 
-        # set up sheet by DataFrame
-        newSheet(wb, "RSSI", df_logRSSI)
-        newChart(wb["RSSI"], df_logRSSI)
-        wb.save('RSSI_Report.xlsx')     # save the worksheet as excel file
+
+        for i in range(len(list_df)):
+            wb = openpyxl.Workbook()    # 新增 Excel 活頁
+            wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
+
+            df = list_df[i]
+            str_sheet = list_sheetname[i]
+            # set up sheet by DataFrame
+            newSheet(wb, str_sheet, df)
+
+            if i == 0:
+                newLineChart(wb[str_sheet], df)
+
+            str_fname = list_fname[i]
+            wb.save(str_fname)     # save the worksheet as excel file
 
         printLog("[I][log_to_excel] ------- Parsed Log to Excel -------")
     except Exception as e:
@@ -245,7 +256,7 @@ def newSheet(workbook, strSheetName, df_SheetCol):
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 
-def newChart(ws, df):
+def newLineChart(ws, df):
     c1 = LineChart()
     c1.title = "UNIT PN_M"
     c1.style = 13
