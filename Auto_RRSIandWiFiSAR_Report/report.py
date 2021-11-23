@@ -44,7 +44,7 @@ from openpyxl.chart.axis import DateAxis
 g_strVersion = "1.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./All_SN/"
+g_strLogDir = "./test_SN/"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -275,9 +275,9 @@ def newLineChart(ws, df):
 
         data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=7)
         chart.add_data(data, titles_from_data=True)
-
+        
         # set y-axis according to the max value from DataFrame(df_logRSSI)
-        chart.y_axis.scaling.max = math.ceil(df[df["Main", "Aux"]].max())
+        chart.y_axis.scaling.max = math.ceil(df[["Main", "Aux"]].max().max())
 
         # style the lines
         line_Main = chart.series[0]
