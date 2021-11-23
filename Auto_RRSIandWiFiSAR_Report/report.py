@@ -183,10 +183,12 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
                             strThreshold = line.split(": ")[1].strip("\n")
                             dictRSSI["Spec"] = eval(strThreshold)
                         if "Average" in line:
-                            Average = line.split(": ")[1].strip("\n")
-                            dictRSSI["Main"] = eval(Average)
+                            strMain = line.split(": ")[1].strip("\n")
+                            dictRSSI["Main"] = eval(strMain)
+                            break
+
                 if "== ANT2 (main) ==" in line:
-                    dx = content.index(line)       # get the line index of keyword
+                    idx = content.index(line)       # get the line index of keyword
                     for line in content[idx:]:
                         if "Average" in line:
                             strAux = line.split(": ")[1].strip("\n")
@@ -194,6 +196,7 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
                         if "PASS" in line or "FAIL" in line:
                             strResult = line.strip("\n")
                             dictRSSI["Test Result"] = strResult
+                            break
     except Exception as e:
         print("[E][parseRSSI_MTK] Unexpected Error: " + str(e))
 
