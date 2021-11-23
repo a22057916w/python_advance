@@ -43,7 +43,7 @@ from openpyxl.chart.axis import DateAxis
 g_strVersion = "1.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./ALL_SN/"
+g_strLogDir = "./test_SN/"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -193,9 +193,9 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
                             dictRSSI["Aux"] = eval(strAux)
                         if "PASS" in line or "FAIL" in line:
                             strResult = line.strip("\n")
-                            dictRSSI["Test Result"] = eval(strResult)
+                            dictRSSI["Test Result"] = strResult
     except Exception as e:
-        print("[E][parseRSSI] Unexpected Error: " + str(e))
+        print("[E][parseRSSI_MTK] Unexpected Error: " + str(e))
 
 def parseWIFI(dictWIFI, strWIFIPath):
     try:
@@ -203,7 +203,7 @@ def parseWIFI(dictWIFI, strWIFIPath):
             content = WIFILog.readlines()
             if "Value Match" in content[-1] or "Value Not Match" in content[-1]:
                 strResult = content[-1].strip("\n")
-                dictWIFI["Result"] = eval(strResult)
+                dictWIFI["Result"] = strResult
     except Exception as e:
         printLog("[E][parseWIFI] Unexpected Error: " + str(e))
 
