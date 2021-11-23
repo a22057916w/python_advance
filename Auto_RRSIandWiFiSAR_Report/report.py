@@ -25,12 +25,19 @@ import shutil
 import socket
 import requests
 import pandas as pd
-import openpyxl as opxl
-from openpyxl.styles import PatternFill, Alignment, Font
-from openpyxl.styles.borders import Border, Side
 import re
 import time
 import codecs
+import openpyxl
+from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.styles import PatternFill, Alignment, Font
+from openpyxl.styles.borders import Border, Side
+from openpyxl.chart import (
+    LineChart,
+    Reference,
+)
+from openpyxl.chart.axis import DateAxis
+
 
 # [Main]
 g_strVersion = "1.0.0.1"
@@ -129,14 +136,14 @@ def parseLog(list_SNs):
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
         printLog("[E][parseLog] Unexpected Error: " + str(e))
-    return listRSSI, listWIF
+    return listRSSI, listWIFI
+
 
 def parseRSSI_Intel(dictRSSI, strRSSIPath):
     try:
         with open(strRSSIPath, encoding="big5") as RSSILog:    # big5 for windows
             content = RSSILog.readlines()
             for line in content:
-
                 # if the first line is PASS or FAIL, save to dict
                 if content.index(line) == 0 and ("PASS" in line or "FAIL" in line):
                     dictRSSI["Test Result"] = line.strip("\n")
@@ -146,19 +153,19 @@ def parseRSSI_Intel(dictRSSI, strRSSIPath):
                     list_Info = line.split(" ")
 
                     # get VALUE1 figure
-                    strSpec = list_Info[3].split("=")[1].strip('"')
-                    dictRSSI["Spec"] = strSpec
+                    strSpec = list_Info[3].split("=")[1].strip('/>"')
+                    dictRSSI["Spec"] = eval(strSpec)
 
                     # get VALUE2 figure
-                    strMain = list_Info[4].split("=")[1].strip('"')
-                    dictRSSI["Main"] = strMain
+                    strMain = list_Info[4].split("=")[1].strip('/>"')
+                    dictRSSI["Main"] = eval(strMain)
 
                 if 'CODE NO="01000120"' in line:
                     # line return <CODE NO="01000120" KEYNAME="RSSI" VALUE1="-65" VALUE2="-62" ...
                     list_Info = line.split(" ")
 
-                    strAux = list_Info = list_Info[4].split("=")[1].strip('"')
-                    dictRSSI["Aux"] = strAux
+                    strAux = list_Info[4].split("=")[1].strip('/>"')
+                    dictRSSI["Aux"] = eval(strAux)
     except Exception as e:
         printLog("[E][parseRSSI_Intel] Unexpected Error: " + str(e))
 
@@ -173,16 +180,20 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
                     idx = content.index(line)       # get the line index of keyword
                     for line in content[idx:]:
                         if "Threshold" in line:
-                            dictRSSI["Spec"] = line.split(": ")[1].strip("\n")
+                            strThreshold = line.split(": ")[1].strip("\n")
+                            dictRSSI["Spec"] = eval(strThreshold)
                         if "Average" in line:
-                            dictRSSI["Main"] = line.split(": ")[1].strip("\n")
+                            Average = line.split(": ")[1].strip("\n")
+                            dictRSSI["Main"] = eval(Average)
                 if "== ANT2 (main) ==" in line:
                     dx = content.index(line)       # get the line index of keyword
                     for line in content[idx:]:
                         if "Average" in line:
-                            dictRSSI["Aux"] = line.split(": ")[1].strip("\n")
+                            strAux = line.split(": ")[1].strip("\n")
+                            dictRSSI["Aux"] = eval(strAux)
                         if "PASS" in line or "FAIL" in line:
-                            dictRSSI["Test Result"] = line.strip("\n")
+                            strResult = line.strip("\n")
+                            dictRSSI["Test Result"] = eval(strResult)
     except Exception as e:
         print("[E][parseRSSI] Unexpected Error: " + str(e))
 
@@ -191,13 +202,76 @@ def parseWIFI(dictWIFI, strWIFIPath):
         with open(strWIFIPath, encoding="big5") as WIFILog:    # big5 for windows
             content = WIFILog.readlines()
             if "Value Match" in content[-1] or "Value Not Match" in content[-1]:
-                dictWIFI["Result"] = content[-1].strip("\n")
+                strResult = content[-1].strip("\n")
+                dictWIFI["Result"] = eval(strResult)
     except Exception as e:
         printLog("[E][parseWIFI] Unexpected Error: " + str(e))
 
+#/====================================================================\#
+#|              Functions of parsing log to excel                     |#
+#\====================================================================/#
+
+def log_to_excel(listRSSI, listWIFI):
+    printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
+
+    dictThreshold = {}  # store INI threshold ata for setting conditional formating
+    try:
+
+
+        # ========== New Excel workbook and sheets ==========
+        df_logRSSI = pd.DataFrame(listRSSI)     # listInfo -> list of dict
+        df_logWIFI = pd.DataFrame(listWIFI)
+
+        wb = openpyxl.Workbook()    # 新增 Excel 活頁
+        wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
+
+        # set up sheet by DataFrame
+        newSheet(wb, "RSSI", df_logRSSI)
+        newChart(wb["RSSI"], df_logRSSI)
+        wb.save('RSSI_Report.xlsx')     # save the worksheet as excel file
+
+        printLog("[I][log_to_excel] ------- Parsed Log to Excel -------")
+    except Exception as e:
+        printLog("[E][log_to_excel] Unexpected Error: " + str(e))
+
+# new worksheets by DataFrame
+def newSheet(workbook, strSheetName, df_SheetCol):
+    try:
+        workbook.create_sheet(strSheetName)
+        for row in dataframe_to_rows(df_SheetCol, index=False, header=True):
+            workbook[strSheetName].append(row)
+        printLog("[I][newSheet] Sheet: %s Created" % strSheetName)
+    except Exception as e:
+        printLog("[E][newSheet] Unexpected Error: " + str(e))
+
+
+def newChart(ws, df):
+    c1 = LineChart()
+    c1.title = "UNIT PN_M"
+    c1.style = 13
+    #c1.y_axis.title = 'Size'
+    #c1.x_axis.title = 'Test Number'
+
+    data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=7)
+    c1.add_data(data, titles_from_data=True)
+
+    #c1.y_axis.scaling.min = -100
+    #c1.y_axis.scaling.max = -40
+    line_Main = c1.series[0]
+    line_Main.graphicalProperties.line.solidFill = "00AAAA"     # navyblue
+
+    line_Aux = c1.series[1]
+    line_Aux.graphicalProperties.line.solidFill = "F08080"      # lightpink
+
+    line_Spec = c1.series[2]
+    line_Spec.graphicalProperties.line.solidFill = "3D9140"     # cobaltgreen
+
+
+    ws.add_chart(c1, "G1")
+
 
 #/====================================================================\#
-#|              Functions of printing log of LTE.py                   |#
+#|                        Functions of printing log                   |#
 #\====================================================================/#
 
 def getDateTimeFormat():
@@ -226,6 +300,8 @@ if __name__ == "__main__":
         listSNLogs = os.listdir(g_strLogDir)
         # iterate through log files in a SN folder and get parsed data
         listRSSI, listWIFI = parseLog(listSNLogs)
+
+        log_to_excel(listRSSI, listWIFI)
 
 
     except Exception as e:
