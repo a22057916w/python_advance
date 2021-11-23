@@ -28,6 +28,7 @@ import pandas as pd
 import re
 import time
 import codecs
+import math
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.styles import PatternFill, Alignment, Font
@@ -81,6 +82,7 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
 #|               Functions of parsing target logs                     |#
 #\====================================================================/#
 
+# retunn two list of dict, listRSSI, listWIFI
 def parseLog(list_SNs):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
 
@@ -138,7 +140,7 @@ def parseLog(list_SNs):
         printLog("[E][parseLog] Unexpected Error: " + str(e))
     return listRSSI, listWIFI
 
-
+# parse line contains 'CODE NO="010001A0"' and 'CODE NO="01000120"'
 def parseRSSI_Intel(dictRSSI, strRSSIPath):
     try:
         with open(strRSSIPath, encoding="big5") as RSSILog:    # big5 for windows
@@ -169,7 +171,7 @@ def parseRSSI_Intel(dictRSSI, strRSSIPath):
     except Exception as e:
         printLog("[E][parseRSSI_Intel] Unexpected Error: " + str(e))
 
-
+# parse line contains "== ANT1 (sub) ==" and "== ANT2 (main) =="
 def parseRSSI_MTK(dictRSSI, strRSSIPath):
     try:
         with open(strRSSIPath, encoding="big5") as RSSILog:    # big5 for windows
@@ -216,9 +218,9 @@ def parseWIFI(dictWIFI, strWIFIPath):
 #|              Functions of parsing log to excel                     |#
 #\====================================================================/#
 
+# save two xlsx, RSSI.xlsx, WiFiSARQUERY.xlsx
 def log_to_excel(listRSSI, listWIFI):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
-
 
     try:
         # covert list of dict to DataFrame, to create worksheet
@@ -228,24 +230,26 @@ def log_to_excel(listRSSI, listWIFI):
         # list the arguments for createing Excel workbooks
         list_df = [df_logRSSI, df_logWIFI]
         list_sheetname = ["RSSI", "wifisarquery"]
-        list_fname = ["RSSI_Report.xlsx", "WIFI_Report.xlsx"]
+        list_fname = ["RSSI.xlsx", "WiFiSARQUERY.xlsx"]
 
         # new Excel workbook and sheets
         for i in range(len(list_df)):
             wb = openpyxl.Workbook()    # 新增 Excel 活頁
             wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
 
+            # init vars
             df = list_df[i]
             str_sheet = list_sheetname[i]
+            str_fname = list_fname[i]
 
-            newSheet(wb, str_sheet, df)             # set up sheet by DataFrame
-
+            # set up sheet by DataFrame
+            newSheet(wb, str_sheet, df)
             # plot for RSSI_Report.xlsx
             if i == 0:
                 newLineChart(wb[str_sheet], df)
 
-            str_fname = list_fname[i]
             wb.save(str_fname)     # save the worksheet as excel file
+            printLog("[I][log_to_excel] %s generated" % str_fname)
 
         printLog("[I][log_to_excel] ------- Parsed Log to Excel -------")
     except Exception as e:
@@ -257,32 +261,37 @@ def newSheet(workbook, strSheetName, df_SheetCol):
         workbook.create_sheet(strSheetName)
         for row in dataframe_to_rows(df_SheetCol, index=False, header=True):
             workbook[strSheetName].append(row)
+
         printLog("[I][newSheet] Sheet: %s Created" % strSheetName)
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 # draw a line chart with 3 lines for RSSI
 def newLineChart(ws, df):
-    c1 = LineChart()
-    c1.title = "UNIT PN_M"
-    c1.style = 13
+    try:
+        chart = LineChart()
+        chart.title = "UNIT PN_M"
+        chart.style = 13
 
-    data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=7)
-    c1.add_data(data, titles_from_data=True)
+        data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=7)
+        chart.add_data(data, titles_from_data=True)
 
-    c1.y_axis.scaling.max = -40
+        # set y-axis according to the max value from DataFrame(df_logRSSI)
+        chart.y_axis.scaling.max = math.ceil(df[df["Main", "Aux"]].max())
 
-    # style the lines
-    line_Main = c1.series[0]
-    line_Main.graphicalProperties.line.solidFill = "00AAAA"     # navyblue
+        # style the lines
+        line_Main = chart.series[0]
+        line_Main.graphicalProperties.line.solidFill = "00AAAA"     # navyblue
 
-    line_Aux = c1.series[1]
-    line_Aux.graphicalProperties.line.solidFill = "F08080"      # lightpink
+        line_Aux = chart.series[1]
+        line_Aux.graphicalProperties.line.solidFill = "F08080"      # lightpink
 
-    line_Spec = c1.series[2]
-    line_Spec.graphicalProperties.line.solidFill = "3D9140"     # cobaltgreen
+        line_Spec = chart.series[2]
+        line_Spec.graphicalProperties.line.solidFill = "3D9140"     # cobaltgreen
 
-    ws.add_chart(c1, "G1")
+        ws.add_chart(chart, "G1")
+    except Exception as e:
+        printLog("[E][newLineChart] Unexpected Error: " + str(e))
 
 
 #/====================================================================\#
@@ -317,7 +326,6 @@ if __name__ == "__main__":
         listRSSI, listWIFI = parseLog(listSNLogs)
         # save parsed data to excel
         log_to_excel(listRSSI, listWIFI)
-
 
     except Exception as e:
         printLog("[E][main] Unexpected Error: " + str(e))
