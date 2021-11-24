@@ -44,7 +44,7 @@ from openpyxl.chart.axis import DateAxis
 g_strVersion = "1.0.0.1"
 
 #[ParseLogPath]
-g_strLogDir = "./test_SN/"
+g_strLogDir = "./All_SN/"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -223,9 +223,9 @@ def log_to_excel(listRSSI, listWIFI):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
     try:
-        # covert list of dict to DataFrame, to create worksheet
-        df_logRSSI = pd.DataFrame(listRSSI)
-        df_logWIFI = pd.DataFrame(listWIFI)
+        # covert list of dict to DataFrame in order
+        df_logRSSI = pd.DataFrame(listRSSI, columns=listRSSI[0].keys())
+        df_logWIFI = pd.DataFrame(listWIFI, columns=listWIFI[0].keys())
 
         # list the arguments for createing Excel workbooks
         list_df = [df_logRSSI, df_logWIFI]
@@ -247,7 +247,7 @@ def log_to_excel(listRSSI, listWIFI):
             # plot for RSSI_Report.xlsx
             if i == 0:
                 newLineChart(wb[str_sheet], df)
-
+                #print(df)
             wb.save(str_fname)     # save the worksheet as excel file
             printLog("[I][log_to_excel] %s generated" % str_fname)
 
@@ -271,23 +271,26 @@ def newLineChart(ws, df):
     try:
         chart = LineChart()
         chart.title = "UNIT PN_M"
-        chart.style = 13
+        chart.style = 18
 
-        data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=7)
+        data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=ws.max_row)
         chart.add_data(data, titles_from_data=True)
-        
+
         # set y-axis according to the max value from DataFrame(df_logRSSI)
-        chart.y_axis.scaling.max = math.ceil(df[["Main", "Aux"]].max().max())
+        chart.y_axis.scaling.max = -30
 
         # style the lines
         line_Main = chart.series[0]
         line_Main.graphicalProperties.line.solidFill = "00AAAA"     # navyblue
+        line_Main.graphicalProperties.line.width = 25000
 
         line_Aux = chart.series[1]
         line_Aux.graphicalProperties.line.solidFill = "F08080"      # lightpink
+        line_Aux.graphicalProperties.line.width = 25000
 
         line_Spec = chart.series[2]
         line_Spec.graphicalProperties.line.solidFill = "3D9140"     # cobaltgreen
+        line_Spec.graphicalProperties.line.width = 25000
 
         ws.add_chart(chart, "G1")
     except Exception as e:
