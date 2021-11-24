@@ -272,6 +272,8 @@ def newLineChart(ws, df):
         chart = LineChart()
         chart.title = "UNIT PN_M"
         chart.style = 18
+        #chart.height = 7.5 # default is 7.5
+        #chart.width = 20
 
         data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=ws.max_row)
         chart.add_data(data, titles_from_data=True)
