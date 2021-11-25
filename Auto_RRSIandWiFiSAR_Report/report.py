@@ -227,6 +227,11 @@ def log_to_excel(listRSSI, listWIFI):
         df_logRSSI = pd.DataFrame(listRSSI, columns=listRSSI[0].keys())
         df_logWIFI = pd.DataFrame(listWIFI, columns=listWIFI[0].keys())
 
+        # set df_logRSSI index
+        df_logRSSI.index.name = "Item"
+        df_logRSSI.index += 1                   # index start with 1
+        df_logRSSI = df_logRSSI.reset_index()   # reset index as normal column for constructing sheet
+
         # list the arguments for createing Excel workbooks
         list_df = [df_logRSSI, df_logWIFI]
         list_sheetname = ["RSSI", "wifisarquery"]
@@ -256,10 +261,10 @@ def log_to_excel(listRSSI, listWIFI):
         printLog("[E][log_to_excel] Unexpected Error: " + str(e))
 
 # new worksheets by DataFrame
-def newSheet(workbook, strSheetName, df_SheetCol):
+def newSheet(workbook, strSheetName, df):
     try:
         workbook.create_sheet(strSheetName)
-        for row in dataframe_to_rows(df_SheetCol, index=False, header=True):
+        for row in dataframe_to_rows(df, index=False, header=True):
             workbook[strSheetName].append(row)
 
         printLog("[I][newSheet] Sheet: %s Created" % strSheetName)
@@ -272,11 +277,13 @@ def newLineChart(ws, df):
         chart = LineChart()
         chart.title = "UNIT PN_M"
         chart.style = 18
-        #chart.height = 7.5 # default is 7.5
-        #chart.width = 20
 
-        data = Reference(ws, min_col=3, min_row=1, max_col=5, max_row=ws.max_row)
+        data = Reference(ws, min_col=4, min_row=1, max_col=6, max_row=ws.max_row)
         chart.add_data(data, titles_from_data=True)
+
+        # set daigram size
+        chart.height = 10   # default is 7.5
+        chart.width = 20
 
         # set y-axis according to the max value from DataFrame(df_logRSSI)
         chart.y_axis.scaling.max = -30
@@ -294,7 +301,7 @@ def newLineChart(ws, df):
         line_Spec.graphicalProperties.line.solidFill = "3D9140"     # cobaltgreen
         line_Spec.graphicalProperties.line.width = 25000
 
-        ws.add_chart(chart, "G1")
+        ws.add_chart(chart, "I1")
     except Exception as e:
         printLog("[E][newLineChart] Unexpected Error: " + str(e))
 
