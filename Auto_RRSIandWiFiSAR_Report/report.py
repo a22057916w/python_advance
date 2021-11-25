@@ -31,6 +31,7 @@ import codecs
 import math
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.utils import get_column_letter
 from openpyxl.styles import PatternFill, Alignment, Font
 from openpyxl.styles.borders import Border, Side
 from openpyxl.chart import (
@@ -272,6 +273,16 @@ def newSheet(workbook, strSheetName, df):
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 def styleSheet(ws):
+    dims = {}
+    for row in ws.rows:
+        for cell in row:
+            if cell.value:
+                dims[cell.column] = max(dims.get(cell.column, 0), len(str(cell.value)))
+
+    for col, value in dims.items():
+        ws.column_dimensions[get_column_letter(col)].width = value + 3
+    dims.clear()
+
     # Enumerate the cells in the second row
     for cell in ws["1:1"]:
         cell.font = Font(color="F8F8FF")    # ghostwhite

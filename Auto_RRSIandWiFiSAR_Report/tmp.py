@@ -272,7 +272,7 @@ def newSheet(workbook, strSheetName, df):
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 def styleSheet(ws):
-    # Enumerate the cells in the second row
+    # Enumerate the cells in the first row
     for cell in ws["1:1"]:
         cell.font = Font(color="F8F8FF")    # ghostwhite
         cell.fill = PatternFill(fgColor="292421", fill_type="solid")
