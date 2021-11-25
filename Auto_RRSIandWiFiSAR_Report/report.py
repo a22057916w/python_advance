@@ -60,7 +60,6 @@ def get_host_ip():
 
     return ip
 
-
 # Update UI Process (%)
 def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
     global g_nProgressC
@@ -249,6 +248,7 @@ def log_to_excel(listRSSI, listWIFI):
 
             # set up sheet by DataFrame
             newSheet(wb, str_sheet, df)
+            styleSheet(wb[str_sheet])
             # plot for RSSI_Report.xlsx
             if i == 0:
                 newLineChart(wb[str_sheet], df)
@@ -270,6 +270,12 @@ def newSheet(workbook, strSheetName, df):
         printLog("[I][newSheet] Sheet: %s Created" % strSheetName)
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
+
+def styleSheet(ws):
+    # Enumerate the cells in the second row
+    for cell in ws["1:1"]:
+        cell.font = Font(color="F8F8FF")    # ghostwhite
+        cell.fill = PatternFill(fgColor="292421", fill_type="solid")
 
 # draw a line chart with 3 lines for RSSI
 def newLineChart(ws, df):
