@@ -202,7 +202,7 @@ def parseRSSI_MTK(dictRSSI, strRSSIPath):
     except Exception as e:
         print("[E][parseRSSI_MTK] Unexpected Error: " + str(e))
 
-
+# parse the last line in SarLog_DynAnt.txt, target = "Value Match" or "Value Not Match"
 def parseWIFI(dictWIFI, strWIFIPath):
     try:
         with open(strWIFIPath, encoding="big5") as WIFILog:    # big5 for windows
