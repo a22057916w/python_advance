@@ -31,6 +31,7 @@ import codecs
 import math
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
+from openpyxl.utils import get_column_letter
 from openpyxl.styles import PatternFill, Alignment, Font
 from openpyxl.styles.borders import Border, Side
 from openpyxl.chart import (
@@ -76,6 +77,55 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
         with open(strWebComPath, 'w') as f:
             f.write(strToWrite)
 
+
+class Automation_RSSI_WiFiSARQUERY():
+    def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
+        self.setPath(strUser, b_localDebug)
+        self.fetchData(self.dataPath, self.inputFolder)
+
+    def start(self):
+        # get directory names of TryingLog (first layer)
+        self.listSNLogs = os.listdir(g_strLogDir)
+        # iterate through log files in a SN folder and get parsed data
+        self.listRSSI, self.listWIFI = parseLog(self.listSNLogs)
+        # save parsed data to excel
+        log_to_excel(self.listRSSI, self.listWIFI)
+
+    def setPath(self, strUser, b_localDebug):
+        if not b_localDebug:
+            # Server upload path
+            SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
+            # InputFolder
+            InputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input_%s" % strUser
+            # Output file in download folder
+            ResultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download/Automation_RSSI_WiFiSARQUERY_%s.xlsx" % strUser
+            # Output Path
+            outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output_%s" % strUser
+            strFileName = outputFolder + "/Automation_RSSI_WiFiSARQUERY_%s.xlsx" % strUser
+        else:
+            self.inputFolder = "./input/%s" % strUser
+            # Output file in download folder
+            self.dataPath = "./All_SN"
+            # Output Path
+            self.outputFolder = "./output/%s" % strUser
+
+            list_path = [self.inputFolder, self.outputFolder]
+            for path in list_path:
+                self.initPath(path)
+
+    def initPath(self, strDirPath):
+        try:
+            if os.path.exists(strDirPath):
+                shutil.rmtree(strDirPath)
+                printLog("[I][initPath] Delete Folder: %s" % strDirPath)
+
+            os.mkdir(strDirPath)
+            printLog("[I][initPath] Create Folder: %s" % strDirPath)
+        except Exception as e:
+            printLog("[E][initPaht] Unexpected Error: " + str(e))
+
+    def fetchData(self, src, dest):
+        shutil.copytree(src, dest, copy_function=copy2, dirs_exist_ok=False)
 
 #/====================================================================\#
 #|               Functions of parsing target logs                     |#
@@ -272,7 +322,17 @@ def newSheet(workbook, strSheetName, df):
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
 def styleSheet(ws):
-    # Enumerate the cells in the first row
+    dims = {}
+    for row in ws.rows:
+        for cell in row:
+            if cell.value:
+                dims[cell.column] = max(dims.get(cell.column, 0), len(str(cell.value)))
+
+    for col, value in dims.items():
+        ws.column_dimensions[get_column_letter(col)].width = value + 3
+    dims.clear()
+
+    # Enumerate the cells in the second row
     for cell in ws["1:1"]:
         cell.font = Font(color="F8F8FF")    # ghostwhite
         cell.fill = PatternFill(fgColor="292421", fill_type="solid")
@@ -338,12 +398,8 @@ if __name__ == "__main__":
 
     # ------------ find the target file --------------
     try:
-        # get directory names of TryingLog (first layer)
-        listSNLogs = os.listdir(g_strLogDir)
-        # iterate through log files in a SN folder and get parsed data
-        listRSSI, listWIFI = parseLog(listSNLogs)
-        # save parsed data to excel
-        log_to_excel(listRSSI, listWIFI)
+        ARW = Automation_RSSI_WiFiSARQUERY()
+        ARW.start()
 
     except Exception as e:
         printLog("[E][main] Unexpected Error: " + str(e))
