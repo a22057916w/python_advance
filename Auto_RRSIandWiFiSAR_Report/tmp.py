@@ -101,7 +101,7 @@ class Automation_RSSI_WiFiSARQUERY():
 
         zip_all_files(self.outputFolder, self.strUser)
 
-        self.zipfilePath = os.path.join(strTargetDir, "Auto_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
+        self.zipfilePath = os.path.join(self.outputFolder, "Auto_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
         shutil.copy2(self.zipfilePath, self.resultPath)
 
         #updateWebpageInfo(100, "[I] F I N I S H.")
