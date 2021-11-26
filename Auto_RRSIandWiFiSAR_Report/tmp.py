@@ -79,6 +79,11 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
 
 
 class Automation_RSSI_WiFiSARQUERY():
+
+    strStartTime = "2021-11-26 11:14:20"
+    strEdnTime = "2021-11-26 13:13:13"
+    strProjectName = "./fuckme"
+
     def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
         self.setPath(strUser, b_localDebug)
 
@@ -102,7 +107,7 @@ class Automation_RSSI_WiFiSARQUERY():
             outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output_%s" % strUser
         else:
             self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
-            self.mappingJson = ".\mapping\sanchezPeng\mapping.json"
+            self.mappingJsonPath = ".\mapping\sanchezPeng\mapping.json"
             self.inputFolder = "./input/%s" % strUser       # Output file in download folder
             self.outputFolder = "./output/%s" % strUser     # Output Path
 
@@ -110,6 +115,7 @@ class Automation_RSSI_WiFiSARQUERY():
         for path in list_path:
             self.initPath(path)
 
+        self.mapping(self.mappingJsonPath)
         self.pullData()
 
     def initPath(self, strDirPath):
@@ -122,21 +128,40 @@ class Automation_RSSI_WiFiSARQUERY():
             printLog("[I][initPath] Create Folder: %s" % strDirPath)
         except Exception as e:
             printLog("[E][initPaht] Unexpected Error: " + str(e))
+            print("[E][initPath] Unexception error: %s" % str(sys.exc_info()[1]))
+
+    def mapping(self, strJsonPath):
+        try:
+            with open(strJsonPath, "r") as jsonFile:
+                dictInfo = json.load(jsonFile)
+                self.strStartTime = dictInfo["starttime"]
+                self.strEdnTime = dictInfo["endtime"]
+                self.strProjectName = dictInfo["Projectname"]
+        except Exception as e:
+            printLog("[E][mapping] Unexpected Error: " + str(e))
+            print("[E][mapping] Unexception error: %s" % str(sys.exc_info()[1]))
 
     def pullData(self):
-        with open()
-        start_time = df.datetime.strptime("2021-11-26 11:14:20", "%Y-%m-%d %H:%M:%S")
-        end_time = df.datetime.strptime("2021-11-26 13:13:13", "%Y-%m-%d %H:%M:%S")
+        try:
+            start_time = df.datetime.strptime(self.strStartTime, "%Y-%m-%d %H:%M:%S")
+            end_time = df.datetime.strptime(self.strEdnTime, "%Y-%m-%d %H:%M:%S")
 
-        for SN_dir in os.listdir(self.dataPath):
-            SN_path = os.path.join(self.dataPath, SN_dir)
+            #start_time = df.datetime.strptime("2021-11-26 11:14:20", "%Y-%m-%d %H:%M:%S")
+            #end_time = df.datetime.strptime("2021-11-26 13:13:13", "%Y-%m-%d %H:%M:%S")
 
-            c_epoch_time = os.path.getctime(SN_path)
-            c_time = df.datetime.fromtimestamp(c_epoch_time)
+            for SN_dir in os.listdir(self.dataPath):
+                SN_path = os.path.join(self.dataPath, SN_dir)
 
-            if c_time >= start_time and c_time <= end_time:
-                shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
-                print(SN_dir)
+                c_epoch_time = os.path.getctime(SN_path)
+                c_time = df.datetime.fromtimestamp(c_epoch_time)
+
+                if c_time >= start_time and c_time <= end_time:
+                    shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
+                    print(SN_dir)
+        except Exception as e:
+            printLog("[E][pullData] Unexpected error: " + str(e))
+            print("[E][pullData] Unexception error: %s" % str(sys.exc_info()[1]))
+
 
 #/====================================================================\#
 #|               Functions of parsing target logs                     |#
@@ -392,29 +417,14 @@ def getDateTimeFormat():
     return strDateTime
 
 def printLog(strPrintLine):
+    global strUser
     strFileName = os.path.basename(__file__).split('.')[0]
-    fileLog = codecs.open(g_strFileName + ".log", 'a', "utf-8")
+    fileLog = codecs.open(strFileName + "_" + strUser + ".log", 'a', "utf-8")
     print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
 
-def progress(count, total, status=''):
-    bar_len = 60
-    filled_len = int(round(bar_len * count / float(total)))
-
-    percents = round(100.0 * count / float(total), 1)
-    bar = '=' * filled_len + '-' * (bar_len - filled_len)
-
-    sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
-    sys.stdout.flush()
-
-def showProgess():
-    for i in range(1, 10):
-        time.sleep(0.25)
-        process_bar = 'copying files from share folder : ' + '.' * i + '\r' #带输出的字符串，'\r'表示不换行回到最左边
-        sys.stdout.write(process_bar)   #这两句打印字符到终端
-        sys.stdout.flush()
 
 def zip_all_files(self):
         try:
@@ -434,15 +444,18 @@ def zip_all_files(self):
             return False
 
 if __name__ == "__main__":
+    global strUser
 
-    strUser = sys.argv[1]
+    if(len(sys.argv) < 1):
+        strUser = "WillyWJ_Chen"
+    else:
+        strUser = sys.argv[1]
 
-    global g_strFileName
-    g_strFileName = os.path.basename(__file__).split('.')[0]
+    strFileName = os.path.basename(__file__).split('.')[0]
 
     printLog("========== Start ==========")
     printLog("[I][main] Python " + sys.version)
-    printLog("[I][main] %s.py %s" % (g_strFileName, g_strVersion))
+    printLog("[I][main] %s.py %s" % (strFileName, g_strVersion))
 
 
     logPath = "/home/sanchez/Desktop/RDTool/CTO_R1R3_Checking"
