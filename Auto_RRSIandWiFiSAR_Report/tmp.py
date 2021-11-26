@@ -22,14 +22,14 @@
 import os, sys
 import traceback
 import shutil
-from distutils.dir_util import copy_tree
 import socket
 import requests
 import pandas as pd
 import re
 import time
+import datetime as df
 import codecs
-import math
+import json
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.utils import get_column_letter
@@ -44,9 +44,6 @@ from openpyxl.chart.axis import DateAxis
 
 # [Main]
 g_strVersion = "1.0.0.1"
-
-#[ParseLogPath]
-g_strLogDir = "./All_SN/"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -79,12 +76,14 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
             f.write(strToWrite)
 
 
+
+
 class Automation_RSSI_WiFiSARQUERY():
     def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
         self.setPath(strUser, b_localDebug)
 
     def start(self):
-        # get directory names of TryingLog 
+        # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
         # iterate through log files in a SN folder and get parsed data
         self.listRSSI, self.listWIFI = parseLog(self.listSNLogs, self.inputFolder)
@@ -102,17 +101,16 @@ class Automation_RSSI_WiFiSARQUERY():
             # Output Path
             outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output_%s" % strUser
         else:
-            self.dataPath = "./All_SN"                      # raw data folder(source to be parsed)
+            self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
+            self.mappingJson = ".\mapping\sanchezPeng\mapping.json"
             self.inputFolder = "./input/%s" % strUser       # Output file in download folder
             self.outputFolder = "./output/%s" % strUser     # Output Path
 
-            list_path = [self.inputFolder, self.outputFolder]
-            for path in list_path:
-                self.initPath(path)
+        list_path = [self.inputFolder, self.outputFolder]
+        for path in list_path:
+            self.initPath(path)
 
-            printLog("[I][setPath] Copying files from shared folder")
-            copy_tree(self.dataPath, self.inputFolder)
-            printLog("[I][setPath] Files copyed")
+        self.pullData()
 
     def initPath(self, strDirPath):
         try:
@@ -125,6 +123,20 @@ class Automation_RSSI_WiFiSARQUERY():
         except Exception as e:
             printLog("[E][initPaht] Unexpected Error: " + str(e))
 
+    def pullData(self):
+        with open()
+        start_time = df.datetime.strptime("2021-11-26 11:14:20", "%Y-%m-%d %H:%M:%S")
+        end_time = df.datetime.strptime("2021-11-26 13:13:13", "%Y-%m-%d %H:%M:%S")
+
+        for SN_dir in os.listdir(self.dataPath):
+            SN_path = os.path.join(self.dataPath, SN_dir)
+
+            c_epoch_time = os.path.getctime(SN_path)
+            c_time = df.datetime.fromtimestamp(c_epoch_time)
+
+            if c_time >= start_time and c_time <= end_time:
+                shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
+                print(SN_dir)
 
 #/====================================================================\#
 #|               Functions of parsing target logs                     |#
@@ -404,16 +416,37 @@ def showProgess():
         sys.stdout.write(process_bar)   #这两句打印字符到终端
         sys.stdout.flush()
 
+def zip_all_files(self):
+        try:
+            self.module_logger.info("------------ Start Zipping Files. ------------")
+            with zipfile.ZipFile(os.path.join(self.str_output_path, "MultiLevel_%s.zip"%strUser), "w") as zf:
+                for dirPath, dirNames, fileNames in os.walk(self.str_output_path):
+                    for f in fileNames:
+                        if "zip" not in f:
+                            #print(88888,os.path.join(dirPath, f))
+                            zf.write(os.path.join(dirPath, f), os.path.basename(f))
+            updateWebpageInfo(97, "------------ Zip All Files Done. ------------")
+            return True
+
+        except:
+            self.module_logger.error("Unexpected error: %s" % (str(traceback.format_exc())))
+            print("[E][zip_all_files] Exception error: %s" % str(sys.exc_info()[1]))
+            return False
 
 if __name__ == "__main__":
-    global g_strFileName, g_ShareFolder_ip
+
+    strUser = sys.argv[1]
+
+    global g_strFileName
     g_strFileName = os.path.basename(__file__).split('.')[0]
 
     printLog("========== Start ==========")
     printLog("[I][main] Python " + sys.version)
     printLog("[I][main] %s.py %s" % (g_strFileName, g_strVersion))
 
-    # ------------ find the target file --------------
+
+    logPath = "/home/sanchez/Desktop/RDTool/CTO_R1R3_Checking"
+
     try:
         ARW = Automation_RSSI_WiFiSARQUERY()
         ARW.start()
