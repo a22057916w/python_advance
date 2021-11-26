@@ -85,6 +85,8 @@ class Automation_RSSI_WiFiSARQUERY():
     strEdnTime = "2021-11-26 13:13:13"
     strProjectName = "./fuckme"
 
+    strUser = "WillyWJ_Chen"
+
     def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
         self.setPath(strUser, b_localDebug)
 
