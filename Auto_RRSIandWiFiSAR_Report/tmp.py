@@ -22,6 +22,7 @@
 import os, sys
 import traceback
 import shutil
+from distutils.dir_util import copy_tree
 import socket
 import requests
 import pandas as pd
@@ -81,15 +82,14 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
 class Automation_RSSI_WiFiSARQUERY():
     def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
         self.setPath(strUser, b_localDebug)
-        self.fetchData(self.dataPath, self.inputFolder)
 
     def start(self):
-        # get directory names of TryingLog (first layer)
-        self.listSNLogs = os.listdir(g_strLogDir)
+        # get directory names of TryingLog 
+        self.listSNLogs = os.listdir(self.inputFolder)
         # iterate through log files in a SN folder and get parsed data
-        self.listRSSI, self.listWIFI = parseLog(self.listSNLogs)
+        self.listRSSI, self.listWIFI = parseLog(self.listSNLogs, self.inputFolder)
         # save parsed data to excel
-        log_to_excel(self.listRSSI, self.listWIFI)
+        log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
     def setPath(self, strUser, b_localDebug):
         if not b_localDebug:
@@ -101,17 +101,18 @@ class Automation_RSSI_WiFiSARQUERY():
             ResultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download/Automation_RSSI_WiFiSARQUERY_%s.xlsx" % strUser
             # Output Path
             outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output_%s" % strUser
-            strFileName = outputFolder + "/Automation_RSSI_WiFiSARQUERY_%s.xlsx" % strUser
         else:
-            self.inputFolder = "./input/%s" % strUser
-            # Output file in download folder
-            self.dataPath = "./All_SN"
-            # Output Path
-            self.outputFolder = "./output/%s" % strUser
+            self.dataPath = "./All_SN"                      # raw data folder(source to be parsed)
+            self.inputFolder = "./input/%s" % strUser       # Output file in download folder
+            self.outputFolder = "./output/%s" % strUser     # Output Path
 
             list_path = [self.inputFolder, self.outputFolder]
             for path in list_path:
                 self.initPath(path)
+
+            printLog("[I][setPath] Copying files from shared folder")
+            copy_tree(self.dataPath, self.inputFolder)
+            printLog("[I][setPath] Files copyed")
 
     def initPath(self, strDirPath):
         try:
@@ -124,15 +125,13 @@ class Automation_RSSI_WiFiSARQUERY():
         except Exception as e:
             printLog("[E][initPaht] Unexpected Error: " + str(e))
 
-    def fetchData(self, src, dest):
-        shutil.copytree(src, dest, copy_function=copy2, dirs_exist_ok=False)
 
 #/====================================================================\#
 #|               Functions of parsing target logs                     |#
 #\====================================================================/#
 
 # retunn two list of dict, listRSSI, listWIFI
-def parseLog(list_SNs):
+def parseLog(list_SNs, strInuptFolder):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
 
     listRSSI, listWIFI = [], []
@@ -153,7 +152,7 @@ def parseLog(list_SNs):
                 "Result" : "no log" }
 
             b_hasRSSI, b_hasWIFI = False, False             # flag for checking if the target log exists
-            strSNPath = os.path.join(g_strLogDir, strSN)    # set abspath for SN logs
+            strSNPath = os.path.join(strInuptFolder, strSN)    # set abspath for SN logs
 
             # iterate through log files in a SN folder
             for strFileName in os.listdir(strSNPath):
@@ -268,7 +267,7 @@ def parseWIFI(dictWIFI, strWIFIPath):
 #\====================================================================/#
 
 # save two xlsx, RSSI.xlsx, WiFiSARQUERY.xlsx
-def log_to_excel(listRSSI, listWIFI):
+def log_to_excel(listRSSI, listWIFI, strOutputFolder):
     printLog("[I][log_to_excel] ------- Parsing Log to Excel -------")
 
     try:
@@ -303,7 +302,7 @@ def log_to_excel(listRSSI, listWIFI):
             if i == 0:
                 newLineChart(wb[str_sheet], df)
                 #print(df)
-            wb.save(str_fname)     # save the worksheet as excel file
+            wb.save(os.path.join(strOutputFolder, str_fname))     # save the worksheet as excel file
             printLog("[I][log_to_excel] %s generated" % str_fname)
 
         printLog("[I][log_to_excel] ------- Parsed Log to Excel -------")
@@ -386,6 +385,24 @@ def printLog(strPrintLine):
     print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
+
+
+def progress(count, total, status=''):
+    bar_len = 60
+    filled_len = int(round(bar_len * count / float(total)))
+
+    percents = round(100.0 * count / float(total), 1)
+    bar = '=' * filled_len + '-' * (bar_len - filled_len)
+
+    sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
+    sys.stdout.flush()
+
+def showProgess():
+    for i in range(1, 10):
+        time.sleep(0.25)
+        process_bar = 'copying files from share folder : ' + '.' * i + '\r' #带输出的字符串，'\r'表示不换行回到最左边
+        sys.stdout.write(process_bar)   #这两句打印字符到终端
+        sys.stdout.flush()
 
 
 if __name__ == "__main__":
