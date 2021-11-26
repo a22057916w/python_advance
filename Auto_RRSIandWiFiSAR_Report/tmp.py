@@ -30,6 +30,7 @@ import time
 import datetime as df
 import codecs
 import json
+import zipfile
 import openpyxl
 from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.utils import get_column_letter
@@ -95,16 +96,18 @@ class Automation_RSSI_WiFiSARQUERY():
         # save parsed data to excel
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
+        zip_all_files(self.outputFolder, self.strUser)
+
     def setPath(self, strUser, b_localDebug):
         if not b_localDebug:
             # Server upload path
             SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
             # InputFolder
-            InputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input_%s" % strUser
+            self.inputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input/input_%s" % strUser
             # Output file in download folder
-            ResultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download/Automation_RSSI_WiFiSARQUERY_%s.xlsx" % strUser
+            self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
             # Output Path
-            outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output_%s" % strUser
+            self.outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output/output_%s" % strUser
         else:
             self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
             self.mappingJsonPath = ".\mapping\sanchezPeng\mapping.json"
@@ -424,29 +427,21 @@ def printLog(strPrintLine):
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
+def zip_all_files(strTargetDir, strUser):
+    with zipfile.ZipFile(os.path.join(strTargetDir, "Auto_RRSIandWiFiSAR_Report_%s.zip" % strUser), "w") as zf:
+        for dirPath, dirNames, fileNames in os.walk(strTargetDir):
+            for file in fileNames:
+                if "zip" not in file:
+                    #print(88888,os.path.join(dirPath, f))
+                    zf.write(os.path.join(dirPath, file), file)
+        #updateWebpageInfo(97, "------------ Zip All Files Done. ------------")
 
 
-def zip_all_files(self):
-        try:
-            self.module_logger.info("------------ Start Zipping Files. ------------")
-            with zipfile.ZipFile(os.path.join(self.str_output_path, "MultiLevel_%s.zip"%strUser), "w") as zf:
-                for dirPath, dirNames, fileNames in os.walk(self.str_output_path):
-                    for f in fileNames:
-                        if "zip" not in f:
-                            #print(88888,os.path.join(dirPath, f))
-                            zf.write(os.path.join(dirPath, f), os.path.basename(f))
-            updateWebpageInfo(97, "------------ Zip All Files Done. ------------")
-            return True
-
-        except:
-            self.module_logger.error("Unexpected error: %s" % (str(traceback.format_exc())))
-            print("[E][zip_all_files] Exception error: %s" % str(sys.exc_info()[1]))
-            return False
 
 if __name__ == "__main__":
     global strUser
 
-    if(len(sys.argv) < 1):
+    if(len(sys.argv) <= 1):
         strUser = "WillyWJ_Chen"
     else:
         strUser = sys.argv[1]
@@ -458,10 +453,10 @@ if __name__ == "__main__":
     printLog("[I][main] %s.py %s" % (strFileName, g_strVersion))
 
 
-    logPath = "/home/sanchez/Desktop/RDTool/CTO_R1R3_Checking"
+    #logPath = "/home/sanchez/Desktop/RDTool/CTO_R1R3_Checking"
 
     try:
-        ARW = Automation_RSSI_WiFiSARQUERY()
+        ARW = Automation_RSSI_WiFiSARQUERY(strUser)
         ARW.start()
 
     except Exception as e:
