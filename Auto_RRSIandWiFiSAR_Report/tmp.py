@@ -91,6 +91,7 @@ class Automation_RSSI_WiFiSARQUERY():
         self.setPath(strUser, b_localDebug)
 
     def start(self):
+        #updateWebpageInfo(5, "------------ start ------------")
         # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
         # iterate through log files in a SN folder and get parsed data
@@ -100,10 +101,17 @@ class Automation_RSSI_WiFiSARQUERY():
 
         zip_all_files(self.outputFolder, self.strUser)
 
+        self.zipfilePath = os.path.join(strTargetDir, "Auto_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
+        shutil.copy2(self.zipfilePath, self.resultPath)
+
+        #updateWebpageInfo(100, "[I] F I N I S H.")
+
     def setPath(self, strUser, b_localDebug):
         if not b_localDebug:
             # Server upload path
-            SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
+            #SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
+            self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
+            self.mappingJsonPath = ".\mapping\sanchezPeng\mapping.json"
             # InputFolder
             self.inputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input/input_%s" % strUser
             # Output file in download folder
@@ -113,6 +121,7 @@ class Automation_RSSI_WiFiSARQUERY():
         else:
             self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
             self.mappingJsonPath = ".\mapping\sanchezPeng\mapping.json"
+            self.resultPath = os.getcwd()
             self.inputFolder = "./input/%s" % strUser       # Output file in download folder
             self.outputFolder = "./output/%s" % strUser     # Output Path
 
