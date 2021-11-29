@@ -108,9 +108,10 @@ class Automation_RSSI_WiFiSARQUERY():
 
         # updateWebpageInfo(100, "[I] F I N I S H.")
 
-
+    # set folder path with strUser
     def setPath(self, strUser, b_localDebug):
         try:
+            printLog("[I][setPath] ----- Setting Folder Path -----")
             if not b_localDebug:
                 # Server upload path
                 #SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
@@ -129,13 +130,16 @@ class Automation_RSSI_WiFiSARQUERY():
                 self.inputFolder = "./input/%s" % strUser       # Output file in download folder
                 self.outputFolder = "./output/%s" % strUser     # Output Path
 
+            # remove old files and new folders
             list_path = [self.inputFolder, self.outputFolder]
             for path in list_path:
                 self.initPath(path)
 
+            # mapping default variables, then pulling data as params
             self.mapping(self.mappingJsonPath)
             self.pullData()
 
+            printLog("[I][setPath] ----- Setting Folder Path Successfully -----")
         except Exception as e:
             printLog("[E][setPath] Unexpected Error: " + str(e))
             print("[E][setPath] Unexception error: %s" % str(sys.exc_info()[1]))
@@ -168,11 +172,11 @@ class Automation_RSSI_WiFiSARQUERY():
     # pull data from share folder
     def pullData(self):
         try:
-            printLog("[I][pullData] Pulling Data")
+            printLog("[I][pullData] ----- Pulling Data ------")
             #start_time = df.datetime.strptime(self.strStartTime, "%Y-%m-%d %H:%M:%S")
             #end_time = df.datetime.strptime(self.strEdnTime, "%Y-%m-%d %H:%M:%S")
 
-            start_time = df.datetime.strptime("2021-11-26 11:14:20", "%Y-%m-%d %H:%M:%S")
+            start_time = df.datetime.strptime("2021-11-21 11:14:20", "%Y-%m-%d %H:%M:%S")
             end_time = df.datetime.strptime("2021-11-26 13:13:13", "%Y-%m-%d %H:%M:%S")
 
             # copying files according to the creation date wihtin [start_time, end_time]
@@ -188,7 +192,7 @@ class Automation_RSSI_WiFiSARQUERY():
 
             # check if there is at least one file pull
             if len(os.listdir(self.inputFolder)) > 0:
-                printLog("[I][pullData] Pulling data successfully")
+                printLog("[I][pullData] ----- Pulling Data Successfully -----")
             else:
                 printLog("[W][pullData] No files wihtin [%s, %s]" % (start_time, end_time))
                 sys.exit("Error: No files wihtin [%s, %s]" % (start_time, end_time))
@@ -358,6 +362,11 @@ def log_to_excel(listRSSI, listWIFI, strOutputFolder):
 
         # new Excel workbook and sheets
         for i in range(len(list_df)):
+            # formating printting log, don't do \n for last case
+            if i < len(list_df):
+                print()
+
+            printLog("[I][log_to_excel] New workbook for %s" % list_fname[i])
             wb = openpyxl.Workbook()    # 新增 Excel 活頁
             wb.remove(wb['Sheet'])      # remove the default sheet when start a workbook
 
@@ -475,23 +484,28 @@ def zip_all_files(strZipDir, strZipPath):
 
 if __name__ == "__main__":
     global strUser
+    global b_localDebug
 
+    # set user and debug mode
     if(len(sys.argv) <= 1):
         strUser = "WillyWJ_Chen"
+        b_localDebug = True
     else:
         strUser = sys.argv[1]
+        b_localDebug = False
 
     strFileName = os.path.basename(__file__).split('.')[0]
 
     printLog("========== Start ==========")
     printLog("[I][main] Python " + sys.version)
     printLog("[I][main] %s.py %s" % (strFileName, g_strVersion))
+    printLog("[I][main] Decteing User: %s\n" % strUser)
 
 
     #logPath = "/home/sanchez/Desktop/RDTool/CTO_R1R3_Checking"
 
     try:
-        ARW = Automation_RSSI_WiFiSARQUERY(strUser)
+        ARW = Automation_RSSI_WiFiSARQUERY(strUser, b_localDebug)
         ARW.start()
 
     except Exception as e:
