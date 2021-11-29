@@ -81,13 +81,14 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
 
 class Automation_RSSI_WiFiSARQUERY():
 
+    # default value
     strStartTime = "2021-11-26 11:14:20"
     strEdnTime = "2021-11-26 13:13:13"
     strProjectName = "./fuckme"
 
     strUser = "WillyWJ_Chen"
 
-    def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
+    def __init__(self, strUser="WillyWJ_Chen", b_localDebug=False):
         self.setPath(strUser, b_localDebug)
 
     def start(self):
@@ -99,38 +100,43 @@ class Automation_RSSI_WiFiSARQUERY():
         # save parsed data to excel
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
-        zip_all_files(self.outputFolder, self.strUser)
-
         self.zipfilePath = os.path.join(self.outputFolder, "Auto_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
+
+        zip_all_files(self.outputFolder, self.zipfilePath)
+
         shutil.copy2(self.zipfilePath, self.resultPath)
 
         # updateWebpageInfo(100, "[I] F I N I S H.")
 
     def setPath(self, strUser, b_localDebug):
-        if not b_localDebug:
-            # Server upload path
-            #SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
-            self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
-            self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
-            # InputFolder
-            self.inputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input/input_%s" % strUser
-            # Output file in download folder
-            self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
-            # Output Path
-            self.outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output/output_%s" % strUser
-        else:
-            self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
-            self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
-            self.resultPath = os.getcwd()
-            self.inputFolder = "./input/%s" % strUser       # Output file in download folder
-            self.outputFolder = "./output/%s" % strUser     # Output Path
+        try:
+            if not b_localDebug:
+                # Server upload path
+                #SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
+                self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
+                self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
+                # InputFolder
+                self.inputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input/input_%s" % strUser
+                # Output file in download folder
+                self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
+                # Output Path
+                self.outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output/output_%s" % strUser
+            else:
+                self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
+                self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
+                self.resultPath = os.getcwd()
+                self.inputFolder = "./input/%s" % strUser       # Output file in download folder
+                self.outputFolder = "./output/%s" % strUser     # Output Path
 
-        list_path = [self.inputFolder, self.outputFolder]
-        for path in list_path:
-            self.initPath(path)
+            list_path = [self.inputFolder, self.outputFolder]
+            for path in list_path:
+                self.initPath(path)
 
-        self.mapping(self.mappingJsonPath)
-        self.pullData()
+            self.mapping(self.mappingJsonPath)
+            self.pullData()
+        except Exception as e:
+            printLog("[E][setPath] Unexpected Error: " + str(e))
+            print("[E][setPath] Unexception error: %s" % str(sys.exc_info()[1]))
 
     def initPath(self, strDirPath):
         try:
@@ -438,15 +444,17 @@ def printLog(strPrintLine):
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
-def zip_all_files(strTargetDir, strUser):
-    with zipfile.ZipFile(os.path.join(strTargetDir, "Auto_RRSIandWiFiSAR_Report_%s.zip" % strUser), "w") as zf:
-        for dirPath, dirNames, fileNames in os.walk(strTargetDir):
-            for file in fileNames:
-                if "zip" not in file:
-                    #print(88888,os.path.join(dirPath, f))
-                    zf.write(os.path.join(dirPath, file), file)
+def zip_all_files(strZipDir, strZipPath):
+    try:
+        with zipfile.ZipFile(strZipPath, "w") as zf:
+            for dirPath, dirNames, fileNames in os.walk(strZipDir):
+                for file in fileNames:
+                    # omit zip file
+                    if "zip" not in file:
+                        zf.write(os.path.join(dirPath, file), file)
         #updateWebpageInfo(97, "------------ Zip All Files Done. ------------")
-
+    except Exception as e:
+        printLog("[E][zip_all_files] Unexpected Error: " + str(e))
 
 
 if __name__ == "__main__":
