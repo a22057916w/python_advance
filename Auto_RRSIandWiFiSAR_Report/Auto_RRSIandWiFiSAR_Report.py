@@ -77,7 +77,9 @@ def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
             f.write(strToWrite)
 
 
-
+#/====================================================================\#
+#|                               Class                                |#
+#\====================================================================/#
 
 class Automation_RSSI_WiFiSARQUERY():
 
@@ -100,10 +102,11 @@ class Automation_RSSI_WiFiSARQUERY():
         # save parsed data to excel
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
+        # zip path for compressing two xlsx
         self.zipfilePath = os.path.join(self.outputFolder, "Auto_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
-
+        # compressing two xlsx
         zip_all_files(self.outputFolder, self.zipfilePath)
-
+        # copy result to server dir
         shutil.copy2(self.zipfilePath, self.resultPath)
 
         # updateWebpageInfo(100, "[I] F I N I S H.")
@@ -403,7 +406,7 @@ def newSheet(workbook, strSheetName, df):
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
-# set cell width 
+# set cell width
 def styleSheet(ws):
     dims = {}
     for row in ws.rows:
