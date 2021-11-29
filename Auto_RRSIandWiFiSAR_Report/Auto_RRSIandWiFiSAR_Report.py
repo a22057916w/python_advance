@@ -88,7 +88,7 @@ class Automation_RSSI_WiFiSARQUERY():
 
     strUser = "WillyWJ_Chen"
 
-    def __init__(self, strUser="WillyWJ_Chen", b_localDebug=False):
+    def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
         self.setPath(strUser, b_localDebug)
 
     def start(self):
@@ -107,6 +107,7 @@ class Automation_RSSI_WiFiSARQUERY():
         shutil.copy2(self.zipfilePath, self.resultPath)
 
         # updateWebpageInfo(100, "[I] F I N I S H.")
+
 
     def setPath(self, strUser, b_localDebug):
         try:
@@ -134,10 +135,12 @@ class Automation_RSSI_WiFiSARQUERY():
 
             self.mapping(self.mappingJsonPath)
             self.pullData()
+
         except Exception as e:
             printLog("[E][setPath] Unexpected Error: " + str(e))
             print("[E][setPath] Unexception error: %s" % str(sys.exc_info()[1]))
 
+    # remove old fils and create new folder
     def initPath(self, strDirPath):
         try:
             if os.path.exists(strDirPath):
@@ -150,6 +153,7 @@ class Automation_RSSI_WiFiSARQUERY():
             printLog("[E][initPaht] Unexpected Error: " + str(e))
             print("[E][initPath] Unexception error: %s" % str(sys.exc_info()[1]))
 
+    # parse json data from ./Mapping/...
     def mapping(self, strJsonPath):
         try:
             with open(strJsonPath, "r") as jsonFile:
@@ -161,23 +165,33 @@ class Automation_RSSI_WiFiSARQUERY():
             printLog("[E][mapping] Unexpected Error: " + str(e))
             print("[E][mapping] Unexception error: %s" % str(sys.exc_info()[1]))
 
+    # pull data from share folder
     def pullData(self):
         try:
-            start_time = df.datetime.strptime(self.strStartTime, "%Y-%m-%d %H:%M:%S")
-            end_time = df.datetime.strptime(self.strEdnTime, "%Y-%m-%d %H:%M:%S")
+            printLog("[I][pullData] Pulling Data")
+            #start_time = df.datetime.strptime(self.strStartTime, "%Y-%m-%d %H:%M:%S")
+            #end_time = df.datetime.strptime(self.strEdnTime, "%Y-%m-%d %H:%M:%S")
 
-            #start_time = df.datetime.strptime("2021-11-26 11:14:20", "%Y-%m-%d %H:%M:%S")
-            #end_time = df.datetime.strptime("2021-11-26 13:13:13", "%Y-%m-%d %H:%M:%S")
+            start_time = df.datetime.strptime("2021-11-26 11:14:20", "%Y-%m-%d %H:%M:%S")
+            end_time = df.datetime.strptime("2021-11-26 13:13:13", "%Y-%m-%d %H:%M:%S")
 
+            # copying files according to the creation date wihtin [start_time, end_time]
             for SN_dir in os.listdir(self.dataPath):
                 SN_path = os.path.join(self.dataPath, SN_dir)
 
-                c_epoch_time = os.path.getctime(SN_path)
-                c_time = df.datetime.fromtimestamp(c_epoch_time)
+                c_epoch_time = os.path.getctime(SN_path)            # return the epoch time(float)
+                c_time = df.datetime.fromtimestamp(c_epoch_time)    # convert the epoch time to human readible date
 
                 if c_time >= start_time and c_time <= end_time:
                     shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
                     print(SN_dir)
+
+            # check if there is at least one file pull
+            if len(os.listdir(self.inputFolder)) > 0:
+                printLog("[I][pullData] Pulling data successfully")
+            else:
+                printLog("[W][pullData] No files wihtin [%s, %s]" % (start_time, end_time))
+                sys.exit("Error: No files wihtin [%s, %s]" % (start_time, end_time))
         except Exception as e:
             printLog("[E][pullData] Unexpected error: " + str(e))
             print("[E][pullData] Unexception error: %s" % str(sys.exc_info()[1]))
@@ -355,6 +369,7 @@ def log_to_excel(listRSSI, listWIFI, strOutputFolder):
             # set up sheet by DataFrame
             newSheet(wb, str_sheet, df)
             styleSheet(wb[str_sheet])
+
             # plot for RSSI_Report.xlsx
             if i == 0:
                 newLineChart(wb[str_sheet], df)
@@ -377,6 +392,7 @@ def newSheet(workbook, strSheetName, df):
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
+# set cell width length
 def styleSheet(ws):
     dims = {}
     for row in ws.rows:
