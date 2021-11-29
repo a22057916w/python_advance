@@ -116,7 +116,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 # Server upload path
                 #SourcePath = "/home/sanchez/Desktop/webserver/ToolPage/server/php/files/ToolPage/Automation_RSSI_WiFiSARQUERY/%s" % strUser
                 self.dataPath = "./test_SN"                     # raw data folder(source to be parsed)
-                self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
+                self.mappingJsonPath = "./Mapping/%s/Mapping.json" % strUser
                 # InputFolder
                 self.inputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input/input_%s" % strUser
                 # Output file in download folder
