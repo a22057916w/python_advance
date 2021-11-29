@@ -42,6 +42,7 @@ from openpyxl.chart import (
 )
 from openpyxl.chart.axis import DateAxis
 
+from pathlib import Path
 
 # [Main]
 g_strVersion = "1.0.0.1"
@@ -89,6 +90,8 @@ class Automation_RSSI_WiFiSARQUERY():
     strProjectName = "./fuckme"
     strUser = "WillyWJ_Chen"
 
+    strSrcIp = "10.110.140.43"  # share folder ip
+
     def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
         self.setPath(strUser, b_localDebug)
 
@@ -124,7 +127,7 @@ class Automation_RSSI_WiFiSARQUERY():
 
             if not b_localDebug:
                 # raw data folder(source to be parsed)
-                self.dataPath = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/test_SN"
+                self.dataPath = Path(r'\\%s\npsd\IOT\ARW_temp\78329' % self.strSrcIp)
                 # mapping criteria for pulling data
                 self.mappingJsonPath = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/Mapping/%s/Mapping.json" % strUser
                 # InputFolder
@@ -134,7 +137,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 # Output file in download folder
                 self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
             else:
-                self.dataPath = "./All_SN"                      # raw data folder(source to be parsed)
+                self.dataPath = Path(r'\\%s\npsd\IOT\ARW_temp\78329' % self.strSrcIp)       # raw data folder(source to be parsed)
                 self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
 
                 self.inputFolder = "./input/%s" % strUser       # Output file in download folder
@@ -147,8 +150,6 @@ class Automation_RSSI_WiFiSARQUERY():
             list_path = [self.inputFolder, self.outputFolder]
             for path in list_path:
                 self.initPath(path)
-
-
 
             # mapping default variables, then pulling data as params
             #updateWebpageInfo(12, "------------ Mapping Criteria ------------")
@@ -208,7 +209,7 @@ class Automation_RSSI_WiFiSARQUERY():
                     shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
                     #n_fcount += 1
                     #updateWebpageInfo(15 + n_fcount/100 * 35, "------------ Pulling Data ------------")
-                    print(SN_dir)
+                    #print(SN_dir)
 
             # check if there is at least one file pull
             if len(os.listdir(self.inputFolder)) > 0:
@@ -511,7 +512,7 @@ if __name__ == "__main__":
     if(len(sys.argv) <= 1):
         strUser = "WillyWJ_Chen"
         b_localDebug = True
-        self.logPath = os.getcwd()
+        logPath = os.getcwd()
     else:
         strUser = sys.argv[1]
         b_localDebug = False
