@@ -152,6 +152,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 printLog("[I][initPath] Delete Folder: %s" % strDirPath)
 
             os.mkdir(strDirPath)
+
             printLog("[I][initPath] Create Folder: %s" % strDirPath)
         except Exception as e:
             printLog("[E][initPaht] Unexpected Error: " + str(e))
@@ -196,6 +197,7 @@ class Automation_RSSI_WiFiSARQUERY():
             else:
                 printLog("[W][pullData] No files wihtin [%s, %s]" % (start_time, end_time))
                 sys.exit("Error: No files wihtin [%s, %s]" % (start_time, end_time))
+
         except Exception as e:
             printLog("[E][pullData] Unexpected error: " + str(e))
             print("[E][pullData] Unexception error: %s" % str(sys.exc_info()[1]))
@@ -401,7 +403,7 @@ def newSheet(workbook, strSheetName, df):
     except Exception as e:
         printLog("[E][newSheet] Unexpected Error: " + str(e))
 
-# set cell width length
+# set cell width 
 def styleSheet(ws):
     dims = {}
     for row in ws.rows:
