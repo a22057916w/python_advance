@@ -126,8 +126,6 @@ class Automation_RSSI_WiFiSARQUERY():
             #updateWebpageInfo(5, "------------ Setting Path ------------")
 
             if not b_localDebug:
-                # raw data folder(source to be parsed)
-                self.dataPath = Path(r'\\%s\npsd\IOT\ARW_temp\78329' % self.strSrcIp)
                 # mapping criteria for pulling data
                 self.mappingJsonPath = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/Mapping/%s/Mapping.json" % strUser
                 # InputFolder
@@ -137,7 +135,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 # Output file in download folder
                 self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
             else:
-                self.dataPath = Path(r'\\%s\npsd\IOT\ARW_temp\78329' % self.strSrcIp)       # raw data folder(source to be parsed)
+                       # raw data folder(source to be parsed)
                 self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
 
                 self.inputFolder = "./input/%s" % strUser       # Output file in download folder
@@ -154,6 +152,7 @@ class Automation_RSSI_WiFiSARQUERY():
             # mapping default variables, then pulling data as params
             #updateWebpageInfo(12, "------------ Mapping Criteria ------------")
             self.mapping(self.mappingJsonPath)
+            self.dataPath = Path(r'\\%s\npsd\IOT\ARW_temp\%s' % (self.strSrcIp, self.strProjectName))
             #updateWebpageInfo(15, "------------ Pulling Data ------------")
             self.pullData()
 
@@ -525,12 +524,23 @@ if __name__ == "__main__":
     printLog("[I][main] %s.py %s" % (strFileName, g_strVersion))
     printLog("[I][main] Decteing User: %s\n" % strUser)
 
-
-    #logPath = "/home/sanchez/Desktop/RDTool/CTO_R1R3_Checking"
-
     try:
+        timeStartTime = time.time()
+
         ARW = Automation_RSSI_WiFiSARQUERY(strUser, b_localDebug)
         ARW.start()
+
+        nSpendTime = int(time.time() - timeStartTime)
+        printLog("[I][main] Spend Time: %d s" % (nSpendTime))
+
+        hostname = socket.gethostname()
+        IPAddr = get_host_ip()
+        strDate = "%s" % (time.strftime("%Y-%m-%d", time.localtime()))
+        strTime = "%s" % (time.strftime("%H:%M:%S", time.localtime()))
+        data = {'pcip': IPAddr, 'pcname': hostname, 'account': strUser, 'toolid': 'Prj2112_RF_RSSI_QUERY',
+                'rundate': strDate, 'runtime': strTime, 'executiontime': nSpendTime,
+                'note': 'version: %s' % (g_strVersion), 'cycle': 1, 'sbtn': 'Send'}
+        response = requests.post('http://10.110.140.43/LYUR/logYourUsageRecord.php', data)
 
     except Exception as e:
         printLog("[E][main] Unexpected Error: " + str(e))
