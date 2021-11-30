@@ -98,7 +98,7 @@ class Automation_RSSI_WiFiSARQUERY():
         self.setPath(strUser, b_localDebug)
 
     def start(self):
-        printLog("[I][start] ------ Begin Generating Sequence -----\n")
+        printLog("\n[I][start] ------ Begin Generating Sequence -----\n")
         updateWebpageInfo(50, "------------ Parsing Log ------------")
         time.sleep(1)
         # get directory names of TryingLog
@@ -125,7 +125,7 @@ class Automation_RSSI_WiFiSARQUERY():
         time.sleep(1)
         shutil.copy2(self.zipfilePath, self.resultPath)
 
-        printLog("\n[I][start] ------ End of Generating Sequence -----")
+        printLog("[I][start] ------ End of Generating Sequence -----")
         updateWebpageInfo(100, "------------ Finish ------------")
 
     # set folder path with strUser
