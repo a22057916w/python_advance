@@ -389,9 +389,6 @@ def log_to_excel(listRSSI, listWIFI, strOutputFolder):
 
         # new Excel workbook and sheets
         for i in range(len(list_df)):
-            # formating printting log, don't do \n for last case
-            if i < len(list_df):
-                print()
 
             printLog("[I][log_to_excel] New workbook for %s" % list_fname[i])
             wb = openpyxl.Workbook()    # 新增 Excel 活頁
@@ -492,7 +489,7 @@ def printLog(strPrintLine):
     global strUser
     strFileName = os.path.basename(__file__).split('.')[0]
     fileLog = codecs.open(strFileName + "_" + strUser + ".log", 'a', "utf-8")
-    # print(strPrintLine)
+    print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
