@@ -98,7 +98,7 @@ class Automation_RSSI_WiFiSARQUERY():
         self.setPath(strUser, b_localDebug)
 
     def start(self):
-        printLog("[I][start] ------ Begin Generating Sequence -----")
+        printLog("[I][start] ------ Begin Generating Sequence -----\n")
         updateWebpageInfo(50, "------------ Parsing Log ------------")
         # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
@@ -127,7 +127,7 @@ class Automation_RSSI_WiFiSARQUERY():
     # set folder path with strUser
     def setPath(self, strUser, b_localDebug):
         try:
-            printLog("[I][setPath] ----- Setting Folder Path -----")
+            printLog("\n[I][setPath] ----- Setting Folder Path -----")
             updateWebpageInfo(5, "------------ Setting Path ------------")
 
             if not b_localDebug:
