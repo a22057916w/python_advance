@@ -498,6 +498,7 @@ def zip_all_files(strZipDir, strZipPath):
                     # omit zip file
                     if "zip" not in file:
                         zf.write(os.path.join(dirPath, file), file)
+        printLog("[I][zip_all_files] Zipping files")
     except Exception as e:
         printLog("[E][zip_all_files] Unexpected Error: " + str(e))
 

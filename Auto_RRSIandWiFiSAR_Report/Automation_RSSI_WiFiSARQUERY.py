@@ -98,6 +98,7 @@ class Automation_RSSI_WiFiSARQUERY():
         self.setPath(strUser, b_localDebug)
 
     def start(self):
+        printLog("[I][start] ------ Begin Generating Sequence -----")
         updateWebpageInfo(50, "------------ Parsing Log ------------")
         # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
@@ -116,9 +117,11 @@ class Automation_RSSI_WiFiSARQUERY():
         zip_all_files(self.outputFolder, self.zipfilePath)
 
         # copy result to server dir
+        printLog("[I][start] Saving Zip File to Server")
         updateWebpageInfo(95, "------------ Saving Zip File to Server ------------")
         shutil.copy2(self.zipfilePath, self.resultPath)
 
+        printLog("[I][start] ------ End of Generating Sequence -----")
         updateWebpageInfo(100, "------------ Finish ------------")
 
     # set folder path with strUser
@@ -497,6 +500,7 @@ def printLog(strPrintLine):
 # compress all files under dir "strZipDir", saving to "strZipPath" as .zip
 def zip_all_files(strZipDir, strZipPath):
     try:
+        printLog("[I][zip_all_files] Compressing files")
         with zipfile.ZipFile(strZipPath, "w") as zf:
             for dirPath, dirNames, fileNames in os.walk(strZipDir):
                 for file in fileNames:
