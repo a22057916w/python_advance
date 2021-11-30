@@ -137,15 +137,14 @@ class Automation_RSSI_WiFiSARQUERY():
                 # Output file in download folder
                 self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
             else:
-                       # raw data folder(source to be parsed)
-                self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"
-
+                self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"     # raw data folder(source to be parsed)
                 self.inputFolder = "./input/%s" % strUser       # Output file in download folder
                 self.outputFolder = "./output/%s" % strUser     # Output Path
                 self.resultPath = os.getcwd()
 
             updateWebpageInfo(10, "------------ Setting Path ------------")
             time.sleep(5)
+
             # remove old files and new folders
             list_path = [self.inputFolder, self.outputFolder]
             for path in list_path:
@@ -495,6 +494,7 @@ def printLog(strPrintLine):
     # print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
+
 
 # compress all files under dir "strZipDir", saving to "strZipPath" as .zip
 def zip_all_files(strZipDir, strZipPath):
