@@ -7,11 +7,12 @@
 ##    Compal STiD NPSD Test Program Release Notification.
 ##
 ##    ModuleName:
-##            report.py
+##            Automation_RSSI_WiFiSARQUERY.py
 ##
 ##    Abstract:
-##
-##
+##            1. Pulling data from share folder
+##            2. Parsing log(data) into two xlsx-s
+##            3. Saving result as zip file, then push to server
 ##    Author:
 ##            22-Nov-2021 Willy Chen
 ##
@@ -42,6 +43,7 @@ from openpyxl.chart import (
 )
 from openpyxl.chart.axis import DateAxis
 
+# set share folder path
 from pathlib import Path
 
 # [Main]
@@ -152,7 +154,11 @@ class Automation_RSSI_WiFiSARQUERY():
             # mapping default variables, then pulling data as params
             updateWebpageInfo(12, "------------ Mapping Criteria ------------")
             self.mapping(self.mappingJsonPath)
+
+            # set data path by the params from mapping
             self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/ARW_temp/%s' % (self.strProjectName)
+
+            # pull data from self.dataPath, via share folder or not
             updateWebpageInfo(15, "------------ Pulling Data ------------")
             self.pullData()
 
