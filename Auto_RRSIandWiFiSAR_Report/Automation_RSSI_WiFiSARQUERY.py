@@ -100,6 +100,7 @@ class Automation_RSSI_WiFiSARQUERY():
     def start(self):
         printLog("[I][start] ------ Begin Generating Sequence -----\n")
         updateWebpageInfo(50, "------------ Parsing Log ------------")
+        time.sleep(1)
         # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
         # iterate through log files in a SN folder and get parsed data
@@ -107,18 +108,21 @@ class Automation_RSSI_WiFiSARQUERY():
 
         # save parsed data as excel xlsx
         updateWebpageInfo(75, "------------ Generating Excel files ------------")
+        time.sleep(1)
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
         # zip path for compressing two xlsx
-        self.zipfilePath = os.path.join(self.outputFolder, "Auto_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
+        self.zipfilePath = os.path.join(self.outputFolder, "Automation_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
 
         # compressing two xlsx
         updateWebpageInfo(90, "------------ Compressing Excel files ------------")
+        time.sleep(1)
         zip_all_files(self.outputFolder, self.zipfilePath)
 
         # copy result to server dir
         printLog("[I][start] Saving Zip File to Server")
         updateWebpageInfo(95, "------------ Saving Zip File to Server ------------")
+        time.sleep(1)
         shutil.copy2(self.zipfilePath, self.resultPath)
 
         printLog("[I][start] ------ End of Generating Sequence -----")
@@ -155,6 +159,7 @@ class Automation_RSSI_WiFiSARQUERY():
 
             # mapping default variables, then pulling data as params
             updateWebpageInfo(12, "------------ Mapping Criteria ------------")
+            time.sleep(1)
             self.mapping(self.mappingJsonPath)
 
             # set data path by the params from mapping
@@ -163,6 +168,7 @@ class Automation_RSSI_WiFiSARQUERY():
 
             # pull data from self.dataPath, via share folder or not
             updateWebpageInfo(15, "------------ Pulling Data ------------")
+            time.sleep(1)
             self.pullData()
 
             printLog("[I][setPath] ----- Setting Folder Path Successfully -----")
@@ -216,7 +222,8 @@ class Automation_RSSI_WiFiSARQUERY():
                 if c_time >= start_time and c_time <= end_time:
                     shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
                     n_fCount += 1
-                    updateWebpageInfo(15 + n_fCount/100 * 35, "------------ Pulling Data ------------")
+                    updateWebpageInfo(15 + n_fCount/len(os.listdir(self.dataPath)) * 35, "------------ Pulling Data ------------")
+                    time.sleep(0.02)
                     #print(SN_dir)
 
             # check if there is at least one file pull
@@ -491,6 +498,7 @@ def getDateTimeFormat():
 def printLog(strPrintLine):
     global strUser
     strFileName = os.path.basename(__file__).split('.')[0]
+    #fileLog = codecs.open("/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/" + strFileName + "_" + strUser + ".log", 'a', "utf-8")
     fileLog = codecs.open(strFileName + "_" + strUser + ".log", 'a', "utf-8")
     print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
