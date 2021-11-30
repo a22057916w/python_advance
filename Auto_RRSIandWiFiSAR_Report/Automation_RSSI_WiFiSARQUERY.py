@@ -496,6 +496,7 @@ def printLog(strPrintLine):
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
+# compress all files under dir "strZipDir", saving to "strZipPath" as .zip
 def zip_all_files(strZipDir, strZipPath):
     try:
         with zipfile.ZipFile(strZipPath, "w") as zf:
