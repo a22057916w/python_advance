@@ -96,42 +96,42 @@ class Automation_RSSI_WiFiSARQUERY():
         self.setPath(strUser, b_localDebug)
 
     def start(self):
-        #updateWebpageInfo(50, "------------ Parsing Log ------------")
+        updateWebpageInfo(50, "------------ Parsing Log ------------")
         # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
         # iterate through log files in a SN folder and get parsed data
         self.listRSSI, self.listWIFI = parseLog(self.listSNLogs, self.inputFolder)
 
         # save parsed data as excel xlsx
-        #updateWebpageInfo(75, "------------ Generating Excel files ------------")
+        updateWebpageInfo(75, "------------ Generating Excel files ------------")
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
         # zip path for compressing two xlsx
         self.zipfilePath = os.path.join(self.outputFolder, "Auto_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
 
         # compressing two xlsx
-        #updateWebpageInfo(90, "------------ Compressing Excel files ------------")
+        updateWebpageInfo(90, "------------ Compressing Excel files ------------")
         zip_all_files(self.outputFolder, self.zipfilePath)
 
         # copy result to server dir
-        #updateWebpageInfo(95, "------------ Saving Zip File to Server ------------")
+        updateWebpageInfo(95, "------------ Saving Zip File to Server ------------")
         shutil.copy2(self.zipfilePath, self.resultPath)
 
-        #updateWebpageInfo(100, "------------ Finish ------------")
+        updateWebpageInfo(100, "------------ Finish ------------")
 
     # set folder path with strUser
     def setPath(self, strUser, b_localDebug):
         try:
             printLog("[I][setPath] ----- Setting Folder Path -----")
-            #updateWebpageInfo(5, "------------ Setting Path ------------")
+            updateWebpageInfo(5, "------------ Setting Path ------------")
 
             if not b_localDebug:
                 # mapping criteria for pulling data
                 self.mappingJsonPath = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/Mapping/%s/Mapping.json" % strUser
                 # InputFolder
-                self.inputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input/input_%s" % strUser
+                self.inputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/input/%s" % strUser
                 # Output Path
-                self.outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output/output_%s" % strUser
+                self.outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output/%s" % strUser
                 # Output file in download folder
                 self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
             else:
@@ -142,19 +142,18 @@ class Automation_RSSI_WiFiSARQUERY():
                 self.outputFolder = "./output/%s" % strUser     # Output Path
                 self.resultPath = os.getcwd()
 
-            #updateWebpageInfo(10, "------------ Setting Path ------------")
-
+            updateWebpageInfo(10, "------------ Setting Path ------------")
+            time.sleep(5)
             # remove old files and new folders
             list_path = [self.inputFolder, self.outputFolder]
             for path in list_path:
                 self.initPath(path)
 
             # mapping default variables, then pulling data as params
-            #updateWebpageInfo(12, "------------ Mapping Criteria ------------")
+            updateWebpageInfo(12, "------------ Mapping Criteria ------------")
             self.mapping(self.mappingJsonPath)
-            self.dataPath = Path(r'\\%s\npsd\IOT\ARW_temp\%s' % (self.strSrcIp, self.strProjectName))
-
-            #updateWebpageInfo(15, "------------ Pulling Data ------------")
+            self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/ARW_temp/%s' % (self.strProjectName)
+            updateWebpageInfo(15, "------------ Pulling Data ------------")
             self.pullData()
 
             printLog("[I][setPath] ----- Setting Folder Path Successfully -----")
@@ -197,7 +196,6 @@ class Automation_RSSI_WiFiSARQUERY():
             end_time = df.datetime.strptime(self.strEdnTime, "%Y-%m-%d %H:%M:%S")
 
             n_fCount = 0
-            StartTime = time.time()
 
             # copying files according to the creation date wihtin [start_time, end_time]
             for SN_dir in os.listdir(self.dataPath):
@@ -205,14 +203,11 @@ class Automation_RSSI_WiFiSARQUERY():
 
                 c_epoch_time = os.path.getctime(SN_path)            # return the epoch time(float)
                 c_time = df.datetime.fromtimestamp(c_epoch_time)    # convert the epoch time to human readible date
-                print(startTime)
-                if StartTime % 2 == 0:
-                    showProgess("Pulling Data")
 
                 if c_time >= start_time and c_time <= end_time:
                     shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
-                    #n_fcount += 1
-                    #updateWebpageInfo(15 + n_fcount/100 * 35, "------------ Pulling Data ------------")
+                    n_fcount += 1
+                    updateWebpageInfo(15 + n_fcount/100 * 35, "------------ Pulling Data ------------")
                     #print(SN_dir)
 
             # check if there is at least one file pull
@@ -491,7 +486,7 @@ def printLog(strPrintLine):
     global strUser
     strFileName = os.path.basename(__file__).split('.')[0]
     fileLog = codecs.open(strFileName + "_" + strUser + ".log", 'a', "utf-8")
-    print(strPrintLine)
+    # print(strPrintLine)
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 
@@ -506,12 +501,6 @@ def zip_all_files(strZipDir, strZipPath):
     except Exception as e:
         printLog("[E][zip_all_files] Unexpected Error: " + str(e))
 
-def showProgess(strText):
-    for i in range(1, 10):
-        time.sleep(0.25)
-        process_bar = strText + '.' * i + '\r' #带输出的字符串，'\r'表示不换行回到最左边
-        sys.stdout.write(process_bar) #这两句打印字符到终端
-        sys.stdout.flush()
 
 if __name__ == "__main__":
     global strUser
