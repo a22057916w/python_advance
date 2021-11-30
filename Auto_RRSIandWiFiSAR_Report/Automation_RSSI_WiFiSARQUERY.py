@@ -125,7 +125,7 @@ class Automation_RSSI_WiFiSARQUERY():
         time.sleep(1)
         shutil.copy2(self.zipfilePath, self.resultPath)
 
-        printLog("[I][start] ------ End of Generating Sequence -----")
+        printLog("\n[I][start] ------ End of Generating Sequence -----")
         updateWebpageInfo(100, "------------ Finish ------------")
 
     # set folder path with strUser
