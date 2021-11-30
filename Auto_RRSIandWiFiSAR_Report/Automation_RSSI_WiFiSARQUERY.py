@@ -90,7 +90,6 @@ class Automation_RSSI_WiFiSARQUERY():
     strStartTime = "2021-11-21 11:14:20"
     strEdnTime = "2021-11-26 13:13:13"
     strProjectName = "./fuckme"
-    strUser = "WillyWJ_Chen"
 
     strSrcIp = "10.110.140.43"  # share folder ip
 
@@ -98,13 +97,13 @@ class Automation_RSSI_WiFiSARQUERY():
         self.setPath(strUser, b_localDebug)
 
     def start(self):
-        printLog("\n[I][start] ------ Begin Generating Sequence -----\n")
+        printLog("\n[I][start] ------ Begin Generating Sequence -----")
         updateWebpageInfo(50, "------------ Parsing Log ------------")
         time.sleep(1)
         # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
         # iterate through log files in a SN folder and get parsed data
-        self.listRSSI, self.listWIFI = parseLog(self.listSNLogs, self.inputFolder)
+        self.listRSSI, self.listWIFI = parseLog(self.listSNLogs, self.inpuFolder)
 
         # save parsed data as excel xlsx
         updateWebpageInfo(75, "------------ Generating Excel files ------------")
@@ -112,7 +111,7 @@ class Automation_RSSI_WiFiSARQUERY():
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
         # zip path for compressing two xlsx
-        self.zipfilePath = os.path.join(self.outputFolder, "Automation_RRSIandWiFiSAR_Report_%s.zip" % self.strUser)
+        self.zipfilePath = os.path.join(self.outputFolder, "Automation_RRSIandWiFiSAR_Report_%s.zip" % strUser)
 
         # compressing two xlsx
         updateWebpageInfo(90, "------------ Compressing Excel files ------------")
