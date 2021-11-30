@@ -155,7 +155,8 @@ class Automation_RSSI_WiFiSARQUERY():
             self.mapping(self.mappingJsonPath)
 
             # set data path by the params from mapping
-            self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/ARW_temp/%s' % (self.strProjectName)
+            #self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/ARW_temp/%s' % (self.strProjectName)
+            self.dataPath = './ARW_temp/%s' % (self.strProjectName)
 
             # pull data from self.dataPath, via share folder or not
             updateWebpageInfo(15, "------------ Pulling Data ------------")
@@ -211,8 +212,8 @@ class Automation_RSSI_WiFiSARQUERY():
 
                 if c_time >= start_time and c_time <= end_time:
                     shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
-                    n_fcount += 1
-                    updateWebpageInfo(15 + n_fcount/100 * 35, "------------ Pulling Data ------------")
+                    n_fCount += 1
+                    updateWebpageInfo(15 + n_fCount/100 * 35, "------------ Pulling Data ------------")
                     #print(SN_dir)
 
             # check if there is at least one file pull
