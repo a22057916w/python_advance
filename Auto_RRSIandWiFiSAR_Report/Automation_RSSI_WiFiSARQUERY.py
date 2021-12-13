@@ -211,6 +211,13 @@ class Automation_RSSI_WiFiSARQUERY():
 
             # copying files according to the creation date wihtin [start_time, end_time]
             for SN_dir in os.listdir(self.dataPath):
+
+                # if the SN folder in not in correct format, ignore the folder
+                if re.fullmatch(r'\d{13}', SN_dir) == None:
+                    printLog("[E][pullData] SN Folder Name is not correct !!!")
+                    print("[E][pullData] SN Folder Name is not correct !!!")
+                    continue
+
                 SN_path = os.path.join(self.dataPath, SN_dir)
 
                 c_epoch_time = os.path.getctime(SN_path)            # return the epoch time(float)
