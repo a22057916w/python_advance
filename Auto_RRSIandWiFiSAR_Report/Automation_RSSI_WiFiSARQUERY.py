@@ -67,7 +67,11 @@ def get_host_ip():
 
 # Update UI Process (%)
 def updateWebpageInfo(nProgress=g_nProgressC, strWebpageInfo=None):
-    global g_nProgressC
+    global g_nProgressC, b_localDebug
+
+    if b_localDebug:
+        return
+
     strWebComPath = os.path.join(logPath, "WebComunicate_%s.txt" % strUser)
     if nProgress != g_nProgressC:
         g_nProgressC = nProgress
@@ -161,9 +165,11 @@ class Automation_RSSI_WiFiSARQUERY():
             time.sleep(1)
             self.mapping(self.mappingJsonPath)
 
-            # set data path by the params from mapping
-            #self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/ARW_temp/%s' % (self.strProjectName)
-            self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/WiFiSARQUERY_Data/%s' % (self.strProjectName)
+            if not b_localDebug:
+                # set data path by the params from mapping
+                self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/WiFiSARQUERY_Data/%s' % (self.strProjectName)
+            else:
+                self.dataPath = './WiFiSARQUERY_Data/%s' % (self.strProjectName)
 
             # pull data from self.dataPath, via share folder or not
             updateWebpageInfo(15, "------------ Pulling Data ------------")
@@ -218,7 +224,6 @@ class Automation_RSSI_WiFiSARQUERY():
                 # if the SN folder in not in correct format, ignore the folder
                 if re.fullmatch(r'\d{13}', SN_dir) == None:
                     printLog("[E][pullData] Ignore SN Folder: %s. Format is not correct !!!" % SN_dir)
-                    # print("[E][pullData] Ignore SN Folder: %s. Format is not correct !!!" % SN_dir)
                     updateWebpageInfo(15 + n_fCount/len(os.listdir(self.dataPath)) * 35, "[W] Ignore SN Folder: %s. Format is not correct !!!" % SN_dir)
                     time.sleep(0.6)
                     continue
@@ -505,11 +510,16 @@ def getDateTimeFormat():
     return strDateTime
 
 def printLog(strPrintLine):
-    global strUser
+    global strUser, b_localDebug
     strFileName = os.path.basename(__file__).split('.')[0]
-    fileLog = codecs.open("/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/" + strFileName + "_" + strUser + ".log", 'a', "utf-8")
-    # fileLog = codecs.open(strFileName + "_" + strUser + ".log", 'a', "utf-8")
-    # print(strPrintLine)
+
+    # web-end must use abs-path, and can not use print
+    if not b_localDebug:
+        fileLog = codecs.open("/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/" + strFileName + "_" + strUser + ".log", 'a', "utf-8")
+    else:
+        fileLog = codecs.open(strFileName + "_" + strUser + ".log", 'a', "utf-8")
+        print(strPrintLine)
+
     fileLog.write("%s%s\r\n" % (getDateTimeFormat(), strPrintLine))
     fileLog.close()
 

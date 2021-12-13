@@ -510,3 +510,67 @@
 [2021/11/30 10:06:46][I][main] Spend Time: 28 s
 [2021/11/30 10:07:08][E][main] Unexpected Error: HTTPConnectionPool(host='10.110.140.43', port=80): Max retries exceeded with url: /LYUR/logYourUsageRecord.php (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x00000134FF9B0278>: Failed to establish a new connection: [WinError 10060] 連線嘗試失敗，因為連線對象有一段時間並未正確回應，或是連線建立失敗，因為連線的主機無法回應。'))
 [2021/11/30 10:07:08]========== End ==========
+[2021/12/13 16:36:51]========== Start ==========
+[2021/12/13 16:36:51][I][main] Python 3.10.1 (main, Dec 11 2021, 17:22:55) [GCC 11.1.0]
+[2021/12/13 16:36:51][I][main] Automation_RSSI_WiFiSARQUERY.py 1.0.0.2
+[2021/12/13 16:36:51][I][main] Decteing User: WillyWJ_Chen
+
+[2021/12/13 16:36:51]
+[I][setPath] ----- Setting Folder Path -----
+[2021/12/13 16:36:56][I][initPath] Delete Folder: ./input/WillyWJ_Chen
+[2021/12/13 16:36:56][I][initPath] Create Folder: ./input/WillyWJ_Chen
+[2021/12/13 16:36:56][I][initPath] Delete Folder: ./output/WillyWJ_Chen
+[2021/12/13 16:36:56][I][initPath] Create Folder: ./output/WillyWJ_Chen
+[2021/12/13 16:36:58][I][pullData] ----- Pulling Data ------
+[2021/12/13 16:36:59][E][pullData] Unexpected error: [Errno 2] No such file or directory: './WiFiSARQUERY_Data/./fuckme'
+[2021/12/13 16:36:59][I][setPath] ----- Setting Folder Path Successfully -----
+[2021/12/13 16:36:59]
+[I][start] ------ Begin Generating Sequence -----
+[2021/12/13 16:37:00][I][parseLog] ------- Start Parsing Log -------
+[2021/12/13 16:37:00][I][parseLog] ------- Finish Parsing Log -------
+[2021/12/13 16:37:01][I][log_to_excel] ------- Parsing Log to Excel -------
+[2021/12/13 16:37:01][E][log_to_excel] Unexpected Error: list index out of range
+[2021/12/13 16:37:02][I][zip_all_files] Compressing files
+[2021/12/13 16:37:02][I][start] Saving Zip File to Server
+[2021/12/13 16:37:03][I][start] ------ End of Generating Sequence -----
+[2021/12/13 16:37:03][I][main] Spend Time: 11 s
+[2021/12/13 16:39:14][E][main] Unexpected Error: HTTPConnectionPool(host='10.110.140.43', port=80): Max retries exceeded with url: /LYUR/logYourUsageRecord.php (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x7fcbab776050>, 'Connection to 10.110.140.43 timed out. (connect timeout=None)'))
+[2021/12/13 16:39:14]========== End ==========
+[2021/12/13 16:40:37]========== Start ==========
+[2021/12/13 16:40:37][I][main] Python 3.10.1 (main, Dec 11 2021, 17:22:55) [GCC 11.1.0]
+[2021/12/13 16:40:37][I][main] Automation_RSSI_WiFiSARQUERY.py 1.0.0.2
+[2021/12/13 16:40:37][I][main] Decteing User: WillyWJ_Chen
+
+[2021/12/13 16:40:37]
+[I][setPath] ----- Setting Folder Path -----
+[2021/12/13 16:40:42][I][initPath] Delete Folder: ./input/WillyWJ_Chen
+[2021/12/13 16:40:42][I][initPath] Create Folder: ./input/WillyWJ_Chen
+[2021/12/13 16:40:42][I][initPath] Delete Folder: ./output/WillyWJ_Chen
+[2021/12/13 16:40:42][I][initPath] Create Folder: ./output/WillyWJ_Chen
+[2021/12/13 16:40:44][I][pullData] ----- Pulling Data ------
+[2021/12/13 16:40:45][E][pullData] Ignore SN Folder: 432342. Format is not correct !!!
+[2021/12/13 16:40:46][E][pullData] Ignore SN Folder: adsaf. Format is not correct !!!
+[2021/12/13 16:40:50][I][pullData] ----- Pulling Data Successfully -----
+[2021/12/13 16:40:50][I][setPath] ----- Setting Folder Path Successfully -----
+[2021/12/13 16:40:50]
+[I][start] ------ Begin Generating Sequence -----
+[2021/12/13 16:40:51][I][parseLog] ------- Start Parsing Log -------
+[2021/12/13 16:40:51][W][ParseLog] Cannot find SarLog_DynAnt.txt by SN: 7228979800008
+[2021/12/13 16:40:51][W][ParseLog] Cannot find SarLog_DynAnt.txt by SN: 7224908800005
+[2021/12/13 16:40:51][W][ParseLog] Cannot find SarLog_DynAnt.txt by SN: 7224908800006
+[2021/12/13 16:40:51][W][ParseLog] Cannot find SarLog_DynAnt.txt by SN: 7224908800007
+[2021/12/13 16:40:51][W][ParseLog] Cannot find SarLog_DynAnt.txt by SN: 7228979800009
+[2021/12/13 16:40:51][W][ParseLog] Cannot find SarLog_DynAnt.txt by SN: 7228979800010
+[2021/12/13 16:40:51][I][parseLog] ------- Finish Parsing Log -------
+[2021/12/13 16:40:52][I][log_to_excel] ------- Parsing Log to Excel -------
+[2021/12/13 16:40:52][I][log_to_excel] New workbook for RSSI.xlsx
+[2021/12/13 16:40:52][I][newSheet] Sheet: RSSI Created
+[2021/12/13 16:40:52][I][log_to_excel] RSSI.xlsx generated
+[2021/12/13 16:40:52][I][log_to_excel] New workbook for WiFiSARQUERY.xlsx
+[2021/12/13 16:40:52][I][newSheet] Sheet: wifisarquery Created
+[2021/12/13 16:40:52][I][log_to_excel] WiFiSARQUERY.xlsx generated
+[2021/12/13 16:40:52][I][log_to_excel] ------- Parsed Log to Excel -------
+[2021/12/13 16:40:53][I][zip_all_files] Compressing files
+[2021/12/13 16:40:53][I][start] Saving Zip File to Server
+[2021/12/13 16:40:54][I][start] ------ End of Generating Sequence -----
+[2021/12/13 16:40:54][I][main] Spend Time: 16 s
