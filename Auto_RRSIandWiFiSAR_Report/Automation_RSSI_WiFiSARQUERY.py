@@ -91,8 +91,6 @@ class Automation_RSSI_WiFiSARQUERY():
     strEdnTime = "2021-11-26 13:13:13"
     strProjectName = "./fuckme"
 
-    strSrcIp = "10.110.140.43"  # share folder ip
-
     def __init__(self, strUser="WillyWJ_Chen", b_localDebug=True):
         self.setPath(strUser, b_localDebug)
 
