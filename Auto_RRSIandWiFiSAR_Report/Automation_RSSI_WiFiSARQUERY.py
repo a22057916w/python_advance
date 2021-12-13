@@ -96,15 +96,15 @@ class Automation_RSSI_WiFiSARQUERY():
 
     def start(self):
         printLog("\n[I][start] ------ Begin Generating Sequence -----")
-        updateWebpageInfo(50, "------------ Parsing Log ------------")
+        #updateWebpageInfo(50, "------------ Parsing Log ------------")
         time.sleep(1)
         # get directory names of TryingLog
         self.listSNLogs = os.listdir(self.inputFolder)
         # iterate through log files in a SN folder and get parsed data
-        self.listRSSI, self.listWIFI = parseLog(self.listSNLogs, self.inpuFolder)
+        self.listRSSI, self.listWIFI = parseLog(self.listSNLogs, self.inputFolder)
 
         # save parsed data as excel xlsx
-        updateWebpageInfo(75, "------------ Generating Excel files ------------")
+        #updateWebpageInfo(75, "------------ Generating Excel files ------------")
         time.sleep(1)
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
@@ -112,24 +112,24 @@ class Automation_RSSI_WiFiSARQUERY():
         self.zipfilePath = os.path.join(self.outputFolder, "Automation_RRSIandWiFiSAR_Report_%s.zip" % strUser)
 
         # compressing two xlsx
-        updateWebpageInfo(90, "------------ Compressing Excel files ------------")
+        #updateWebpageInfo(90, "------------ Compressing Excel files ------------")
         time.sleep(1)
         zip_all_files(self.outputFolder, self.zipfilePath)
 
         # copy result to server dir
         printLog("[I][start] Saving Zip File to Server")
-        updateWebpageInfo(95, "------------ Saving Zip File to Server ------------")
+        #updateWebpageInfo(95, "------------ Saving Zip File to Server ------------")
         time.sleep(1)
         shutil.copy2(self.zipfilePath, self.resultPath)
 
         printLog("[I][start] ------ End of Generating Sequence -----")
-        updateWebpageInfo(100, "------------ Finish ------------")
+        #updateWebpageInfo(100, "------------ Finish ------------")
 
     # set folder path with strUser
     def setPath(self, strUser, b_localDebug):
         try:
             printLog("\n[I][setPath] ----- Setting Folder Path -----")
-            updateWebpageInfo(5, "------------ Setting Path ------------")
+            #updateWebpageInfo(5, "------------ Setting Path ------------")
 
             if not b_localDebug:
                 # mapping criteria for pulling data
@@ -146,7 +146,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 self.outputFolder = "./output/%s" % strUser     # Output Path
                 self.resultPath = os.getcwd()
 
-            updateWebpageInfo(10, "------------ Setting Path ------------")
+            #updateWebpageInfo(10, "------------ Setting Path ------------")
             time.sleep(5)
 
             # remove old files and new folders
@@ -155,7 +155,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 self.initPath(path)
 
             # mapping default variables, then pulling data as params
-            updateWebpageInfo(12, "------------ Mapping Criteria ------------")
+            #updateWebpageInfo(12, "------------ Mapping Criteria ------------")
             time.sleep(1)
             self.mapping(self.mappingJsonPath)
 
@@ -164,7 +164,7 @@ class Automation_RSSI_WiFiSARQUERY():
             self.dataPath = './ARW_temp/%s' % (self.strProjectName)
 
             # pull data from self.dataPath, via share folder or not
-            updateWebpageInfo(15, "------------ Pulling Data ------------")
+            #updateWebpageInfo(15, "------------ Pulling Data ------------")
             time.sleep(1)
             self.pullData()
 
@@ -214,8 +214,8 @@ class Automation_RSSI_WiFiSARQUERY():
 
                 # if the SN folder in not in correct format, ignore the folder
                 if re.fullmatch(r'\d{13}', SN_dir) == None:
-                    printLog("[E][pullData] SN Folder Name is not correct !!!")
-                    print("[E][pullData] SN Folder Name is not correct !!!")
+                    printLog("[E][pullData] Ignore SN Folder: %s. Format is not correct !!!" % SN_dir)
+                    print("[E][pullData] Ignore SN Folder: %s. Format is not correct !!!" % SN_dir)
                     continue
 
                 SN_path = os.path.join(self.dataPath, SN_dir)
@@ -226,7 +226,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 if c_time >= start_time and c_time <= end_time:
                     shutil.copytree(SN_path, os.path.join(self.inputFolder, SN_dir))
                     n_fCount += 1
-                    updateWebpageInfo(15 + n_fCount/len(os.listdir(self.dataPath)) * 35, "------------ Pulling Data ------------")
+                    #updateWebpageInfo(15 + n_fCount/len(os.listdir(self.dataPath)) * 35, "------------ Pulling Data ------------")
                     time.sleep(0.02)
                     #print(SN_dir)
 
