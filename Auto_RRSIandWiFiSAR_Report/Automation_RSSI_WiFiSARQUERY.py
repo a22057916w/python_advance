@@ -17,8 +17,6 @@
 ##            22-Nov-2021 Willy Chen
 ##
 ##    Revision History:
-##            Rev 1.0.0.3 15-Dec-2021 Willy
-##                      Modify Log reading and parsing method
 ##            Rev 1.0.0.2 13-Dec-2021 Willy
 ##                     Add feature, checking SN dirname format
 ##            Rev 1.0.0.1 22-Nov-2021 Willy
@@ -51,7 +49,7 @@ from openpyxl.chart.axis import DateAxis
 from pathlib import Path
 
 # [Main]
-g_strVersion = "1.0.0.3"
+g_strVersion = "1.0.0.2"
 
 #[Webside progress bar]
 g_nProgressC = 0
