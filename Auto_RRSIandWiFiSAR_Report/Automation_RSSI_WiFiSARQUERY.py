@@ -277,11 +277,12 @@ def parseLog(list_SNs, strInuptFolder):
                 "UNIT PN" : strSN,
                 "Result" : "no log" }
 
-            b_hasRSSI, b_hasWIFI = False, False             # flag for checking if the target log exists
             strSNPath = os.path.join(strInuptFolder, strSN)    # set abspath for SN logs
 
             # iterate through log files in a SN folder
             for strFileName in os.listdir(strSNPath):
+                b_hasRSSI, b_hasWIFI = False, False             # flag for checking if the target log exists
+                
                 strLogPath = os.path.join(strSNPath, strFileName)
 
                 # check if ITPM_RSSITest_A32.log exists. If not, flag = False and parse only SN.
@@ -306,8 +307,10 @@ def parseLog(list_SNs, strInuptFolder):
             # if there is no target log file in the folder, parse only SN
             if not b_hasRSSI:
                 printLog("[W][ParseLog] Cannot find %s and %s by SN: %s" % (strRSSI_Intel, strRSSI_MTK, strSN))
+                updateWebpageInfo(50, "[W] Cannot find %s and %s by SN: %s" % (strRSSI_Intel, strRSSI_MTK, strSN))
             if not b_hasWIFI:
                 printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strWIFI, strSN))
+                updateWebpageInfo(50, "[W] Cannot find %s and %s by SN: %s" % (strWIFI, strSN))
 
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
