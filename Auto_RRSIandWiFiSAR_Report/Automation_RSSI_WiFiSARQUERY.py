@@ -17,6 +17,8 @@
 ##            22-Nov-2021 Willy Chen
 ##
 ##    Revision History:
+##            Rev 1.0.0.3 15-Dec-2021 Willy
+##                      Modify Log reading and parsing method
 ##            Rev 1.0.0.2 13-Dec-2021 Willy
 ##                     Add feature, checking SN dirname format
 ##            Rev 1.0.0.1 22-Nov-2021 Willy
@@ -49,7 +51,7 @@ from openpyxl.chart.axis import DateAxis
 from pathlib import Path
 
 # [Main]
-g_strVersion = "1.0.0.2"
+g_strVersion = "1.0.0.3"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -218,6 +220,7 @@ class Automation_RSSI_WiFiSARQUERY():
             n_fCount = 0
             updateWebpageInfo(15,"------------ Pulling Data ------------")
             time.sleep(0.6)
+
             # copying files according to the creation date wihtin [start_time, end_time]
             for SN_dir in os.listdir(self.dataPath):
 
@@ -259,12 +262,12 @@ class Automation_RSSI_WiFiSARQUERY():
 # retunn two list of dict, listRSSI, listWIFI
 def parseLog(list_SNs, strInuptFolder):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
-
+    print(strInuptFolder)
     listRSSI, listWIFI = [], []
     try:
         for strSN in list_SNs:
             strRSSI_Intel, strRSSI_MTK = "ITPM_RSSITest_A32.LOG", "MTKlog_" + strSN + ".LOG"  # e.g. MTKlog_7228979800008.LOG
-            strWIFI = "SarLog_DynAnt.txt"
+            strWIFI = "SAR.TXT"
 
             # for RSSI excel columns and WIFI's
             dictRSSI = {
@@ -277,12 +280,12 @@ def parseLog(list_SNs, strInuptFolder):
                 "UNIT PN" : strSN,
                 "Result" : "no log" }
 
-            strSNPath = os.path.join(strInuptFolder, strSN)    # set abspath for SN logs
+            # Intel and MTK file will not appear in the same SN folder
+            b_hasRSSI, b_hasMTK, b_hasWIFI = False, False, False        # flag for checking if the target log exists
+            strSNPath = os.path.join(strInuptFolder, strSN)             # set abspath for SN logs
 
             # iterate through log files in a SN folder
             for strFileName in os.listdir(strSNPath):
-                b_hasRSSI, b_hasWIFI = False, False             # flag for checking if the target log exists
-                
                 strLogPath = os.path.join(strSNPath, strFileName)
 
                 # check if ITPM_RSSITest_A32.log exists. If not, flag = False and parse only SN.
@@ -293,24 +296,28 @@ def parseLog(list_SNs, strInuptFolder):
                 # if MTKlog_7228979800008.LOG exists, parse the log
                 if strFileName == strRSSI_MTK:
                     parseRSSI_MTK(dictRSSI, strLogPath)
-                    b_hasRSSI = True
+                    b_hasMTK = True
 
-                # parse SarLog_DynAnt.txt
+                # parse SRT.TXT
                 if strFileName == strWIFI:
                     parseWIFI(dictWIFI, strLogPath)
                     b_hasWIFI = True
 
-            # if log not exists, append initial dict
-            listRSSI.append(dictRSSI)
+            # if RSSI log not exists, don't append
+            if b_hasRSSI or b_hasMTK:
+                listRSSI.append(dictRSSI)
             listWIFI.append(dictWIFI)
 
             # if there is no target log file in the folder, parse only SN
             if not b_hasRSSI:
-                printLog("[W][ParseLog] Cannot find %s and %s by SN: %s" % (strRSSI_Intel, strRSSI_MTK, strSN))
-                updateWebpageInfo(50, "[W] Cannot find %s and %s by SN: %s" % (strRSSI_Intel, strRSSI_MTK, strSN))
+                printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strRSSI_Intel, strSN))
+                updateWebpageInfo(50, "[W] Cannot find %s by SN: %s" % (strRSSI_Intel, strSN))
+            if not b_hasMTK:
+                printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strRSSI_MTK, strSN))
+                updateWebpageInfo(50, "[W] Cannot find %s by SN: %s" % (strRSSI_MTK, strSN))
             if not b_hasWIFI:
                 printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strWIFI, strSN))
-                updateWebpageInfo(50, "[W] Cannot find %s and %s by SN: %s" % (strWIFI, strSN))
+                updateWebpageInfo(50, "[W] Cannot find %s by SN: %s" % (strWIFI, strSN))
 
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
