@@ -301,7 +301,6 @@ def parseLog(list_SNs, strInuptFolder):
 
                 # parse SRT.TXT or SarLog_DynAnt.txt
                 if strFileName == strWIFI_1 or strFileName == strWIFI_2:
-                    print(strFileName)
                     parseWIFI(dictWIFI, strLogPath)
                     b_hasWIFI = True
 
