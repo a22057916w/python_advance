@@ -138,7 +138,7 @@ class Automation_RSSI_WiFiSARQUERY():
         try:
             printLog("\n[I][setPath] ----- Setting Folder Path -----")
             updateWebpageInfo(5, "------------ Setting Path ------------")
-
+            time.sleep(0.4)
             if not b_localDebug:
                 # mapping criteria for pulling data
                 self.mappingJsonPath = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/Mapping/%s/Mapping.json" % strUser
@@ -155,7 +155,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 self.resultPath = os.getcwd()
 
             updateWebpageInfo(10, "------------ Setting Path ------------")
-            time.sleep(5)
+            time.sleep(0.4)
 
             # remove old files and new folders
             list_path = [self.inputFolder, self.outputFolder]
@@ -228,7 +228,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 if re.fullmatch(r'\d{13}', SN_dir) == None:
                     printLog("[E][pullData] Ignore SN Folder: %s. Format is not correct !!!" % SN_dir)
                     updateWebpageInfo(15 + n_fCount/len(os.listdir(self.dataPath)) * 35, "[W] Ignore SN Folder: %s. Format is not correct !!!" % SN_dir)
-                    time.sleep(0.6)
+                    time.sleep(0.4)
                     continue
 
                 SN_path = os.path.join(self.dataPath, SN_dir)
@@ -247,8 +247,10 @@ class Automation_RSSI_WiFiSARQUERY():
             if len(os.listdir(self.inputFolder)) > 0:
                 printLog("[I][pullData] ----- Pulling Data Successfully -----")
             else:
-                printLog("[W][pullData] No files wihtin [%s, %s]" % (start_time, end_time))
-                sys.exit("Error: No files wihtin [%s, %s]" % (start_time, end_time))
+                printLog("[W][pullData] No valid date to parse")
+                updateWebpageInfo(15 + n_fCount/len(os.listdir(self.dataPath)) * 35, "[W] No vaild data to parse")
+                time.sleep(0.4)
+                # sys.exit("Error: No files wihtin [%s, %s]" % (start_time, end_time))
 
         except Exception as e:
             printLog("[E][pullData] Unexpected error: " + str(e))
@@ -262,7 +264,7 @@ class Automation_RSSI_WiFiSARQUERY():
 # retunn two list of dict, listRSSI, listWIFI
 def parseLog(list_SNs, strInuptFolder):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
-
+    # print(strInuptFolder)
     listRSSI, listWIFI = [], []
     try:
         for strSN in list_SNs:
@@ -313,12 +315,15 @@ def parseLog(list_SNs, strInuptFolder):
             if not b_hasRSSI:
                 printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strRSSI_Intel, strSN))
                 updateWebpageInfo(50, "[W] Cannot find %s by SN: %s" % (strRSSI_Intel, strSN))
+                time.sleep(0.4)
             if not b_hasMTK:
                 printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strRSSI_MTK, strSN))
                 updateWebpageInfo(50, "[W] Cannot find %s by SN: %s" % (strRSSI_MTK, strSN))
+                time.sleep(0.4)
             if not b_hasWIFI:
                 printLog("[W][ParseLog] Cannot find %s and %s by SN: %s" % (strWIFI_1, strWIFI_2, strSN))
                 updateWebpageInfo(50, "[W] Cannot find %s and %s by SN: %s" % (strWIFI_1, strWIFI_2, strSN))
+                time.sleep(0.4)
 
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
