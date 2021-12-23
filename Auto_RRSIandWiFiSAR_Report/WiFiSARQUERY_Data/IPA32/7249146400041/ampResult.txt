@@ -1,0 +1,44 @@
+CalibrationCmd.exe -c -s -a --logfile ampResult.txt 
+
+
+Calibration results for ampIndex 0:
+	cal_r: 0x26ff (7.137678 Ohms)
+	cal_status: 0x1
+	cal_checksum: 0x2700
+
+Calibration results for ampIndex 1:
+	cal_r: 0x2707 (7.143398 Ohms)
+	cal_status: 0x1
+	cal_checksum: 0x2708
+
+Final calibration result: 0
+
+
+Storing calibration for amp 0 from source 'Runtime' to storage location 'UEFI'
+	cal_r: 0x26ff, cal_status: 1, cal_checksum: 0x2700
+	cal_target: 0x1083715 0xa23b9
+	cal_time: 12/28/2021 @ 14:14:46
+Stored calibration results for amp 0 successfully
+
+
+Storing calibration for amp 1 from source 'Runtime' to storage location 'UEFI'
+	cal_r: 0x2707, cal_status: 1, cal_checksum: 0x2708
+	cal_target: 0x1083714 0xa23b9
+	cal_time: 12/28/2021 @ 14:14:49
+Stored calibration results for amp 1 successfully
+
+
+Applying calibration data for amp 0
+	cal_r: 0x26ff, cal_status: 1, cal_checksum: 0x2700
+	Apply calibration results for ampIndex 0
+		cal_set_status: 2
+		cal_r_selected: 0x26ff
+Applying calibration data for amp 1
+	cal_r: 0x2707, cal_status: 1, cal_checksum: 0x2708
+	Apply calibration results for ampIndex 1
+		cal_set_status: 2
+		cal_r_selected: 0x2707
+
+Final result: PASS
+
+Done!

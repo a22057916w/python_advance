@@ -1,0 +1,46 @@
+PASS
+Error Code:
+#####   ITPM_RSSITest_A32 V1.0.1.0   #####
+***** ITEM CODE START *****
+<ITEM NAME="ITPM_RSSITest_A32.exe" VER="1.0.1.0" HW="" START="2021-12-29T11:38:42" END="2021-12-29T11:38:55" RETRY="0" BK="" PASS="01000120,010001A0" ERROR="">
+<CODE NO="01000120" KEYNAME="RSSI" VALUE1="-65" VALUE2="-60" START="2021-12-29T11:38:42" END="2021-12-29T11:38:50"/>
+<CODE NO="010001A0" KEYNAME="RSSI" VALUE1="-65" VALUE2="-59" START="2021-12-29T11:38:50" END="2021-12-29T11:38:55"/>
+</ITEM>
+***** ITEM CODE END *****
+=====ERROR MSG START=====
+No Error
+=====ERROR MSG END=====
+[11:38:42.546] [INFO] Search Network device...
+[11:38:42.546] [INFO] EnumInterface...
+[11:38:42.554] [INFO] Intel(R) Wi-Fi 6E AX211 160MHz
+[11:38:42.554] [INFO] EnumInterface END
+[11:38:42.554] [INFO] Found Intel WLAN
+[11:38:42.613] [INFO] Delete Intel Tool log IntelAux.xml.
+[11:38:42.614] [INFO] Run "C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\ant" -network "PE_TEST" -ant1 -i 1 -th 65 -rssi_loops 5 -OutputXMLFile IntelAux.xml -xml o
+[11:38:42.614] [INFO] Aux
+[11:38:46.742] [INFO] Run ""C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\ant" -network "PE_TEST" -ant1 -i 1 -th 65 -rssi_loops 5 -OutputXMLFile IntelAux.xml -xml o" end
+[11:38:46.743] [INFO] ExitCode=1,Description= Antenna --- Test Failed
+[11:38:46.743] [INFO] Parse C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\IntelAux.xml
+[11:38:46.744] [INFO] 		<Data name="SignalStrengthObtained" value="-66"/>
+[11:38:46.744] [INFO] Parse C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\IntelAux.xml end
+[11:38:46.745] [INFO] Delete Intel Tool log IntelMain.xml.
+[11:38:46.745] [INFO] Run "C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\ant" -network "PE_TEST" -ant2 -i 1 -th 65 -rssi_loops 5 -OutputXMLFile IntelMain.xml -xml o
+[11:38:46.745] [INFO] Main
+[11:38:50.921] [INFO] Run ""C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\ant" -network "PE_TEST" -ant2 -i 1 -th 65 -rssi_loops 5 -OutputXMLFile IntelMain.xml -xml o" end
+[11:38:50.921] [INFO] ExitCode=0,Description= Antenna --- Test Passed
+[11:38:50.921] [INFO] Parse C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\IntelMain.xml
+[11:38:50.922] [INFO] 		<Data name="SignalStrengthObtained" value="-60"/>
+[11:38:50.922] [INFO] Parse C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\IntelMain.xml end
+[11:38:50.923] [ERROR] Intel Aux test fail
+[11:38:50.923] [INFO] Fail Retry
+[11:38:50.985] [INFO] Delete Intel Tool log IntelAux.xml.
+[11:38:50.986] [INFO] Run "C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\ant" -network "PE_TEST" -ant1 -i 1 -th 65 -rssi_loops 5 -OutputXMLFile IntelAux.xml -xml o
+[11:38:50.986] [INFO] Aux
+[11:38:55.205] [INFO] Run ""C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\ant" -network "PE_TEST" -ant1 -i 1 -th 65 -rssi_loops 5 -OutputXMLFile IntelAux.xml -xml o" end
+[11:38:55.205] [INFO] ExitCode=0,Description= Antenna --- Test Passed
+[11:38:55.205] [INFO] Parse C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\IntelAux.xml
+[11:38:55.206] [INFO] 		<Data name="SignalStrengthObtained" value="-59"/>
+[11:38:55.207] [INFO] Parse C:\ITPM\ITPM_V4.6.0.5\ITPM_TestApp\ITPM_RSSITest_A32_V1.0.1.0\Tool\INTEL\ANT\x64\IntelAux.xml end
+[11:38:55.262] [INFO] Total Test Time: 13 Secs
+[11:38:55.262] [INFO] Test Process End
+

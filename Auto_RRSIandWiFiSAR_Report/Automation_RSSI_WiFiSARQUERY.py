@@ -262,7 +262,7 @@ class Automation_RSSI_WiFiSARQUERY():
 # retunn two list of dict, listRSSI, listWIFI
 def parseLog(list_SNs, strInuptFolder):
     printLog("[I][parseLog] ------- Start Parsing Log -------")
-    print(strInuptFolder)
+
     listRSSI, listWIFI = [], []
     try:
         for strSN in list_SNs:
