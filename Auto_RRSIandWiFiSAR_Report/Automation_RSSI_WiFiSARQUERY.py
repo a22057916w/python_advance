@@ -17,6 +17,8 @@
 ##            22-Nov-2021 Willy Chen
 ##
 ##    Revision History:
+##            Rev 1.0.0.3 23-Dec-2021 Willy
+##                     Add new target file "SarLog_DynAnt.txt" for parsing
 ##            Rev 1.0.0.2 13-Dec-2021 Willy
 ##                     Add feature, checking SN dirname format
 ##            Rev 1.0.0.1 22-Nov-2021 Willy
@@ -49,7 +51,7 @@ from openpyxl.chart.axis import DateAxis
 from pathlib import Path
 
 # [Main]
-g_strVersion = "1.0.0.2"
+g_strVersion = "1.0.0.3"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -265,7 +267,8 @@ def parseLog(list_SNs, strInuptFolder):
     try:
         for strSN in list_SNs:
             strRSSI_Intel, strRSSI_MTK = "ITPM_RSSITest_A32.LOG", "MTKlog_" + strSN + ".LOG"  # e.g. MTKlog_7228979800008.LOG
-            strWIFI = "SAR.TXT"
+            strWIFI_1 = "SAR.TXT"
+            strWIFI_2 = "SarLog_DynAnt.txt"
 
             # for RSSI excel columns and WIFI's
             dictRSSI = {
@@ -296,8 +299,9 @@ def parseLog(list_SNs, strInuptFolder):
                     parseRSSI_MTK(dictRSSI, strLogPath)
                     b_hasMTK = True
 
-                # parse SRT.TXT
-                if strFileName == strWIFI:
+                # parse SRT.TXT or SarLog_DynAnt.txt
+                if strFileName == strWIFI_1 or strFileName == strWIFI_2:
+                    print(strFileName)
                     parseWIFI(dictWIFI, strLogPath)
                     b_hasWIFI = True
 
@@ -314,8 +318,8 @@ def parseLog(list_SNs, strInuptFolder):
                 printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strRSSI_MTK, strSN))
                 updateWebpageInfo(50, "[W] Cannot find %s by SN: %s" % (strRSSI_MTK, strSN))
             if not b_hasWIFI:
-                printLog("[W][ParseLog] Cannot find %s by SN: %s" % (strWIFI, strSN))
-                updateWebpageInfo(50, "[W] Cannot find %s by SN: %s" % (strWIFI, strSN))
+                printLog("[W][ParseLog] Cannot find %s and %s by SN: %s" % (strWIFI_1, strWIFI_2, strSN))
+                updateWebpageInfo(50, "[W] Cannot find %s and %s by SN: %s" % (strWIFI_1, strWIFI_2, strSN))
 
         printLog("[I][parseLog] ------- Finish Parsing Log -------")
     except Exception as e:
