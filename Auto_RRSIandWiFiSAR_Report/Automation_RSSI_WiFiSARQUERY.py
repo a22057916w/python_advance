@@ -117,7 +117,7 @@ class Automation_RSSI_WiFiSARQUERY():
         log_to_excel(self.listRSSI, self.listWIFI, self.outputFolder)
 
         # zip path for compressing two xlsx
-        self.zipfilePath = os.path.join(self.outputFolder, "Automation_RRSIandWiFiSAR_Report_%s.zip" % strUser)
+        self.zipfilePath = os.path.join(self.outputFolder, "Automation_RSSIandWiFiSAR_Report_%s.zip" % strUser)
 
         # compressing two xlsx
         updateWebpageInfo(90, "------------ Compressing Excel files ------------")
