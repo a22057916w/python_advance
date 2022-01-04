@@ -51,7 +51,7 @@ from openpyxl.chart.axis import DateAxis
 from pathlib import Path
 
 # [Main]
-g_strVersion = "1.0.0.3"
+g_strVersion = "1.0.0.4"
 
 #[Webside progress bar]
 g_nProgressC = 0
@@ -221,6 +221,14 @@ class Automation_RSSI_WiFiSARQUERY():
             updateWebpageInfo(15,"------------ Pulling Data ------------")
             time.sleep(0.6)
 
+            # if folder is empty, exit program
+            if len(os.listdir(self.dataPath)) == 0:
+                printLog("[W][pullData] No valid date to parse")
+                updateWebpageInfo(15)
+                time.sleep(0.4)
+                # print("[W][pullData] No valid date to parse")
+                sys.exit("Error: No vaild data to parse")
+
             # copying files according to the creation date wihtin [start_time, end_time]
             for SN_dir in os.listdir(self.dataPath):
 
@@ -250,7 +258,7 @@ class Automation_RSSI_WiFiSARQUERY():
                 printLog("[W][pullData] No valid date to parse")
                 updateWebpageInfo(15 + n_fCount/len(os.listdir(self.dataPath)) * 35, "[W] No vaild data to parse")
                 time.sleep(0.4)
-                # sys.exit("Error: No files wihtin [%s, %s]" % (start_time, end_time))
+                sys.exit("Error: No valid date to parse")
 
         except Exception as e:
             printLog("[E][pullData] Unexpected error: " + str(e))
