@@ -17,6 +17,8 @@
 ##            22-Nov-2021 Willy Chen
 ##
 ##    Revision History:
+##            Rev 1.0.0.4 03-Jan-2022 Willy
+##                     Check empty folder
 ##            Rev 1.0.0.3 23-Dec-2021 Willy
 ##                     Add new target file "SarLog_DynAnt.txt" for parsing
 ##            Rev 1.0.0.2 13-Dec-2021 Willy
