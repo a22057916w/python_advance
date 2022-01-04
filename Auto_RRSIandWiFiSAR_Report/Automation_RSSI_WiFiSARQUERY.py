@@ -103,7 +103,7 @@ class Automation_RSSI_WiFiSARQUERY():
         self.setPath(strUser, b_localDebug)
 
     def start(self):
-        printLog("\n[I][start] ------ Begin Generating Sequence -----")
+        printLog("[I][start] ------ Begin Generating Sequence -----")
         updateWebpageInfo(50, "------------ Parsing Log ------------")
         time.sleep(1)
         # get directory names of TryingLog
@@ -136,8 +136,14 @@ class Automation_RSSI_WiFiSARQUERY():
     # set folder path with strUser
     def setPath(self, strUser, b_localDebug):
         try:
-            printLog("\n[I][setPath] ----- Setting Folder Path -----")
-            updateWebpageInfo(5, "------------ Setting Path ------------")
+            printLog("[I][setPath] ----- Setting Folder Path -----")
+
+            # mapping default variables, then pulling data as params
+            updateWebpageInfo(5, "------------ Mapping Criteria ------------")
+            time.sleep(1)
+            self.mapping(self.mappingJsonPath)
+
+            updateWebpageInfo(10, "------------ Setting Path ------------")
             time.sleep(0.4)
             if not b_localDebug:
                 # mapping criteria for pulling data
@@ -148,30 +154,22 @@ class Automation_RSSI_WiFiSARQUERY():
                 self.outputFolder = "/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/output/%s" % strUser
                 # Output file in download folder
                 self.resultPath = "/home/sanchez/Desktop/webserver/ToolPage/Download"
+                # set data path by the params from mapping
+                self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/WiFiSARQUERY_Data/%s' % (self.strProjectName)
             else:
                 self.mappingJsonPath = "./Mapping/SanchezPeng/Mapping.json"     # raw data folder(source to be parsed)
                 self.inputFolder = "./input/%s" % strUser       # Output file in download folder
                 self.outputFolder = "./output/%s" % strUser     # Output Path
                 self.resultPath = os.getcwd()
+                self.dataPath = './WiFiSARQUERY_Data/%s' % (self.strProjectName)
 
-            updateWebpageInfo(10, "------------ Setting Path ------------")
+            updateWebpageInfo(12, "------------ Setting Path ------------")
             time.sleep(0.4)
 
             # remove old files and new folders
             list_path = [self.inputFolder, self.outputFolder]
             for path in list_path:
                 self.initPath(path)
-
-            # mapping default variables, then pulling data as params
-            updateWebpageInfo(12, "------------ Mapping Criteria ------------")
-            time.sleep(1)
-            self.mapping(self.mappingJsonPath)
-
-            if not b_localDebug:
-                # set data path by the params from mapping
-                self.dataPath = '/home/sanchez/Desktop/RDTool/Automation_RSSI_WiFiSARQUERY/WiFiSARQUERY_Data/%s' % (self.strProjectName)
-            else:
-                self.dataPath = './WiFiSARQUERY_Data/%s' % (self.strProjectName)
 
             # pull data from self.dataPath, via share folder or not
             updateWebpageInfo(15, "------------ Pulling Data ------------")
