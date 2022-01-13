@@ -5,8 +5,8 @@ import re
 from pathlib import Path
 import win32wnet        # for windows only (local side)
 
-strDestDirPath = Path("\\\\10.110.140.222\File\Willy\Data\IPA72")
-strProjectTitle = "IPA72"
+strDestDirPath = Path("\\\\10.110.140.222\File\Automation_RSSI_WiFiSARQUERY\DataUpload\RawData\IPA32")
+strProjectTitle = "IPA32"
 
 # making connection to remote ip (only windows cappble for local side )
 def wnet_connect(strHost, strUserName, strPassword):
@@ -32,7 +32,7 @@ def rename_folder():
                 strNewDirPath = os.path.join(strDestDirPath, folder_name.split("-")[1])
 
                 if os.path.exists(strNewDirPath):
-                    print("[I][rename_folder] remove existing folder %s" % strNewDirPath)   
+                    print("[I][rename_folder] remove existing folder %s" % strNewDirPath)
                     shutil.rmtree(strNewDirPath)
 
                 os.rename(strOldDirPath, strNewDirPath)
