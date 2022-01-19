@@ -25,3 +25,7 @@ if __name__ == "__main__":
     # > Now use function 'warp_2'
     # > Now the Unix time is 1541239747
     # > Bark !!!
+
+"""
+decorators 多層的話是採 ”recursive” 的方式處理，如果一個 function 有兩個以上的 decorators ，邏輯上則會先合併「最靠近」的 decorator 吐出新的 function 再由上面一個的 decorator 吃進去！
+"""
