@@ -2,7 +2,7 @@ import time
 
 
 
-def print_func_name(time):
+def print_func_name(time = 123):
     def decorator(func):
         def wrap():
             print("Now use function '{}'".format(func.__name__))
@@ -12,7 +12,7 @@ def print_func_name(time):
     return decorator
 
 
-@print_func_name(time=(time.time()))
+@print_func_name(time=time.time())
 def dog_bark():
     print("Bark !!!")
 
