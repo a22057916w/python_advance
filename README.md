@@ -1,5 +1,5 @@
 # Python-Advance
-## Argv
+## Argvs
 ### Reference
 * [python - What does ** (double star/asterisk) and * (star/asterisk) do for parameters? - Stack Overflow](https://stackoverflow.com/questions/36901/what-does-double-star-asterisk-and-star-asterisk-do-for-parameters)
 ## Decorator
