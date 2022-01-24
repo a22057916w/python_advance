@@ -3,6 +3,9 @@ import time
 import asyncio
 
 url = 'https://www.google.com.tw/'
+
+# since the asyncio must swich between different tasks, there must be a list to contain all the task and info.
+# And that is what event loop doing
 loop = asyncio.get_event_loop()
 
 start_time = time.time()
