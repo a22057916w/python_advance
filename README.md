@@ -14,16 +14,21 @@ Basiclly, the asynchronous programming can discribe in the following concept:
 * **CallBack**
 
 ### Event Loop
-Since the `asyncio` must swich between different tasks. There must be a list to maintain all the tasks and info, which is what a **Event loop** doing.
+Since the `asynchronous process` must swich between different tasks. There must be a list to maintain all the tasks and info, which is what a **Event loop** doing.
 
 ### Event and CallBack
-If there is a asynchronous process, it must register to a **Eventloop** like `Event : CallBack`, then the **Event Loop** would iterate throught the registered process like `for` doing.
+If there is a asynchronous process, it must register to a **Eventloop** like `Event : CallBack`, then the **EventLoop** would iterate throught the registered process like `for` doing.
 <br><br>
-If a **Event** is happening, the **Event Loop** would invoke the **CallBack**, and stop listening the event.
+If a **Event** is happening, the **EventLoop** would invoke the **CallBack**, and stop listening the event.
 
 ![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop1.png)
 <br><br>
 ![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop2.png)
+
+### Coroutine
+A **coroutine** is a function that can be paused, returned, and resumed in the halfway.
+<br><br>
+For Python Package `asycnio`, a corotinue can be declare by adding `async` in front of the function, like ```async def example():```.
 
 ### Reference
 * [python的asyncio模組(二)：異步程式設計基本概念 - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天](https://ithelp.ithome.com.tw/articles/10199403)
