@@ -19,6 +19,7 @@ Since the `asyncio` must swich between different tasks. There must be a list to 
 ### Event and CallBack
 If there is a asynchronous process, it must register to a `Eventloop` like **Event : CallBack**, then the Event Loop would iterate throught the registered process
 like `for` doing.
+<br>
 If a Event is happening, the Event Loop would invoke the CallBack, and stop listening the Event.
 
 ### Reference
