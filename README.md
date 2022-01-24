@@ -69,7 +69,7 @@ To put it simply, a **coroutine** must be encapencapsulated to a **task** to com
 For example, the line `loop.run_until_complete(example())` would convert the coroutine `example()` into a task, then register to EventLoop.
 
 ### Await
-If there were no `await`, the coroutine would have executed the counter directly, instead of pausing. One can think `await` as a declaration of **callback** function. One can relate the concept to the pictures(2)(3) above.
+If there were no `await`, the coroutine would have executed the counter directly, instead of pausing. One can think `await` as a declaration of **callback** function. One can relate the concept to the picture(2)(3) above.
 
 ### Reference
 * [python的asyncio模組(二)：異步程式設計基本概念 - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天](https://ithelp.ithome.com.tw/articles/10199403)
