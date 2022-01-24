@@ -26,6 +26,37 @@ If a **Event** is happening, the **EventLoop** would invoke the **CallBack**, an
 ![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop2.png)
 <br><br>
 ![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop3.png)
+<br><br>
+
+** Take the Following Code for Example:**
+```
+import asyncio
+loop = asyncio.get_event_loop() #建立一個Event Loop
+
+async def example1(): # 定義一個中間會被中斷的協程
+    print("Start example1 coroutin.")
+    await asyncio.sleep(1) # 中斷協程一秒
+    print("Finish example1 coroutin.")
+
+async def example2(): # 定義一個協程
+    print("Start example2 coroutin.")
+    # do some process...
+    print("Finish example2 coroutin.")
+
+tasks = [ # 建立一個任務列表
+    asyncio.ensure_future(example1()),
+    asyncio.ensure_future(example2()),
+]
+
+loop.run_until_complete(asyncio.wait(tasks))
+# 把example1, example2這兩個coroutin註冊到事件循環裡
+# loop啟動，先執行example1，中途暫停example1之後切換到example2，最後再切回example1
+# output:
+# Start example1 coroutin.
+# Start example2 coroutin.
+# Finish example2 coroutin.
+# Finish example1 coroutin.
+```
 
 ### Coroutine
 A **coroutine** is a function that can be paused, returned, and resumed in the halfway.
@@ -35,6 +66,8 @@ For Python Package `asycnio`, a corotinue can be declare by adding `async` in fr
 ### Task
 To put it simply, a **coroutine** must be encapencapsulated to a **task** to communicate with **EventLoop**.
 For example, the line `loop.run_until_complete(example())` would convert the coroutine `example()` into a task, then register to EventLoop.
+
+### Await
 
 
 ### Reference
