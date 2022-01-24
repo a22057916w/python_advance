@@ -24,6 +24,8 @@ If a **Event** is happening, the **EventLoop** would invoke the **CallBack**, an
 ![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop1.png)
 <br><br>
 ![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop2.png)
+<br><br>
+![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop3.png)
 
 ### Coroutine
 A **coroutine** is a function that can be paused, returned, and resumed in the halfway.
