@@ -1,16 +1,21 @@
+import requests
 import time
+
+url = 'https://www.google.com.tw/'
 
 start_time = time.time()
 
-def sleep_sec(sec):
-    print('start at: ', time.time() - start_time)
-    time.sleep(sec)
-    print('end at: ', time.time() - start_time)
+def send_req(url):
 
+    t = time.time()
+    print("Send a request at",t-start_time,"seconds.")
 
-def main():
-    for i in range(5):
-        sleep_sec(1)
-    print('end of main: ', time.time() - start_time)
+    res = requests.get(url)
 
-main()
+    t = time.time()
+    print("Receive a response at",t-start_time,"seconds.")
+
+for i in range(10):
+    send_req(url)
+    print("*"*20)
+print("\nFinished in", time.time() - start_time, "seconds.")
