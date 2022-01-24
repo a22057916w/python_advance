@@ -28,7 +28,11 @@ If a **Event** is happening, the **EventLoop** would invoke the **CallBack**, an
 ### Coroutine
 A **coroutine** is a function that can be paused, returned, and resumed in the halfway.
 <br><br>
-For Python Package `asycnio`, a corotinue can be declare by adding `async` in front of the function, like ```async def example():```.
+For Python Package `asycnio`, a corotinue can be declare by adding `async` in front of the function, like ```async def example():```
+
+### Task
+A **coroutine** must be encapencapsulated to a **task** to communicate with **EventLoop**.
+For example, the line `loop.run_until_complete(example())` would convert the coroutine `example()` into a task, then register to EventLoop.
 
 ### Reference
 * [python的asyncio模組(二)：異步程式設計基本概念 - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天](https://ithelp.ithome.com.tw/articles/10199403)
