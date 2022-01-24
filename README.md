@@ -49,7 +49,7 @@ tasks = [ # 建立一個任務列表
 ]
 
 loop.run_until_complete(asyncio.wait(tasks))
-# 把example1, example2這兩個coroutin註冊到事件循環裡
+# 把example1, example2這兩個coroutine註冊到事件循環裡
 # loop啟動，先執行example1，中途暫停example1之後切換到example2，最後再切回example1
 # output:
 # Start example1 coroutin.
@@ -59,7 +59,7 @@ loop.run_until_complete(asyncio.wait(tasks))
 ```
 
 ### Coroutine
-A **coroutine** is a function that can be paused, returned, and resumed in the halfway.
+A **coroutine**(協程 is a function that can be paused, returned, and resumed in the halfway.
 <br><br>
 For Python Package `asycnio`, a corotinue can be declare by adding `async` in front of the function, like ```async def example():```
 
