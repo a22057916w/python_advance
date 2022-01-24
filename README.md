@@ -14,7 +14,7 @@ Basiclly, the asynchronous programming can discribe in the following concept:
 * **CallBack**
 
 ### Event Loop
-Since the `asyncio` must swich between different tasks. There must be a list to maintain all the tasks and info, which is what `event loop` doing.
+Since the `asyncio` must swich between different tasks. There must be a list to maintain all the tasks and info, which is what a **Event loop**` doing.
 
 ### Reference
 * [python的asyncio模組(二)：異步程式設計基本概念 - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天](https://ithelp.ithome.com.tw/articles/10199403)
