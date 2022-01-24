@@ -28,7 +28,7 @@ If a **Event** is happening, the **EventLoop** would invoke the **CallBack**, an
 ![](https://github.com/a22057916w/python_advance/blob/main/.meta/eventloop3.png)
 <br><br>
 
-** Take the Following Code for Example:**
+**Take the Following Code for Example:**
 ```
 import asyncio
 loop = asyncio.get_event_loop() #建立一個Event Loop
