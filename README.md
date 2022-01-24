@@ -31,26 +31,27 @@ If a **Event** is happening, the **EventLoop** would invoke the **CallBack**, an
 **Take the Following Code for Example:**
 ```
 import asyncio
-loop = asyncio.get_event_loop() #建立一個Event Loop
+loop = asyncio.get_event_loop() # create a Event Loop
 
-async def example1(): # 定義一個中間會被中斷的協程
+async def example1():       # Define a coroutine that would be interrup
     print("Start example1 coroutin.")
-    await asyncio.sleep(1) # 中斷協程一秒
+    await asyncio.sleep(1)      # inturrup the coroutine for 1 second
     print("Finish example1 coroutin.")
 
-async def example2(): # 定義一個協程
+async def example2():   # Define a coroutine
     print("Start example2 coroutin.")
     # do some process...
     print("Finish example2 coroutin.")
 
-tasks = [ # 建立一個任務列表
+tasks = [       # create a list of task
     asyncio.ensure_future(example1()),
     asyncio.ensure_future(example2()),
 ]
 
+# register the two corotinue to EventLoop
+# loop start, exec example1, pause example, exec example2, resume example1
 loop.run_until_complete(asyncio.wait(tasks))
-# 把example1, example2這兩個coroutine註冊到事件循環裡
-# loop啟動，先執行example1，中途暫停example1之後切換到example2，最後再切回example1
+
 # output:
 # Start example1 coroutin.
 # Start example2 coroutin.
@@ -59,7 +60,7 @@ loop.run_until_complete(asyncio.wait(tasks))
 ```
 
 ### Coroutine
-A **coroutine**(協程 is a function that can be paused, returned, and resumed in the halfway.
+A **coroutine** is a function that can be paused, returned, and resumed in the halfway.
 <br><br>
 For Python Package `asycnio`, a corotinue can be declare by adding `async` in front of the function, like ```async def example():```
 
