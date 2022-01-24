@@ -7,7 +7,7 @@
 * [Python進階技巧 (3) — 神奇又美好的 Decorator ，嗷嗚！ | by Jack Cheng | 整個程式都是我的咖啡館 | Medium](https://medium.com/citycoddee/python%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7-3-%E7%A5%9E%E5%A5%87%E5%8F%88%E7%BE%8E%E5%A5%BD%E7%9A%84-decorator-%E5%97%B7%E5%97%9A-6559edc87bc0)
 * [Python 的 staticmethod 與 classmethod | by 莊子弘 | Medium](https://ji3g4zo6qi6.medium.com/python-tips-5d36df9f6ad5)
 
-## Async/Await
+## Asynchronous
 Basiclly, the asynchronous programming can discribe in the following concept:
 * **Event Loop**
 * **Event**
@@ -31,8 +31,9 @@ A **coroutine** is a function that can be paused, returned, and resumed in the h
 For Python Package `asycnio`, a corotinue can be declare by adding `async` in front of the function, like ```async def example():```
 
 ### Task
-A **coroutine** must be encapencapsulated to a **task** to communicate with **EventLoop**.
+To put it simply, a **coroutine** must be encapencapsulated to a **task** to communicate with **EventLoop**.
 For example, the line `loop.run_until_complete(example())` would convert the coroutine `example()` into a task, then register to EventLoop.
+
 
 ### Reference
 * [python的asyncio模組(二)：異步程式設計基本概念 - iT 邦幫忙::一起幫忙解決難題，拯救 IT 人的一天](https://ithelp.ithome.com.tw/articles/10199403)
