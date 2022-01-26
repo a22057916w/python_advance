@@ -23,4 +23,4 @@ p = tf.add_paragraph()
 p.text = "Size-40 for fuck's sake"
 p.font.size = Pt(40)
 
-prs.save("textbox.pptx")
+prs.save("./result/textbox.pptx")

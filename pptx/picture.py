@@ -20,4 +20,4 @@ height = Inches(10)
 
 pic = slide.shapes.add_picture(img_path, left, top, width=width, height=height)
 
-prs.save("picture.pptx")
+prs.save("./result/picture.pptx")

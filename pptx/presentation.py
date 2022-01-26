@@ -14,4 +14,4 @@ subtitle = slide.placeholders[1]
 title.text = "Fuck Off"
 subtitle.text = "Will You?"
 
-prs.save("Presentation.pptx")
+prs.save("./result/Presentation.pptx")

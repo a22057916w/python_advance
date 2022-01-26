@@ -31,4 +31,4 @@ table.cell(0, 1).text = "Pros"
 table.cell(1, 0).text = "go down"
 table.cell(1, 1).text = "go down together"
 
-prs.save("table.pptx")
+prs.save("./result/table.pptx")
