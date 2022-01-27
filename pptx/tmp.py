@@ -12,7 +12,7 @@ shapes = slide.shapes
 
 shapes.title.text = "Adding a Table"
 
-rows = cols = 30
+rows = cols = 10
 left = top = Inches(2)
 width = Inches(6)
 height = Inches(6)
