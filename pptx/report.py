@@ -24,7 +24,7 @@ class PptxReport():
         title_only_slide_layout = self.prs.slide_layouts[5]
         slide = self.prs.slides.add_slide(title_only_slide_layout)
         shapes = slide.shapes
-
+        shapes.title.text = "Adding a Table"
         #shapes.title.text = "Fuck this shit"
 
         left = top = Inches(2)
