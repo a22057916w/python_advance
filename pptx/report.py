@@ -21,14 +21,14 @@ class PptxReport():
         self.prs.save(self.outputPath)
 
     def create_table(self, df):
-        title_only_slide_layout = self.prs.slide_layouts[5]
-        slide = self.prs.slides.add_slide(title_only_slide_layout)
+        blank_slide_layout = self.prs.slide_layouts[6]
+        slide = self.prs.slides.add_slide(blank_slide_layout)
         shapes = slide.shapes
-        shapes.title.text = "Adding a Table"
+
         #shapes.title.text = "Fuck this shit"
 
-        left = top = Inches(2)
-        width = Inches(4)
+        left = top = Inches(0)
+        width = Inches(5)
         height = Inches(2)
 
         rows = df.shape[0] + 1
