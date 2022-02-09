@@ -7,7 +7,7 @@ import collections.abc
 # the above packages are required for importing pptx, on Python 3.10.X+
 
 from pptx import Presentation
-from pptx.util import Inches
+from pptx.util import Inches, Pt
 
 class PptxReport():
     def __init__(self, df):
@@ -42,8 +42,10 @@ class PptxReport():
             for row in range(df.shape[0] + 1):
                 if row == 0:
                     table.cell(row, col).text = str(df.columns[col])
+                    table.cell(row, col).text_frame.paragraphs[0].font.size = Pt(12)
                     continue
                 table.cell(row, col).text = str(df.iloc[row - 1, col])
+                table.cell(row, col).text_frame.paragraphs[0].font.size = Pt(12)
 
 
 

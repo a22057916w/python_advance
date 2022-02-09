@@ -13,15 +13,15 @@ shapes = slide.shapes
 shapes.title.text = "Adding a Table"
 
 rows = cols = 2
-left = top = Inches(2)
-width = Inches(6)
-height = Inches(6)
+left = top = Inches(0)
+width = Inches(2)
+height = Inches(3)
 
 
 table = shapes.add_table(rows, cols, left, top, width, height).table
 
-table.columns[0].width = Inches(2.0)
-table.columns[1].width = Inches(20.0)
+table.columns[0].width = Inches(2)
+table.columns[1].width = Inches(2)
 
 # write column headings
 table.cell(0, 0).text = "Cons"
