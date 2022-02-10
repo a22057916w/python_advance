@@ -29,6 +29,7 @@ table.cell(0, 1).text = "Pros"
 
 # write body cells
 table.cell(1, 0).text = "go down"
-table.cell(1, 1).text = "go down together"
+table.cell(1, 1).text = "go down together\n1234567981231dsa5fasdf4saf5as4dfas4d5f456sd4fsa64\n165sad4f65sad4fasd54f"
+print(table.cell(1,1).text_frame.paragraphs[0].text)
 
 prs.save("./result/table.pptx")
