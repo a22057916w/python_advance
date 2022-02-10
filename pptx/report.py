@@ -28,26 +28,45 @@ class PptxReport():
         #shapes.title.text = "Fuck this shit"
 
         left = top = Inches(0)
-        width = Inches(5)
-        height = Inches(2)
+        width = Inches(0)
+        height = Inches(0)
 
         rows = df.shape[0] + 1
         cols = df.shape[1]
         #print(rows, cols)
         table = shapes.add_table(rows, cols, left, top, width, height).table
-
+        font_size = 12
+        #print(len(table.columns))
         for col in range(df.shape[1]):
             table.columns[col].height = Inches(2.0)
             #table.cell(0, col).text = str(df.columns[col])
             for row in range(df.shape[0] + 1):
                 if row == 0:
                     table.cell(row, col).text = str(df.columns[col])
-                    table.cell(row, col).text_frame.paragraphs[0].font.size = Pt(12)
                     continue
                 table.cell(row, col).text = str(df.iloc[row - 1, col])
-                table.cell(row, col).text_frame.paragraphs[0].font.size = Pt(12)
+                # type(table.cell(row, col).text_frame.paragraphs) return 'tuple'
 
+        self.format_table(table, font_size)
 
+    # format the column bwidth and text size
+    def format_table(self, table, font_size):
+        # setting font size
+        for col in range(len(table.columns)):
+            for row in range(len(table.rows)):
+                for cell_pt in table.cell(row, col).text_frame.paragraphs:
+                    cell_pt.font.size = Pt(font_size)
+
+        # format the column by finding the max length paragraphs
+        list_col_max_width = [0 for x in range(len(table.columns))]
+        for col in range(len(table.columns)):
+            for row in range(len(table.rows)):
+                for cell_pt in table.cell(row, col).text_frame.paragraphs:
+                    list_col_max_width[col] = max(list_col_max_width[col], len(cell_pt.text)*Pt(font_size))
+
+        # setting column width
+        for col in range(len(table.columns)):
+            table.columns[col].width = list_col_max_width[col]
 
 if __name__ == "__main__":
     df = pd.read_excel("./data/test.xlsx")
@@ -56,6 +75,7 @@ if __name__ == "__main__":
     # title_only_slide_layout = prs.slide_layouts[5]
     print(df)
     print(df.iloc[1, 1])
+    df.iloc[1, 1] = "sdfsdfsfdsdfsdfsdf\nsfsdfsdfsdfsd"
     print(len(df.iloc[:, 0]))
     print(df.shape[0] + 1)
     print(df.columns[0])
