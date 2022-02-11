@@ -8,6 +8,7 @@ import collections.abc
 
 from pptx import Presentation
 from pptx.util import Inches, Pt
+from pptx.dml.color import RGBColor
 
 class PptxReport():
     def __init__(self, df):
@@ -48,6 +49,9 @@ class PptxReport():
                 # type(table.cell(row, col).text_frame.paragraphs) return 'tuple'
 
         self.format_table(table, font_size)
+        list_cells = [(1, 1), (2, 2), (3, 3), (3, 4), (3, 5)]
+        RGBcolor = RGBColor(255, 0, 0)
+        self.color_cell(table, list_cells, RGBcolor)
 
     # format the column bwidth and text size
     def format_table(self, table, font_size):
@@ -67,6 +71,14 @@ class PptxReport():
         # setting column width
         for col in range(len(table.columns)):
             table.columns[col].width = list_col_max_width[col]
+
+    def color_cell(self, table, list_cells, RGBcolor):
+        for row, col in list_cells:
+            cell = table.cell(row, col)
+            fill = cell.fill
+            fill.solid()
+            fill.fore_color.rgb = RGBcolor
+
 
 if __name__ == "__main__":
     df = pd.read_excel("./data/test.xlsx")
