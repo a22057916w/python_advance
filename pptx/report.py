@@ -10,48 +10,44 @@ from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 
+
 class PptxReport():
-    def __init__(self, df):
+
+    def __init__(self):
         self.prs = Presentation()
-        self.df = df
 
-        self.outputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
+    def save(self, strOutputPath):
+        self.prs.save(strOutputPath)
 
-    def run(self):
-        self.create_table(df)
-        self.prs.save(self.outputPath)
+    def add_slide(self, layout_idx):
+        slide_layout = self.prs.slide_layouts[layout_idx]
+        self.prs.slides.add_slide(slide_layout)
 
-    def create_table(self, df):
-        blank_slide_layout = self.prs.slide_layouts[6]
-        slide = self.prs.slides.add_slide(blank_slide_layout)
+    def get_slide(self, slide_idx):
+        return self.prs.slides[slide_idx]
+
+    def add_table_from_dataFrame(self, slide, df):
         shapes = slide.shapes
 
-        #shapes.title.text = "Fuck this shit"
-
         left = top = Inches(0)
-        width = Inches(0)
-        height = Inches(0)
+        width = height = Inches(0)
 
         rows = df.shape[0] + 1
         cols = df.shape[1]
-        #print(rows, cols)
+
         table = shapes.add_table(rows, cols, left, top, width, height).table
-        font_size = 12
-        #print(len(table.columns))
+        # print("SDFFDSFDFSDFSDFSDFSDFSDFD")
+        # print(type(shapes))
+        # print(type(table))
         for col in range(df.shape[1]):
             table.columns[col].height = Inches(2.0)
-            #table.cell(0, col).text = str(df.columns[col])
             for row in range(df.shape[0] + 1):
                 if row == 0:
                     table.cell(row, col).text = str(df.columns[col])
                     continue
                 table.cell(row, col).text = str(df.iloc[row - 1, col])
                 # type(table.cell(row, col).text_frame.paragraphs) return 'tuple'
-
-        self.format_table(table, font_size)
-        list_cells = [(1, 1), (2, 2), (3, 3), (3, 4), (3, 5)]
-        RGBcolor = RGBColor(255, 0, 0)
-        self.color_cell(table, list_cells, RGBcolor)
+        return table
 
     # format the column bwidth and text size
     def format_table(self, table, font_size):
@@ -81,7 +77,17 @@ class PptxReport():
 
 
 if __name__ == "__main__":
+    strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
     df = pd.read_excel("./data/test.xlsx")
+
+
+    pptxRT = PptxReport()
+    pptxRT.add_slide(0)
+    slide = pptxRT.get_slide(0)
+    table = pptxRT.add_table_from_dataFrame(slide, df)
+    pptxRT.format_table(table, 12)
+    pptxRT.color_cell(table, [(1,1),(2,3)], RGBColor(255,0,0))
+    pptxRT.save(strOutputPath)
 
     # prs = Presentation()
     # title_only_slide_layout = prs.slide_layouts[5]
@@ -92,8 +98,6 @@ if __name__ == "__main__":
     print(df.shape[0] + 1)
     print(df.columns[0])
 
-    PR = PptxReport(df)
-    PR.run()
 
     # print(df)
     # print("*"*20)
