@@ -5,6 +5,8 @@ import collections.abc
 from pptx import Presentation
 from pptx.util import Inches
 
+from pptx.dml.color import RGBColor
+
 prs = Presentation()
 title_only_slide_layout = prs.slide_layouts[5]
 slide = prs.slides.add_slide(title_only_slide_layout)
@@ -30,6 +32,11 @@ table.cell(0, 1).text = "Pros"
 # write body cells
 table.cell(1, 0).text = "go down"
 table.cell(1, 1).text = "go down together\n1234567981231dsa5fasdf4saf5as4dfas4d5f456sd4fsa64\n165sad4f65sad4fasd54f"
+p = table.cell(1,1).text_frame.paragraphs[0]
+run = p.add_run()
+run.text = "FFFFFFFF"
+font = run.font
+font.color.rgb = RGBColor(255, 0, 0)
 print(table.cell(1,1).text_frame.paragraphs[0].text)
 
 prs.save("./result/table.pptx")
