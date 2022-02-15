@@ -11,15 +11,13 @@ from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 
 class Font():
-    def __init__(self, name = "Calibri", size = Pt(12), color = RGBColor(0,0,0), bold = False, italic = False):
+    def __init__(self, *, name = "Calibri", size = Pt(12), color = RGBColor(0,0,0), bold = True, italic = True):
         self.name = name
         self.size = size
         self.color = color
         self.bold = bold
         self.italic = italic
 
-    def attributes(self):
-        return [self.name, self.size, self.color, self.bold, self.italic]
 
 class PptxReport():
 
@@ -90,9 +88,9 @@ class PptxReport():
         print(myFont.name, myFont.size)
         font.name = myFont.name
         font.size = myFont.size
-        # font.color.rgb = myFont.color
-        # font.bold = myFont.bold
-        # font.italic = myFont.italic
+        font.color.rgb = myFont.color
+        font.bold = myFont.bold
+        font.italic = myFont.italic
 
     def font_cell(self, table, list_cells, RGBcolor):
         for row, col in list_cells:
@@ -123,7 +121,7 @@ if __name__ == "__main__":
     pptxRT.format_table(table, 12)
     pptxRT.fill_cell(table, [(1,1),(2,3)], RGBColor(255,0,0))
     pptxRT.font_cell(table, [(2,2),(3,3)], RGBColor(0,255,0))
-    myFont = Font(RGBColor(0,0,255))
+    myFont = Font(color=RGBColor(0,0,255))
     pptxRT.add_text_to_cell("asdfasdf", table, 3, 5, myFont)
     pptxRT.format_table(table, 12)
     pptxRT.save(strOutputPath)
