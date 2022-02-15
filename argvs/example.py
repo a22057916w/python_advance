@@ -25,7 +25,7 @@ bar(god=False, pay="poor")
 
 
 # parameter keyword name must equal to argument keyword name
-def fuck(arg1, arg2, arg3, *, a, god):
+def fuck(arg1, arg2, arg3, *, a, god=False):
     print(arg1)
     print(arg2)
     print(arg3)
@@ -35,4 +35,4 @@ def fuck(arg1, arg2, arg3, *, a, god):
     # for e in b:
     #     print(b)
 
-fuck(1, 2, 3, a="sdfsdf", god=False)
+fuck(1, 2, 3, a="sdfsdf")
