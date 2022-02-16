@@ -10,8 +10,8 @@ from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
 
-class Font():
-    def __init__(self, *, name = "Calibri", size = Pt(12), color = RGBColor(0,0,0), bold = True, italic = True):
+class cFont():
+    def __init__(self, *, name = "Calibri", size = Pt(12), color = RGBColor(0,0,255), bold = True, italic = True):
         self.name = name
         self.size = size
         self.color = color
@@ -36,17 +36,20 @@ class PptxReport():
     def get_slide(self, slide_idx):
         return self.prs.slides[slide_idx]
 
-    def add_table_from_dataFrame(self, slide_idx, df):
+    def add_table_from_dataFrame(self, df, slide_idx, left = 0, top = 0):
         shapes = self.prs.slides[slide_idx].shapes
-
-        left = top = Inches(0)
+        print(len(shapes))
+        left = Inches(left)
+        top = Inches(top)
         width = height = Inches(0)
 
         rows = df.shape[0] + 1
         cols = df.shape[1]
 
         table = shapes.add_table(rows, cols, left, top, width, height).table
-
+        print(type(shapes.parent))
+        print(len(shapes))
+        print("********************")
         for col in range(df.shape[1]):
             table.columns[col].height = Inches(2.0)
             for row in range(df.shape[0] + 1):
@@ -61,18 +64,18 @@ class PptxReport():
         return table
 
     # format the column bwidth and text size
-    def format_table(self, table, font_size):
+    def format_table(self, table, cFont):
         # setting font size
         for col in range(len(table.columns)):
             for row in range(len(table.rows)):
                 for cell_pt in table.cell(row, col).text_frame.paragraphs:
-                    cell_pt.font.size = Pt(font_size)
+                    cell_pt.font.size = cFont.size
         # format the column by finding the max length paragraphs
         list_col_max_width = [0 for x in range(len(table.columns))]
         for col in range(len(table.columns)):
             for row in range(len(table.rows)):
                 for cell_pt in table.cell(row, col).text_frame.paragraphs:
-                    list_col_max_width[col] = max(list_col_max_width[col], len(cell_pt.text)*Pt(font_size))
+                    list_col_max_width[col] = max(list_col_max_width[col], len(cell_pt.text)*(cFont.size))
         # setting column width
         for col in range(len(table.columns)):
             table.columns[col].width = list_col_max_width[col]
@@ -84,30 +87,28 @@ class PptxReport():
             fill.solid()
             fill.fore_color.rgb = RGBcolor
 
-    def setFont(self, font, myFont):
-        print(myFont.name, myFont.size)
-        font.name = myFont.name
-        font.size = myFont.size
-        font.color.rgb = myFont.color
-        font.bold = myFont.bold
-        font.italic = myFont.italic
-
-    def font_cell(self, table, list_cells, RGBcolor):
+    def font_cell(self, table, list_cells, cFont):
         for row, col in list_cells:
             cell = table.cell(row, col)
             for paragraph in cell.text_frame.paragraphs:
                 for run in paragraph.runs:
                     font = run.font
-                    font.color.rgb = RGBcolor
+                    self.setFont(font, cFont)
 
-    def add_text_to_cell(self, strText, table, row, col, Font):
+    def add_text_to_cell(self, strText, table, row, col, cFont):
         cell = table.cell(row, col)
         paragraph = cell.text_frame.paragraphs[-1]
         run = paragraph.add_run()
         run.text = strText
         font = run.font
-        self.setFont(font, Font)
+        self.setFont(font, cFont)
 
+    def setFont(self, font, myFont):
+        font.name = myFont.name
+        font.size = myFont.size
+        font.color.rgb = myFont.color
+        font.bold = myFont.bold
+        font.italic = myFont.italic
 
 if __name__ == "__main__":
     strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
@@ -117,25 +118,35 @@ if __name__ == "__main__":
     pptxRT = PptxReport()
     pptxRT.add_slide(0)
     slide = pptxRT.get_slide(0)
-    table = pptxRT.add_table_from_dataFrame(0, df)
-    pptxRT.format_table(table, 12)
+    table = pptxRT.add_table_from_dataFrame(df, 0, 0, 0)
+    myFont = cFont(size=Pt(12), color=RGBColor(0,0,255))
+    pptxRT.format_table(table, myFont)
     pptxRT.fill_cell(table, [(1,1),(2,3)], RGBColor(255,0,0))
-    pptxRT.font_cell(table, [(2,2),(3,3)], RGBColor(0,255,0))
-    myFont = Font(color=RGBColor(0,0,255))
+    pptxRT.font_cell(table, [(2,2),(3,3)], myFont)
     pptxRT.add_text_to_cell("asdfasdf", table, 3, 5, myFont)
-    pptxRT.format_table(table, 12)
+    pptxRT.format_table(table, myFont)
     pptxRT.save(strOutputPath)
 
     # prs = Presentation()
     # title_only_slide_layout = prs.slide_layouts[5]
-    print(df)
-    print(df.iloc[1, 1])
-    df.iloc[1, 1] = "sdfsdfsfdsdfsdfsdf\nsfsdfsdfsdfsd"
-    print(len(df.iloc[:, 0]))
-    print(df.shape[0] + 1)
-    print(df.columns[0])
+    # print(df)
+    # print(df.iloc[1, 1])
+    # df.iloc[1, 1] = "sdfsdfsfdsdfsdfsdf\nsfsdfsdfsdfsd"
+    # print(len(df.iloc[:, 0]))
+    # print(df.shape[0] + 1)
+    # print(df.columns[0])
 
+    df2 = pd.read_excel("./data/test2.xlsx")
 
+    slide = pptxRT.get_slide(0)
+    table2 = pptxRT.add_table_from_dataFrame(df2, 0, 0, 0)
+    myFont = cFont(size=Pt(12), color=RGBColor(0,0,255))
+    pptxRT.format_table(table2, myFont)
+    pptxRT.fill_cell(table2, [(1,1),(2,3)], RGBColor(255,0,0))
+    pptxRT.font_cell(table2, [(2,2),(3,3)], myFont)
+    pptxRT.add_text_to_cell("asdfasdf", table2, 3, 5, myFont)
+    pptxRT.format_table(table2, myFont)
+    pptxRT.save(strOutputPath)
     # print(df)
     # print("*"*20)
     # print(df.shape)
