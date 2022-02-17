@@ -36,7 +36,8 @@ p = table.cell(1,1).text_frame.paragraphs[0]
 run = p.add_run()
 run.text = "FFFFFFFF"
 font = run.font
+print(font.keys())
 font.color.rgb = RGBColor(255, 0, 0)
 print(table.cell(1,1).text_frame.paragraphs[0].text)
-
+print(len(table.cell(1,1).text_frame.paragraphs[0].runs))
 prs.save("./result/table.pptx")
