@@ -129,14 +129,15 @@ if __name__ == "__main__":
 
     table = pptxRT.add_table_from_dataFrame(df, 0, 0, 0)
 
+    resize_font_size = Pt(12)
+    pptxRT.resize_table(table, resize_font_size)
     myFont = cFont(size=Pt(10), color=RGBColor(0,0,255))
 
-    resize_font_size = Pt(10)
-    pptxRT.resize_table(table, myFont)
     pptxRT.fill_cell(table, [(1,1),(2,3)], RGBColor(255,0,0))
     pptxRT.font_cell(table, [(2,2),(3,3)], myFont)
     pptxRT.add_text_to_cell("asdfasdf", table, 3, 5, myFont)
-    pptxRT.resize_table(table, myFont)
+
+    pptxRT.resize_table(table, resize_font_size)
     pptxRT.save(strOutputPath)
 
     # prs = Presentation()
@@ -152,11 +153,15 @@ if __name__ == "__main__":
 
     slide = pptxRT.get_slide(0)
     table2 = pptxRT.add_table_from_dataFrame(df2, 0, 0, 0)
+
+    resize_font_size = Pt(12)
+    pptxRT.resize_table(table2, resize_font_size = Pt(12))
+
     myFont = cFont(size=Pt(12), color=RGBColor(0,0,255))
-    pptxRT.resize_table(table2, myFont)
     pptxRT.fill_cell(table2, [(1,1),(2,3)], RGBColor(255,0,0))
     pptxRT.font_cell(table2, [(2,2),(3,3)], myFont)
-    pptxRT.add_text_to_cell("asdfasdf", table2, 3, 5, myFont)
+    pptxRT.add_text_to_cell("asdfasdf", table2, 3, 5, resize_font_size)
+
     pptxRT.resize_table(table2, myFont)
     pptxRT.save(strOutputPath)
 
