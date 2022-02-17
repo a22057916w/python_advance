@@ -26,7 +26,6 @@ class PptxReport():
 
     def __init__(self):
         self.prs = Presentation()
-        print(self.prs.slide_height)
 
     def save(self, strOutputPath):
         self.prs.save(strOutputPath)
@@ -38,9 +37,18 @@ class PptxReport():
     def get_slide(self, slide_idx):
         return self.prs.slides[slide_idx]
 
+    def add_picture(self, slide_idx, image_path):
+        shapes = self.prs.slides[slide_idx].shapes
+
+        left = top = Inches(1)
+        width = Inches(16)
+        height = Inches(10)
+
+        pic = shapes.add_picture(image_path, left, top, width=width, height=height)
+
     def add_table_from_dataFrame(self, df, slide_idx, left = 0, top = 0):
         shapes = self.prs.slides[slide_idx].shapes
-        #print(len(shapes))
+
         left = Inches(left)
         top = Inches(top)
         width = height = Inches(0)
@@ -49,9 +57,7 @@ class PptxReport():
         cols = df.shape[1]
 
         table = shapes.add_table(rows, cols, left, top, width, height).table
-        # print(type(shapes.parent))
-        # print(len(shapes))
-        # print("********************")
+
         for col in range(df.shape[1]):
             table.columns[col].height = Inches(2.0)
             for row in range(df.shape[0] + 1):
@@ -128,6 +134,7 @@ if __name__ == "__main__":
 
     pptxRT = PptxReport()
     pptxRT.add_slide(0)
+    pptxRT.add_picture(0, "./data/dontlaught.jpg")
     slide = pptxRT.get_slide(0)
 
     table = pptxRT.add_table_from_dataFrame(df, 0, 0, 0)
