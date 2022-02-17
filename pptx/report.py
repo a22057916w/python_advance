@@ -83,6 +83,7 @@ class PptxReport():
             table.columns[col].width = list_col_max_width[col] + Cm(0.25)
 
 
+    # fill cell background
     def fill_cell(self, table, list_cells, RGBcolor):
         for row, col in list_cells:
             cell = table.cell(row, col)
@@ -90,6 +91,7 @@ class PptxReport():
             fill.solid()
             fill.fore_color.rgb = RGBcolor
 
+    # font cell text
     def font_cell(self, table, list_cells, cFont):
         for row, col in list_cells:
             cell = table.cell(row, col)
@@ -98,6 +100,7 @@ class PptxReport():
                     font = run.font
                     self.setFont(font, cFont)
 
+    # concatenate text to a cell
     def add_text_to_cell(self, strText, table, row, col, cFont):
         cell = table.cell(row, col)
         paragraph = cell.text_frame.paragraphs[-1]
@@ -105,7 +108,7 @@ class PptxReport():
         run.text = strText
         font = run.font
         self.setFont(font, cFont)
-        #print(type(PP_ALIGN.CENTER))
+
 
     def setFont(self, font, myFont):
         font.name = myFont.name
