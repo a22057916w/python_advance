@@ -71,7 +71,7 @@ class PptxReport():
         for col in range(len(table.columns)):
             for row in range(len(table.rows)):
                 for cell_pt in table.cell(row, col).text_frame.paragraphs:
-                    cell_pt.font.size = Font_size
+                    cell_pt.font.size = font_size
         # format the column by finding the max length paragraphs
         list_col_max_width = [0 for x in range(len(table.columns))]
         for col in range(len(table.columns)):
@@ -97,8 +97,7 @@ class PptxReport():
             cell = table.cell(row, col)
             for paragraph in cell.text_frame.paragraphs:
                 for run in paragraph.runs:
-                    font = run.font
-                    self.setFont(font, cFont)
+                    self.setFont(run, cFont)
 
     # concatenate text to a cell
     def add_text_to_cell(self, strText, table, row, col, cFont):
@@ -106,17 +105,18 @@ class PptxReport():
         paragraph = cell.text_frame.paragraphs[-1]
         run = paragraph.add_run()
         run.text = strText
+        self.setFont(run, cFont)
+
+    # set text(run) font
+    def setFont(self, run, myFont):
         font = run.font
-        self.setFont(font, cFont)
-
-
-    def setFont(self, font, myFont):
         font.name = myFont.name
         font.size = myFont.size
         font.color.rgb = myFont.color
         font.bold = myFont.bold
         font.italic = myFont.italic
 
+    # set cell text alignment
     def setAlign(self, cell, align_type):
         for paragraph in cell.text_frame.paragraphs:
             paragraph.alignment = align_type
@@ -158,14 +158,14 @@ if __name__ == "__main__":
     table2 = pptxRT.add_table_from_dataFrame(df2, 0, 0, 0)
 
     resize_font_size = Pt(12)
-    pptxRT.resize_table(table2, resize_font_size = Pt(12))
+    pptxRT.resize_table(table2, resize_font_size)
 
     myFont = cFont(size=Pt(12), color=RGBColor(0,0,255))
     pptxRT.fill_cell(table2, [(1,1),(2,3)], RGBColor(255,0,0))
     pptxRT.font_cell(table2, [(2,2),(3,3)], myFont)
-    pptxRT.add_text_to_cell("asdfasdf", table2, 3, 5, resize_font_size)
+    pptxRT.add_text_to_cell("asdfasdf", table2, 3, 5, myFont)
 
-    pptxRT.resize_table(table2, myFont)
+    pptxRT.resize_table(table2, resize_font_size)
     pptxRT.save(strOutputPath)
 
 
