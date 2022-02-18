@@ -13,6 +13,8 @@ from pptx.enum.text import PP_ALIGN
 sys.path.append("./script")
 from PPTX_FEATURE import Report, Font
 
+g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
+
 def create_pptx():
     pptxRt = Report()
 
