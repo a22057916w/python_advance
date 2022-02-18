@@ -13,7 +13,12 @@ from pptx.enum.text import PP_ALIGN
 sys.path.append("./script")
 from PPTX_FEATURE import Report, Font
 
-# if __name__ == "__main__":
+def create_pptx():
+    pptxRt = Report()
+
+
+if __name__ == "__main__":
+    create_pptx()
     # strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
     # df = pd.read_excel("./data/test.xlsx")
     #
@@ -60,8 +65,8 @@ from PPTX_FEATURE import Report, Font
     #
     # pptxRT.resize_table(table2, resize_font_size)
     # pptxRT.save(strOutputPath)
-
-
+    #
+    #
     # print(df)
     # print("*"*20)
     # print(df.shape)
