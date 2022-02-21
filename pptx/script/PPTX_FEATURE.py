@@ -37,8 +37,11 @@ class Report():
         slide_layout = self.prs.slide_layouts[layout_idx]
         self.prs.slides.add_slide(slide_layout)
 
-    def get_slide(self, slide_idx):
+    def get_single_slide(self, slide_idx):
         return self.prs.slides[slide_idx]
+
+    def get_slides(self):
+        return self.prs.slides
 
     def add_picture(self, slide_idx, image_path):
         shapes = self.prs.slides[slide_idx].shapes
