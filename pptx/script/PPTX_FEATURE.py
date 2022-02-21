@@ -24,8 +24,11 @@ class Report():
 
     table = [[None]*0]
 
-    def __init__(self):
-        self.prs = Presentation()
+    def __init__(self, strPPTXFilePath = ""):
+        if strPPTXFilePath == "":
+            self.prs = Presentation()
+        else:
+            self.prs = Presentation(strPPTXFilePath)
 
     def save(self, strOutputPath):
         self.prs.save(strOutputPath)
