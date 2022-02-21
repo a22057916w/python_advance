@@ -1,5 +1,6 @@
 import os, sys
 import pandas as pd
+import numpy as np
 
 import collections
 import collections.abc
@@ -22,7 +23,7 @@ def create_pptx():
 
     pptxRT.add_slide(0)
     pptxRT.add_picture(0, "./data/dontlaught.jpg")
-    slide = pptxRT.get_slide(0)
+    slide = pptxRT.get_single_slide(0)
 
     table = pptxRT.add_table_from_dataFrame(df, 0, 0, 0)
 
@@ -39,7 +40,7 @@ def create_pptx():
 
     df2 = pd.read_excel("./data/test2.xlsx")
 
-    slide = pptxRT.get_slide(0)
+    slide = pptxRT.get_single_slide(0)
     table2 = pptxRT.add_table_from_dataFrame(df2, 0, 0, 0)
 
     resize_font_size = Pt(12)
@@ -55,10 +56,49 @@ def create_pptx():
 
 
 def read_pptx(strPPTXFilePath):
-    clinetRT = Report(strPPTXFilePath)
+    clientRT = Report(strPPTXFilePath)
+    slides = clientRT.get_slides()
+
+    sld = slides[3]
+    for shape in sld.shapes:
+        if shape.has_table:
+            print("------------------------")
+            table = shape.table
+            table_to_df(table, row_idx_count=3)
+            # for row in range(len(table.rows)):
+            #     for col in range(len(table.columns)):
+            #         print("(%d, %d) %s" % (row, col, table.cell(row, col).text_frame.text), end=" ")
+            #     print()
+            return
+
+def table_to_df(table, *, row_idx_count="1"):
+
+    row_headers = []
+    for i in range(row_idx_count):
+        column_name = []
+        for col in range(len(table.columns)):
+            column_name.append(table.cell(i, col).text_frame.text)
+        row_headers.append(column_name)
+
+    print(row_headers)
+
+    row_data = []
+    for row in range(row_idx_count, len(table.rows)):
+        col_data = []
+        for col in range(len(table.columns)):
+            col_data.append(table.cell(row, col).text_frame.text)
+        row_data.append(col_data)
+
+    print(row_data)
+
+    row_mutil_index = pd.MultiIndex.from_arrays(row_headers)
+    df = pd.DataFrame(row_data, columns=row_mutil_index)
+
+    print(df)
+    #return df
 
 if __name__ == "__main__":
-    create_pptx()
+    #create_pptx()
     read_pptx("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
     # print(df)
     # print("*"*20)
