@@ -78,11 +78,11 @@ class Report():
         return table
 
     # read table as dataframe with row-multiIndex
-    def read_table_as_dataFrame(self, table, *, row_header_count=1):
+    def read_table_as_dataFrame(self, table, *, col_header_count=1):
 
         # read the row_headers
         row_headers = []
-        for i in range(row_header_count):
+        for i in range(col_header_count):
             column_name = []
             for col in range(len(table.columns)):
                 column_name.append(table.cell(i, col).text_frame.text)
@@ -90,7 +90,7 @@ class Report():
 
         # read the remaining row-data
         row_data = []
-        for row in range(row_header_count, len(table.rows)):
+        for row in range(col_header_count, len(table.rows)):
             col_data = []
             for col in range(len(table.columns)):
                 col_data.append(table.cell(row, col).text_frame.text)
