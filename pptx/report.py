@@ -12,7 +12,7 @@ from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
 
 sys.path.append("./script")
-from PPTX_FEATURE import Report, Font
+from PPTX_FEATURE import Report, Font, TableDataFrame
 
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
 
@@ -55,52 +55,39 @@ def create_pptx():
     pptxRT.save(g_strOutputPath)
 
 
-def read_pptx(strPPTXFilePath):
+def add_column(strPPTXFilePath):
+
     clientRT = Report(strPPTXFilePath)
     slides = clientRT.get_slides()
     clientRT.save("./result/report_read.pptx")
     sld = slides[3]
+
+    df = None
     for shape in sld.shapes:
         if shape.has_table:
             print("------------------------")
             table = shape.table
-            df = clientRT.read_table_as_dataFrame(table, row_header_count=3)
-            print(df)
-            # for row in range(len(table.rows)):
-            #     for col in range(len(table.columns)):
-            #         print("(%d, %d) %s" % (row, col, table.cell(row, col).text_frame.text), end=" ")
-            #     print()
-            return
+            df = clientRT.read_table_as_dataFrame(table, col_header_count=3)
+            break
 
-def table_to_df(table, *, row_idx_count="1"):
-
-    row_headers = []
-    for i in range(row_idx_count):
-        column_name = []
-        for col in range(len(table.columns)):
-            column_name.append(table.cell(i, col).text_frame.text)
-        row_headers.append(column_name)
-
-    print(row_headers)
-
-    row_data = []
-    for row in range(row_idx_count, len(table.rows)):
-        col_data = []
-        for col in range(len(table.columns)):
-            col_data.append(table.cell(row, col).text_frame.text)
-        row_data.append(col_data)
-
-    print(row_data)
-
-    row_mutil_index = pd.MultiIndex.from_arrays(row_headers)
-    df = pd.DataFrame(row_data, columns=row_mutil_index)
+    print(df.shape)
+    print(df.columns)
 
     print(df)
-    #return df
+    list = np.random.rand(16, 1)
+    print(list)
+    idx = pd.IndexSlice[:, :, "3", slice(None)]
+    TableDataFrame.set_existing_column(df, list, [slice(None), "PPE", "3"], 3)
+    df.loc[:,idx] = list
+    print(df)
+    table = clientRT.add_table_from_dataFrame(df, 3)
+    clientRT.resize_table(table, Pt(6))
+    clientRT.save("./result/report_read.pptx")
 
 if __name__ == "__main__":
+    print("sdfsdf")
     #create_pptx()
-    read_pptx("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
+    add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
     # print(df)
     # print("*"*20)
     # print(df.shape)

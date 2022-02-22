@@ -73,7 +73,7 @@ class Report():
                 table.cell(row, col).text = str(df.iloc[row - 1, col])
                 # type(table.cell(row, col).text_frame.paragraphs) return 'tuple'
 
-        self.table[slide_idx].append(table)     # save table to a list of slides
+        #self.table[slide_idx].append(table)     # save table to a list of slides
 
         return table
 
@@ -119,7 +119,6 @@ class Report():
         for col in range(len(table.columns)):
             table.columns[col].width = list_col_max_width[col] + Cm(0.25)
 
-
     # fill cell background
     def fill_cell(self, table, list_cells, RGBcolor):
         for row, col in list_cells:
@@ -157,3 +156,58 @@ class Report():
     def setAlign(self, cell, align_type):
         for paragraph in cell.text_frame.paragraphs:
             paragraph.alignment = align_type
+
+
+class TableDataFrame():
+
+    def __init__(self):
+        pass
+
+    # read table as dataframe with row-multiIndex
+    @staticmethod
+    def read_table_as_dataFrame(self, table, *, col_header_count=1):
+
+        # read the row_headers
+        row_headers = []
+        for i in range(col_header_count):
+            column_name = []
+            for col in range(len(table.columns)):
+                column_name.append(table.cell(i, col).text_frame.text)
+            row_headers.append(column_name)
+
+        # read the remaining row-data
+        row_data = []
+        for row in range(col_header_count, len(table.rows)):
+            col_data = []
+            for col in range(len(table.columns)):
+                col_data.append(table.cell(row, col).text_frame.text)
+            row_data.append(col_data)
+
+        # set row-multiIndex and create dataframe
+        row_mutil_index = pd.MultiIndex.from_arrays(row_headers)
+        df = pd.DataFrame(row_data, columns=row_mutil_index)
+
+        return df
+
+    @staticmethod
+    def set_existing_column(df, list_val, lst_column, total_level):
+        """
+            The length of col_name and level must be the same.
+        """
+        try:
+            print(df.shape)
+            print(df.columns)
+
+            print(df)
+            list = np.random.rand(16, 1)
+            print(list)
+
+            idx = pd.IndexSlice[:, :, :]    # defalut setting: three layer of none slicing(None)
+            for i in range(len(lst_column)):
+                idx[i] = lst_column[i]
+
+            df.loc[:,idx] = list
+            print(df)
+
+        except:
+            pass
