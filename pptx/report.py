@@ -58,13 +58,14 @@ def create_pptx():
 def read_pptx(strPPTXFilePath):
     clientRT = Report(strPPTXFilePath)
     slides = clientRT.get_slides()
-
+    clientRT.save("./result/report_read.pptx")
     sld = slides[3]
     for shape in sld.shapes:
         if shape.has_table:
             print("------------------------")
             table = shape.table
-            table_to_df(table, row_idx_count=3)
+            df = clientRT.read_table_as_dataFrame(table, row_header_count=3)
+            print(df)
             # for row in range(len(table.rows)):
             #     for col in range(len(table.columns)):
             #         print("(%d, %d) %s" % (row, col, table.cell(row, col).text_frame.text), end=" ")
