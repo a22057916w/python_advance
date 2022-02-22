@@ -77,7 +77,10 @@ class Report():
 
         return table
 
+    # read table as dataframe with row-multiIndex
     def read_table_as_dataFrame(self, table, *, row_header_count=1):
+
+        # read the row_headers
         row_headers = []
         for i in range(row_header_count):
             column_name = []
@@ -85,6 +88,7 @@ class Report():
                 column_name.append(table.cell(i, col).text_frame.text)
             row_headers.append(column_name)
 
+        # read the remaining row-data
         row_data = []
         for row in range(row_header_count, len(table.rows)):
             col_data = []
@@ -92,8 +96,10 @@ class Report():
                 col_data.append(table.cell(row, col).text_frame.text)
             row_data.append(col_data)
 
+        # set row-multiIndex and create dataframe
         row_mutil_index = pd.MultiIndex.from_arrays(row_headers)
         df = pd.DataFrame(row_data, columns=row_mutil_index)
+
         return df
 
     # format the column bwidth and text size
