@@ -10,6 +10,8 @@ from pptx import Presentation
 from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN
+#from pptx.oxml.shapes.table import CT_Table
+import xml.etree.ElementTree as ET
 
 sys.path.append("./script")
 from PPTX_FEATURE import Report, Font, TableDataFrame
@@ -63,31 +65,76 @@ def add_column(strPPTXFilePath):
     sld = slides[3]
 
     df = None
+    table = None
     for shape in sld.shapes:
         if shape.has_table:
             print("------------------------")
             table = shape.table
             df = clientRT.read_table_as_dataFrame(table, col_header_count=3)
+            with open("client_table_xml.xml", "w+") as f:
+                f.write(table._tbl.xml)
             break
 
-    print(df.shape)
-    print(df.columns)
+    #table.apply_style()
+    # print(df.shape)
+    # print(df.columns)
+    #
+    # print(df)
+    # list = np.random.rand(16, 1)
+    # print(list)
+    # idx = pd.IndexSlice[:, :, "3", slice(None)]
+    # TableDataFrame.set_existing_column(df, list, [slice(None), "PPE", "3"], 3)
+    # df.loc[:,idx] = list
+    # print(df)
+    # table = clientRT.add_table_from_dataFrame(df, 3)
+    # clientRT.resize_table(table, Pt(6))
+    #clientRT.save("./result/report_read.pptx")
 
+def get_table_xml(strPPTXFilePath):
+    clientRT = Report(strPPTXFilePath)
+    slides = clientRT.get_slides()
+    sld = slides[0]
+    table = None
+
+    for shape in sld.shapes:
+        if shape.has_table:
+            print("------------------------")
+            table = shape.table
+            #print(table._tbl)
+            break
+    # xml part
+    #print(table)
+    #print(table._tbl)
+    #print(type(str(table._tbl.xml)))
+    with open("table_xml.xml", "w") as f:
+        f.write(str(table._tbl.xml))
+
+    df = clientRT.read_table_as_dataFrame(table, col_header_count=3)
     print(df)
-    list = np.random.rand(16, 1)
-    print(list)
-    idx = pd.IndexSlice[:, :, "3", slice(None)]
-    TableDataFrame.set_existing_column(df, list, [slice(None), "PPE", "3"], 3)
-    df.loc[:,idx] = list
-    print(df)
-    table = clientRT.add_table_from_dataFrame(df, 3)
-    clientRT.resize_table(table, Pt(6))
-    clientRT.save("./result/report_read.pptx")
+
+    table1 = clientRT.add_table_from_dataFrame(df, 0)
+
+    with open("table1_xml.xml", "w") as f:
+        f.write(str(table1._tbl.xml))
+
+    tree = ET.parse(table1._tbl.xml)
+    root = tree.getroot()
+
+    #root = table1._tbl.xml
+    #print(root)
+    for child in root:
+        print(child.tag, child.attrib)
+        print()
+
+
+def copy_xml(src_root, dest_root):
+    pass
 
 if __name__ == "__main__":
     print("sdfsdf")
     #create_pptx()
     add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
+    get_table_xml("/data/Code/python/python_advance/pptx/result/report.pptx")
     # print(df)
     # print("*"*20)
     # print(df.shape)
