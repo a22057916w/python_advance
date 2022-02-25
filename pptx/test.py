@@ -36,34 +36,22 @@ def get_table_xml(strPPTXFilePath):
     with open("table_xml.xml", "w") as f:
         f.write(str(table._tbl.xml))
 
-    df = clientRT.read_table_as_dataFrame(table, col_header_count=3)
-    #print(df)
+    cp_tbl = clientRT.add_table(table, 0)
+    with open("copy_table_xml.xml", "w") as f:
+        f.write(str(cp_tbl._tbl.xml))
 
-    table1 = clientRT.add_table_from_dataFrame(df, 0)
-
-    with open("table1_xml.xml", "w") as f:
-        f.write(str(table1._tbl.xml))
-
-    #tree = ET.parse(table._tbl.xml)
     root = ET.fromstring(table._tbl.xml)
-    # root = ET.parse("table_xml.xml").getroot()
-    #root = ET.parse(table._tbl.xml).getroot()
-    #root = table1._tbl.xml
-    #print(root)
-    # for child in root:
-    #     print(child.tag, child.attrib)
-    #     print()
-    print(root.tag)
+    #print(root.tag)
     test_xml(root)
-    print("====================================")
+
+    clientRT.save("./result/test.pptx")
 
 def test_xml(root):
     print("=================================")
     for cld in root:
         print(cld.tag)
     pass
-def copy_xml(src_root, dest_root):
-    pass
+
 
 if __name__ == "__main__":
     print("sdfsdf")
