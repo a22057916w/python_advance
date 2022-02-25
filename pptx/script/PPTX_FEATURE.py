@@ -52,8 +52,8 @@ class Report():
 
         pic = shapes.add_picture(image_path, left, top, width=width, height=height)
 
-    def copy_table(self, _table, slide_idx, left = 0, top = 0):
-        shapes = self.prs.sildes[slide_idx].shape
+    def add_table(self, _table, slide_idx, left = 0, top = 0):
+        shape = self.prs.slides[slide_idx].shapes
 
         left = Inches(left)
         top = Inches(top)
@@ -65,8 +65,10 @@ class Report():
         table = shape.add_table(rows, cols, left, top, width, height).table
 
         for col in range(len(table.columns)):
-            for row in range(len(talbe.rows)):
-                table.cell(row, col).text = _table.cell(row, col)
+            for row in range(len(table.rows)):
+                table.cell(row, col).text = _table.cell(row, col).text
+
+        return table
 
     def add_table_from_dataFrame(self, df, slide_idx, left = 0, top = 0):
         shapes = self.prs.slides[slide_idx].shapes
