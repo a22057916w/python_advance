@@ -97,7 +97,7 @@ if __name__ == "__main__":
     print("sdfsdf")
     #create_pptx()
     #add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
-    get_table_xml("/data/Code/python/python_advance/pptx/result/report.pptx")
+    get_table_xml("/data/Code/python/python_advance/pptx/result/test.pptx")
     # print(df)
     # print("*"*20)
     # print(df.shape)
