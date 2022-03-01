@@ -48,32 +48,59 @@ def get_table_xml(strPPTXFilePath):
     # e_txBody = tc.find("a:txBody", namespaces)
     # print(e_txBody.tag)
     root = ET.fromstring(table._tbl.xml)
-    cp_table_root = ET.fromstring(cp_table._tbl.xml)
-    for row in range(len(table.rows)):
-        for col in range(len(table.columns)):
-            tc_src = table.cell(row, col)._tc
-            tc_cp = cp_table.cell(row, col)._tc
-            copy_tc_xml(tc_src, tc_cp)
-            return
+    for child in root:
+        print(child.tag, child.attrib)
+    # cp_table_root = ET.fromstring(cp_table._tbl.xml)
+    # for row in range(len(table.rows)):
+    #     for col in range(len(table.columns)):
+    #         tc_src = table.cell(row, col)._tc
+    #         tc_cp = cp_table.cell(row, col)._tc
+    #         traverse_xml(tc_cp)
+    #         copy_tc_xml(tc_src, tc_cp)
+    #         print("=======================")
+    #         # traverse_xml(tc_src)
+    #         # print("check")
+    #         traverse_xml(tc_cp)
+    #         return
 
     clientRT.save("./result/test.pptx")
 
+def traverse_xml(root):
+    namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+    if root == None:
+        print("Element is None")
+        return
+
+    for element in root:
+        print(element.tag, element.attrib)
+        traverse_xml(element)
 
 def copy_tc_xml(tc_src, tc_cp):
     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+
+    if tc_src == None or tc_cp == None:
+        return
+
     #print(tc_src[0].tag)
     for element in tc_src:
-        print(element.tag, element.attrib)
+        #print(element.tag, element.attrib)
         #print("sdfsdf")
-        cp_element =  tc_cp.find(element.tag)
+        cp_element = tc_cp.find(element.tag)
         if cp_element != None:
-            print("================")
-            print(cp_element.tag)
+            set_element_attrib(cp_element, dict(element.attrib))
         else:
             print("-----------------")
             ET.SubElement(tc_cp, element.tag, dict(element.attrib))
-        break
-    #ET.dump(tc_cp[0])
+            # print(ET.Element(tc_cp).tag, element.tag)
+        copy_tc_xml(element, cp_element)
+    #ET.dump(tc_cp)
+
+
+def set_element_attrib(target_element, dict_attrib):
+    #print(dict_attrib)
+    for key, item in dict_attrib.items():
+        target_element.set(key, item)
+
 # def copy_table_paragraph_xml(table, cp_table):
 #     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
 #     paragraph = []
@@ -120,7 +147,7 @@ def print_xml_tag(root):
 if __name__ == "__main__":
     #create_pptx()
     #add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
-    get_table_xml("/data/Code/python/python_advance/pptx/result/test.pptx")
+    get_table_xml("/data/Code/python/python_advance/pptx/result/table.pptx")
     # print(df)
     # print("*"*20)
     # print(df.shape)
