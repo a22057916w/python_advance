@@ -48,9 +48,11 @@ def get_table_xml(strPPTXFilePath):
     # e_txBody = tc.find("a:txBody", namespaces)
     # print(e_txBody.tag)
     root = ET.fromstring(table._tbl.xml)
-    for child in root:
-        print(child.tag, child.attrib)
-    # cp_table_root = ET.fromstring(cp_table._tbl.xml)
+    cp_root = ET.fromstring(cp_table._tbl.xml)
+    #traverse_xml(root)
+    traverse_xml(cp_root)
+    copy_tc_xml(root, cp_root)
+    traverse_xml(cp_root)
     # for row in range(len(table.rows)):
     #     for col in range(len(table.columns)):
     #         tc_src = table.cell(row, col)._tc
@@ -72,7 +74,7 @@ def traverse_xml(root):
         return
 
     for element in root:
-        print(element.tag, element.attrib)
+        print(element.tag, element.attrib, element.text)
         traverse_xml(element)
 
 def copy_tc_xml(tc_src, tc_cp):
