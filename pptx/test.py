@@ -55,33 +55,36 @@ def get_table_xml(strPPTXFilePath):
 
 def copy_table_paragraph_xml(table, cp_table):
     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+    paragraph = []
     pPr = []
     for row in range(len(table.rows)):
         cell = table.cell(row, 0)
         tc = cell._tc
         txBody = tc.txBody
-        pPr = txBody.find(".//a:pPr", namespaces)   # pPr: Represents the paragraph properties.
-        print(pPr.tag)
+        paragraph = txBody.findall(".//a:p", namespaces)
+        # pPr = txBody.find(".//a:pPr", namespaces)   # pPr: Represents the paragraph properties.
+        # print(pPr.tag)
+    print(paragraph[0].tag)
     print("==========================")
 
-    if pPr != None:
-        for element in [pPr[i] for i in range(len(pPr))]:
-            print(element.tag, element.attrib)
+    # if pPr != None:
+    #     for element in [pPr[i] for i in range(len(pPr))]:
+    #         print(element.tag, element.attrib)
 
-    print("==========================================================")
-    for row in range(len(table.rows)):
-        cell = cp_table.cell(row, 0)
-        tc = cell._tc
-        txBody = tc.txBody
-        for element in [pPr[i] for i in range(len(pPr))]:
-            str_tag = element.tag
-            dict_attrib = dict(element.attrib)
-            # print(tag, attrib)
-            # print(type(tag), type(dict(attrib)))
-            parent = ET.Element(txBody)
-            print(txBody)
-            print(parent)
-            pPr_child = ET.SubElement(parent, str_tag, dict_attrib)
+    # print("==========================================================")
+    # for row in range(len(cp_table.rows)):
+    #     cell = cp_table.cell(row, 0)
+    #     tc = cell._tc
+    #     cp_txBody = tc.txBody
+    #     for element in [pPr[i] for i in range(len(pPr))]:
+    #         str_tag = element.tag
+    #         dict_attrib = dict(element.attrib)
+    #         # print(tag, attrib)
+    #         # print(type(tag), type(dict(attrib)))
+    #         parent = ET.Element(cp_txBody)
+    #         # print(cp_txBody)
+    #         # print(parent)
+    #         pPr_child = ET.SubElement(parent, str_tag, dict_attrib)
 
 def print_xml_tag(root):
     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
