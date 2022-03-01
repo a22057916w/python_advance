@@ -62,15 +62,25 @@ def copy_table_paragraph_xml(table, cp_table):
         pPr = txBody.find(".//a:pPr", namespaces)   # pPr: Represents the paragraph properties.
         print(pPr.tag)
     print("==========================")
-    for element in [pPr[i] for i in range(len(pPr))]:
-        print(element.tag, element.attrib)
-    # print("==========================================================")
-    # for row in range(len(table.rows)):
-    #     cell = cp_table.cell(row, 0)
-    #     tc = cell._tc
-    #     txBody = tc.txBody
-    #     pPr = txBody.find(".//a:pPr", namespaces)
-    #     print(pPr)
+
+    if pPr != None:
+        for element in [pPr[i] for i in range(len(pPr))]:
+            print(element.tag, element.attrib)
+
+    print("==========================================================")
+    for row in range(len(table.rows)):
+        cell = cp_table.cell(row, 0)
+        tc = cell._tc
+        txBody = tc.txBody
+        for element in [pPr[i] for i in range(len(pPr))]:
+            str_tag = element.tag
+            dict_attrib = dict(element.attrib)
+            # print(tag, attrib)
+            # print(type(tag), type(dict(attrib)))
+            parent = ET.Element(txBody)
+            print(txBody)
+            print(parent)
+            pPr_child = ET.SubElement(parent, str_tag, dict_attrib)
 
 def print_xml_tag(root):
     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
