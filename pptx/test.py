@@ -31,7 +31,7 @@ def get_table_xml(strPPTXFilePath):
 
     for shape in sld.shapes:
         if shape.has_table:
-            print("------------------------")
+            #print("------------------------")
             table = shape.table
             #print(table._tbl)
             break
@@ -39,7 +39,7 @@ def get_table_xml(strPPTXFilePath):
         f.write(str(table._tbl.xml))
 
     cp_table = clientRT.add_table(table, 0)
-    clientRT.resize_table(table, Pt(12))
+    clientRT.resize_table(cp_table, Pt(12))
     with open("copy_table_xml.xml", "w") as f:
         f.write(str(cp_table._tbl.xml))
     #tcPr = tc.get_or_add_tcPr()
@@ -49,23 +49,44 @@ def get_table_xml(strPPTXFilePath):
     # print(e_txBody.tag)
     root = ET.fromstring(table._tbl.xml)
     cp_table_root = ET.fromstring(cp_table._tbl.xml)
-    copy_table_paragraph_xml(table, cp_table)
+    for row in range(len(table.rows)):
+        for col in range(len(table.columns)):
+            tc_src = table.cell(row, col)._tc
+            tc_cp = cp_table.cell(row, col)._tc
+            copy_tc_xml(tc_src, tc_cp)
+            return
+
     clientRT.save("./result/test.pptx")
 
 
-def copy_table_paragraph_xml(table, cp_table):
+def copy_tc_xml(tc_src, tc_cp):
     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
-    paragraph = []
-    pPr = []
-    for row in range(len(table.rows)):
-        cell = table.cell(row, 0)
-        tc = cell._tc
-        txBody = tc.txBody
-        paragraph = txBody.findall(".//a:p", namespaces)
-        # pPr = txBody.find(".//a:pPr", namespaces)   # pPr: Represents the paragraph properties.
-        # print(pPr.tag)
-    print(paragraph[0].tag)
-    print("==========================")
+    #print(tc_src[0].tag)
+    for element in tc_src:
+        print(element.tag, element.attrib)
+        #print("sdfsdf")
+        cp_element =  tc_cp.find(element.tag)
+        if cp_element != None:
+            print("================")
+            print(cp_element.tag)
+        else:
+            print("-----------------")
+            ET.SubElement(tc_cp, element.tag, dict(element.attrib))
+        break
+    #ET.dump(tc_cp[0])
+# def copy_table_paragraph_xml(table, cp_table):
+#     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+#     paragraph = []
+#     pPr = []
+#     for row in range(len(table.rows)):
+#         cell = table.cell(row, 0)
+#         tc = cell._tc
+#         txBody = tc.txBody
+#         paragraph = txBody.findall(".//a:p", namespaces)
+#         # pPr = txBody.find(".//a:pPr", namespaces)   # pPr: Represents the paragraph properties.
+#         # print(pPr.tag)
+#     print(paragraph[0].tag)
+#     print("==========================")
 
     # if pPr != None:
     #     for element in [pPr[i] for i in range(len(pPr))]:
@@ -97,7 +118,6 @@ def print_xml_tag(root):
                             print(defRPr.attrib)
 
 if __name__ == "__main__":
-    print("sdfsdf")
     #create_pptx()
     #add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
     get_table_xml("/data/Code/python/python_advance/pptx/result/test.pptx")
