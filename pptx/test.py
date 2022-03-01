@@ -41,37 +41,36 @@ def get_table_xml(strPPTXFilePath):
     cp_table = clientRT.add_table(table, 0)
     with open("copy_table_xml.xml", "w") as f:
         f.write(str(cp_table._tbl.xml))
-
+    #tcPr = tc.get_or_add_tcPr()
+    # for child in tc:
+    #     print(child.tag)
+    # e_txBody = tc.find("a:txBody", namespaces)
+    # print(e_txBody.tag)
     root = ET.fromstring(table._tbl.xml)
     cp_table_root = ET.fromstring(cp_table._tbl.xml)
-    #print(ET.iselement(root))
-    #print(list(root.iter())[0])
-    #test_xml(root, cp_table_root)
-    #print_xml_tag(root)
+    copy_table_paragraph_xml(table, cp_table)
+    clientRT.save("./result/test.pptx")
+
+
+def copy_table_paragraph_xml(table, cp_table):
     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+    pPr = []
     for row in range(len(table.rows)):
         cell = table.cell(row, 0)
         tc = cell._tc
         txBody = tc.txBody
-        pPr = txBody.find(".//a:pPr", namespaces)
+        pPr = txBody.find(".//a:pPr", namespaces)   # pPr: Represents the paragraph properties.
         print(pPr.tag)
-        #tcPr = tc.get_or_add_tcPr()
-        # for child in tc:
-        #     print(child.tag)
-        # e_txBody = tc.find("a:txBody", namespaces)
-        # print(e_txBody.tag)
-
-    clientRT.save("./result/test.pptx")
-
-
-def test_xml(root, cp_table_root):
-    #print("=================================")
-
-    for cld in root:
-        print(cld.tag)
-    print("=================================")
-    for cld in cp_table_root:
-        print(cld.tag)
+    print("==========================")
+    for element in [pPr[i] for i in range(len(pPr))]:
+        print(element.tag, element.attrib)
+    # print("==========================================================")
+    # for row in range(len(table.rows)):
+    #     cell = cp_table.cell(row, 0)
+    #     tc = cell._tc
+    #     txBody = tc.txBody
+    #     pPr = txBody.find(".//a:pPr", namespaces)
+    #     print(pPr)
 
 def print_xml_tag(root):
     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
