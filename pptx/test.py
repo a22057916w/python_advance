@@ -39,6 +39,7 @@ def get_table_xml(strPPTXFilePath):
         f.write(str(table._tbl.xml))
 
     cp_table = clientRT.add_table(table, 0)
+    clientRT.resize_table(table, Pt(12))
     with open("copy_table_xml.xml", "w") as f:
         f.write(str(cp_table._tbl.xml))
     #tcPr = tc.get_or_add_tcPr()
