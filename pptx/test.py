@@ -31,27 +31,26 @@ def get_table_xml(strPPTXFilePath):
 
     for shape in sld.shapes:
         if shape.has_table:
-            #print("------------------------")
             table = shape.table
-            #print(table._tbl)
             break
+
     with open("table_xml.xml", "w") as f:
         f.write(str(table._tbl.xml))
 
     cp_table = clientRT.add_table(table, 0)
-    clientRT.resize_table(cp_table, Pt(12))
+    #clientRT.resize_table(cp_table, Pt(12))
     with open("copy_table_xml.xml", "w") as f:
         f.write(str(cp_table._tbl.xml))
-    #tcPr = tc.get_or_add_tcPr()
-    # for child in tc:
-    #     print(child.tag)
-    # e_txBody = tc.find("a:txBody", namespaces)
-    # print(e_txBody.tag)
+
+
     root = ET.fromstring(table._tbl.xml)
     cp_root = ET.fromstring(cp_table._tbl.xml)
     #traverse_xml(root)
     traverse_xml(cp_root)
     copy_tc_xml(root, cp_root)
+    with open("copied_table_xml.xml", "w") as f:
+        f.write(str(cp_table._tbl.xml))
+    print("++++++++++++++++++++++++++++")
     traverse_xml(cp_root)
     # for row in range(len(table.rows)):
     #     for col in range(len(table.columns)):
@@ -74,7 +73,7 @@ def traverse_xml(root):
         return
 
     for element in root:
-        print(element.tag, element.attrib, element.text)
+        print(element.tag, element.attrib)
         traverse_xml(element)
 
 def copy_tc_xml(tc_src, tc_cp):
@@ -89,19 +88,30 @@ def copy_tc_xml(tc_src, tc_cp):
         #print("sdfsdf")
         cp_element = tc_cp.find(element.tag)
         if cp_element != None:
+            #print(dict(element.attrib))
+            #print(cp_element)
             set_element_attrib(cp_element, dict(element.attrib))
+            copy_tc_xml(element, cp_element)
         else:
-            print("-----------------")
-            ET.SubElement(tc_cp, element.tag, dict(element.attrib))
-            # print(ET.Element(tc_cp).tag, element.tag)
-        copy_tc_xml(element, cp_element)
+            # print(tc_cp.tag)
+            # print(element.tag)
+            # print(dict(element.attrib))
+            subelement = ET.SubElement(tc_cp, element.tag, dict(element.attrib))
+            #print(element.tag, subelement.tag)
+            copy_tc_xml(element, subelement)
+            #print(tc_cp.tag, element.tag)
+
     #ET.dump(tc_cp)
 
 
 def set_element_attrib(target_element, dict_attrib):
     #print(dict_attrib)
+    #print(target_element.tag)
+    #print(target_element)
     for key, item in dict_attrib.items():
+        #print(key, item)
         target_element.set(key, item)
+    #print(target_element.tag, target_element.attrib)
 
 # def copy_table_paragraph_xml(table, cp_table):
 #     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
