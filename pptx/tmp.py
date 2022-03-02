@@ -13,10 +13,20 @@ from pptx.enum.text import PP_ALIGN
 sys.path.append("./script")
 from PPTX_FEATURE import Report, Font
 
+import zipfile
+
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
 
-def create_pptx():
-    pptxRt = Report()
+def read_pptx_xml():
+    archive = zipfile.ZipFile('<My Powerpoint Name>.pptx', 'r')
+    xml_file = archive.open('[Content_Types].xml')
+    text = xml_file.read()
+
+    root = ET.fromstring(text)
+    value_to_find = r'application/vnd.openxmlformats-package.relationships+xml'
+    for child in root:
+        if child.attrib['ContentType'] == value_to_find:
+            print(child.attrib)
 
 
 if __name__ == "__main__":

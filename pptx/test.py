@@ -20,7 +20,7 @@ from PPTX_FEATURE import Report, Font, TableDataFrame
 
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
 
-
+import zipfile
 
 
 def get_table_xml(strPPTXFilePath):
@@ -114,6 +114,17 @@ def set_element_attrib(target_element, dict_attrib):
         target_element.set(key, item)
     #print(target_element.tag, target_element.attrib)
 
+def read_pptx_xml():
+    archive = zipfile.ZipFile('./result/xml/test.pptx', 'r')
+    xml_file = archive.open('[Content_Types].xml')
+    text = xml_file.read()
+
+    root = ET.fromstring(text)
+    value_to_find = r'application/vnd.openxmlformats-package.relationships+xml'
+    for child in root:
+        if child.attrib['ContentType'] == value_to_find:
+            print(child.attrib)
+
 # def copy_table_paragraph_xml(table, cp_table):
 #     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
 #     paragraph = []
@@ -160,7 +171,8 @@ def print_xml_tag(root):
 if __name__ == "__main__":
     #create_pptx()
     #add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
-    get_table_xml("/data/Code/python/python_advance/pptx/result/table.pptx")
+    #get_table_xml("/data/Code/python/python_advance/pptx/result/table.pptx")
+    read_pptx_xml()
     # print(df)
     # print("*"*20)
     # print(df.shape)
