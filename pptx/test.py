@@ -42,27 +42,30 @@ def get_table_xml(strPPTXFilePath):
     with open("copy_table_xml.xml", "w") as f:
         f.write(str(cp_table._tbl.xml))
 
-
-    root = ET.fromstring(table._tbl.xml)
-    cp_root = ET.fromstring(cp_table._tbl.xml)
+    #
+    # root = ET.fromstring(table._tbl.xml)
+    # print(root)
+    # print(ET.fromstring(table._tbl.xml))
+    # cp_root = ET.fromstring(cp_table._tbl.xml)
     #traverse_xml(root)
-    traverse_xml(cp_root)
-    copy_tc_xml(root, cp_root)
-    with open("copied_table_xml.xml", "w") as f:
-        f.write(str(cp_table._tbl.xml))
-    print("++++++++++++++++++++++++++++")
-    traverse_xml(cp_root)
-    # for row in range(len(table.rows)):
-    #     for col in range(len(table.columns)):
-    #         tc_src = table.cell(row, col)._tc
-    #         tc_cp = cp_table.cell(row, col)._tc
-    #         traverse_xml(tc_cp)
-    #         copy_tc_xml(tc_src, tc_cp)
-    #         print("=======================")
-    #         # traverse_xml(tc_src)
-    #         # print("check")
-    #         traverse_xml(tc_cp)
-    #         return
+    #traverse_xml(cp_root)
+    #copy_tc_xml(root, cp_root)
+    # with open("copied_table_xml.xml", "w") as f:
+    #     f.write(str(cp_table._tbl.xml))
+    # print("++++++++++++++++++++++++++++")
+    #traverse_xml(cp_root)
+    #ET.dump(cp_root)
+    for row in range(len(table.rows)):
+        for col in range(len(table.columns)):
+            tc_src = table.cell(row, col)._tc
+            tc_cp = cp_table.cell(row, col)._tc
+            # traverse_xml(tc_cp)
+            # copy_tc_xml(tc_src, tc_cp)
+            # print("=======================")
+            traverse_xml(tc_src)
+            # print("check")
+            # traverse_xml(tc_cp)
+            return
 
     clientRT.save("./result/test.pptx")
 
@@ -100,8 +103,6 @@ def copy_tc_xml(tc_src, tc_cp):
             #print(element.tag, subelement.tag)
             copy_tc_xml(element, subelement)
             #print(tc_cp.tag, element.tag)
-
-    #ET.dump(tc_cp)
 
 
 def set_element_attrib(target_element, dict_attrib):
