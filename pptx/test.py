@@ -116,14 +116,21 @@ def set_element_attrib(target_element, dict_attrib):
 
 def read_pptx_xml():
     archive = zipfile.ZipFile('./result/xml/test.pptx', 'r')
-    xml_file = archive.open('[Content_Types].xml')
-    text = xml_file.read()
 
-    root = ET.fromstring(text)
-    value_to_find = r'application/vnd.openxmlformats-package.relationships+xml'
-    for child in root:
-        if child.attrib['ContentType'] == value_to_find:
-            print(child.attrib)
+    #print(archive.namelist())
+    xml_file = ET.parse(archive.open('ppt/slides/slide1.xml', 'r'))
+    root = xml_file.getroot()
+    # traverse_xml(root)
+    # text = xml_file.read()
+
+    archive.close()
+    archive = zipfile.ZipFile('./result/xml/test.pptx', 'w')
+    xml_file = ET.parse(archive.open('ppt/slides/slide1.xml', 'w'))
+    xml_file.write("123")
+    archive.close()
+
+    # root = ET.fromstring(text)
+    # print(root)
 
 # def copy_table_paragraph_xml(table, cp_table):
 #     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
