@@ -115,18 +115,24 @@ def set_element_attrib(target_element, dict_attrib):
     #print(target_element.tag, target_element.attrib)
 
 def read_pptx_xml():
-    archive = zipfile.ZipFile('./result/xml/test.pptx', 'r')
-
-    #print(archive.namelist())
-    xml_file = ET.parse(archive.open('ppt/slides/slide1.xml', 'r'))
-    root = xml_file.getroot()
-    # traverse_xml(root)
+    # archive = zipfile.ZipFile('./result/xml/test.pptx', 'r')
+    #
+    # #print(archive.namelist())
+    # xml_file = ET.parse(archive.open('ppt/slides/slide1.xml'))
+    # root = xml_file.getroot()
+    # # traverse_xml(root)
     # text = xml_file.read()
 
-    archive.close()
-    archive = zipfile.ZipFile('./result/xml/test.pptx', 'w')
-    xml_file = ET.parse(archive.open('ppt/slides/slide1.xml', 'w'))
-    xml_file.write("123")
+
+    archive = zipfile.ZipFile('./result/xml/test.pptx')
+    xml_file = archive.open('ppt/slides/slide1.xml')
+    content = xml_file.read()
+    print(content)
+    print("+++++++++++++++++++++++++++++++++++")
+
+    xml_file.write("sdfsd")
+    content = xml_file.read()
+    print(content)
     archive.close()
 
     # root = ET.fromstring(text)
