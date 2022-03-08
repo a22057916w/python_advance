@@ -12,74 +12,22 @@ from pptx.enum.text import PP_ALIGN
 
 sys.path.append("./script")
 from PPTX_FEATURE import Report, Font
+from EXCEL_FEATURE import Workbook
 
-import zipfile
+import openpyxl
+
 
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
 
-def read_pptx_xml():
-    archive = zipfile.ZipFile('<My Powerpoint Name>.pptx', 'r')
-    xml_file = archive.open('[Content_Types].xml')
-    text = xml_file.read()
-
-    root = ET.fromstring(text)
-    value_to_find = r'application/vnd.openxmlformats-package.relationships+xml'
-    for child in root:
-        if child.attrib['ContentType'] == value_to_find:
-            print(child.attrib)
 
 
 if __name__ == "__main__":
-    create_pptx()
-    # strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
-    # df = pd.read_excel("./data/test.xlsx")
+    Carnoustie = Workbook(openpyxl.load_workbook("/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx"))
+    # wb = openpyxl.load_workbook("/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
     #
-    #
-    # pptxRT = PptxReport()
-    # pptxRT.add_slide(0)
-    # pptxRT.add_picture(0, "./data/dontlaught.jpg")
-    # slide = pptxRT.get_slide(0)
-    #
-    # table = pptxRT.add_table_from_dataFrame(df, 0, 0, 0)
-    #
-    # resize_font_size = Pt(12)
-    # pptxRT.resize_table(table, resize_font_size)
-    # myFont = cFont(size=Pt(10), color=RGBColor(0,0,255))
-    #
-    # pptxRT.fill_cell(table, [(1,1),(2,3)], RGBColor(255,0,0))
-    # pptxRT.font_cell(table, [(2,2),(3,3)], myFont)
-    # pptxRT.add_text_to_cell("asdfasdf", table, 3, 5, myFont)
-    #
-    # pptxRT.resize_table(table, resize_font_size)
-    # pptxRT.save(strOutputPath)
-    #
-    # # prs = Presentation()
-    # # title_only_slide_layout = prs.slide_layouts[5]
-    # # print(df)
-    # # print(df.iloc[1, 1])
-    # # df.iloc[1, 1] = "sdfsdfsfdsdfsdfsdf\nsfsdfsdfsdfsd"
-    # # print(len(df.iloc[:, 0]))
-    # # print(df.shape[0] + 1)
-    # # print(df.columns[0])
-    #
-    # df2 = pd.read_excel("./data/test2.xlsx")
-    #
-    # slide = pptxRT.get_slide(0)
-    # table2 = pptxRT.add_table_from_dataFrame(df2, 0, 0, 0)
-    #
-    # resize_font_size = Pt(12)
-    # pptxRT.resize_table(table2, resize_font_size)
-    #
-    # myFont = cFont(size=Pt(12), color=RGBColor(0,0,255))
-    # pptxRT.fill_cell(table2, [(1,1),(2,3)], RGBColor(255,0,0))
-    # pptxRT.font_cell(table2, [(2,2),(3,3)], myFont)
-    # pptxRT.add_text_to_cell("asdfasdf", table2, 3, 5, myFont)
-    #
-    # pptxRT.resize_table(table2, resize_font_size)
-    # pptxRT.save(strOutputPath)
-    #
-    #
-    # print(df)
-    # print("*"*20)
-    # print(df.shape)
-    # print(df.shape[1])
+    # ws = wb.worksheets[1]
+    # for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=4, max_col=6):
+    #     for cell in row:
+    #         if cell.column != 4:
+    #             print(cell.column, end=" ")
+    #     print()
