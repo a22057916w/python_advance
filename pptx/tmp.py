@@ -22,7 +22,7 @@ g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".p
 
 
 if __name__ == "__main__":
-    Carnoustie = Workbook(openpyxl.load_workbook("/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx"))
+    Carnoustie = Workbook("/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
     # wb = openpyxl.load_workbook("/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
     #
     # ws = wb.worksheets[1]

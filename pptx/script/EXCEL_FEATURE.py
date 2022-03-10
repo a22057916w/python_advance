@@ -1,43 +1,36 @@
-import openpyxl
-
-
-class Country():
-
-    def __init__(self, workbook):
-        self.country = []
-        self.set_country(workbook)
-
-    def set_country(self, workbook):
-        ws = workbook["Post-RTS"]
-        for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=4, max_col=7):
-
-            # init the data that need to store as dict
-            ctry = {
-                "name": "na",
-                "certificate": "na",
-                "schedule": "na"
-            }
-
-            # set dict value form col 4, 5, 7, respectively row[0], [1], [3]
-            ctry["name"] = row[0].value if row[0].value != None else "na"
-            ctry["certificate"] = row[1].value if row[1].value != None else "na"
-            ctry["schedule"] = row[3].value if row[3].value != None else "na"
-            print(ctry["name"])
-            self.country.append(ctry)
-
-    # count the number of country name
-    def count(self):
-        temp_list = []
-        #print(self.country)
-        for info in self.country:
-            if info["name"] not in temp_list:
-                temp_list.append(info["name"])
-        print(temp_list)
-        return len(temp_list)
+import pandas as pd
+import numpy as np
 
 class Workbook():
 
-    def __init__(self, workbook = None):
-        self.workbook = workbook
-        self.country = Country(workbook)
-        print(self.country.count())
+    def __init__(self, path = None):
+        country = pd.read_excel(path, sheet_name="Post-RTS", skiprows=1)
+
+        df_postRTS = self.truncate_df(country, "P-RTS Country (Voluntary):", 0)
+        #print(df_postRTS)
+        df_postRTS = self.drop_na_row(df_postRTS)
+        print(df_postRTS)
+
+    def truncate_df(self, df, str_value, n_col, *, first_row = 0):
+        last_row = -1
+
+        row = df.shape[0]   # return df row number
+        for i in range(row):
+            if df.iloc[i, n_col] == str_value:
+                last_row = i - 1    # don't need the row we found
+                break
+
+        return df.truncate(before=first_row, after=last_row)
+
+    def drop_na_row(self, df):
+        b_allna = False
+
+        drop_list = []
+
+        row = df.shape[0]
+        for i in range(row):
+            s = pd.Series(df.iloc[i, :])
+            if s.isnull().sum() == len(df.columns):
+                drop_list.append(i)
+
+        return df.drop(drop_list)
