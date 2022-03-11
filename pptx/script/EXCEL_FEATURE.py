@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 
 class DataFrameFeature():
+    _NaN = "NaN"  # represent the NaN value in df
 
     # truncate df according to the value in given column
     @staticmethod
@@ -9,34 +10,32 @@ class DataFrameFeature():
         first_row = last_row = -1
         n_col = column
 
-        b_first = False
+        b_first = False     # make sure we found the first_value as flag
 
         row = df.shape[0]   # return df row number
         for i in range(row):
-
             if df.iloc[i, n_col] == first_value:
                 b_first = True
-                first_row = i + 1
+                first_row = i + 1   # we don't need the row we found
 
-            if last_value == None and pd.isna(df.iloc[i, n_col]):
-                #print(i)
+            # check if last_value is NaN or not
+            if last_value == DataFrameFeature.NaN and pd.isna(df.iloc[i, n_col]):
                 last_row = i - 1
-                #print(df.iloc[i, :])
             elif df.iloc[i, n_col] == last_value:
                 last_row = i - 1    # we don't need the row we found
 
             if b_first and first_row < last_row:
-                #print(first_row, last_row)
-                #print("sdfsdfs")
                 break
 
+        # reset index order after truncated
         return df.truncate(before=first_row, after=last_row).reset_index(drop=True)
 
     # drop row that has NaN in each column
     @staticmethod
-    def drop_na_row(self, df):
+    def drop_na_row(df):
         drop_list = []
 
+        # find rows with NaN in each column
         row = df.shape[0]
         for i in range(row):
             s = pd.Series(df.iloc[i, :])    # trun df column into Series
@@ -48,5 +47,9 @@ class DataFrameFeature():
         return df.drop(drop_list).reset_index(drop=True)
 
     @staticmethod
-    def drop_row(self, df, idx):
+    def drop_row(df, idx):
         return df.drop(idx).reset_index(drop=True)
+
+    @property
+    def NaN(self):
+        return self._NaN
