@@ -70,7 +70,10 @@ class PPTXREPORT():
             # parse "P-RTS country (Mandatory):" table as df
             self.df_postRTS_MD = DFF.truncate(df_raw, column=0, first_value="P-RTS country (Mandatory):", last_value="P-RTS Country (Voluntary):")          # get the part by spilt the raw df
             self.df_postRTS_MD = DFF.drop_na_row(self.df_postRTS_MD)    # get rid of rows with all NaN value in every column
-            print(self.df_postRTS_MD)
+            DFF.substring_column_value(self.df_postRTS_MD, column_name="Country", sep="(")
+            # for val in self.df_postRTS_MD["Country"]:
+            #     print(val, type(val))
+            print(self.df_postRTS_MD["Country"])
             # parse "P-RTS country (Voluntary)):" table as df
             self.df_postRTS_VOL = DFF.truncate(df_raw, column=0, first_value="P-RTS Country (Voluntary):", last_value=DFF.NaN)
             self.df_postRTS_VOL = DFF.drop_na_row(self.df_postRTS_VOL)
@@ -103,6 +106,8 @@ class PPTXREPORT():
         table = shapes.add_table(rows, cols, left, top, width, height).table
         table.cell(1,0).text = table_name
         table.cell(0,1).text = column_name
+
+
         PF.resize_table(table, Pt(10))
 
 def setup_logger(name, log_file, level=logging.INFO):
