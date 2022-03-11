@@ -20,7 +20,7 @@ class Font():
         self.italic = italic
 
 
-class Report():
+class PresentationFeature():
 
     table = [[None]*0]
 
@@ -121,7 +121,8 @@ class Report():
         return df
 
     # format the column bwidth and text size
-    def resize_table(self, table, font_size):
+    @staticmethod
+    def resize_table(table, font_size):
         # setting font size
         for col in range(len(table.columns)):
             for row in range(len(table.rows)):

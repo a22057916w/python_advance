@@ -13,7 +13,7 @@ from pptx.enum.text import PP_ALIGN
 import logging
 
 sys.path.append("./script")
-from PPTX_FEATURE import Report, Font
+from PPTX_FEATURE import PresentationFeature as PF
 from EXCEL_FEATURE import DataFrameFeature as DFF
 
 import openpyxl
@@ -33,6 +33,8 @@ class PPTXREPORT():
     df_postRTS_MD = None
     df_postRTS_VOL = None
 
+    prs = Presentation()
+
     def __init__(self):
         self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
         self.module_logger = setup_logger("module_logger", self.strLogPath)
@@ -51,31 +53,57 @@ class PPTXREPORT():
             b_flowResult = True
 
             if b_flowResult:
+                self.module_logger.info("Read the excel sheet \"Post-RTS\"")
                 b_flowResult = self.read_postRTS(g_strExcelPath)
+            if b_flowResult:
+                self.module_logger.info("Construct the slide \"Carnoustie Regulatory status summary\"")
+                b_flowResult = self.add_regulatory_status_summary_slide()
 
         except Exception as e:
             self.module_logger.info("Unexpected Error: " + str(e))
 
     def read_postRTS(self, excel_path):
         try:
-            self.module_logger.info("Read the excel sheet \"Post-RTS\"")
-
             # read the excel sheet "Post-RTS" and skip first row
             df_raw = pd.read_excel(excel_path, sheet_name="Post-RTS", skiprows=1)
 
             # parse "P-RTS country (Mandatory):" table as df
             self.df_postRTS_MD = DFF.truncate(df_raw, column=0, first_value="P-RTS country (Mandatory):", last_value="P-RTS Country (Voluntary):")          # get the part by spilt the raw df
             self.df_postRTS_MD = DFF.drop_na_row(self.df_postRTS_MD)    # get rid of rows with all NaN value in every column
-
+            print(self.df_postRTS_MD)
             # parse "P-RTS country (Voluntary)):" table as df
             self.df_postRTS_VOL = DFF.truncate(df_raw, column=0, first_value="P-RTS Country (Voluntary):", last_value=DFF.NaN)
-            self.df_postRTS_VOL = DFF.drop_na_row(self.df_postRTS_VOL)  
+            self.df_postRTS_VOL = DFF.drop_na_row(self.df_postRTS_VOL)
             self.df_postRTS_VOL = DFF.drop_row(self.df_postRTS_VOL, 0)  # drop first row since it is dupicated to columns
 
             return True
         except Exception as e:
             self.module_logger.info("Unexpected Error: " + str(e))
             return False
+
+    def add_regulatory_status_summary_slide(self):
+        slide_layout = self.prs.slide_layouts[0]    # zero for blank slide
+        self.prs.slides.add_slide(slide_layout)
+
+        self.create_level_table(self.df_postRTS_MD, table_name="System", column_name="PPE", slide_idx=0)
+
+        self.prs.save(g_strOutputPath)
+
+    # need migrate
+    def create_level_table(self, df, *, table_name, column_name, slide_idx):
+        shapes = self.prs.slides[slide_idx].shapes
+
+        left = Inches(0)
+        top = Inches(0)
+        width = height = Inches(1)
+
+        rows = 2
+        cols = 2
+
+        table = shapes.add_table(rows, cols, left, top, width, height).table
+        table.cell(1,0).text = table_name
+        table.cell(0,1).text = column_name
+        PF.resize_table(table, Pt(10))
 
 def setup_logger(name, log_file, level=logging.INFO):
     """Function setup as many loggers as you want"""
