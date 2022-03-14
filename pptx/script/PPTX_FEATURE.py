@@ -1,4 +1,4 @@
-import os
+import os, sys
 import pandas as pd
 
 
@@ -10,6 +10,7 @@ from pptx import Presentation
 from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_AUTO_SIZE
+
 
 class Font():
     def __init__(self, *, name = "Calibri", size = Pt(12), color = RGBColor(0,0,255), bold = True, italic = True):
@@ -29,6 +30,51 @@ class PresentationFeature():
             self.prs = Presentation()
         else:
             self.prs = Presentation(strPPTXFilePath)
+
+    # add text to a cell's run and new lines by the length of string_len
+    @staticmethod
+    def add_text_with_newlines(cell, list_ctry, *, string_len):
+        str_ctry = ""
+        for i in range(len(list_ctry)):
+            if i > 0:
+                str_ctry += ","
+            str_ctry += list_ctry[i]
+
+            if len(str_ctry) >= string_len:
+                paragraph = cell.text_frame.paragraphs[-1]
+                run = paragraph.add_run()
+                run.text = str_ctry + "\n"
+                str_ctry = ""
+
+    @staticmethod
+    def add_table(slide, row = 0, col = 0, left = 0, top = 0):
+        shape = slide.shapes
+
+        left = Inches(left)
+        top = Inches(top)
+        width = height = Inches(1)
+
+        table = shape.add_table(row, col, left, top, width, height).table
+        return table
+
+    # format the column width and text size
+    @staticmethod
+    def resize_table(table, font_size):
+        # setting font size
+        for col in range(len(table.columns)):
+            for row in range(len(table.rows)):
+                for cell_pt in table.cell(row, col).text_frame.paragraphs:
+                    cell_pt.font.size = font_size
+        # format the column by finding the max length run in paragraphs
+        list_col_max_width = [0 for x in range(len(table.columns))]
+        for col in range(len(table.columns)):
+            for row in range(len(table.rows)):
+                for paragraphs in table.cell(row, col).text_frame.paragraphs:
+                    for run in paragraphs.runs:
+                        list_col_max_width[col] = max(list_col_max_width[col], len(run.text)*(font_size))
+        # setting column width
+        for col in range(len(table.columns)):
+            table.columns[col].width = list_col_max_width[col] + Cm(0.25)
 
     def save(self, strOutputPath):
         self.prs.save(strOutputPath)
@@ -52,23 +98,6 @@ class PresentationFeature():
 
         pic = shapes.add_picture(image_path, left, top, width=width, height=height)
 
-    def add_table(self, _table, slide_idx, left = 0, top = 0):
-        shape = self.prs.slides[slide_idx].shapes
-
-        left = Inches(left)
-        top = Inches(top)
-        width = height = Inches(0)
-
-        rows = len(_table.rows)
-        cols = len(_table.columns)
-
-        table = shape.add_table(rows, cols, left, top, width, height).table
-
-        for col in range(len(table.columns)):
-            for row in range(len(table.rows)):
-                table.cell(row, col).text = _table.cell(row, col).text
-
-        return table
 
     def add_table_from_dataFrame(self, df, slide_idx, left = 0, top = 0):
         shapes = self.prs.slides[slide_idx].shapes
@@ -119,25 +148,6 @@ class PresentationFeature():
         df = pd.DataFrame(row_data, columns=row_mutil_index)
 
         return df
-
-    # format the column width and text size
-    @staticmethod
-    def resize_table(table, font_size):
-        # setting font size
-        for col in range(len(table.columns)):
-            for row in range(len(table.rows)):
-                for cell_pt in table.cell(row, col).text_frame.paragraphs:
-                    cell_pt.font.size = font_size
-        # format the column by finding the max length run in paragraphs
-        list_col_max_width = [0 for x in range(len(table.columns))]
-        for col in range(len(table.columns)):
-            for row in range(len(table.rows)):
-                for paragraphs in table.cell(row, col).text_frame.paragraphs:
-                    for run in paragraphs.runs:
-                        list_col_max_width[col] = max(list_col_max_width[col], len(run.text)*(font_size))
-        # setting column width
-        for col in range(len(table.columns)):
-            table.columns[col].width = list_col_max_width[col] + Cm(0.25)
 
     # fill cell background
     def fill_cell(self, table, list_cells, RGBcolor):

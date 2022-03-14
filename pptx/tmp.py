@@ -59,6 +59,8 @@ class PPTXREPORT():
                 self.module_logger.info("Construct the slide \"Carnoustie Regulatory status summary\"")
                 b_flowResult = self.add_regulatory_status_summary_slide()
 
+                self.prs.save(g_strOutputPath)
+
         except Exception as e:
             self.module_logger.info("Unexpected Error: " + str(e))
 
@@ -71,13 +73,6 @@ class PPTXREPORT():
             self.df_postRTS_MD = DFF.truncate(df_raw, column=0, first_value="P-RTS country (Mandatory):", last_value="P-RTS Country (Voluntary):")          # get the part by spilt the raw df
             self.df_postRTS_MD = DFF.drop_na_row(self.df_postRTS_MD)    # get rid of rows with all NaN value in every column
             DFF.filter_column_value(self.df_postRTS_MD, column_name="Country", sep="(")
-
-            # for val in self.df_postRTS_MD["Country"]:
-            #     print(val, type(val))
-            #print(self.df_postRTS_MD["Country"])
-            #print(len(set(self.df_postRTS_MD["Country"])))
-            #DFF.get_country_count(self.df_postRTS_MD, category='Host')
-
 
             # parse "P-RTS country (Voluntary)):" table as df
             self.df_postRTS_VOL = DFF.truncate(df_raw, column=0, first_value="P-RTS Country (Voluntary):", last_value=DFF.NaN)
@@ -93,41 +88,24 @@ class PPTXREPORT():
         slide_layout = self.prs.slide_layouts[0]    # zero for blank slide
         self.prs.slides.add_slide(slide_layout)
 
-        self.create_level_table(self.df_postRTS_MD, table_name="System", column_name="PPE", slide_idx=0)
+        self.create_module_level_table(2, 2, 0, 0)
 
         self.prs.save(g_strOutputPath)
 
-    # need migrate
-    def create_level_table(self, df, *, table_name, column_name, slide_idx):
-        shapes = self.prs.slides[slide_idx].shapes
+    def create_module_level_table(self, row, col, left, top, slide_idx=0):
+        slide = self.prs.slides[slide_idx]
+        shapes = slide.shapes
 
-        left = Inches(0)
-        top = Inches(0)
-        width = height = Inches(1)
+        table = PF.add_table(slide, row, col, left, top)
 
-        rows = 2
-        cols = 2
-
-        table = shapes.add_table(rows, cols, left, top, width, height).table
-        table.cell(1,0).text = table_name
-        table.cell(0,1).text = column_name
-
-        total_ctry, list_ctry = DFF.get_country_set(df, category="Host")
+        # construct cell(1,0) and (0,1) which are row title and column name
+        table.cell(1,0).text = "System"
+        table.cell(0,1).text = "PPE"
 
         # construct cell(1, 1) which contain county info
-        table.cell(1,1).text = "%d\n" % total_ctry
-
-        str_ctry = ""
-        for i in range(len(list_ctry)):
-            if i > 0:
-                str_ctry += ","
-            str_ctry += list_ctry[i]
-
-            if len(str_ctry) >= 20:
-                paragraph = table.cell(1, 1).text_frame.paragraphs[-1]
-                run = paragraph.add_run()
-                run.text = str_ctry + "\n"
-                str_ctry = ""
+        total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
+        table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+        PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
 
         PF.resize_table(table, Pt(10))
 
