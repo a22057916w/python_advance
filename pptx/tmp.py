@@ -71,9 +71,14 @@ class PPTXREPORT():
             self.df_postRTS_MD = DFF.truncate(df_raw, column=0, first_value="P-RTS country (Mandatory):", last_value="P-RTS Country (Voluntary):")          # get the part by spilt the raw df
             self.df_postRTS_MD = DFF.drop_na_row(self.df_postRTS_MD)    # get rid of rows with all NaN value in every column
             DFF.filter_column_value(self.df_postRTS_MD, column_name="Country", sep="(")
+
             # for val in self.df_postRTS_MD["Country"]:
             #     print(val, type(val))
-            print(self.df_postRTS_MD["Country"])
+            #print(self.df_postRTS_MD["Country"])
+            #print(len(set(self.df_postRTS_MD["Country"])))
+            #DFF.get_country_count(self.df_postRTS_MD, category='Host')
+
+
             # parse "P-RTS country (Voluntary)):" table as df
             self.df_postRTS_VOL = DFF.truncate(df_raw, column=0, first_value="P-RTS Country (Voluntary):", last_value=DFF.NaN)
             self.df_postRTS_VOL = DFF.drop_na_row(self.df_postRTS_VOL)
@@ -107,6 +112,22 @@ class PPTXREPORT():
         table.cell(1,0).text = table_name
         table.cell(0,1).text = column_name
 
+        total_ctry, list_ctry = DFF.get_country_set(df, category="Host")
+
+        # construct cell(1, 1) which contain county info
+        table.cell(1,1).text = "%d\n" % total_ctry
+
+        str_ctry = ""
+        for i in range(len(list_ctry)):
+            if i > 0:
+                str_ctry += ","
+            str_ctry += list_ctry[i]
+
+            if len(str_ctry) >= 20:
+                paragraph = table.cell(1, 1).text_frame.paragraphs[-1]
+                run = paragraph.add_run()
+                run.text = str_ctry + "\n"
+                str_ctry = ""
 
         PF.resize_table(table, Pt(10))
 
