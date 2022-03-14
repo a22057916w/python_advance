@@ -9,7 +9,7 @@ import collections.abc
 from pptx import Presentation
 from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
+from pptx.enum.text import PP_ALIGN, MSO_AUTO_SIZE
 
 class Font():
     def __init__(self, *, name = "Calibri", size = Pt(12), color = RGBColor(0,0,255), bold = True, italic = True):
@@ -120,7 +120,7 @@ class PresentationFeature():
 
         return df
 
-    # format the column bwidth and text size
+    # format the column width and text size
     @staticmethod
     def resize_table(table, font_size):
         # setting font size
@@ -128,12 +128,13 @@ class PresentationFeature():
             for row in range(len(table.rows)):
                 for cell_pt in table.cell(row, col).text_frame.paragraphs:
                     cell_pt.font.size = font_size
-        # format the column by finding the max length paragraphs
+        # format the column by finding the max length run in paragraphs
         list_col_max_width = [0 for x in range(len(table.columns))]
         for col in range(len(table.columns)):
             for row in range(len(table.rows)):
-                for cell_pt in table.cell(row, col).text_frame.paragraphs:
-                    list_col_max_width[col] = max(list_col_max_width[col], len(cell_pt.text)*(font_size))
+                for paragraphs in table.cell(row, col).text_frame.paragraphs:
+                    for run in paragraphs.runs:
+                        list_col_max_width[col] = max(list_col_max_width[col], len(run.text)*(font_size))
         # setting column width
         for col in range(len(table.columns)):
             table.columns[col].width = list_col_max_width[col] + Cm(0.25)
