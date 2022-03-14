@@ -5,7 +5,7 @@ class DataFrameFeature():
     _NaN = "NaN"  # represent the NaN value in df
 
     @staticmethod
-    def substring_column_value(df, *, column_name, sep):
+    def filter_column_value(df, *, column_name, sep):
         col = df.columns.get_loc(column_name)
 
         for row in range(df.shape[0]):
@@ -13,7 +13,7 @@ class DataFrameFeature():
             if pd.isna(value):
                 continue
             sep_idx = value.find(sep)
-            df.iloc[row, col] = value[:sep_idx]
+            df.iloc[row, col] = value[:sep_idx].strip(" ")
             #print(value)
         #return df
 

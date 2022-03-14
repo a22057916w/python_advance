@@ -70,7 +70,7 @@ class PPTXREPORT():
             # parse "P-RTS country (Mandatory):" table as df
             self.df_postRTS_MD = DFF.truncate(df_raw, column=0, first_value="P-RTS country (Mandatory):", last_value="P-RTS Country (Voluntary):")          # get the part by spilt the raw df
             self.df_postRTS_MD = DFF.drop_na_row(self.df_postRTS_MD)    # get rid of rows with all NaN value in every column
-            DFF.substring_column_value(self.df_postRTS_MD, column_name="Country", sep="(")
+            DFF.filter_column_value(self.df_postRTS_MD, column_name="Country", sep="(")
             # for val in self.df_postRTS_MD["Country"]:
             #     print(val, type(val))
             print(self.df_postRTS_MD["Country"])
