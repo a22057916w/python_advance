@@ -4,18 +4,55 @@ import numpy as np
 class DataFrameFeature():
     _NaN = "NaN"  # represent the NaN value in df
 
+    # filter column values by remove string behind "sep", and r-strip space
     @staticmethod
     def filter_column_value(df, *, column_name, sep):
-        col = df.columns.get_loc(column_name)
+        col = df.columns.get_loc(column_name)   # get col_idx by col_name
 
         for row in range(df.shape[0]):
             value = df.iloc[row, col]
+
+            # if the country value is Nan, do nothing
             if pd.isna(value):
                 continue
-            sep_idx = value.find(sep)
-            df.iloc[row, col] = value[:sep_idx].strip(" ")
-            #print(value)
+
+            sep_idx = value.find(sep)   # find character "sep" in given string
+
+            # if not found the target sep, right strip space only, else cut the string behind sep
+            if sep_idx == -1:
+                df.iloc[row, col] = value.rstrip(" ")
+            else:
+                df.iloc[row, col] = value[:sep_idx].rstrip(" ")
         #return df
+
+    @staticmethod
+    def get_country_set(df, *, category):
+        list_ctry = []
+        total_ctry = 0
+
+        col_ctry = df.columns.get_loc("Country")
+        col_ctgy = df.columns.get_loc("Category")
+        col_cert = df.columns.get_loc("Certificate")
+
+        for row in range(df.shape[0]):
+            ctry = df.iloc[row, col_ctry]
+            ctgy = df.iloc[row, col_ctgy]
+            cert = df.iloc[row, col_cert]
+
+            if pd.isna(ctgy):
+                continue
+
+            if category == ctgy:
+                if pd.isna(ctry):
+                    continue
+                elif ctry.find("/") != -1:
+                    list_ctry.append(ctry + "(" + cert + ")")
+                    total_ctry += len(ctry.split("/"))
+                else:
+                    list_ctry.append(ctry + "(" + cert + ")")
+                    total_ctry += 1
+        #print(list_ctry)
+        return total_ctry, list_ctry
 
     # truncate df according to the value in given column
     @staticmethod
