@@ -9,7 +9,7 @@ import collections.abc
 from pptx import Presentation
 from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN, MSO_AUTO_SIZE
+from pptx.enum.text import PP_ALIGN, MSO_AUTO_SIZE, MSO_ANCHOR
 
 
 class Font():
@@ -75,6 +75,15 @@ class PresentationFeature():
         # setting column width
         for col in range(len(table.columns)):
             table.columns[col].width = list_col_max_width[col] + Cm(0.25)
+
+    # set cell text alignment by table
+    @staticmethod
+    def set_alignment(table, horizen_type, vertical_type):
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                table.cell(row, col).vertical_anchor = vertical_type    # set vertical alignment
+                for paragraph in table.cell(row, col).text_frame.paragraphs:
+                    paragraph.alignment = horizen_type      # set horizen alignment
 
     def save(self, strOutputPath):
         self.prs.save(strOutputPath)
@@ -181,11 +190,6 @@ class PresentationFeature():
         font.color.rgb = Font.color
         font.bold = Font.bold
         font.italic = Font.italic
-
-    # set cell text alignment
-    def setAlign(self, cell, align_type):
-        for paragraph in cell.text_frame.paragraphs:
-            paragraph.alignment = align_type
 
 
 class TableDataFrame():

@@ -8,7 +8,7 @@ import collections.abc
 from pptx import Presentation
 from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 
 import logging
 
@@ -108,6 +108,7 @@ class PPTXREPORT():
         PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
 
         PF.resize_table(table, Pt(10))
+        PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
 
 def setup_logger(name, log_file, level=logging.INFO):
     """Function setup as many loggers as you want"""
