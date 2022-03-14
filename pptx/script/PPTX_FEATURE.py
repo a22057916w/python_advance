@@ -10,6 +10,7 @@ from pptx import Presentation
 from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_AUTO_SIZE, MSO_ANCHOR
+from pptx.oxml.xmlchemy import OxmlElement
 
 
 class Font():
@@ -85,6 +86,46 @@ class PresentationFeature():
                 for paragraph in table.cell(row, col).text_frame.paragraphs:
                     paragraph.alignment = horizen_type      # set horizen alignment
 
+    # fill cell background
+    @staticmethod
+    def set_cell_fill(table, list_cell_coord, RGBcolor):
+        for row, col in list_cell_coord:
+            cell = table.cell(row, col)
+            fill = cell.fill
+            fill.solid()
+            fill.fore_color.rgb = RGBcolor
+
+    # fill table(all-cell) background
+    @staticmethod
+    def set_table_fill(table, RGBcolor):
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                cell = table.cell(row, col)
+                fill = cell.fill
+                fill.solid()
+                fill.fore_color.rgb = RGBcolor
+
+    @staticmethod
+    def SubElement(parent, tagname, **kwargs):
+        element = OxmlElement(tagname)
+        element.attrib.update(kwargs)
+        parent.append(element)
+        return element
+
+    @classmethod
+    def set_table_border(cls, table, border_color="000000", border_width='12700'):
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                cell = table.cell(row, col)
+                tc = cell._tc
+                tcPr = tc.get_or_add_tcPr()
+
+                lnR = cls.SubElement(
+                    tcPr, 'a:lnR', w=border_width, cap='flat', cmpd='sng', algn='ctr')
+                solidFill = cls.SubElement(lnR, 'a:solidFill')
+                srgbClr = cls.SubElement(solidFill, 'a:srgbClr', val=border_color)
+        #return table
+
     def save(self, strOutputPath):
         self.prs.save(strOutputPath)
 
@@ -158,13 +199,7 @@ class PresentationFeature():
 
         return df
 
-    # fill cell background
-    def fill_cell(self, table, list_cells, RGBcolor):
-        for row, col in list_cells:
-            cell = table.cell(row, col)
-            fill = cell.fill
-            fill.solid()
-            fill.fore_color.rgb = RGBcolor
+
 
     # font cell text
     def font_cell(self, table, list_cells, Font):

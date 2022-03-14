@@ -61,9 +61,11 @@ class PPTXREPORT():
 
                 self.prs.save(g_strOutputPath)
 
+            self.module_logger.info("========== End ==========")
         except Exception as e:
             self.module_logger.info("Unexpected Error: " + str(e))
 
+    # read the excel sheet "Post-RTS"
     def read_postRTS(self, excel_path):
         try:
             # read the excel sheet "Post-RTS" and skip first row
@@ -84,31 +86,89 @@ class PPTXREPORT():
             self.module_logger.info("Unexpected Error: " + str(e))
             return False
 
+    # Construct the slide "Carnoustie Regulatory status summary"
     def add_regulatory_status_summary_slide(self):
-        slide_layout = self.prs.slide_layouts[0]    # zero for blank slide
-        self.prs.slides.add_slide(slide_layout)
+        try:
+            slide_layout = self.prs.slide_layouts[0]    # zero for blank slide
+            self.prs.slides.add_slide(slide_layout)
 
-        self.create_module_level_table(2, 2, 0, 0)
+            b_flowResult = True
 
-        self.prs.save(g_strOutputPath)
+            if b_flowResult:
+                self.module_logger.info("Creating System Level Table")
+                b_flowResult = self.create_system_level_table(2, 2, 0, 0)
+            if b_flowResult:
+                self.module_logger.info("Creating Module Level Table")
+                b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
+            if b_flowResult:
+                self.prs.save(g_strOutputPath)
+                return True
+            else:
+                return False
+        except Exception as e:
+            self.module_logger.info("Unexpected Error: " + str(e))
+            return False
 
+    # construct the system level table in slide "Carnoustie Regulatory status summary"
+    def create_system_level_table(self, row, col, left, top, slide_idx=0):
+        try:
+            slide = self.prs.slides[slide_idx]
+            shapes = slide.shapes
+
+            table = PF.add_table(slide, row, col, left, top)
+
+            # construct cell(1,0) and (0,1) which are row title and column name
+            table.cell(1,0).text = "System"
+            table.cell(0,1).text = "PPE"
+
+            # construct cell(1, 1) which contain county info
+            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
+            table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+            PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+
+            PF.resize_table(table, Pt(10))
+            PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_fill(table, RGBColor(255, 255, 255))
+            PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
+            PF.set_table_border(table)
+
+            return True
+        except Exception as e:
+            self.module_logger.info("Unexpected Error :" + str(e))
+            return False
+
+    # construct the module level table in slide "Carnoustie Regulatory status summary"
     def create_module_level_table(self, row, col, left, top, slide_idx=0):
-        slide = self.prs.slides[slide_idx]
-        shapes = slide.shapes
+        try:
+            slide = self.prs.slides[slide_idx]
+            shapes = slide.shapes
 
-        table = PF.add_table(slide, row, col, left, top)
+            table = PF.add_table(slide, row, col, left, top)
 
-        # construct cell(1,0) and (0,1) which are row title and column name
-        table.cell(1,0).text = "System"
-        table.cell(0,1).text = "PPE"
+            # construct cell(1,0) , (2, 0) and (0,1) which are row titles and column name
+            table.cell(1,0).text = "(WWAN)"
+            table.cell(2,0).text = "RFID"
+            table.cell(0,1).text = "PPE"
 
-        # construct cell(1, 1) which contain county info
-        total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
-        table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-        PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+            # construct cell(1, 1) which contain county info of Host-WWAN
+            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host_WWAN")
+            table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+            PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
 
-        PF.resize_table(table, Pt(10))
-        PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            # construct cell(2, 1) which contain county info of RFID
+            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="RFID")
+            table.cell(2,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+            PF.add_text_with_newlines(table.cell(2,1), list_ctry, string_len=20)
+
+            PF.resize_table(table, Pt(10))
+            PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_fill(table, RGBColor(255, 255, 255))
+            PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
+
+            return True
+        except Exception as e:
+            self.module_logger.info("Unexpected Error :" + str(e))
+            return False
 
 def setup_logger(name, log_file, level=logging.INFO):
     """Function setup as many loggers as you want"""
