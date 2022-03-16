@@ -164,6 +164,7 @@ class PPTXREPORT():
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
+            PF.set_table_border(table)
 
             return True
         except Exception as e:

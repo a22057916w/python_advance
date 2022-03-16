@@ -105,6 +105,7 @@ class PresentationFeature():
                 fill.solid()
                 fill.fore_color.rgb = RGBcolor
 
+    # new xml element to set style
     @staticmethod
     def SubElement(parent, tagname, **kwargs):
         element = OxmlElement(tagname)
@@ -112,19 +113,25 @@ class PresentationFeature():
         parent.append(element)
         return element
 
+
+    # set border style by modifying xml
     @classmethod
-    def set_table_border(cls, table, border_color="000000", border_width='12700'):
+    def set_table_border(cls, table, border_color="444444", border_width='12700'):
         for row in range(len(table.rows)):
             for col in range(len(table.columns)):
                 cell = table.cell(row, col)
                 tc = cell._tc
                 tcPr = tc.get_or_add_tcPr()
 
-                lnR = cls.SubElement(
-                    tcPr, 'a:lnR', w=border_width, cap='flat', cmpd='sng', algn='ctr')
-                solidFill = cls.SubElement(lnR, 'a:solidFill')
-                srgbClr = cls.SubElement(solidFill, 'a:srgbClr', val=border_color)
-        #return table
+                for lines in ['a:lnL','a:lnR','a:lnT','a:lnB']:
+                    ln = cls.SubElement(tcPr, lines, w=border_width, cap='flat', cmpd='sng', algn='ctr')
+                    solidFill = cls.SubElement(ln, 'a:solidFill')
+                    srgbClr = cls.SubElement(solidFill, 'a:srgbClr', val=border_color)
+                    # prstDash = cls.SubElement(ln, 'a:prstDash', val='solid')
+                    # round_ = cls.SubElement(ln, 'a:round')
+                    # headEnd = cls.SubElement(ln, 'a:headEnd', type='none', w='med', len='med')
+                    # tailEnd = cls.SubElement(ln, 'a:tailEnd', type='none', w='med', len='med')
+        # return cell
 
     def save(self, strOutputPath):
         self.prs.save(strOutputPath)
