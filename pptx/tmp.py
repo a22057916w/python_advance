@@ -22,7 +22,7 @@ import openpyxl
 g_strVersion = "1.0.0.1"
 
 # [Client Excel]
-g_strExcelPath = "./pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx"
+g_strExcelPath = "/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx"
 
 # [PPT Output]
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")

@@ -51,7 +51,7 @@ class DataFrameFeature():
                 else:
                     list_ctry.append(ctry + "(" + cert + ")")
                     total_ctry += 1
-        #print(list_ctry)
+        
         return total_ctry, list_ctry
 
     # truncate df according to the value in given column
