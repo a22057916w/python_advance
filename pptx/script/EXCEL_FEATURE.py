@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 
+import openpyxl
+from openpyxl import load_workbook
+
 class DataFrameFeature():
     _NaN = "NaN"  # represent the NaN value in df
 
@@ -51,7 +54,7 @@ class DataFrameFeature():
                 else:
                     list_ctry.append(ctry + "(" + cert + ")")
                     total_ctry += 1
-        
+
         return total_ctry, list_ctry
 
     # truncate df according to the value in given column
@@ -103,3 +106,16 @@ class DataFrameFeature():
     @property
     def NaN(self):
         return self._NaN
+
+
+
+class WorkBookFeature():
+    def __init__(self, path):
+        self.wb = load_workbook(filename=path)
+        print(self.get_cell_value(sheetname="RF Schedule DVT2", str_pos="D3"))
+
+    def get_cell_value(self, *, sheetname, str_pos):
+        return self.wb[sheetname][str_pos].value
+
+    def get_WWAN_ID():
+        pass

@@ -15,14 +15,14 @@ import logging
 sys.path.append("./script")
 from PPTX_FEATURE import PresentationFeature as PF
 from EXCEL_FEATURE import DataFrameFeature as DFF
-
+from EXCEL_FEATURE import WorkBookFeature
 import openpyxl
 
 # [Main]
 g_strVersion = "1.0.0.1"
 
 # [Client Excel]
-g_strExcelPath = "/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx"
+g_strExcelPath = "./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx"
 
 # [PPT Output]
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
@@ -34,6 +34,7 @@ class PPTXREPORT():
     df_postRTS_VOL = None
 
     prs = Presentation()
+    WBF = WorkBookFeature("./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
 
     def __init__(self):
         self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
