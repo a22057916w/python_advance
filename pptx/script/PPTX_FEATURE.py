@@ -43,6 +43,22 @@ class PresentationFeature():
                 run.text = str_ctry + "\n"
                 str_ctry = ""
 
+    # setting all table cell's text size
+    @staticmethod
+    def set_table_text_size(table, *, size):
+        # setting font size
+        for col in range(len(table.columns)):
+            for row in range(len(table.rows)):
+                for cell_pt in table.cell(row, col).text_frame.paragraphs:
+                    cell_pt.font.size = size
+
+    # setting single cell's text size
+    @staticmethod
+    def set_cell_text_size(cell, *, size):
+        font = cell.font
+        font.size = size
+
+    # new a table
     @staticmethod
     def add_table(slide, row = 0, col = 0, left = 0, top = 0):
         shape = slide.shapes
@@ -74,9 +90,9 @@ class PresentationFeature():
             table.columns[col].width = list_col_max_width[col] + Cm(0.25)
 
     @staticmethod
-    def set_column_width(table, list_col_idx, *, width=Pt(1)):
+    def set_column_width(table, list_col_idx, *, width):
         for col in list_col_idx:
-            table.columns[col].width = width
+            table.columns[col].width = width[col]
 
 
     # set cell text alignment by table
