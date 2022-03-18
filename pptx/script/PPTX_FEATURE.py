@@ -22,6 +22,12 @@ class PresentationFeature():
         else:
             self.prs = Presentation(strPPTXFilePath)
 
+    @staticmethod
+    def add_text(cell, str_text):
+        paragraph = cell.text_frame.paragraphs[-1]
+        run = paragraph.add_run()
+        run.text = str_text
+
     # add text to a cell's run and new lines by the length of string_len
     @staticmethod
     def add_text_with_newlines(cell, list_ctry, *, string_len):
@@ -66,6 +72,12 @@ class PresentationFeature():
         # setting column width
         for col in range(len(table.columns)):
             table.columns[col].width = list_col_max_width[col] + Cm(0.25)
+
+    @staticmethod
+    def set_column_width(table, list_col_idx, *, width=Pt(1)):
+        for col in list_col_idx:
+            table.columns[col].width = width
+
 
     # set cell text alignment by table
     @staticmethod

@@ -124,9 +124,11 @@ class PPTXREPORT():
             # construct cell(1, 1) which contain county info
             total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
             table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-            PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+            PF.set_column_width(table, [1], width=Pt(0.1))
+            PF.add_text(table.cell(1,1), ",".join(list_ctry))
+            #PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
 
-            PF.resize_table(table, Pt(10))
+            #PF.resize_table(table, Pt(10))
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
@@ -160,7 +162,7 @@ class PPTXREPORT():
             table.cell(2,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
             PF.add_text_with_newlines(table.cell(2,1), list_ctry, string_len=20)
 
-            PF.resize_table(table, Pt(10))
+            #PF.resize_table(table, Pt(10))
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
