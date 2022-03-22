@@ -1,6 +1,5 @@
 import os, sys
 import pandas as pd
-import numpy as np
 
 import collections
 import collections.abc
@@ -9,133 +8,201 @@ import collections.abc
 from pptx import Presentation
 from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
-from pptx.enum.text import PP_ALIGN
-#from pptx.oxml.shapes.table import CT_Table
-import xml.etree.ElementTree as ET
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
+
+import logging
 
 sys.path.append("./script")
-from PPTX_FEATURE import Report, Font, TableDataFrame
+from PPTX_FEATURE import PresentationFeature as PF
+from EXCEL_FEATURE import DataFrameFeature as DFF
+from EXCEL_FEATURE import WorkBookFeature
+import openpyxl
 
+# [Main]
+g_strVersion = "1.0.0.1"
+
+# [Client Excel]
+g_strExcelPath = "./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx"
+
+# [PPT Output]
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
 
-def create_pptx():
-    pptxRT = Report()
 
-    df = pd.read_excel("./data/test.xlsx")
+class PPTXREPORT():
+    # store data of sheet "Post-RTS" from excel
+    df_postRTS_MD = None
+    df_postRTS_VOL = None
 
-    pptxRT.add_slide(0)
-    pptxRT.add_picture(0, "./data/dontlaught.jpg")
-    slide = pptxRT.get_single_slide(0)
+    prs = Presentation()
+    WBF = WorkBookFeature("./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
 
-    table = pptxRT.add_table_from_dataFrame(df, 0, 0, 0)
+    def __init__(self):
+        self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
+        self.module_logger = setup_logger("module_logger", self.strLogPath)
 
-    resize_font_size = Pt(12)
-    pptxRT.resize_table(table, resize_font_size)
-    myFont = Font(size=Pt(10), color=RGBColor(0,0,255))
+        #self.module_logger.info("========= Initiating =========")
 
-    pptxRT.fill_cell(table, [(1,1),(2,3)], RGBColor(255,0,0))
-    pptxRT.font_cell(table, [(2,2),(3,3)], myFont)
-    pptxRT.add_text_to_cell("asdfasdf", table, 3, 5, myFont)
+        self.startFlow()
 
-    pptxRT.resize_table(table, resize_font_size)
-    pptxRT.save(g_strOutputPath)
+    def startFlow(self):
+        self.module_logger.info("========== Start ==========")
+        self.module_logger.info("Python " + sys.version)
+        self.module_logger.info("%s.py %s" % (os.path.basename(__file__)[:-3], g_strVersion))
+        #self.module_logger.info("Decteing User: %s\n" % self.strUser)
 
-    df2 = pd.read_excel("./data/test2.xlsx")
+        try:
+            b_flowResult = True
 
-    slide = pptxRT.get_single_slide(0)
-    table2 = pptxRT.add_table_from_dataFrame(df2, 0, 0, 0)
+            if b_flowResult:
+                self.module_logger.info("Read the excel sheet \"Post-RTS\"")
+                b_flowResult = self.read_postRTS(g_strExcelPath)
+            if b_flowResult:
+                self.module_logger.info("Construct the slide \"Carnoustie Regulatory status summary\"")
+                b_flowResult = self.add_regulatory_status_summary_slide()
 
-    resize_font_size = Pt(12)
-    pptxRT.resize_table(table2, resize_font_size)
+                self.prs.save(g_strOutputPath)
 
-    myFont = Font(size=Pt(12), color=RGBColor(0,0,255))
-    pptxRT.fill_cell(table2, [(1,1),(2,3)], RGBColor(255,0,0))
-    pptxRT.font_cell(table2, [(2,2),(3,3)], myFont)
-    pptxRT.add_text_to_cell("asdfasdf", table2, 3, 5, myFont)
+            self.module_logger.info("========== End ==========")
+        except Exception as e:
+            self.module_logger.info("Unexpected Error: " + str(e))
 
-    pptxRT.resize_table(table2, resize_font_size)
-    pptxRT.save(g_strOutputPath)
+    # read the excel sheet "Post-RTS"
+    def read_postRTS(self, excel_path):
+        try:
+            # read the excel sheet "Post-RTS" and skip first row
+            df_raw = pd.read_excel(excel_path, sheet_name="Post-RTS", skiprows=1)
+
+            # parse "P-RTS country (Mandatory):" table as df
+            self.df_postRTS_MD = DFF.truncate(df_raw, column=0, first_value="P-RTS country (Mandatory):", last_value="P-RTS Country (Voluntary):")          # get the part by spilt the raw df
+            self.df_postRTS_MD = DFF.drop_na_row(self.df_postRTS_MD)    # get rid of rows with all NaN value in every column
+            DFF.filter_column_value(self.df_postRTS_MD, column_name="Country", sep="(")
+
+            # parse "P-RTS country (Voluntary)):" table as df
+            self.df_postRTS_VOL = DFF.truncate(df_raw, column=0, first_value="P-RTS Country (Voluntary):", last_value=DFF.NaN)
+            self.df_postRTS_VOL = DFF.drop_na_row(self.df_postRTS_VOL)
+            self.df_postRTS_VOL = DFF.drop_row(self.df_postRTS_VOL, 0)  # drop first row since it is dupicated to columns
+
+            return True
+        except Exception as e:
+            self.module_logger.info("Unexpected Error: " + str(e))
+            return False
+
+    # Construct the slide "Carnoustie Regulatory status summary"
+    def add_regulatory_status_summary_slide(self):
+        try:
+            slide_layout = self.prs.slide_layouts[0]    # zero for blank slide
+            self.prs.slides.add_slide(slide_layout)
+
+            b_flowResult = True
+
+            if b_flowResult:
+                self.module_logger.info("Creating System Level Table")
+                b_flowResult = self.create_system_level_table(2, 2, 0, 0)
+            if b_flowResult:
+                self.module_logger.info("Creating Module Level Table")
+                b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
+            if b_flowResult:
+                self.prs.save(g_strOutputPath)
+                return True
+            else:
+                return False
+        except Exception as e:
+            self.module_logger.info("Unexpected Error: " + str(e))
+            return False
+
+    # construct the system level table in slide "Carnoustie Regulatory status summary"
+    def create_system_level_table(self, row, col, left, top, slide_idx=0):
+        try:
+            slide = self.prs.slides[slide_idx]
+            shapes = slide.shapes
+
+            table = PF.add_table(slide, row, col, left, top)
+
+            # construct cell(1,0) and (0,1) which are row title and column name
+            table.cell(1,0).text = "System"
+            table.cell(0,1).text = "PPE"
+
+            # construct cell(1, 1) which contain county info
+            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
+            table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+            #PF.add_text(table.cell(1,1), ",".join(list_ctry))
+            PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+
+            #PF.resize_table(table, Pt(10))
+            PF.set_table_text_size(table, size=Pt(10))
+            PF.set_column_width(table, [0, 1], width=[Pt(11)*6, Pt(6)*40])
+            PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_fill(table, RGBColor(255, 255, 255))   # !!! the border must be set before the fill, or the xml would be overide
+            PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
+            PF.set_table_border(table)
+
+            return True
+        except Exception as e:
+            self.module_logger.info("Unexpected Error :" + str(e))
+            return False
+
+    # construct the module level table in slide "Carnoustie Regulatory status summary"
+    def create_module_level_table(self, row, col, left, top, slide_idx=0):
+        try:
+            slide = self.prs.slides[slide_idx]
+            shapes = slide.shapes
+
+            table = PF.add_table(slide, row, col, left, top)
+
+            # construct cell(1,0) , (2, 0) and (0,1) which are row titles and column name
+            table.cell(1,0).text = "(WWAN)"
+            table.cell(2,0).text = "RFID"
+            table.cell(0,1).text = "PPE"
+
+            # construct cell(1, 1) which contain county info of Host-WWAN
+            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host_WWAN")
+            table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+            PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+
+            # construct cell(2, 1) which contain county info of RFID
+            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="RFID")
+            table.cell(2,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+            PF.add_text_with_newlines(table.cell(2,1), list_ctry, string_len=20)
+
+            #PF.resize_table(table, Pt(10))
+            PF.set_table_text_size(table, size=Pt(10))
+            PF.set_column_width(table, [0, 1], width=[Pt(11)*6, Pt(6)*40])
+            PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_border(table)    # !!! the border must be set before the fill, or the xml would be overide
+            PF.set_table_fill(table, RGBColor(255, 255, 255))
+            PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
 
 
-def add_column(strPPTXFilePath):
+            return True
+        except Exception as e:
+            self.module_logger.info("Unexpected Error :" + str(e))
+            return False
 
-    clientRT = Report(strPPTXFilePath)
-    slides = clientRT.get_slides()
-    clientRT.save("./result/report_read.pptx")
-    sld = slides[3]
+def setup_logger(name, log_file, level=logging.INFO):
+    """Function setup as many loggers as you want"""
 
-    df = None
-    table = None
-    for shape in sld.shapes:
-        if shape.has_table:
-            print("------------------------")
-            table = shape.table
-            df = clientRT.read_table_as_dataFrame(table, col_header_count=3)
-            with open("client_table_xml.xml", "w+") as f:
-                f.write(table._tbl.xml)
-            break
+    fh = logging.FileHandler(log_file)
+    fh.setLevel(logging.INFO)
+    formatter = logging.Formatter('[%(asctime)s][%(levelname)-5s][%(lineno)-3d][%(funcName)s] %(message)s', datefmt='%Y/%m/%d %H:%M:%S')
+    fh.setFormatter(formatter)
 
-    #table.apply_style()
-    # print(df.shape)
-    # print(df.columns)
-    #
-    # print(df)
-    # list = np.random.rand(16, 1)
-    # print(list)
-    # idx = pd.IndexSlice[:, :, "3", slice(None)]
-    # TableDataFrame.set_existing_column(df, list, [slice(None), "PPE", "3"], 3)
-    # df.loc[:,idx] = list
-    # print(df)
-    # table = clientRT.add_table_from_dataFrame(df, 3)
-    # clientRT.resize_table(table, Pt(6))
-    #clientRT.save("./result/report_read.pptx")
+    # define a Handler which writes INFO messages or higher to the sys.stderr
+    ch = logging.StreamHandler(sys.stdout)
+    # ch = logging.StreamHandler()
+    ch.setLevel(logging.INFO)
 
-def get_table_xml(strPPTXFilePath):
-    clientRT = Report(strPPTXFilePath)
-    slides = clientRT.get_slides()
-    sld = slides[0]
-    table = None
+    # set a format which is simpler for console use
+    formatter = logging.Formatter('%(levelname)-5s - %(lineno)-4d - %(funcName)s : %(message)s')
+    # tell the handler to use this format
+    ch.setFormatter(formatter)
 
-    for shape in sld.shapes:
-        if shape.has_table:
-            print("------------------------")
-            table = shape.table
-            #print(table._tbl)
-            break
-    # xml part
-    #print(table)
-    #print(table._tbl)
-    #print(type(str(table._tbl.xml)))
-    with open("table_xml.xml", "w") as f:
-        f.write(str(table._tbl.xml))
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(fh)
+    logger.addHandler(ch)
 
-    df = clientRT.read_table_as_dataFrame(table, col_header_count=3)
-    print(df)
+    return logger
 
-    table1 = clientRT.add_table_from_dataFrame(df, 0)
-
-    with open("table1_xml.xml", "w") as f:
-        f.write(str(table1._tbl.xml))
-
-    tree = ET.parse(table1._tbl.xml)
-    root = tree.getroot()
-
-    #root = table1._tbl.xml
-    #print(root)
-    for child in root:
-        print(child.tag, child.attrib)
-        print()
-
-
-def copy_xml(src_root, dest_root):
-    pass
 
 if __name__ == "__main__":
-    print("sdfsdf")
-    #create_pptx()
-    add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
-    get_table_xml("/data/Code/python/python_advance/pptx/result/report.pptx")
-    # print(df)
-    # print("*"*20)
-    # print(df.shape)
-    # print(df.shape[1])
+    Carnoustie = PPTXREPORT()
