@@ -46,8 +46,11 @@ class DataFrameFeature():
             if pd.isna(ctgy):
                 continue
 
-            if category == ctgy:
+            if category in ctgy:
                 if pd.isna(ctry):
+                    continue
+                    
+                if ctgy in list_ctry:
                     continue
                 elif ctry.find("/") != -1:
                     list_ctry.append(ctry + "(" + cert + ")")

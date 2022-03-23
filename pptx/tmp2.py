@@ -105,15 +105,15 @@ class PPTXREPORT():
             slide = self.prs.slides[0]      # get the "Carnoustie Regulatory status summary" slide
             b_flowResult = True
 
-            if b_flowResult:
-                self.module_logger.info("Writing Title")
-                b_flowResult = self.write_regulatory_status_summary_title(slide, 0.2, 0.5, Pt(12)*37, Pt(12))
+            # if b_flowResult:
+            #     self.module_logger.info("Writing Title")
+            #     b_flowResult = self.write_regulatory_status_summary_title(slide, 0.2, 0.5, Pt(12)*37, Pt(12))
             if b_flowResult:
                 self.module_logger.info("Creating System Level Table")
-                b_flowResult = self.create_system_level_table(2, 2, 0.2, 1)
+                b_flowResult = self.create_system_level_table(2, 2, 0, 0)
             if b_flowResult:
                 self.module_logger.info("Creating Module Level Table")
-                b_flowResult = self.create_module_level_table(3, 2, 0.2, 3.5)
+                b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
             if b_flowResult:
                 self.prs.save(g_strOutputPath)
                 return True
@@ -231,12 +231,3 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 if __name__ == "__main__":
     Carnoustie = PPTXREPORT()
-
-    # wb = openpyxl.load_workbook("/data/Code/python/python_advance/pptx/example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
-    #
-    # ws = wb.worksheets[1]
-    # for row in ws.iter_rows(min_row=1, max_row=ws.max_row, min_col=4, max_col=6):
-    #     for cell in row:
-    #         if cell.column != 4:
-    #             print(cell.column, end=" ")
-    #     print()
