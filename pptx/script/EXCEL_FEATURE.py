@@ -119,12 +119,12 @@ class WorkBookFeature():
         cls.wb = load_workbook(filename=path)
 
     @classmethod
-    def get_cell_value(cls, *, sheetname, str_pos):
-        return cls.wb[sheetname][str_pos].value
+    def get_cell_value(cls, *, sheetname, pos):
+        return cls.wb[sheetname][pos].value
 
     @classmethod
     def get_WWAN_ID(cls):
-        str_RF_module = cls.get_cell_value(sheetname="RF Schedule DVT2", str_pos="D3")
+        str_RF_module = cls.get_cell_value(sheetname="RF Schedule DVT2", pos="D3")
 
         str_WWAN_ID = re.search(r'WWAN: (.{7})', str_RF_module).group(0)    # get string WWAN: XXXXXXX
         str_WWAN_ID = str_WWAN_ID.replace("WWAN: ", "")     # get only XXXXXXX

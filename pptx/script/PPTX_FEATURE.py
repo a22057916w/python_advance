@@ -14,16 +14,16 @@ from pptx.oxml.xmlchemy import OxmlElement
 
 class PresentationFeature():
 
-    table = [[None]*0]
+    @staticmethod
+    def add_textbox(slide, text, left=0, top=0, width=0, height=0):
+        txBox = slide.shapes.add_textbox(Inches(left), Inches(top), Inches(width), Inches(height))
+        tf = txBox.text_frame
+        tf.text = text
 
-    def __init__(self, strPPTXFilePath = ""):
-        if strPPTXFilePath == "":
-            self.prs = Presentation()
-        else:
-            self.prs = Presentation(strPPTXFilePath)
+        return txBox
 
     @staticmethod
-    def add_text(cell, str_text):
+    def add_text_to_cell(cell, str_text):
         paragraph = cell.text_frame.paragraphs[-1]
         run = paragraph.add_run()
         run.text = str_text

@@ -102,11 +102,15 @@ class PPTXREPORT():
             slide_layout = self.prs.slide_layouts[0]    # zero for blank slide
             self.prs.slides.add_slide(slide_layout)
 
+            slide = self.prs.slides[0]      # get the "Carnoustie Regulatory status summary" slide
             b_flowResult = True
 
             if b_flowResult:
+                self.module_logger.info("Writing Title")
+                b_flowResult = self.write_regulatory_status_summary_title(slide, 1, 1, 1, 1)
+            if b_flowResult:
                 self.module_logger.info("Creating System Level Table")
-                b_flowResult = self.create_system_level_table(2, 2, 0, 0)
+                b_flowResult = self.create_system_level_table(2, 2, 0.25, 1)
             if b_flowResult:
                 self.module_logger.info("Creating Module Level Table")
                 b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
@@ -115,6 +119,17 @@ class PPTXREPORT():
                 return True
             else:
                 return False
+        except Exception as e:
+            self.module_logger.info("Unexpected Error: " + str(e))
+            return False
+
+    def write_regulatory_status_summary_title(self, slide, left, top, width, height):
+        try:
+            project_name = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos="B1")
+            text = project_name + "Regulatory status summary"
+            PF.add_textbox(slide, text, left, top, width, height)
+
+            return True
         except Exception as e:
             self.module_logger.info("Unexpected Error: " + str(e))
             return False
@@ -182,11 +197,11 @@ class PPTXREPORT():
             PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
 
-
             return True
         except Exception as e:
             self.module_logger.info("Unexpected Error :" + str(e))
             return False
+
 
 def setup_logger(name, log_file, level=logging.INFO):
     """Function setup as many loggers as you want"""
