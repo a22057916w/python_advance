@@ -15,7 +15,7 @@ import logging
 sys.path.append("./script")
 from PPTX_FEATURE import PresentationFeature as PF
 from EXCEL_FEATURE import DataFrameFeature as DFF
-from EXCEL_FEATURE import WorkBookFeature
+from EXCEL_FEATURE import WorkBookFeature as WBF
 import openpyxl
 
 # [Main]
@@ -34,15 +34,24 @@ class PPTXREPORT():
     df_postRTS_VOL = None
 
     prs = Presentation()
-    WBF = WorkBookFeature("./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
+    #WBF = WorkBookFeature("./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
 
     def __init__(self):
-        self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
-        self.module_logger = setup_logger("module_logger", self.strLogPath)
+        try:
+            self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
+            self.module_logger = setup_logger("module_logger", self.strLogPath)
 
-        #self.module_logger.info("========= Initiating =========")
+            self.module_logger.info("========= Initiating =========")
 
-        self.startFlow()
+            self.module_logger.info("Reading and Setting Workbook")
+            WBF.set_workbook("./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
+
+            # start the construction flow
+            self.startFlow()
+
+        except Exception as e:
+            self.module_logger.info("Unexpected Error: " + str(e))
+            sys.exit(1)
 
     def startFlow(self):
         self.module_logger.info("========== Start ==========")
@@ -150,7 +159,8 @@ class PPTXREPORT():
             table = PF.add_table(slide, row, col, left, top)
 
             # construct cell(1,0) , (2, 0) and (0,1) which are row titles and column name
-            table.cell(1,0).text = "(WWAN)"
+            str_WWAN_ID = WBF.get_WWAN_ID()
+            table.cell(1,0).text = str_WWAN_ID + "\n(WWAN)"
             table.cell(2,0).text = "RFID"
             table.cell(0,1).text = "PPE"
 

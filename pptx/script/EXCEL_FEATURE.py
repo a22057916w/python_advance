@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import re
 
 import openpyxl
 from openpyxl import load_workbook
@@ -110,12 +111,22 @@ class DataFrameFeature():
 
 
 class WorkBookFeature():
-    def __init__(self, path):
-        self.wb = load_workbook(filename=path)
-        print(self.get_cell_value(sheetname="RF Schedule DVT2", str_pos="D3"))
 
-    def get_cell_value(self, *, sheetname, str_pos):
-        return self.wb[sheetname][str_pos].value
+    wb = None
 
-    def get_WWAN_ID():
-        pass
+    @classmethod
+    def set_workbook(cls, path):
+        cls.wb = load_workbook(filename=path)
+
+    @classmethod
+    def get_cell_value(cls, *, sheetname, str_pos):
+        return cls.wb[sheetname][str_pos].value
+
+    @classmethod
+    def get_WWAN_ID(cls):
+        str_RF_module = cls.get_cell_value(sheetname="RF Schedule DVT2", str_pos="D3")
+
+        str_WWAN_ID = re.search(r'WWAN: (.{7})', str_RF_module).group(0)    # get string WWAN: XXXXXXX
+        str_WWAN_ID = str_WWAN_ID.replace("WWAN: ", "")     # get only XXXXXXX
+
+        return str_WWAN_ID
