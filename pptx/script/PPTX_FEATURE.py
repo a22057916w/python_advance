@@ -76,6 +76,24 @@ class PresentationFeature():
         table = shape.add_table(row, col, left, top, width, height).table
         return table
 
+    @staticmethod
+    def add_table_by_df(slide, df, left = 0, top = 0, *, header=False):
+        shape = slide.shapes
+
+        left = Inches(left)
+        top = Inches(top)
+        width = height = Inches(1)
+
+        row = df.shape[0]
+        col = df.shape[1]
+
+        table = shape.add_table(row, col, left, top, width, height).table
+        for col in range(len(table.columns)):
+            for row in range(len(table.rows)):
+                print(df.iloc[row, col])
+                table.cell(row, col).text = df.iloc[row, col]
+        return table
+
     # format the column width and text size
     @staticmethod
     def resize_table(table, font_size):

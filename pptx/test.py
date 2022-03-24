@@ -180,8 +180,7 @@ def print_xml_tag(root):
                             print(defRPr.attrib)
 
 if __name__ == "__main__":
-    set = set((1,1,1,1,1), (1,1,1))
-    print(set)
+    print(int('7'))
     #create_pptx()
     #add_column("./example/Carnoustie_Mid Deep Dive_Regulatory schedule_20210225.pptx")
     #get_table_xml("/data/Code/python/python_advance/pptx/result/table.pptx")

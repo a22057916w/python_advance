@@ -110,6 +110,9 @@ class PPTXREPORT():
                 self.module_logger.info("Creating Module Level Table")
                 b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
             if b_flowResult:
+                self.module_logger.info("Creating Status-Date Table")
+                b_flowResult = self.create_status_date_table(10, 1)
+            if b_flowResult:
                 self.prs.save(g_strOutputPath)
                 return True
             else:
@@ -137,7 +140,7 @@ class PPTXREPORT():
 
             # set table style
             PF.set_table_text_size(table, size=Pt(10))
-            PF.set_column_width(table, [0, 1], width=[Pt(11)*6, Pt(6)*40])
+            PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_fill(table, RGBColor(255, 255, 255))   # !!! the border must be set before the fill, or the xml would be overide
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
@@ -173,7 +176,7 @@ class PPTXREPORT():
 
             # set table style
             PF.set_table_text_size(table, size=Pt(10))
-            PF.set_column_width(table, [0, 1], width=[Pt(11)*6, Pt(6)*40])
+            PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_border(table)    # !!! the border must be set before the fill, or the xml would be overide
             PF.set_table_fill(table, RGBColor(255, 255, 255))
@@ -184,6 +187,31 @@ class PPTXREPORT():
             self.module_logger.info("Unexpected Error :" + str(e))
             return False
 
+
+    def create_status_date_table(self, left, top, slide_idx=0):
+        try:
+            list_status = ["RFD", "RTS", "RTO"]
+            list_date = []
+
+            list_target_cell = ["F7", "F8", "F9"]
+            for cell_pos in list_target_cell:
+                date_value = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos=cell_pos)
+                list_date.append(str(date_value))
+
+            df_status = pd.DataFrame(data={"Ststus": list_status, "Date": list_date})
+            print(df_status)
+            print(df_status.shape)
+
+            slide = self.prs.slides[slide_idx]
+            shapes = slide.shapes
+
+            table = PF.add_table_by_df(slide, df_status, left, top)
+            PF.resize_table(table, Pt(10))
+
+            return True
+        except Exception as e:
+            self.module_logger.info("Unexpected Error :" + str(e))
+            return False
 
 def setup_logger(name, log_file, level=logging.INFO):
     """Function setup as many loggers as you want"""
