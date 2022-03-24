@@ -27,8 +27,8 @@ class DataFrameFeature():
                 df.iloc[row, col] = value.rstrip(" ")
             else:
                 df.iloc[row, col] = value[:sep_idx].rstrip(" ")
-        #return df
 
+    # get country list and counts according by Category
     @staticmethod
     def get_country_set(df, *, category):
         list_ctry = []
@@ -103,6 +103,7 @@ class DataFrameFeature():
 
         return df.drop(drop_list).reset_index(drop=True)
 
+    # drop a row by index
     @staticmethod
     def drop_row(df, idx):
         return df.drop(idx).reset_index(drop=True)
@@ -115,16 +116,19 @@ class DataFrameFeature():
 
 class WorkBookFeature():
 
-    wb = None
+    wb = None   # stand by for a workbook object from excel
 
+    # new workbook from a excel
     @classmethod
     def set_workbook(cls, path):
         cls.wb = load_workbook(filename=path)
 
+    # get a cell's value from a position of a specific sheet
     @classmethod
     def get_cell_value(cls, *, sheetname, pos):
         return cls.wb[sheetname][pos].value
 
+    # get WWAN ID, still need to check spec, then modify
     @classmethod
     def get_WWAN_ID(cls):
         str_RF_module = cls.get_cell_value(sheetname="RF Schedule DVT2", pos="D3")
