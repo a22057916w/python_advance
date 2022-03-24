@@ -34,7 +34,6 @@ class PPTXREPORT():
     df_postRTS_VOL = None
 
     prs = Presentation()
-    #WBF = WorkBookFeature("./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
 
     def __init__(self):
         try:
@@ -102,12 +101,8 @@ class PPTXREPORT():
             slide_layout = self.prs.slide_layouts[0]    # zero for blank slide
             self.prs.slides.add_slide(slide_layout)
 
-            slide = self.prs.slides[0]      # get the "Carnoustie Regulatory status summary" slide
             b_flowResult = True
 
-            # if b_flowResult:
-            #     self.module_logger.info("Writing Title")
-            #     b_flowResult = self.write_regulatory_status_summary_title(slide, 0.2, 0.5, Pt(12)*37, Pt(12))
             if b_flowResult:
                 self.module_logger.info("Creating System Level Table")
                 b_flowResult = self.create_system_level_table(2, 2, 0, 0)
@@ -119,17 +114,6 @@ class PPTXREPORT():
                 return True
             else:
                 return False
-        except Exception as e:
-            self.module_logger.info("Unexpected Error: " + str(e))
-            return False
-
-    def write_regulatory_status_summary_title(self, slide, left, top, width, height):
-        try:
-            project_name = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos="B1")
-            text = project_name + "Regulatory status summary"
-            PF.add_textbox(slide, text, left, top, width, height)
-
-            return True
         except Exception as e:
             self.module_logger.info("Unexpected Error: " + str(e))
             return False
@@ -149,10 +133,9 @@ class PPTXREPORT():
             # construct cell(1, 1) which contain county info
             total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
             table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-            #PF.add_text(table.cell(1,1), ",".join(list_ctry))
             PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
 
-            #PF.resize_table(table, Pt(10))
+            # set table style
             PF.set_table_text_size(table, size=Pt(10))
             PF.set_column_width(table, [0, 1], width=[Pt(11)*6, Pt(6)*40])
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
@@ -173,23 +156,22 @@ class PPTXREPORT():
 
             table = PF.add_table(slide, row, col, left, top)
 
-            # construct cell(1,0) , (2, 0) and (0,1) which are row titles and column name
-            str_WWAN_ID = WBF.get_WWAN_ID()
-            table.cell(1,0).text = str_WWAN_ID + "\n(WWAN)"
-            table.cell(2,0).text = "RFID"
+            # set column 1 title name
             table.cell(0,1).text = "PPE"
 
-            # construct cell(1, 1) which contain county info of Host-WWAN
-            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host_WWAN")
-            table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-            PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+            # construct the column 0 (row title) by rows
+            list_title = [WBF.get_WWAN_ID()+"\n(WWAN)", "RFID"]
+            for i in range(1, row):
+                table.cell(i, 0).text = list_title[i - 1]
 
-            # construct cell(2, 1) which contain county info of RFID
-            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="RFID")
-            table.cell(2,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-            PF.add_text_with_newlines(table.cell(2,1), list_ctry, string_len=20)
+            # construct the column 1 (country info) by rows
+            list_ctgy = ["Host_WWAN", "RFID"]
+            for i in range(1, row):
+                total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category=list_ctgy[i - 1])
+                table.cell(i, 1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+                PF.add_text_with_newlines(table.cell(i, 1), list_ctry, string_len=20)
 
-            #PF.resize_table(table, Pt(10))
+            # set table style
             PF.set_table_text_size(table, size=Pt(10))
             PF.set_column_width(table, [0, 1], width=[Pt(11)*6, Pt(6)*40])
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
