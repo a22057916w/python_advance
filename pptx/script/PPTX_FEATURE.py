@@ -14,17 +14,19 @@ from pptx.oxml.xmlchemy import OxmlElement
 
 class PresentationFeature():
 
+    # new textbox and add text
     @staticmethod
     def add_textbox(slide, text, left=0, top=0, width=0, height=0, *, size=Pt(12)):
         txBox = slide.shapes.add_textbox(Inches(left), Inches(top), Inches(width), Inches(height))
         text_frame = txBox.text_frame
-        text_frame.word_wrap = True
+        text_frame.word_wrap = True         # for libreoffic, if not having this line, the textbox will go off
         p = text_frame.add_paragraph()
         p.text = text
         p.font.size = size
 
         return txBox
 
+    # add text to a table's cell
     @staticmethod
     def add_text_to_cell(cell, str_text):
         paragraph = cell.text_frame.paragraphs[-1]
@@ -92,10 +94,11 @@ class PresentationFeature():
         for col in range(len(table.columns)):
             table.columns[col].width = list_col_max_width[col] + Cm(0.25)
 
+    # set multiple column width with corresponding given value
     @staticmethod
-    def set_column_width(table, list_col_idx, *, width):
+    def set_column_width(table, list_col_idx, list_width):
         for col in list_col_idx:
-            table.columns[col].width = width[col]
+            table.columns[col].width = list_width[col]
 
 
     # set cell text alignment by table
