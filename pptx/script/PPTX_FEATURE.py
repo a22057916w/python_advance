@@ -20,6 +20,7 @@ class PresentationFeature():
         txBox = slide.shapes.add_textbox(Inches(left), Inches(top), Inches(width), Inches(height))
         text_frame = txBox.text_frame
         text_frame.word_wrap = True         # for libreoffic, if not having this line, the textbox will go off
+
         p = text_frame.add_paragraph()
         p.text = text
         p.font.size = size
