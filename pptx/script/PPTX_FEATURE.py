@@ -131,7 +131,7 @@ class PresentationFeature():
 
     # set cell text alignment by table
     @staticmethod
-    def set_alignment(table, horizen_type, vertical_type):
+    def set_table_text_alignment(table, horizen_type, vertical_type):
         for row in range(len(table.rows)):
             for col in range(len(table.columns)):
                 table.cell(row, col).vertical_anchor = vertical_type    # set vertical alignment

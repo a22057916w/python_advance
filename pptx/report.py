@@ -134,7 +134,9 @@ class PPTXREPORT():
             project_name = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos="B1")
             text = project_name + " Regulatory status summary"
             txbox = PF.add_textbox(slide, text, left, top, width, height)
+
             txbox.left = txbox.left - int(txbox.width / 2)
+
 
             return True
         except Exception as e:
@@ -161,7 +163,7 @@ class PPTXREPORT():
             # set table style
             PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
-            PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_text_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_fill(table, RGBColor(255, 255, 255))   # !!! the border must be set before the fill, or the xml would be overide
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
             PF.set_table_border(table)
@@ -197,7 +199,7 @@ class PPTXREPORT():
             # set table style
             PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
-            PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_text_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_border(table)    # !!! the border must be set before the fill, or the xml would be overide
             PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
