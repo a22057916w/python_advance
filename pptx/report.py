@@ -108,16 +108,16 @@ class PPTXREPORT():
 
             if b_flowResult:
                 self.module_logger.info("Writing Title")
-                b_flowResult = self.write_regulatory_status_summary_title(5, 0.5, Pt(12)*37, Pt(12))
+                b_flowResult = self.write_regulatory_status_summary_title(5, 0, Pt(12)*37, Pt(12))
             if b_flowResult:
                 self.module_logger.info("Creating System Level Table")
-                b_flowResult = self.create_system_level_table(2, 2, 0, 0)
+                b_flowResult = self.create_system_level_table(0.20, 0.63, 2, 2)
             if b_flowResult:
                 self.module_logger.info("Creating Module Level Table")
-                b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
+                b_flowResult = self.create_module_level_table(0.20, 4.30, 3, 2)
             if b_flowResult:
                 self.module_logger.info("Creating Status-Date Table")
-                b_flowResult = self.create_status_date_table(10, 1)
+                b_flowResult = self.create_status_date_table(7.88, 0.05)
             if b_flowResult:
                 self.prs.save(g_strOutputPath)
                 return True
@@ -133,10 +133,11 @@ class PPTXREPORT():
 
             project_name = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos="B1")
             text = project_name + " Regulatory status summary"
+
             txbox = PF.add_textbox(slide, text, left, top, width, height)
 
             txbox.left = txbox.left - int(txbox.width / 2)
-
+            PF.set_textbox_alignment(txbox, PP_ALIGN.CENTER)
 
             return True
         except Exception as e:
@@ -144,7 +145,7 @@ class PPTXREPORT():
             return False
 
     # construct the system level table in slide "Carnoustie Regulatory status summary"
-    def create_system_level_table(self, row, col, left, top, slide_idx=0):
+    def create_system_level_table(self, left, top, row, col, slide_idx=0):
         try:
             slide = self.prs.slides[slide_idx]
             shapes = slide.shapes
@@ -174,7 +175,7 @@ class PPTXREPORT():
             return False
 
     # construct the module level table in slide "Carnoustie Regulatory status summary"
-    def create_module_level_table(self, row, col, left, top, slide_idx=0):
+    def create_module_level_table(self, left, top, row, col, slide_idx=0):
         try:
             slide = self.prs.slides[slide_idx]
             shapes = slide.shapes

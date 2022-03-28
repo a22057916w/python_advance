@@ -28,6 +28,11 @@ class PresentationFeature():
 
         return txBox
 
+    @staticmethod
+    def set_textbox_alignment(textbox, horizen_type):
+        for paragraph in textbox.text_frame.paragraphs:
+            paragraph.alignment = horizen_type      # set horizen alignment
+            
     # add text to a table's cell
     @staticmethod
     def add_text_to_cell(cell, str_text):
