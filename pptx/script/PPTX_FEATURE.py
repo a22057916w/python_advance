@@ -17,9 +17,10 @@ class PresentationFeature():
     # new textbox and add text
     @staticmethod
     def add_textbox(slide, text, left=0, top=0, width=0, height=0, *, size=Pt(12)):
-        txBox = slide.shapes.add_textbox(Inches(left), Inches(top), Inches(width), Inches(height))
+
+        txBox = slide.shapes.add_textbox(Inches(left), Inches(top), width, height)
         text_frame = txBox.text_frame
-        text_frame.word_wrap = True         # for libreoffic, if not having this line, the textbox will go off
+        text_frame.word_wrap = True         # for libreoffic, if not having this line, the textbox will go off the slide
 
         p = text_frame.add_paragraph()
         p.text = text

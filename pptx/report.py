@@ -109,15 +109,15 @@ class PPTXREPORT():
             if b_flowResult:
                 self.module_logger.info("Writing Title")
                 b_flowResult = self.write_regulatory_status_summary_title(0.2, 0.5, Pt(12)*37, Pt(12))
-            if b_flowResult:
-                self.module_logger.info("Creating System Level Table")
-                b_flowResult = self.create_system_level_table(2, 2, 0, 0)
-            if b_flowResult:
-                self.module_logger.info("Creating Module Level Table")
-                b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
-            if b_flowResult:
-                self.module_logger.info("Creating Status-Date Table")
-                b_flowResult = self.create_status_date_table(10, 1)
+            # if b_flowResult:
+            #     self.module_logger.info("Creating System Level Table")
+            #     b_flowResult = self.create_system_level_table(2, 2, 0, 0)
+            # if b_flowResult:
+            #     self.module_logger.info("Creating Module Level Table")
+            #     b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
+            # if b_flowResult:
+            #     self.module_logger.info("Creating Status-Date Table")
+            #     b_flowResult = self.create_status_date_table(10, 1)
             if b_flowResult:
                 self.prs.save(g_strOutputPath)
                 return True
@@ -132,7 +132,7 @@ class PPTXREPORT():
             slide = self.prs.slides[slide_idx]
 
             project_name = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos="B1")
-            text = project_name + "Regulatory status summary"
+            text = project_name + " Regulatory status summary"
             PF.add_textbox(slide, text, left, top, width, height)
 
             return True
@@ -215,12 +215,9 @@ class PPTXREPORT():
             list_target_cell = ["F7", "F8", "F9"]
             for cell_pos in list_target_cell:
                 date_value = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos=cell_pos)
-                print(date_value, type(date_value))
                 list_date.append(datetime.strftime(date_value, "%Y/%m/%d"))
 
             df_status = pd.DataFrame(data={"Ststus": list_status, "Date": list_date})
-            print(df_status)
-            print(df_status.shape)
 
             slide = self.prs.slides[slide_idx]
             shapes = slide.shapes
