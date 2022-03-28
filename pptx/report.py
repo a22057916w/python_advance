@@ -108,16 +108,16 @@ class PPTXREPORT():
 
             if b_flowResult:
                 self.module_logger.info("Writing Title")
-                b_flowResult = self.write_regulatory_status_summary_title(0.2, 0.5, Pt(12)*37, Pt(12))
-            # if b_flowResult:
-            #     self.module_logger.info("Creating System Level Table")
-            #     b_flowResult = self.create_system_level_table(2, 2, 0, 0)
-            # if b_flowResult:
-            #     self.module_logger.info("Creating Module Level Table")
-            #     b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
-            # if b_flowResult:
-            #     self.module_logger.info("Creating Status-Date Table")
-            #     b_flowResult = self.create_status_date_table(10, 1)
+                b_flowResult = self.write_regulatory_status_summary_title(5, 0.5, Pt(12)*37, Pt(12))
+            if b_flowResult:
+                self.module_logger.info("Creating System Level Table")
+                b_flowResult = self.create_system_level_table(2, 2, 0, 0)
+            if b_flowResult:
+                self.module_logger.info("Creating Module Level Table")
+                b_flowResult = self.create_module_level_table(3, 2, 0, 3.5)
+            if b_flowResult:
+                self.module_logger.info("Creating Status-Date Table")
+                b_flowResult = self.create_status_date_table(10, 1)
             if b_flowResult:
                 self.prs.save(g_strOutputPath)
                 return True
@@ -133,7 +133,8 @@ class PPTXREPORT():
 
             project_name = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos="B1")
             text = project_name + " Regulatory status summary"
-            PF.add_textbox(slide, text, left, top, width, height)
+            txbox = PF.add_textbox(slide, text, left, top, width, height)
+            txbox.left = txbox.left - int(txbox.width / 2)
 
             return True
         except Exception as e:
@@ -158,7 +159,7 @@ class PPTXREPORT():
             PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
 
             # set table style
-            PF.set_table_text_size(table, size=Pt(10))
+            PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_fill(table, RGBColor(255, 255, 255))   # !!! the border must be set before the fill, or the xml would be overide
@@ -194,7 +195,7 @@ class PPTXREPORT():
                 PF.add_text_with_newlines(table.cell(i, 1), list_ctry, string_len=20)
 
             # set table style
-            PF.set_table_text_size(table, size=Pt(10))
+            PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
             PF.set_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_border(table)    # !!! the border must be set before the fill, or the xml would be overide
