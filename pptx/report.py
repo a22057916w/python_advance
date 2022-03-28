@@ -137,6 +137,7 @@ class PPTXREPORT():
 
             txbox = PF.add_textbox(slide, text, left, top, width, height)
 
+            # set textbox style
             txbox.left = txbox.left - int(txbox.width / 2)
             PF.set_textbox_alignment(txbox, PP_ALIGN.CENTER)
 
@@ -211,7 +212,7 @@ class PPTXREPORT():
             self.module_logger.info("Unexpected Error :" + str(e))
             return False
 
-
+    # construct the status table which located on the right-top side of slied
     def create_status_date_table(self, left, top, slide_idx=0):
         try:
             list_status = ["RFD", "RTS", "RTO"]
@@ -219,7 +220,7 @@ class PPTXREPORT():
 
             list_target_cell = ["F7", "F8", "F9"]
             for cell_pos in list_target_cell:
-                date_value = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos=cell_pos)
+                date_value = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos=cell_pos)  # return <datetime>
                 list_date.append(datetime.strftime(date_value, "%Y/%m/%d"))
 
             df_status = pd.DataFrame(data={"Ststus": list_status, "Date": list_date})
@@ -227,7 +228,10 @@ class PPTXREPORT():
             slide = self.prs.slides[slide_idx]
             shapes = slide.shapes
 
+            # new table by df
             table = PF.add_table_by_df(slide, df_status, left, top)
+
+            # set table style
             PF.resize_table(table, Pt(10))
             PF.set_table_fill(table, RGBColor(255, 240, 201))
             PF.set_table_text_color(table, RGBColor(0, 0, 0))
