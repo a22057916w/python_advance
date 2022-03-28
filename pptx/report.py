@@ -107,6 +107,9 @@ class PPTXREPORT():
             b_flowResult = True
 
             if b_flowResult:
+                self.module_logger.info("Writing Title")
+                b_flowResult = self.write_regulatory_status_summary_title(0.2, 0.5, Pt(12)*37, Pt(12))
+            if b_flowResult:
                 self.module_logger.info("Creating System Level Table")
                 b_flowResult = self.create_system_level_table(2, 2, 0, 0)
             if b_flowResult:
@@ -120,6 +123,19 @@ class PPTXREPORT():
                 return True
             else:
                 return False
+        except Exception as e:
+            self.module_logger.info("Unexpected Error: " + str(e))
+            return False
+
+    def write_regulatory_status_summary_title(self, left, top, width, height, slide_idx=0):
+        try:
+            slide = self.prs.slides[slide_idx]
+
+            project_name = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos="B1")
+            text = project_name + "Regulatory status summary"
+            PF.add_textbox(slide, text, left, top, width, height)
+
+            return True
         except Exception as e:
             self.module_logger.info("Unexpected Error: " + str(e))
             return False
