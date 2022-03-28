@@ -77,7 +77,7 @@ class PresentationFeature():
         return table
 
     @staticmethod
-    def add_table_by_df(slide, df, left = 0, top = 0, *, header=False):
+    def add_table_by_df(slide, df, left = 0, top = 0):
         shape = slide.shapes
 
         left = Inches(left)
@@ -90,7 +90,6 @@ class PresentationFeature():
         table = shape.add_table(row, col, left, top, width, height).table
         for col in range(len(table.columns)):
             for row in range(len(table.rows)):
-                print(df.iloc[row, col])
                 table.cell(row, col).text = df.iloc[row, col]
         return table
 

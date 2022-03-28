@@ -1,5 +1,8 @@
 import os, sys
 import pandas as pd
+from datetime import datetime
+import time
+import logging
 
 import collections
 import collections.abc
@@ -10,7 +13,7 @@ from pptx.util import Inches, Pt, Cm
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 
-import logging
+
 
 sys.path.append("./script")
 from PPTX_FEATURE import PresentationFeature as PF
@@ -196,7 +199,8 @@ class PPTXREPORT():
             list_target_cell = ["F7", "F8", "F9"]
             for cell_pos in list_target_cell:
                 date_value = WBF.get_cell_value(sheetname="S&G&E Schedu_DVT2 Start", pos=cell_pos)
-                list_date.append(str(date_value))
+                print(date_value, type(date_value))
+                list_date.append(datetime.strftime(date_value, "%Y/%m/%d"))
 
             df_status = pd.DataFrame(data={"Ststus": list_status, "Date": list_date})
             print(df_status)
@@ -207,6 +211,8 @@ class PPTXREPORT():
 
             table = PF.add_table_by_df(slide, df_status, left, top)
             PF.resize_table(table, Pt(10))
+            PF.set_table_fill(table, RGBColor(255, 240, 201))
+
 
             return True
         except Exception as e:
