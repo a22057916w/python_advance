@@ -64,6 +64,14 @@ class PresentationFeature():
         font = cell.font
         font.size = size
 
+    # set all cell's text color
+    @staticmethod
+    def set_table_text_color(table, RGBcolor):
+        for col in range(len(table.columns)):
+            for row in range(len(table.rows)):
+                for cell_pt in table.cell(row, col).text_frame.paragraphs:
+                    cell_pt.font.color.rgb = RGBcolor
+
     # new a table
     @staticmethod
     def add_table(slide, row = 0, col = 0, left = 0, top = 0):
@@ -76,6 +84,7 @@ class PresentationFeature():
         table = shape.add_table(row, col, left, top, width, height).table
         return table
 
+    # construct table by given dataframe
     @staticmethod
     def add_table_by_df(slide, df, left = 0, top = 0):
         shape = slide.shapes
@@ -159,6 +168,10 @@ class PresentationFeature():
     # set border style by modifying xml
     @classmethod
     def set_table_border(cls, table, border_color="444444", border_width='12700'):
+
+        # if type(border_color) == type(RGBColor(0, 0, 0))
+        #     border_color = "02x%02x%02x%"
+
         for row in range(len(table.rows)):
             for col in range(len(table.columns)):
                 cell = table.cell(row, col)

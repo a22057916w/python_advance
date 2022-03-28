@@ -212,7 +212,8 @@ class PPTXREPORT():
             table = PF.add_table_by_df(slide, df_status, left, top)
             PF.resize_table(table, Pt(10))
             PF.set_table_fill(table, RGBColor(255, 240, 201))
-
+            PF.set_table_text_color(table, RGBColor(0, 0, 0))
+            PF.set_table_border(table, str(RGBColor(255, 240, 201)))
 
             return True
         except Exception as e:
