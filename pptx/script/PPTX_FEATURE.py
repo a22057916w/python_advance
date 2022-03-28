@@ -28,11 +28,12 @@ class PresentationFeature():
 
         return txBox
 
+    # set text alignment inside textbox
     @staticmethod
     def set_textbox_alignment(textbox, horizen_type):
         for paragraph in textbox.text_frame.paragraphs:
             paragraph.alignment = horizen_type      # set horizen alignment
-            
+
     # add text to a table's cell
     @staticmethod
     def add_text_to_cell(cell, str_text):
@@ -78,7 +79,7 @@ class PresentationFeature():
                 for cell_pt in table.cell(row, col).text_frame.paragraphs:
                     cell_pt.font.color.rgb = RGBcolor
 
-    # new a table
+    # new a table without formating or styling
     @staticmethod
     def add_table(slide, row = 0, col = 0, left = 0, top = 0):
         shape = slide.shapes
@@ -136,7 +137,7 @@ class PresentationFeature():
 
     # set cell text alignment by table
     @staticmethod
-    def set_table_text_alignment(table, horizen_type, vertical_type):
+    def set_table_alignment(table, horizen_type, vertical_type):
         for row in range(len(table.rows)):
             for col in range(len(table.columns)):
                 table.cell(row, col).vertical_anchor = vertical_type    # set vertical alignment
@@ -174,10 +175,6 @@ class PresentationFeature():
     # set border style by modifying xml
     @classmethod
     def set_table_border(cls, table, border_color="444444", border_width='12700'):
-
-        # if type(border_color) == type(RGBColor(0, 0, 0))
-        #     border_color = "02x%02x%02x%"
-
         for row in range(len(table.rows)):
             for col in range(len(table.columns)):
                 cell = table.cell(row, col)

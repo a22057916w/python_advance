@@ -127,6 +127,7 @@ class PPTXREPORT():
             self.module_logger.info("Unexpected Error: " + str(e))
             return False
 
+    # write the slide title "Carnoustie Regulatory status summary", whick Carnoustie is project name
     def write_regulatory_status_summary_title(self, left, top, width, height, slide_idx=0):
         try:
             slide = self.prs.slides[slide_idx]
@@ -164,7 +165,7 @@ class PPTXREPORT():
             # set table style
             PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
-            PF.set_table_text_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_fill(table, RGBColor(255, 255, 255))   # !!! the border must be set before the fill, or the xml would be overide
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
             PF.set_table_border(table)
@@ -200,7 +201,7 @@ class PPTXREPORT():
             # set table style
             PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
-            PF.set_table_text_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
+            PF.set_table_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_border(table)    # !!! the border must be set before the fill, or the xml would be overide
             PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
