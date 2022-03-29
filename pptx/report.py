@@ -3,6 +3,8 @@ import pandas as pd
 from datetime import datetime
 import time
 import logging
+import traceback
+
 
 import collections
 import collections.abc
@@ -31,6 +33,48 @@ g_strExcelPath = "./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217
 g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".pptx")
 
 
+class CLIENTREPORT():
+    def __init__(self, pptx_path):
+        self.prs = Presentation(pptx_path)
+
+    def get_table_dict(self, slide_idx):
+        try:
+            slide = self.prs.slides[slide_idx]
+
+            list_table = []
+            for shape in sld.shapes:
+                if shape.has_table:
+                    list_table.append(shape.table)
+
+            # for slide 1 only
+            list_status_table_title = ["RFD, RTS, RTO", "LABEL", "DVT 1.0 ETA", "DVT 2.0 ETA"]
+            dict_table = {}
+            for table in list_table:
+                title = self.get_table_title(table, 1, 0)
+                if title in list_status_table_title:
+                    dict_table["Status"] = table
+                elif title == "System":
+                    dict_table["System"] = table
+                else:
+                    dict_table["Module"] = table
+            return dict_table
+        except:
+            self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
+            return None
+
+    def get_table_title(self, table, row, col):
+        try:
+            cell = table.cell(row, col)
+            if cell.value == None:
+                self.moduel_logger.error("The given cell value is empty.")
+                return None
+            else:
+                return cell.value
+        except:
+            self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
+            return None
+
+
 class PPTXREPORT():
     # store data of sheet "Post-RTS" from excel
     df_postRTS_MD = None
@@ -52,7 +96,7 @@ class PPTXREPORT():
             self.startFlow()
 
         except Exception as e:
-            self.module_logger.info("Unexpected Error: " + str(e))
+            self.module_logger.error("Unexpected Error: " + str(e))
             sys.exit(1)
 
     def startFlow(self):
@@ -269,4 +313,5 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 
 if __name__ == "__main__":
-    Carnoustie = PPTXREPORT()
+    #Carnoustie = PPTXREPORT()
+    ClientRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/result/report.pptx")
