@@ -317,8 +317,11 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 if __name__ == "__main__":
     #Carnoustie = PPTXREPORT()
-    CRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/example/Carnoustie_ICE Deep Dive_Regulatory schedule_20210604.pptx")
-    dict_table = CRT.get_table_dict(2)
-    for title, table in dict_table.items():
-        print(title)
-        PF.print_table(table)
+
+    CRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/result/report.pptx")
+    dict_table = CRT.get_table_dict(0)
+    # for title, table in dict_table.items():
+    #     print(title)
+    #     PF.print_table(table)
+
+    PF.print_table_xml(dict_table["System"], "System")

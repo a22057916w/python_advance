@@ -12,6 +12,8 @@ from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_AUTO_SIZE, MSO_ANCHOR
 from pptx.oxml.xmlchemy import OxmlElement
 
+import xml.etree.ElementTree as ET
+
 class PresentationFeature():
 
     # new textbox and add text
@@ -195,3 +197,22 @@ class PresentationFeature():
                     round_ = cls.SubElement(ln, 'a:round')
                     headEnd = cls.SubElement(ln, 'a:headEnd', type='none', w='med', len='med')
                     tailEnd = cls.SubElement(ln, 'a:tailEnd', type='none', w='med', len='med')
+
+    @classmethod
+    def print_table_xml(cls, table, table_name, path=os.getcwd()):
+        with open(table_name + "_table.xml", "w") as f:
+            f.write(str(table._tbl.xml))
+
+        root = ET.fromstring(table._tbl.xml)
+        cls.traverse_xml(root)
+
+    @classmethod
+    def traverse_xml(cls, root):
+        namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+        if root == None:
+            print("Element is None")
+            return
+
+        for element in root:
+            print(element.tag, element.attrib)
+            cls.traverse_xml(element)
