@@ -216,7 +216,6 @@ class PresentationFeature():
                 for paragraphs in table.cell(row, col).text_frame.paragraphs:
                     for run in paragraphs.runs:
                         if run.text in list_run_text:
-                            print(run.text)
                             r = run._r
                             rPr = cls.SubElement(r, 'a:rPr', strike="dblStrike")
 

@@ -40,6 +40,7 @@ class CLIENTREPORT():
 
         self.prs = Presentation(pptx_path)
 
+    #
     def get_table_dict(self, *, slide_idx):
         try:
             slide = self.prs.slides[slide_idx]
@@ -209,24 +210,16 @@ class PPTXREPORT():
 
             table = PF.add_table(slide, row, col, left, top)
 
-            # construct cell(1,0) and (0,1) which are row title and column name
+            # set PPE column and row titles
             self.set_PPE_phase(table, level="System", status=self.status)
 
             # set table style
-            dict_table = self.CRT.get_table_dict(slide_idx=0)
-            #print(dict_table.keys())
-            list_dblstrike_run = PF.find_dblstrike(dict_table["System"])
-            PF.set_dblstrike(table, list_dblstrike_run)
-
             PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
             PF.set_table_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
             PF.set_table_border(table)  # !!! the border must be set before the fill, or the xml would be overide
             PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
-            # PF.print_table_xml(dict_table["System"], table_name="dblstrike")
-            # PF.print_table_xml(table, table_name="System_dbl_tbl")
-
 
             return True
         except Exception as e:
@@ -246,7 +239,6 @@ class PPTXREPORT():
             # set column 1 title name
             self.set_PPE_phase(table, level="Module", status=self.status)
 
-
             # set table style
             PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
@@ -258,38 +250,53 @@ class PPTXREPORT():
             return True
         except Exception as e:
             self.module_logger.info("Unexpected Error :" + str(e))
+            self.module_logger.info(str(traceback.format_exc()))
             return False
 
     def set_PPE_phase(self, table, *, level, status):
         if level == "System":
             if status == "New":
-                # construct cell(1, 1) which contain county info
-                table.cell(1,0).text = "System"
                 table.cell(0,1).text = "PPE"
 
-                # construct the column 0 (row title) by rows
-                list_title = [WBF.get_WWAN_ID()+"\n(WWAN)", "RFID"]
-                for i in range(1, row):
-                    table.cell(i, 0).text = list_title[i - 1]
+                # construct the column 0 title
+                table.cell(1,0).text = "System"
 
+                # construct cell(1, 1) which contain county info
                 total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
                 table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
                 PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
             elif status == "Update":
+                # copy prvious table by cell(row, col)
                 dict_table = self.CRT.get_table_dict(slide_idx=0)
                 PF.copy_table_value(table, dict_table["System"])
+
+                # set table style
+                list_dblstrike_run = PF.find_dblstrike(dict_table["System"])
+                PF.set_dblstrike(table, list_dblstrike_run)
+
         if level == "Module":
             if status == "New":
-                # construct the column 1 (country info) by rows
                 table.cell(0,1).text = "PPE"
+
+                # construct the column 0 (row title) by rows
+                list_title = [WBF.get_WWAN_ID()+"\n(WWAN)", "RFID"]
+                for i in range(1, len(table.rows)):
+                    table.cell(i, 0).text = list_title[i - 1]
+
+                # construct the column 1 (country info) by rows
                 list_ctgy = ["Host_WWAN", "RFID"]
-                for i in range(1, row):
+                for i in range(1, len(table.rows)):
                     total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category=list_ctgy[i - 1])
                     table.cell(i, 1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
                     PF.add_text_with_newlines(table.cell(i, 1), list_ctry, string_len=20)
             elif status == "Update":
+                # copy prvious table by cell(row, col)
                 dict_table = self.CRT.get_table_dict(slide_idx=0)
                 PF.copy_table_value(table, dict_table["Module"])
+
+                # set table style
+                list_dblstrike_run = PF.find_dblstrike(dict_table["System"])
+                PF.set_dblstrike(table, list_dblstrike_run)
 
     # construct the status table which located on the right-top side of slied
     def create_status_date_table(self, left, top, slide_idx=0):
@@ -348,7 +355,7 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 
 if __name__ == "__main__":
-    Carnoustie = PPTXREPORT("./result/dbl_table.pptx")
+    Carnoustie = PPTXREPORT()
 
     # CRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/result/dbl_table.pptx")
     # dict_table = CRT.get_table_dict(slide_idx=0)
