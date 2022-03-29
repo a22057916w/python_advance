@@ -165,6 +165,7 @@ class PresentationFeature():
                 fill.solid()
                 fill.fore_color.rgb = RGBcolor
 
+    # print table value
     @staticmethod
     def print_table(table):
         for row in range(len(table.rows)):
@@ -198,17 +199,8 @@ class PresentationFeature():
                     headEnd = cls.SubElement(ln, 'a:headEnd', type='none', w='med', len='med')
                     tailEnd = cls.SubElement(ln, 'a:tailEnd', type='none', w='med', len='med')
 
-    @staticmethod
-    def copy_table_value(dst_table, src_table):
-        for row in range(len(src_table.rows)):
-            for col in range(len(src_table.columns)):
-                for paragraphs in src_table.cell(row, col).text_frame.paragraphs:
-                    dst_p = dst_table.cell(row, col).text_frame.add_paragraph()
-                    for run in paragraphs.runs:
-                        dst_run = dst_p.add_run()
-                        dst_run.text = run.text
 
-
+    # set dblstrike on run tag by xml
     @classmethod
     def set_dblstrike(cls, table, list_run_text):
         for row in range(len(table.rows)):
@@ -219,13 +211,7 @@ class PresentationFeature():
                             r = run._r
                             rPr = cls.SubElement(r, 'a:rPr', strike="dblStrike")
 
-
-
-    @classmethod
-    def print_table_xml(cls, table, table_name, path=os.getcwd()):
-        with open(table_name + "_table.xml", "w") as f:
-            f.write(str(table._tbl.xml))
-
+    # find the rPr tag with dblStrike attrib under run, then return a list of quilfied run-text
     @staticmethod
     def find_dblstrike(table):
         namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
@@ -241,3 +227,21 @@ class PresentationFeature():
                     t = r.find('.//a:t', namespaces)
                     list_run_text.append(t.text)
         return list_run_text
+
+
+    # copy table value by runs
+    @staticmethod
+    def copy_table_value(dst_table, src_table):
+        for row in range(len(src_table.rows)):
+            for col in range(len(src_table.columns)):
+                for paragraphs in src_table.cell(row, col).text_frame.paragraphs:
+                    dst_p = dst_table.cell(row, col).text_frame.add_paragraph()
+                    for run in paragraphs.runs:
+                        dst_run = dst_p.add_run()
+                        dst_run.text = run.text
+
+    # output a table's xml file
+    @classmethod
+    def print_table_xml(cls, table, table_name, path=os.getcwd()):
+        with open(table_name + "_table.xml", "w") as f:
+            f.write(str(table._tbl.xml))
