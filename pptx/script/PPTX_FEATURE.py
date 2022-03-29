@@ -199,20 +199,49 @@ class PresentationFeature():
                     tailEnd = cls.SubElement(ln, 'a:tailEnd', type='none', w='med', len='med')
 
     @classmethod
+    def set_dblstrike(cls, table, list_run_text):
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                for paragraphs in table.cell(row, col).text_frame.paragraphs:
+                    for run in paragraphs.runs:
+                        if run.text in list_run_text:
+                            r = run._r
+                            rPr = cls.SubElement(r, 'a:rPr', strike="dblStrike")
+
+
+
+    @classmethod
     def print_table_xml(cls, table, table_name, path=os.getcwd()):
         with open(table_name + "_table.xml", "w") as f:
             f.write(str(table._tbl.xml))
 
-        root = ET.fromstring(table._tbl.xml)
-        cls.traverse_xml(root)
+        #root = ET.fromstring(table._tbl.xml)
+        #cls.traverse_xml(root)
 
-    @classmethod
-    def traverse_xml(cls, root):
+    # @classmethod
+    # def traverse_xml(cls, root):
+    #     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+    #     if root == None:
+    #         print("Element is None")
+    #         return
+    #
+    #     for element in root:
+    #         print(element.tag, element.attrib)
+    #         cls.traverse_xml(element)
+
+
+    @staticmethod
+    def find_dblstrike(table):
         namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
-        if root == None:
-            print("Element is None")
-            return
 
-        for element in root:
-            print(element.tag, element.attrib)
-            cls.traverse_xml(element)
+        list_run_text = []
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                cell = table.cell(row, col)
+                tc = cell._tc
+                list_rPr = tc.findall('.//a:rPr[@strike="dblStrike"]', namespaces)
+                for rPr in list_rPr:
+                    r = rPr.find('..')
+                    t = r.find('.//a:t', namespaces)
+                    list_run_text.append(t.text)
+        return list_run_text

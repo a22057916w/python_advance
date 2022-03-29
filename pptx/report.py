@@ -324,4 +324,8 @@ if __name__ == "__main__":
     #     print(title)
     #     PF.print_table(table)
 
-    PF.print_table_xml(dict_table["System"], "System")
+    #PF.print_table_xml(dict_table["System"], "System")
+    list_run_text = PF.find_dblstrike(dict_table["System"])
+    print(list_run_text)
+    PF.set_dblstrike(dict_table["System"], list_run_text)
+    CRT.prs.save("/data/Code/python/python_advance/pptx/result/dbl_table.pptx")
