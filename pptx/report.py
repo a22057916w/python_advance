@@ -210,21 +210,12 @@ class PPTXREPORT():
             table = PF.add_table(slide, row, col, left, top)
 
             # construct cell(1,0) and (0,1) which are row title and column name
-            table.cell(1,0).text = "System"
-            self.set_PPE_phase(table, level="System", status="Update")
-            # table.cell(0,1).text = "PPE"
-            #
-            # # construct cell(1, 1) which contain county info
-            # total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
-            # table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-            # PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+            self.set_PPE_phase(table, level="System", status=self.status)
 
             # set table style
             dict_table = self.CRT.get_table_dict(slide_idx=0)
-            print(dict_table.keys())
+            #print(dict_table.keys())
             list_dblstrike_run = PF.find_dblstrike(dict_table["System"])
-            #print("32423")
-            print(list_dblstrike_run)
             PF.set_dblstrike(table, list_dblstrike_run)
 
             PF.set_table_text_size(table, size=Pt(8))
@@ -253,19 +244,8 @@ class PPTXREPORT():
             table = PF.add_table(slide, row, col, left, top)
 
             # set column 1 title name
-            table.cell(0,1).text = "PPE"
+            self.set_PPE_phase(table, level="Module", status=self.status)
 
-            # construct the column 0 (row title) by rows
-            list_title = [WBF.get_WWAN_ID()+"\n(WWAN)", "RFID"]
-            for i in range(1, row):
-                table.cell(i, 0).text = list_title[i - 1]
-
-            # construct the column 1 (country info) by rows
-            list_ctgy = ["Host_WWAN", "RFID"]
-            for i in range(1, row):
-                total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category=list_ctgy[i - 1])
-                table.cell(i, 1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-                PF.add_text_with_newlines(table.cell(i, 1), list_ctry, string_len=20)
 
             # set table style
             PF.set_table_text_size(table, size=Pt(8))
@@ -281,19 +261,35 @@ class PPTXREPORT():
             return False
 
     def set_PPE_phase(self, table, *, level, status):
-        table.cell(0,1).text = "PPE"
         if level == "System":
             if status == "New":
                 # construct cell(1, 1) which contain county info
+                table.cell(1,0).text = "System"
+                table.cell(0,1).text = "PPE"
+
+                # construct the column 0 (row title) by rows
+                list_title = [WBF.get_WWAN_ID()+"\n(WWAN)", "RFID"]
+                for i in range(1, row):
+                    table.cell(i, 0).text = list_title[i - 1]
+
                 total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
                 table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
                 PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
             elif status == "Update":
                 dict_table = self.CRT.get_table_dict(slide_idx=0)
                 PF.copy_table_value(table, dict_table["System"])
-        if level == "Modue":
-            pass
-
+        if level == "Module":
+            if status == "New":
+                # construct the column 1 (country info) by rows
+                table.cell(0,1).text = "PPE"
+                list_ctgy = ["Host_WWAN", "RFID"]
+                for i in range(1, row):
+                    total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category=list_ctgy[i - 1])
+                    table.cell(i, 1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+                    PF.add_text_with_newlines(table.cell(i, 1), list_ctry, string_len=20)
+            elif status == "Update":
+                dict_table = self.CRT.get_table_dict(slide_idx=0)
+                PF.copy_table_value(table, dict_table["Module"])
 
     # construct the status table which located on the right-top side of slied
     def create_status_date_table(self, left, top, slide_idx=0):
