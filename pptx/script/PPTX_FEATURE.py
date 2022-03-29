@@ -198,6 +198,17 @@ class PresentationFeature():
                     headEnd = cls.SubElement(ln, 'a:headEnd', type='none', w='med', len='med')
                     tailEnd = cls.SubElement(ln, 'a:tailEnd', type='none', w='med', len='med')
 
+    @staticmethod
+    def copy_table_value(dst_table, src_table):
+        for row in range(len(src_table.rows)):
+            for col in range(len(src_table.columns)):
+                for paragraphs in src_table.cell(row, col).text_frame.paragraphs:
+                    dst_p = dst_table.cell(row, col).text_frame.add_paragraph()
+                    for run in paragraphs.runs:
+                        dst_run = dst_p.add_run()
+                        dst_run.text = run.text
+
+
     @classmethod
     def set_dblstrike(cls, table, list_run_text):
         for row in range(len(table.rows)):
@@ -205,6 +216,7 @@ class PresentationFeature():
                 for paragraphs in table.cell(row, col).text_frame.paragraphs:
                     for run in paragraphs.runs:
                         if run.text in list_run_text:
+                            print(run.text)
                             r = run._r
                             rPr = cls.SubElement(r, 'a:rPr', strike="dblStrike")
 
@@ -214,21 +226,6 @@ class PresentationFeature():
     def print_table_xml(cls, table, table_name, path=os.getcwd()):
         with open(table_name + "_table.xml", "w") as f:
             f.write(str(table._tbl.xml))
-
-        #root = ET.fromstring(table._tbl.xml)
-        #cls.traverse_xml(root)
-
-    # @classmethod
-    # def traverse_xml(cls, root):
-    #     namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
-    #     if root == None:
-    #         print("Element is None")
-    #         return
-    #
-    #     for element in root:
-    #         print(element.tag, element.attrib)
-    #         cls.traverse_xml(element)
-
 
     @staticmethod
     def find_dblstrike(table):

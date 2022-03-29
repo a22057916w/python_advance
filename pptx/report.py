@@ -35,12 +35,12 @@ g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".p
 
 class CLIENTREPORT():
     def __init__(self, pptx_path):
-        self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
-        self.module_logger = setup_logger("module_logger", self.strLogPath)
+        #self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
+        #self.module_logger = setup_logger("module_logger", self.strLogPath)
 
         self.prs = Presentation(pptx_path)
 
-    def get_table_dict(self, slide_idx):
+    def get_table_dict(self, *, slide_idx):
         try:
             slide = self.prs.slides[slide_idx]
 
@@ -56,25 +56,25 @@ class CLIENTREPORT():
                 title = self.get_table_title(table, 1, 0)
                 if title in list_status_table_title:
                     dict_table["Status"] = table
-                elif title == "System":
+                elif "System" in title:
                     dict_table["System"] = table
                 else:
                     dict_table["Module"] = table
             return dict_table
         except:
-            self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
+            #self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
             return None
 
     def get_table_title(self, table, row, col):
         try:
             cell = table.cell(row, col)
             if cell.text == None:
-                self.moduel_logger.error("The given cell value is empty.")
+                #self.moduel_logger.error("The given cell value is empty.")
                 return None
             else:
                 return cell.text
         except:
-            self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
+            #self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
             return None
 
 
@@ -85,12 +85,20 @@ class PPTXREPORT():
 
     prs = Presentation()
 
-    def __init__(self):
+    status = "New"   # check if the pptx need to be update or create a new one
+
+    def __init__(self, pptx_path=None):
         try:
             self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
             self.module_logger = setup_logger("module_logger", self.strLogPath)
-
             self.module_logger.info("========= Initiating =========")
+
+            if pptx_path != None:
+                self.module_logger.info("Reading Previous Phase PPTX")
+                self.CRT = CLIENTREPORT(pptx_path)
+
+                self.module_logger.info("Status set to Update")
+                self.status = "Update"
 
             self.module_logger.info("Reading and Setting Workbook")
             WBF.set_workbook("./example/Carnoustie_Regulatory Schedule (HrP2 AX201)_20211217.xlsx")
@@ -203,25 +211,38 @@ class PPTXREPORT():
 
             # construct cell(1,0) and (0,1) which are row title and column name
             table.cell(1,0).text = "System"
-            table.cell(0,1).text = "PPE"
-
-            # construct cell(1, 1) which contain county info
-            total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
-            table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
-            PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+            self.set_PPE_phase(table, level="System", status="Update")
+            # table.cell(0,1).text = "PPE"
+            #
+            # # construct cell(1, 1) which contain county info
+            # total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
+            # table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+            # PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
 
             # set table style
+            dict_table = self.CRT.get_table_dict(slide_idx=0)
+            print(dict_table.keys())
+            list_dblstrike_run = PF.find_dblstrike(dict_table["System"])
+            #print("32423")
+            print(list_dblstrike_run)
+            PF.set_dblstrike(table, list_dblstrike_run)
+
             PF.set_table_text_size(table, size=Pt(8))
             PF.set_column_width(table, [0, 1], [Pt(11)*6, Pt(6)*40])
             PF.set_table_alignment(table, PP_ALIGN.CENTER, MSO_ANCHOR.MIDDLE)
-            PF.set_table_fill(table, RGBColor(255, 255, 255))   # !!! the border must be set before the fill, or the xml would be overide
+            PF.set_table_border(table)  # !!! the border must be set before the fill, or the xml would be overide
+            PF.set_table_fill(table, RGBColor(255, 255, 255))
             PF.set_cell_fill(table, [(0, 0), (0, 1)], RGBColor(0, 133, 195))
-            PF.set_table_border(table)
+            # PF.print_table_xml(dict_table["System"], table_name="dblstrike")
+            # PF.print_table_xml(table, table_name="System_dbl_tbl")
+
 
             return True
         except Exception as e:
             self.module_logger.info("Unexpected Error :" + str(e))
+            self.module_logger.info(str(traceback.format_exc()))
             return False
+
 
     # construct the module level table in slide "Carnoustie Regulatory status summary"
     def create_module_level_table(self, left, top, row, col, slide_idx=0):
@@ -258,6 +279,21 @@ class PPTXREPORT():
         except Exception as e:
             self.module_logger.info("Unexpected Error :" + str(e))
             return False
+
+    def set_PPE_phase(self, table, *, level, status):
+        table.cell(0,1).text = "PPE"
+        if level == "System":
+            if status == "New":
+                # construct cell(1, 1) which contain county info
+                total_ctry, list_ctry = DFF.get_country_set(self.df_postRTS_MD, category="Host")
+                table.cell(1,1).text = "%d\n" % total_ctry          # set total country number(no duplicated)
+                PF.add_text_with_newlines(table.cell(1,1), list_ctry, string_len=20)
+            elif status == "Update":
+                dict_table = self.CRT.get_table_dict(slide_idx=0)
+                PF.copy_table_value(table, dict_table["System"])
+        if level == "Modue":
+            pass
+
 
     # construct the status table which located on the right-top side of slied
     def create_status_date_table(self, left, top, slide_idx=0):
@@ -316,16 +352,16 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 
 if __name__ == "__main__":
-    #Carnoustie = PPTXREPORT()
+    Carnoustie = PPTXREPORT("./result/dbl_table.pptx")
 
-    CRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/result/report.pptx")
-    dict_table = CRT.get_table_dict(0)
-    # for title, table in dict_table.items():
-    #     print(title)
-    #     PF.print_table(table)
-
-    #PF.print_table_xml(dict_table["System"], "System")
-    list_run_text = PF.find_dblstrike(dict_table["System"])
-    print(list_run_text)
-    PF.set_dblstrike(dict_table["System"], list_run_text)
-    CRT.prs.save("/data/Code/python/python_advance/pptx/result/dbl_table.pptx")
+    # CRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/result/dbl_table.pptx")
+    # dict_table = CRT.get_table_dict(slide_idx=0)
+    # # for title, table in dict_table.items():
+    # #     print(title)
+    # #     PF.print_table(table)
+    #
+    # #PF.print_table_xml(dict_table["System"], "System")
+    # list_run_text = PF.find_dblstrike(dict_table["System"])
+    # print(list_run_text)
+    # PF.set_dblstrike(dict_table["System"], list_run_text)
+    # CRT.prs.save("/data/Code/python/python_advance/pptx/result/report.pptx")
