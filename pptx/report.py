@@ -35,16 +35,14 @@ g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".p
 
 class CLIENTREPORT():
     def __init__(self, pptx_path):
-        #self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
-        #self.module_logger = setup_logger("module_logger", self.strLogPath)
-
         self.prs = Presentation(pptx_path)
 
-    #
+    # get the table map
     def get_table_dict(self, *, slide_idx):
         try:
             slide = self.prs.slides[slide_idx]
 
+            # check if has table
             list_table = []
             for shape in slide.shapes:
                 if shape.has_table:
@@ -63,19 +61,20 @@ class CLIENTREPORT():
                     dict_table["Module"] = table
             return dict_table
         except:
-            #self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
+            print("Unexpected Error : " + str(traceback.format_exc()))
             return None
 
+    # get table title accroding to cell(row, col)'s value'
     def get_table_title(self, table, row, col):
         try:
             cell = table.cell(row, col)
             if cell.text == None:
-                #self.moduel_logger.error("The given cell value is empty.")
+                print("The given cell value is empty.")
                 return None
             else:
                 return cell.text
         except:
-            #self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
+            print("Unexpected Error : " + str(traceback.format_exc()))
             return None
 
 
@@ -253,6 +252,7 @@ class PPTXREPORT():
             self.module_logger.info(str(traceback.format_exc()))
             return False
 
+    # construct PPE phase table accroding to the status
     def set_PPE_phase(self, table, *, level, status):
         if level == "System":
             if status == "New":
