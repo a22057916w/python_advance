@@ -35,6 +35,9 @@ g_strOutputPath = os.path.join("./result", os.path.basename(__file__)[:-3] + ".p
 
 class CLIENTREPORT():
     def __init__(self, pptx_path):
+        self.strLogPath = os.path.join(os.getcwd(), os.path.basename(__file__)[:-3] + ".log")
+        self.module_logger = setup_logger("module_logger", self.strLogPath)
+
         self.prs = Presentation(pptx_path)
 
     def get_table_dict(self, slide_idx):
@@ -42,12 +45,12 @@ class CLIENTREPORT():
             slide = self.prs.slides[slide_idx]
 
             list_table = []
-            for shape in sld.shapes:
+            for shape in slide.shapes:
                 if shape.has_table:
                     list_table.append(shape.table)
 
             # for slide 1 only
-            list_status_table_title = ["RFD, RTS, RTO", "LABEL", "DVT 1.0 ETA", "DVT 2.0 ETA"]
+            list_status_table_title = ["RFD", "RTS", "RTO", "LABEL", "DVT 1.0 ETA", "DVT 2.0 ETA"]
             dict_table = {}
             for table in list_table:
                 title = self.get_table_title(table, 1, 0)
@@ -65,11 +68,11 @@ class CLIENTREPORT():
     def get_table_title(self, table, row, col):
         try:
             cell = table.cell(row, col)
-            if cell.value == None:
+            if cell.text == None:
                 self.moduel_logger.error("The given cell value is empty.")
                 return None
             else:
-                return cell.value
+                return cell.text
         except:
             self.module_logger.error("Unexpected Error : " + str(traceback.format_exc()))
             return None
@@ -314,4 +317,8 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 if __name__ == "__main__":
     #Carnoustie = PPTXREPORT()
-    ClientRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/result/report.pptx")
+    CRT = CLIENTREPORT("/data/Code/python/python_advance/pptx/example/Carnoustie_ICE Deep Dive_Regulatory schedule_20210604.pptx")
+    dict_table = CRT.get_table_dict(2)
+    for title, table in dict_table.items():
+        print(title)
+        PF.print_table(table)
