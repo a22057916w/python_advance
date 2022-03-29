@@ -163,6 +163,13 @@ class PresentationFeature():
                 fill.solid()
                 fill.fore_color.rgb = RGBcolor
 
+    @staticmethod
+    def print_table(table):
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                print(table.cell(row, col).text_frame.text, end=" ")
+            print()
+
     # new xml element to set style
     @staticmethod
     def SubElement(parent, tagname, **kwargs):
