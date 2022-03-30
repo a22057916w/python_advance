@@ -211,6 +211,22 @@ class PresentationFeature():
                             r = run._r
                             rPr = cls.SubElement(r, 'a:rPr', strike="dblStrike")
 
+    @staticmethod
+    def find_color(table):
+        namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+
+        list_run_text = []
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                cell = table.cell(row, col)
+                tc = cell._tc
+                list_rPr = tc.findall('.//a:rPr[@strike="dblStrike"]', namespaces)
+                for rPr in list_rPr:
+                    r = rPr.find('..')
+                    t = r.find('.//a:t', namespaces)
+                    list_run_text.append(t.text)
+        return list_run_text
+
     # find the rPr tag with dblStrike attrib under run, then return a list of quilfied run-text
     @staticmethod
     def find_dblstrike(table):

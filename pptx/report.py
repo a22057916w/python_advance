@@ -355,6 +355,8 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 
 if __name__ == "__main__":
-    Carnoustie = PPTXREPORT()
-    Carnoustie = PPTXREPORT("./result/dbl_table.pptx")
-    
+    #Carnoustie = PPTXREPORT()
+    #Carnoustie = PPTXREPORT("./result/dbl_table.pptx")
+    CRT = CLIENTREPORT("./result/dbl_table.pptx")
+    dict_table = CRT.get_table_dict(slide_idx=0)
+    PF.print_table_xml(dict_table["System"], table_name="System")
