@@ -211,22 +211,6 @@ class PresentationFeature():
                             r = run._r
                             rPr = cls.SubElement(r, 'a:rPr', strike="dblStrike")
 
-    @staticmethod
-    def find_color(table):
-        namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
-
-        list_run_text = []
-        for row in range(len(table.rows)):
-            for col in range(len(table.columns)):
-                cell = table.cell(row, col)
-                tc = cell._tc
-                list_rPr = tc.findall('.//a:rPr[@strike="dblStrike"]', namespaces)
-                for rPr in list_rPr:
-                    r = rPr.find('..')
-                    t = r.find('.//a:t', namespaces)
-                    list_run_text.append(t.text)
-        return list_run_text
-
     # find the rPr tag with dblStrike attrib under run, then return a list of quilfied run-text
     @staticmethod
     def find_dblstrike(table):
@@ -244,15 +228,44 @@ class PresentationFeature():
                     list_run_text.append(t.text)
         return list_run_text
 
+    # set table color that the srchClr val is not "000000"
+    @classmethod
+    def set_color(cls, table, dict_run_text):
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                for paragraphs in table.cell(row, col).text_frame.paragraphs:
+                    for run in paragraphs.runs:
+                        if run.text in dict_run_text.keys():
+                            r = run._r
+                            rPr = r.get_or_add_rPr()
+                            solidFill = cls.SubElement(rPr, 'a:solidFill')
+                            srgbClr = cls.SubElement(solidFill, 'a:srgbClr', val=dict_run_text[run.text])
+
+    # find the run's color that is not "000000" and return that color and text as dict
+    @staticmethod
+    def find_color(table):
+        namespaces = {'a': 'http://schemas.openxmlformats.org/drawingml/2006/main'}
+
+        dict_run_text = {}
+        for row in range(len(table.rows)):
+            for col in range(len(table.columns)):
+                for paragraphs in table.cell(row, col).text_frame.paragraphs:
+                    for run in paragraphs.runs:
+                        r = run._r
+                        srgbClr = r.find('.//a:srgbClr', namespaces)
+                        if srgbClr.attrib["val"] != "000000":
+                            t = r.find('.//a:t', namespaces)
+                            dict_run_text[t.text] = srgbClr.attrib["val"]
+        return dict_run_text
 
     # copy table value by runs
     @staticmethod
     def copy_table_value(dst_table, src_table):
         for row in range(len(src_table.rows)):
             for col in range(len(src_table.columns)):
-                for paragraphs in src_table.cell(row, col).text_frame.paragraphs:
+                for paragraph in src_table.cell(row, col).text_frame.paragraphs:
                     dst_p = dst_table.cell(row, col).text_frame.add_paragraph()
-                    for run in paragraphs.runs:
+                    for run in paragraph.runs:
                         dst_run = dst_p.add_run()
                         dst_run.text = run.text
 

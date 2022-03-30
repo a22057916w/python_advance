@@ -1261,3 +1261,405 @@ NameError: name 'row' is not defined
 [2022/03/29 17:42:58][INFO ][172][add_regulatory_status_summary_slide] Creating Module Level Table
 [2022/03/29 17:42:58][INFO ][175][add_regulatory_status_summary_slide] Creating Status-Date Table
 [2022/03/29 17:42:58][INFO ][132][startFlow] ========== End ==========
+[2022/03/30 10:32:28][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:32:28][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:32:28][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:32:28][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:32:36][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:32:36][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:32:36][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:32:36][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:32:43][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:32:43][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:32:43][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:32:43][INFO ][225][create_system_level_table] Unexpected Error :name 'scr_table' is not defined
+[2022/03/30 10:32:43][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 264, in copy_table_color
+    for row in range(len(scr_table.rows)):
+NameError: name 'scr_table' is not defined
+
+[2022/03/30 10:32:43][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:33:05][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:33:05][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:33:05][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:33:05][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:33:13][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:33:13][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:33:13][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:33:13][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:33:20][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:33:20][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:33:20][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:33:20][INFO ][225][create_system_level_table] Unexpected Error :not enough values to unpack (expected 2, got 1)
+[2022/03/30 10:33:20][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 268, in copy_table_color
+    for src_run, dst_run in [src_p, dst_p]:
+ValueError: not enough values to unpack (expected 2, got 1)
+
+[2022/03/30 10:33:20][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:33:38][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:33:38][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:33:38][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:33:38][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:33:46][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:33:46][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:33:46][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:33:46][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:33:53][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:33:53][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:33:53][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:33:53][INFO ][225][create_system_level_table] Unexpected Error :not enough values to unpack (expected 2, got 1)
+[2022/03/30 10:33:53][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 268, in copy_table_color
+    for src_run, dst_run in (src_p, dst_p):
+ValueError: not enough values to unpack (expected 2, got 1)
+
+[2022/03/30 10:33:53][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:34:33][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:34:33][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:34:33][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:34:33][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:34:41][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:34:41][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:34:41][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:34:41][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:34:48][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:34:48][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:34:48][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:34:48][INFO ][225][create_system_level_table] Unexpected Error :'tuple' object has no attribute '_r'
+[2022/03/30 10:34:48][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 269, in copy_table_color
+    src_r = src_run._r
+AttributeError: 'tuple' object has no attribute '_r'
+
+[2022/03/30 10:34:48][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:35:21][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:35:21][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:35:21][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:35:21][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:35:29][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:35:29][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:35:29][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:35:29][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:35:36][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:35:36][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:35:36][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:35:36][INFO ][225][create_system_level_table] Unexpected Error :not enough values to unpack (expected 2, got 1)
+[2022/03/30 10:35:36][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 269, in copy_table_color
+    for src_run, dst_run in src_p, dst_p:
+ValueError: not enough values to unpack (expected 2, got 1)
+
+[2022/03/30 10:35:36][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:36:01][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:36:01][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:36:01][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:36:01][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:36:09][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:36:09][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:36:09][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:36:09][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:36:16][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:36:16][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:36:16][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:36:16][INFO ][225][create_system_level_table] Unexpected Error :not enough values to unpack (expected 2, got 1)
+[2022/03/30 10:36:16][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 271, in copy_table_color
+    for src_run, dst_run in src_p, dst_p:
+ValueError: not enough values to unpack (expected 2, got 1)
+
+[2022/03/30 10:36:16][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:37:01][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:37:01][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:37:01][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:37:01][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:37:09][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:37:09][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:37:09][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:37:09][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:37:16][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:37:16][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:37:16][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:37:16][INFO ][225][create_system_level_table] Unexpected Error :not enough values to unpack (expected 2, got 1)
+[2022/03/30 10:37:16][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 271, in copy_table_color
+    for src_run, dst_run in [src_p, dst_p]:
+ValueError: not enough values to unpack (expected 2, got 1)
+
+[2022/03/30 10:37:16][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:37:27][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:37:27][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:37:27][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:37:27][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:37:35][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:37:35][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:37:35][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:37:35][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:37:42][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:37:42][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:37:42][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:37:42][INFO ][225][create_system_level_table] Unexpected Error :not enough values to unpack (expected 2, got 1)
+[2022/03/30 10:37:42][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 271, in copy_table_color
+    for src_run, dst_run in src_p, dst_p:
+ValueError: not enough values to unpack (expected 2, got 1)
+
+[2022/03/30 10:37:42][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:39:11][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:39:11][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:39:11][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:39:11][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:39:18][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:39:18][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:39:18][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:39:18][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:39:25][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:39:25][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:39:25][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:39:25][INFO ][225][create_system_level_table] Unexpected Error :'_Paragraph' object has no attribute '_r'
+[2022/03/30 10:39:25][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 272, in copy_table_color
+    src_r = src_run._r
+AttributeError: '_Paragraph' object has no attribute '_r'
+
+[2022/03/30 10:39:25][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:49:27][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:49:27][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:49:27][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:49:27][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:49:34][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:49:34][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:49:34][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:49:34][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:49:41][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:49:41][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:49:41][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:49:41][INFO ][225][create_system_level_table] Unexpected Error :name 'src_p' is not defined
+[2022/03/30 10:49:41][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 268, in copy_table_color
+    print(src_p)
+NameError: name 'src_p' is not defined
+
+[2022/03/30 10:49:41][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:49:56][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:49:56][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:49:56][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:49:56][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:50:03][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:50:03][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:50:03][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:50:03][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:50:09][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:50:09][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:50:09][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:50:09][INFO ][225][create_system_level_table] Unexpected Error :name 'ragne' is not defined
+[2022/03/30 10:50:09][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 268, in copy_table_color
+    for i in ragne(len(src_paragraphs)):
+NameError: name 'ragne' is not defined
+
+[2022/03/30 10:50:09][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:50:26][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:50:26][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:50:26][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:50:26][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:50:33][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:50:33][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:50:33][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:50:33][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:50:39][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:50:39][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:50:39][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:50:39][INFO ][225][create_system_level_table] Unexpected Error :tuple index out of range
+[2022/03/30 10:50:39][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 273, in copy_table_color
+    dst_r = dst_runs[i]._r
+IndexError: tuple index out of range
+
+[2022/03/30 10:50:39][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 10:52:28][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 10:52:28][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 10:52:28][INFO ][100][__init__] Status set to Update
+[2022/03/30 10:52:28][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 10:52:35][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 10:52:35][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 10:52:35][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 10:52:35][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 10:52:41][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 10:52:41][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 10:52:41][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 10:52:41][INFO ][225][create_system_level_table] Unexpected Error :tuple index out of range
+[2022/03/30 10:52:41][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 276, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 274, in copy_table_color
+    dst_r = dst_runs[i]._r
+IndexError: tuple index out of range
+
+[2022/03/30 10:52:41][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 11:00:27][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 11:00:27][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 11:00:27][INFO ][100][__init__] Status set to Update
+[2022/03/30 11:00:27][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 11:00:34][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 11:00:34][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 11:00:34][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 11:00:34][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 11:00:40][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 11:00:40][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 11:00:40][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 11:00:40][INFO ][225][create_system_level_table] Unexpected Error :tuple index out of range
+[2022/03/30 11:00:40][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 277, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 274, in copy_table_color
+    dst_r = dst_runs[i]._r
+IndexError: tuple index out of range
+
+[2022/03/30 11:00:40][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 11:10:55][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 11:10:55][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 11:10:55][INFO ][100][__init__] Status set to Update
+[2022/03/30 11:10:55][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 11:11:02][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 11:11:02][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 11:11:02][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 11:11:02][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 11:11:08][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 11:11:08][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 11:11:08][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 11:11:08][INFO ][225][create_system_level_table] Unexpected Error :tuple index out of range
+[2022/03/30 11:11:08][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 277, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 275, in copy_table_color
+    dst_r = dst_runs[i]._r
+IndexError: tuple index out of range
+
+[2022/03/30 11:11:08][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 11:11:22][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 11:11:22][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 11:11:22][INFO ][100][__init__] Status set to Update
+[2022/03/30 11:11:22][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 11:11:29][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 11:11:29][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 11:11:29][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 11:11:29][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 11:11:35][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 11:11:35][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 11:11:35][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 11:11:35][INFO ][225][create_system_level_table] Unexpected Error :tuple index out of range
+[2022/03/30 11:11:35][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 277, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 275, in copy_table_color
+    dst_r = dst_runs[i]._r
+IndexError: tuple index out of range
+
+[2022/03/30 11:11:35][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 11:13:58][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 11:13:58][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 11:13:58][INFO ][100][__init__] Status set to Update
+[2022/03/30 11:13:58][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 11:14:05][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 11:14:05][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 11:14:05][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 11:14:05][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 11:14:11][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 11:14:11][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 11:14:11][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 11:14:11][INFO ][225][create_system_level_table] Unexpected Error :tuple index out of range
+[2022/03/30 11:14:11][INFO ][226][create_system_level_table] Traceback (most recent call last):
+  File "/data/Code/python/python_advance/pptx/report.py", line 213, in create_system_level_table
+    self.set_PPE_phase(table, level="System", status=self.status)
+  File "/data/Code/python/python_advance/pptx/report.py", line 278, in set_PPE_phase
+    PF.copy_table_color(table, dict_table["System"])
+  File "/data/Code/python/python_advance/pptx/./script/PPTX_FEATURE.py", line 274, in copy_table_color
+    dst_r = dst_runs[i]._r
+IndexError: tuple index out of range
+
+[2022/03/30 11:14:11][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 11:23:43][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 11:23:43][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 11:23:43][INFO ][100][__init__] Status set to Update
+[2022/03/30 11:23:43][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 11:23:50][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 11:23:50][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 11:23:50][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 11:23:50][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 11:23:56][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 11:23:56][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 11:23:56][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 11:23:56][INFO ][171][add_regulatory_status_summary_slide] Creating Module Level Table
+[2022/03/30 11:23:56][INFO ][174][add_regulatory_status_summary_slide] Creating Status-Date Table
+[2022/03/30 11:23:56][INFO ][131][startFlow] ========== End ==========
+[2022/03/30 11:26:24][INFO ][94 ][__init__] ========= Initiating =========
+[2022/03/30 11:26:24][INFO ][97 ][__init__] Reading Previous Phase PPTX
+[2022/03/30 11:26:24][INFO ][100][__init__] Status set to Update
+[2022/03/30 11:26:24][INFO ][103][__init__] Reading and Setting Workbook
+[2022/03/30 11:26:31][INFO ][114][startFlow] ========== Start ==========
+[2022/03/30 11:26:31][INFO ][115][startFlow] Python 3.10.4 (main, Mar 23 2022, 23:05:40) [GCC 11.2.0]
+[2022/03/30 11:26:31][INFO ][116][startFlow] report.py 1.0.0.1
+[2022/03/30 11:26:31][INFO ][123][startFlow] Read the excel sheet "Post-RTS"
+[2022/03/30 11:26:37][INFO ][126][startFlow] Construct the slide "Carnoustie Regulatory status summary"
+[2022/03/30 11:26:37][INFO ][165][add_regulatory_status_summary_slide] Writing Title
+[2022/03/30 11:26:37][INFO ][168][add_regulatory_status_summary_slide] Creating System Level Table
+[2022/03/30 11:26:37][INFO ][171][add_regulatory_status_summary_slide] Creating Module Level Table
+[2022/03/30 11:26:37][INFO ][174][add_regulatory_status_summary_slide] Creating Status-Date Table
+[2022/03/30 11:26:37][INFO ][131][startFlow] ========== End ==========

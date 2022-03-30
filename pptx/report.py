@@ -270,9 +270,13 @@ class PPTXREPORT():
                 dict_table = self.CRT.get_table_dict(slide_idx=0)
                 PF.copy_table_value(table, dict_table["System"])
 
-                # set table style
+                # set table cell's text doubleStrike
                 list_dblstrike_run = PF.find_dblstrike(dict_table["System"])
                 PF.set_dblstrike(table, list_dblstrike_run)
+
+                # set table cell's text color
+                dict_color_text = PF.find_color(dict_table["System"])
+                PF.set_color(table, dict_color_text)
 
         if level == "Module":
             if status == "New":
@@ -297,6 +301,9 @@ class PPTXREPORT():
                 # set table style
                 list_dblstrike_run = PF.find_dblstrike(dict_table["System"])
                 PF.set_dblstrike(table, list_dblstrike_run)
+
+                dict_color_text = PF.find_color(dict_table["Module"])
+                PF.set_color(table, dict_color_text)
 
     # construct the status table which located on the right-top side of slied
     def create_status_date_table(self, left, top, slide_idx=0):
@@ -356,7 +363,8 @@ def setup_logger(name, log_file, level=logging.INFO):
 
 if __name__ == "__main__":
     #Carnoustie = PPTXREPORT()
-    #Carnoustie = PPTXREPORT("./result/dbl_table.pptx")
-    CRT = CLIENTREPORT("./result/dbl_table.pptx")
-    dict_table = CRT.get_table_dict(slide_idx=0)
-    PF.print_table_xml(dict_table["System"], table_name="System")
+    Carnoustie = PPTXREPORT("./result/dbl_table.pptx")
+    # CRT = CLIENTREPORT("./result/dbl_table.pptx")
+    # dict_table = CRT.get_table_dict(slide_idx=0)
+    # PF.print_table_xml(dict_table["System"], table_name="System")
+    # PF.find_color(dict_table["System"])
